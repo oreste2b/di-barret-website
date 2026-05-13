@@ -1,0 +1,8 @@
+.vercel
+.DS_Store
+node_modules/
+
+# Design handoff bundle — not part of production site
+"Di Barret-handoff.zip"
+Di Barret-handoff.zip
+di-barret/

@@ -147,28 +147,171 @@ section { width: 100%; position: relative; }
 .section-pad { padding-top: 140px; padding-bottom: 140px; }
 .section-pad-sm { padding-top: 100px; padding-bottom: 100px; }
 
-/* ---------- reveal animation ---------- */
+/* ---------- reveal animation (GSAP-driven, CSS just sets initial) ---------- */
 .reveal {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 900ms cubic-bezier(.2,.7,.2,1), transform 900ms cubic-bezier(.2,.7,.2,1);
+  transform: translateY(34px);
   will-change: opacity, transform;
 }
-.reveal.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-.reveal[data-delay="100"] { transition-delay: 100ms; }
-.reveal[data-delay="200"] { transition-delay: 200ms; }
-.reveal[data-delay="300"] { transition-delay: 300ms; }
-.reveal[data-delay="400"] { transition-delay: 400ms; }
-.reveal[data-delay="500"] { transition-delay: 500ms; }
-.reveal[data-delay="600"] { transition-delay: 600ms; }
+
+/* Line-mask reveal for headings */
+.line-wrap { display: block; overflow: hidden; padding-bottom: 0.05em; }
+.line-inner { display: block; transform: translateY(110%); will-change: transform; }
+
+/* Loaded body — once loader has dismissed */
+body:not(.is-loaded) { overflow: hidden; }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .reveal { opacity: 1 !important; transform: none !important; }
+  .line-inner { transform: none !important; }
   * { animation-duration: 0.001s !important; animation-iteration-count: 1 !important; transition-duration: 0.001s !important; }
 }
+
+/* ==========================================================
+   PREMIUM UI — Loader, Cursor, Scroll progress
+   ========================================================== */
+
+/* ---------- Page Loader ---------- */
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999999;
+  background: #0a0a0a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: all;
+  transition: opacity 800ms cubic-bezier(.7,0,.2,1);
+}
+.loader.is-hidden { pointer-events: none; }
+.loader__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  width: min(360px, 80vw);
+}
+.loader__logo {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 24px;
+  letter-spacing: -0.03em;
+  color: var(--amber);
+  opacity: 0;
+  transform: translateY(12px);
+  animation: loaderLogo 900ms cubic-bezier(.2,.7,.2,1) 0.1s forwards;
+}
+@keyframes loaderLogo {
+  to { opacity: 1; transform: translateY(0); }
+}
+.loader__bar {
+  width: 100%;
+  height: 1px;
+  background: rgba(255,255,255,0.08);
+  position: relative;
+  overflow: hidden;
+}
+.loader__fill {
+  position: absolute;
+  inset: 0 100% 0 0;
+  background: linear-gradient(90deg, transparent, var(--amber));
+  transition: inset 600ms cubic-bezier(.7,0,.2,1);
+}
+.loader__count {
+  font-family: var(--body);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: rgba(255,255,255,0.4);
+}
+.loader__count::after { content: "%"; margin-left: 2px; }
+
+/* Loader peel-away animation */
+.loader.is-dismissing {
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 1100ms cubic-bezier(.85,0,.15,1);
+}
+
+/* ---------- Custom Cursor ---------- */
+.cursor,
+.cursor-ring {
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 9999998;
+  opacity: 0;
+  transition: opacity 200ms ease;
+  mix-blend-mode: difference;
+}
+.cursor {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #fff;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+}
+.cursor-ring {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.5);
+  transform: translate(-50%, -50%);
+  will-change: transform;
+}
+.has-cursor .cursor,
+.has-cursor .cursor-ring { opacity: 1; }
+.has-cursor body,
+.has-cursor a,
+.has-cursor button,
+.has-cursor input,
+.has-cursor textarea,
+.has-cursor select,
+.has-cursor .faq-item__btn { cursor: none; }
+.cursor.is-hover {
+  background: var(--amber);
+  width: 10px; height: 10px;
+}
+.cursor-ring.is-hover {
+  width: 56px; height: 56px;
+  border-color: rgba(255,171,0,0.7);
+  mix-blend-mode: normal;
+}
+@media (hover: none), (max-width: 900px) {
+  .cursor, .cursor-ring { display: none; }
+}
+
+/* ---------- Scroll Progress ---------- */
+.scroll-progress {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 2px;
+  background: rgba(255,171,0,0.08);
+  z-index: 9999997;
+  pointer-events: none;
+}
+.scroll-progress::after {
+  content: "";
+  position: absolute;
+  inset: 0 100% 0 0;
+  background: linear-gradient(90deg, var(--amber), #ffd75e);
+  box-shadow: 0 0 10px rgba(255,171,0,0.6);
+  transform-origin: left;
+  width: 100%;
+  transform: scaleX(0);
+  will-change: transform;
+}
+
+/* ---------- Magnetic / 3D-tilt cards ---------- */
+.service,
+.system-card,
+.demo-card,
+.stat {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.btn { will-change: transform; }
+
+/* Smooth tilt support */
+[data-tilt] { transform-style: preserve-3d; }
 
 /* ==========================================================
    NAVBAR
