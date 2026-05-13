@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Di Barret — Digitale brand-systemer, landing pages &amp; weboplevelser</title>
+  <meta name="description" content="Di Barret bygger digitale brand-systemer, landing pages og interaktive weboplevelser, der gør dit brand mere professionelt, tydeligt og værd at vælge." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</head>
+<body>
+
+<!-- ===================== NAVBAR ===================== -->
+<nav class="nav">
+  <a class="nav__logo" href="#top">/Di Barret</a>
+  <div class="nav__pill">
+    <a class="nav__link" href="#system">System</a>
+    <a class="nav__link" href="#services">Services</a>
+    <a class="nav__link" href="#work">Work</a>
+    <a class="nav__link" href="#process">Process</a>
+    <a class="nav__link" href="#contact">Contact</a>
+  </div>
+  <a class="nav__cta" href="#booking">
+    <span>Book en samtale</span>
+    <span class="arrow">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </span>
+  </a>
+</nav>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero hero--pre" id="top">
+  <div class="hero__bg"></div>
+
+  <canvas id="hero-orbit" class="hero__orbit" aria-hidden="true"></canvas>
+
+  <div class="hero__grain"></div>
+
+  <svg class="hero__corner hero__corner--tl" viewBox="0 0 200 200" fill="none" aria-hidden="true">
+    <defs>
+      <pattern id="hg1" width="20" height="20" patternUnits="userSpaceOnUse">
+        <path d="M0 5H20M0 10H20M0 15H20M5 0V20M10 0V20M15 0V20" stroke="#fff" stroke-width="0.5" opacity="0.5"/>
+      </pattern>
+    </defs>
+    <rect width="200" height="200" fill="url(#hg1)"/>
+  </svg>
+  <svg class="hero__corner hero__corner--br" viewBox="0 0 200 200" fill="none" aria-hidden="true">
+    <defs>
+      <pattern id="hg2" width="20" height="20" patternUnits="userSpaceOnUse">
+        <path d="M0 5H20M0 10H20M0 15H20M5 0V20M10 0V20M15 0V20" stroke="#fff" stroke-width="0.5" opacity="0.5"/>
+      </pattern>
+    </defs>
+    <rect width="200" height="200" fill="url(#hg2)"/>
+  </svg>
+
+  <div class="hero__content">
+    <div class="hero__label hero__anim hero__anim--1">
+      <span class="dot"></span>
+      DIGITAL BRAND SYSTEMS · WEB EXPERIENCES · VISUAL STRATEGY
+    </div>
+    <h1 class="hero__title hero__anim hero__anim--2">
+      <span class="line">No necesitas más marketing.</span>
+      <span class="line">Necesitas un <em>sistema</em>.</span>
+    </h1>
+    <p class="hero__sub hero__anim hero__anim--3">
+      Di Barret bygger digitale brand-systemer, hvor strategi, visuel identitet, webdesign, bevægelse og konvertering arbejder sammen — så dit brand ikke bare bliver set, men valgt.
+    </p>
+    <div class="hero__ctas hero__anim hero__anim--4">
+      <a class="btn btn--amber" href="#lead">
+        <span>Få en gratis visuel vurdering</span>
+        <span class="arrow">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </a>
+      <a class="btn btn--ghost-dark" href="#booking">
+        <span>Book en gratis samtale</span>
+        <span class="arrow">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </a>
+    </div>
+    <p class="hero__micro hero__anim hero__anim--5">
+      Send os dit website, din Instagram eller din idé. Vi giver dig 3 konkrete forslag til, hvordan dit brand kan føles mere professionelt, tydeligt og værd at vælge.
+    </p>
+  </div>
+
+  <div class="hero__scrollhint hero__anim hero__anim--5">Scroll</div>
+</section>
+
+<!-- ===================== INTRO / PROBLEM ===================== -->
+<section class="intro">
+  <div class="shell intro__inner">
+    <div class="reveal">
+      <div class="label"><span class="dot"></span>Problemet</div>
+    </div>
+    <div class="reveal" data-delay="100">
+      <h2 class="h2 intro__h2">Din kunde vurderer dig,<br> før de kontakter dig.</h2>
+    </div>
+    <div class="reveal body lg intro__body" data-delay="200">
+      <p>Hvis dit website, dine billeder eller dit budskab føles generisk, uklart eller utroværdigt, mister du tillid før samtalen overhovedet starter.</p>
+      <p>Problemet er sjældent, at du mangler mere marketing.</p>
+      <p>Problemet er, at dit brand ikke har et system, der gør det nemt for kunden at forstå, huske og vælge dig.</p>
+    </div>
+    <div class="reveal" data-delay="300">
+      <div class="intro__highlight">
+        Mere trafik hjælper ikke, hvis <strong>førstehåndsindtrykket</strong> ikke konverterer.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MARQUEE ===================== -->
+<section class="marquee">
+  <div class="marquee__label-wrap">
+    <div class="label"><span class="dot"></span>For brands der vil føles stærkere</div>
+  </div>
+  <div class="marquee__fade marquee__fade--l"></div>
+  <div class="marquee__fade marquee__fade--r"></div>
+  <div class="marquee__track">
+    <div class="marquee__item">
+      <span>Restaurants</span><span class="dot"></span>
+      <span>Beauty Studios</span><span class="dot"></span>
+      <span>Fashion Brands</span><span class="dot"></span>
+      <span>Clinics</span><span class="dot"></span>
+      <span>Consultants</span><span class="dot"></span>
+      <span>Local Services</span><span class="dot"></span>
+      <span>Creative Brands</span><span class="dot"></span>
+      <span>Startups</span><span class="dot"></span>
+      <span>Premium Products</span><span class="dot"></span>
+      <span>Personal Brands</span><span class="dot"></span>
+    </div>
+    <div class="marquee__item">
+      <span>Restaurants</span><span class="dot"></span>
+      <span>Beauty Studios</span><span class="dot"></span>
+      <span>Fashion Brands</span><span class="dot"></span>
+      <span>Clinics</span><span class="dot"></span>
+      <span>Consultants</span><span class="dot"></span>
+      <span>Local Services</span><span class="dot"></span>
+      <span>Creative Brands</span><span class="dot"></span>
+      <span>Startups</span><span class="dot"></span>
+      <span>Premium Products</span><span class="dot"></span>
+      <span>Personal Brands</span><span class="dot"></span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SYSTEM ===================== -->
+<section class="dark section-pad" id="system">
+  <div class="shell">
+    <div class="section-header">
+      <div class="reveal">
+        <div class="label on-dark"><span class="dot"></span>The System</div>
+      </div>
+      <div class="reveal" data-delay="100">
+        <h2 class="h2">Di Barret<br>Brand System.</h2>
+      </div>
+      <div class="reveal body on-dark lg" data-delay="200">
+        Vi bygger ikke isolerede design-elementer. Vi bygger et samlet brand-system, hvor visuel retning, budskab, weboplevelse og konvertering arbejder sammen.
+      </div>
+    </div>
+
+    <div class="system-grid">
+      <div class="reveal">
+        <div class="glass system-card">
+          <div>
+            <div class="system-card__num">01 — Layer</div>
+            <div class="system-card__title" style="margin-top:12px">Strategi</div>
+            <p class="system-card__desc" style="margin-top:14px">Vi definerer, hvad dit brand skal kommunikere, hvem det skal ramme, og hvorfor kunden skal vælge dig.</p>
+          </div>
+          <div class="system-card__icon"><span style="font-family:var(--display);font-weight:500;font-size:14px">S</span></div>
+        </div>
+      </div>
+      <div class="reveal" data-delay="100">
+        <div class="glass system-card">
+          <div>
+            <div class="system-card__num">02 — Layer</div>
+            <div class="system-card__title" style="margin-top:12px">Visuel identitet</div>
+            <p class="system-card__desc" style="margin-top:14px">Vi skaber en visuel retning, der får dit brand til at føles professionelt, genkendeligt og stærkere end konkurrenterne.</p>
+          </div>
+          <div class="system-card__icon"><span style="font-family:var(--display);font-weight:500;font-size:14px">V</span></div>
+        </div>
+      </div>
+      <div class="reveal" data-delay="200">
+        <div class="glass system-card">
+          <div>
+            <div class="system-card__num">03 — Layer</div>
+            <div class="system-card__title" style="margin-top:12px">Weboplevelse</div>
+            <p class="system-card__desc" style="margin-top:14px">Vi designer landing pages og websites med struktur, rytme, animationer og storytelling, der holder opmærksomheden.</p>
+          </div>
+          <div class="system-card__icon"><span style="font-family:var(--display);font-weight:500;font-size:14px">W</span></div>
+        </div>
+      </div>
+      <div class="reveal" data-delay="300">
+        <div class="glass system-card">
+          <div>
+            <div class="system-card__num">04 — Layer</div>
+            <div class="system-card__title" style="margin-top:12px">Konvertering</div>
+            <p class="system-card__desc" style="margin-top:14px">Vi bygger klare CTA'er, kontaktflows og sektioner, der guider besøgende fra interesse til handling.</p>
+          </div>
+          <div class="system-card__icon"><span style="font-family:var(--display);font-weight:500;font-size:14px">K</span></div>
+        </div>
+      </div>
+      <div class="reveal" data-delay="400">
+        <div class="glass system-card">
+          <div>
+            <div class="system-card__num">05 — Layer</div>
+            <div class="system-card__title" style="margin-top:12px">Tracking &amp; forbedring</div>
+            <p class="system-card__desc" style="margin-top:14px">Vi gør systemet klar til måling, kampagner og optimering, så du ikke bare får en flot side — men en stærkere digital base.</p>
+          </div>
+          <div class="system-card__icon"><span style="font-family:var(--display);font-weight:500;font-size:14px">T</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal system__cta" data-delay="300">
+      <a class="btn btn--light" href="#approach">
+        <span>Se hvordan systemet virker</span>
+        <span class="arrow">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SERVICES ===================== -->
+<section class="services section-pad" id="services">
+  <div class="shell">
+    <div class="section-header">
+      <div class="reveal">
+        <div class="label"><span class="dot"></span>Services</div>
+      </div>
+      <div class="reveal" data-delay="100">
+        <h2 class="h2">Det vi bygger.</h2>
+      </div>
+      <div class="reveal body lg" data-delay="200">
+        Fra en fokuseret landing page til et samlet digitalt brand-system — vi bygger den struktur, der gør dit brand mere tydeligt, professionelt og værd at vælge.
+      </div>
+    </div>
+
+    <div class="services-grid">
+      <div class="reveal">
+        <div class="service">
+          <div class="service__num">01 — Service</div>
+          <div class="service__title">Visual Landing</div>
+          <p class="service__desc">En premium landing page bygget til at forklare dit brand hurtigt, skabe tillid og få besøgende til at tage kontakt.</p>
+          <div class="service__ideal">
+            <div class="service__ideal-label">Ideal for</div>
+            <div>Kampagner, nye brands, servicevirksomheder, events og produkter.</div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal" data-delay="150">
+        <div class="service">
+          <div class="service__num">02 — Service</div>
+          <div class="service__title">Brand Experience</div>
+          <p class="service__desc">Et samlet digitalt brandunivers med visuel retning, storytelling, webdesign og animationer.</p>
+          <div class="service__ideal">
+            <div class="service__ideal-label">Ideal for</div>
+            <div>Virksomheder, der vil se mere professionelle, premium og mindeværdige ud.</div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="service">
+          <div class="service__num">03 — Service</div>
+          <div class="service__title">Web Experience</div>
+          <p class="service__desc">Et interaktivt website med bevægelse, struktur og sektioner designet til at fastholde opmærksomhed.</p>
+          <div class="service__ideal">
+            <div class="service__ideal-label">Ideal for</div>
+            <div>Brands, der ikke vil ligne en standard template.</div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal" data-delay="150">
+        <div class="service">
+          <div class="service__num">04 — Service</div>
+          <div class="service__title">Growth Foundation</div>
+          <p class="service__desc">En konverteringsklar digital base med landing page, messaging, CTA-flow, tracking og kampagneklar struktur.</p>
+          <div class="service__ideal">
+            <div class="service__ideal-label">Ideal for</div>
+            <div>Virksomheder, der vil køre annoncer, kampagner eller skabe mere målbar vækst.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal services__cta" data-delay="200">
+      <a class="btn btn--dark" href="#lead">
+        <span>Få en gratis visuel vurdering</span>
+        <span class="arrow">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== BEFORE / AFTER ===================== -->
+<section class="dark section-pad">
+  <div class="shell">
+    <div class="section-header section-header--center">
+      <div class="reveal">
+        <div class="label on-dark"><span class="dot"></span>Transformation</div>
+      </div>
+      <div class="reveal" data-delay="100">
+        <h2 class="h2">Fra generisk<br> til <em style="font-style:normal;color:var(--amber)">valgt</em>.</h2>
+      </div>
+      <div class="reveal body on-dark lg" data-delay="200">
+        Det handler ikke om at se dyr ud. Det handler om at føles værd at vælge.
+      </div>
+    </div>
+
+    <div class="beforeafter-grid">
+      <div class="reveal">
+        <div class="ba-card ba-card--before">
+          <div class="ba-card__h">Før <span class="amber-pill" style="background:rgba(255,255,255,0.10);color:rgba(255,255,255,0.7)">Generisk</span></div>
+          <ul class="ba-list ba-list--before">
+            <li><span class="icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M2 5H8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span><span>Generisk hjemmeside</span></li>
+            <li><span class="icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M2 5H8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span><span>Uklart budskab</span></li>
+            <li><span class="icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M2 5H8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span><span>Svag visuel identitet</span></li>
+            <li><span class="icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M2 5H8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span><span>Lav tillid</span></li>
+            <li><span class="icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M2 5H8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span><span>Ingen klar vej til kontakt</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="reveal" data-delay="200">
+        <div class="ba-card ba-card--after">
+          <div class="ba-card__h">Efter <span class="amber-pill">Valgt</span></div>
+          <ul class="ba-list ba-list--after">
+            <li><span class="icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.5L4.5 9L10 3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Tydeligt brand-system</span></li>
+            <li><span class="icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.5L4.5 9L10 3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Stærkt førstehåndsindtryk</span></li>
+            <li><span class="icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.5L4.5 9L10 3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Professionel weboplevelse</span></li>
+            <li><span class="icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.5L4.5 9L10 3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Klar konverteringsstruktur</span></li>
+            <li><span class="icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.5L4.5 9L10 3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Flere besøgende, der forstår hvorfor de skal kontakte dig</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal" data-delay="200">
+      <p class="ba-statement">
+        Design er ikke pynt. Det er det første <em>argument</em> for, hvorfor kunden skal vælge dig.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SHOWCASE ===================== -->
+<section class="showcase section-pad" id="work">
+  <div class="shell">
+    <div class="section-header section-header--center">
+      <div class="reveal">
+        <div class="label"><span class="dot"></span>Live demo</div>
+      </div>
+      <div class="reveal" data-delay="100">
+        <h2 class="h2">Denne side er et eksempel på,<br> hvad vi kan skabe.</h2>
+      </div>
+      <div class="reveal body lg" data-delay="200">
+        Alt du oplever her — bevægelse, struktur, interaktion, rytme og visuel retning — kan bygges omkring dit brand. Vi bruger ikke standard templates som slutprodukt. Vi designer digitale oplevelser, der føles skabt til virksomheden bag.
+      </div>
+    </div>
+
+    <div class="showcase-grid">
+      <!-- Demo 01 -->
+      <div class="reveal">
+        <div class="demo-card">
+          <div class="demo-card__browser">
+            <div class="demo-card__bar">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              <span class="url">dibarret.com/levende</span>
+            </div>
+            <div class="demo-card__art">
+              <div class="demo-art-1">
+                <div class="demo-art__dots"></div>
+                <svg viewBox="0 0 320 200" style="position:absolute;inset:0;width:100%;height:100%">
+                  <text x="20" y="80" fill="#fff" font-size="42" font-family="DM Sans" font-weight="500" letter-spacing="-1.5">Brand.</text>
+                  <line x1="20" y1="110" x2="180" y2="110" stroke="rgba(255,255,255,0.3)" stroke-width="1">
+                    <animate attributeName="x2" values="20;200;20" dur="6s" repeatCount="indefinite"/>
+                  </line>
+                  <circle cx="260" cy="50" r="6" fill="#FFAB00">
+                    <animate attributeName="cy" values="50;160;50" dur="4s" repeatCount="indefinite"/>
+                  </circle>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="demo-card__body">
+            <div style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#FFAB00;margin-bottom:10px">Demo 01</div>
+            <div class="demo-card__title">Fra statisk til levende</div>
+            <p class="demo-card__desc">Vi forvandler simple sider til levende præsentationer, hvor tekst, billeder og bevægelse arbejder sammen.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Demo 02 -->
+      <div class="reveal" data-delay="120">
+        <div class="demo-card">
+          <div class="demo-card__browser">
+            <div class="demo-card__bar">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              <span class="url">dibarret.com/identitet</span>
+            </div>
+            <div class="demo-card__art">
+              <div class="demo-art-2">
+                <div class="demo-art__brand"><span>Studio</span></div>
+                <div style="position:absolute;top:16px;left:16px;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#773a20">v1 — identity</div>
+              </div>
+            </div>
+          </div>
+          <div class="demo-card__body">
+            <div style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#FFAB00;margin-bottom:10px">Demo 02</div>
+            <div class="demo-card__title">Fra template til identitet</div>
+            <p class="demo-card__desc">Dit brand skal ikke ligne alle andre. Det skal føles som sig selv fra første sekund.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Demo 03 -->
+      <div class="reveal" data-delay="240">
+        <div class="demo-card">
+          <div class="demo-card__browser">
+            <div class="demo-card__bar">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              <span class="url">dibarret.com/kontakt</span>
+            </div>
+            <div class="demo-card__art">
+              <div class="demo-art-3">
+                <div class="demo-art__lines">
+                  <i></i><i></i><i></i><i></i>
+                </div>
+                <div style="position:absolute;bottom:16px;left:16px;right:16px;display:flex;justify-content:space-between;align-items:center">
+                  <span style="display:inline-flex;align-items:center;gap:8px;background:#000;color:#fff;padding:8px 14px;border-radius:999px;font-size:12px;font-weight:500">
+                    Book samtale
+                    <span style="width:18px;height:18px;border-radius:999px;background:#FFAB00;display:inline-flex;align-items:center;justify-content:center;color:#000;font-size:10px">→</span>
+                  </span>
+                  <span style="font-size:11px;color:#999">30 min · gratis</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="demo-card__body">
+            <div style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#FFAB00;margin-bottom:10px">Demo 03</div>
+            <div class="demo-card__title">Fra klik til kontakt</div>
+            <p class="demo-card__desc">Designet skal ikke kun være flot. Det skal føre besøgende mod en klar handling.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal" data-delay="300">
+      <p class="showcase__highlight">
+        Hvis dit brand skal føles anderledes, kan din hjemmeside ikke føles som alle andres.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== APPROACH ===================== -->
+<section class="dark section-pad" id="approach">
+  <div class="shell">
+    <div class="section-header">
+      <div class="reveal">
+        <div class="label on-dark"><span class="dot"></span>Our approach</div>
+      </div>
+      <div class="reveal" data-delay="100">
+        <h2 class="h2">Ikke bare en flot hjemmeside.<br> Et system, der får dit brand<br> til at arbejde.</h2>
+      </div>
+      <div class="reveal body on-dark lg" data-delay="200">
+        De fleste websites informerer. De stærkeste websites skaber tillid, følelse og handling. Hos Di Barret kombinerer vi design, storytelling, animation og konverteringsstruktur, så din digitale tilstedeværelse ikke bare ser bedre ud — den føles mere værd at vælge.
+      </div>
+    </div>
+
+    <div class="approach-list">
+      <div class="reveal approach-item">
+        <div class="approach-item__num">— 01</div>
+        <div class="approach-item__title">Klarhed før pynt</div>
+        <p class="approach-item__desc">Vi starter med at forstå, hvad kunden skal forstå, føle og gøre.</p>
+      </div>
+      <div class="reveal approach-item" data-delay="80">
+        <div class="approach-item__num">— 02</div>
+        <div class="approach-item__title">Visuel retning</div>
+        <p class="approach-item__desc">Vi bygger et udtryk, der får dit brand til at føles professionelt og genkendeligt.</p>
+      </div>
+      <div class="reveal approach-item" data-delay="160">
+        <div class="approach-item__num">— 03</div>
+        <div class="approach-item__title">Bevægelse med formål</div>
+        <p class="approach-item__desc">Animationer bruges ikke for show. De bruges til at guide opmærksomhed og skabe rytme.</p>
+      </div>
+      <div class="reveal approach-item" data-delay="240">
+        <div class="approach-item__num">— 04</div>
+        <div class="approach-item__title">Konvertering indbygget</div>
+        <p class="approach-item__desc">Hver sektion skal hjælpe besøgende tættere på kontakt, booking eller handling.</p>
+      </div>
+      <div class="reveal approach-item" data-delay="320">
+        <div class="approach-item__num">— 05</div>
+        <div class="approach-item__title">Klar til vækst</div>
+        <p class="approach-item__desc">Vi bygger sider, der kan bruges til kampagner, annoncering, tracking og optimering.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROCESS ===================== -->
+<section class="process section-pad" id="process">
+  <div class="shell">
+    <div class="section-header">
+      <div class="reveal">
+        <div class="label"><span class="dot"></span>Process</div>
+      </div>
+      <div class="reveal" data-delay="100">
+        <h2 class="h2">Sådan bygger vi<br> dit system.</h2>
+      </div>
+    </div>
+    <div class="process-grid">
+      <div class="reveal process-step">
+        <div class="process-step__num">01</div>
+        <div class="process-step__title">Visuel vurdering</div>
+        <p class="process-step__desc">Vi analyserer dit nuværende website, Instagram eller brandudtryk og finder de steder, hvor du mister klarhed, tillid eller konvertering.</p>
+      </div>
+      <div class="reveal process-step" data-delay="100">
+        <div class="process-step__num">02</div>
+        <div class="process-step__title">Retning</div>
+        <p class="process-step__desc">Vi definerer den visuelle og strategiske retning: hvad dit brand skal sige, hvordan det skal føles, og hvad kunden skal gøre.</p>
+      </div>
+      <div class="reveal process-step" data-delay="200">
+        <div class="process-step__num">03</div>
+        <div class="process-step__title">Design system</div>
+        <p class="process-step__desc">Vi skaber layout, typografi, farver, sektioner, CTA'er og visuelle elementer, der arbejder sammen.</p>
+      </div>
+      <div class="reveal process-step" data-delay="300">
+        <div class="process-step__num">04</div>
+        <div class="process-step__title">Web experience</div>
+        <p class="process-step__desc">Vi bygger oplevelsen med animationer, interaktioner og responsivt design, så siden føles levende uden at blive tung eller forvirrende.</p>
+      </div>
+      <div class="reveal process-step" data-delay="400">
+        <div class="process-step__num">05</div>
+        <div class="process-step__title">Launch &amp; tracking</div>
+        <p class="process-step__desc">Vi gør siden klar til rigtige besøgende med mobiloptimering, hastighed, kontaktflow og tracking.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== STATS ===================== -->
+<section class="dark section-pad">
+  <div class="shell">
+    <div class="section-header">
+      <div class="reveal">
+        <div class="label on-dark"><span class="dot"></span>Why it matters</div>
+      </div>
+      <div class="reveal" data-delay="100">
+        <h2 class="h2">Et stærkere system gør dit brand<br> lettere at forstå, huske og vælge.</h2>
+      </div>
+    </div>
+    <div class="stats-grid">
+      <div class="reveal">
+        <div class="stat">
+          <div class="stat__num">01</div>
+          <div class="stat__label">Førstehåndsindtryk</div>
+          <p class="stat__desc">Din digitale præsentation påvirker tillid, før kunden kontakter dig.</p>
+        </div>
+      </div>
+      <div class="reveal" data-delay="100">
+        <div class="stat">
+          <div class="stat__num">02</div>
+          <div class="stat__label">Klarhed</div>
+          <p class="stat__desc">Et tydeligt budskab gør det lettere for besøgende at forstå din værdi.</p>
+        </div>
+      </div>
+      <div class="reveal" data-delay="200">
+        <div class="stat">
+          <div class="stat__num">03</div>
+          <div class="stat__label">Tillid</div>
+          <p class="stat__desc">Et professionelt visuelt system får dit brand til at føles mere seriøst.</p>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="stat">
+          <div class="stat__num">04</div>
+          <div class="stat__label">Handling</div>
+          <p class="stat__desc">En god struktur guider besøgende mod kontakt, booking eller næste skridt.</p>
+        </div>
+      </div>
+      <div class="reveal" data-delay="100">
+        <div class="stat">
+          <div class="stat__num">05</div>
+          <div class="stat__label">Kampagneklar</div>
+          <p class="stat__desc">En stærk landing page kan bruges som base for annoncering og vækst.</p>
+        </div>
+      </div>
+      <div class="reveal" data-delay="200">
+        <div class="stat">
+          <div class="stat__num">06</div>
+          <div class="stat__label">Måling</div>
+          <p class="stat__desc">Tracking gør det muligt at forstå, hvad besøgende gør — og forbedre systemet.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== LEAD MAGNET ===================== -->
+<section class="lead section-pad" id="lead">
+  <div class="shell">
+    <div class="lead-grid">
+      <div class="lead-left">
+        <div class="reveal">
+          <div class="label"><span class="dot"></span>Gratis vurdering</div>
+        </div>
+        <div class="reveal" data-delay="100">
+          <h2 class="h2">Få 3 konkrete idéer<br> til at løfte dit brand<br> digitalt.</h2>
+        </div>
+        <div class="reveal body lg" data-delay="200">
+          <p>Er du i tvivl om, hvor dit brand mister styrke online?</p>
+          <p style="margin-top:14px">Send os dit website, din Instagram eller bare din idé. Vi gennemgår det og sender dig 3 konkrete forslag til, hvordan du kan skabe et stærkere førstehåndsindtryk.</p>
+        </div>
+        <div class="reveal" data-delay="300">
+          <div class="lead-bullets">
+            <div class="lead-bullet"><span class="dot"></span>Personlig gennemgang — ikke en automatisk rapport.</div>
+            <div class="lead-bullet"><span class="dot"></span>Konkrete forslag du selv kan handle på.</div>
+            <div class="lead-bullet"><span class="dot"></span>Helt gratis. Helt uforpligtende.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal" data-delay="200">
+        <div class="form-card">
+          <form id="lead-form">
+            <div class="field-row">
+              <div class="field">
+                <label for="lead-name">Navn</label>
+                <input id="lead-name" type="text" placeholder="Dit fulde navn" required>
+              </div>
+              <div class="field">
+                <label for="lead-email">Email</label>
+                <input id="lead-email" type="email" placeholder="din@email.dk" required>
+              </div>
+            </div>
+            <div class="field">
+              <label for="lead-site">Website eller Instagram</label>
+              <input id="lead-site" type="text" placeholder="dinside.dk eller @dithandle">
+            </div>
+            <div class="field">
+              <label for="lead-improve">Hvad vil du gerne forbedre?</label>
+              <textarea id="lead-improve" placeholder="Beskriv kort hvad der ikke virker, eller hvad du gerne vil opnå…"></textarea>
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label for="lead-budget">Budgetniveau</label>
+                <select id="lead-budget">
+                  <option value="">Vælg niveau</option>
+                  <option>Under 10.000 DKK</option>
+                  <option>10.000–25.000 DKK</option>
+                  <option>25.000–50.000 DKK</option>
+                  <option>50.000+ DKK</option>
+                  <option>Jeg ved det ikke endnu</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="lead-when">Hvornår vil du starte?</label>
+                <select id="lead-when">
+                  <option value="">Vælg tidspunkt</option>
+                  <option>Så hurtigt som muligt</option>
+                  <option>Inden for 1 måned</option>
+                  <option>1–3 måneder</option>
+                  <option>Senere på året</option>
+                  <option>Bare nysgerrig</option>
+                </select>
+              </div>
+            </div>
+            <button type="submit" class="btn btn--dark form-submit">
+              <span>Få min gratis vurdering</span>
+              <span class="arrow">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </button>
+            <p class="form-micro">Ingen spam. Ingen hårdt salg. Kun konkrete idéer til, hvordan dit brand kan stå stærkere.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== BOOKING ===================== -->
+<section class="booking section-pad" id="booking">
+  <div class="shell">
+    <div class="booking-inner">
+      <div class="reveal">
+        <div class="label"><span class="dot"></span>Booking</div>
+      </div>
+      <div class="reveal" data-delay="100">
+        <h2 class="h2" style="margin-top:18px">Klar til at bygge<br> et brand-system?</h2>
+      </div>
+      <div class="reveal body lg" data-delay="200" style="margin-top:24px">
+        Book en gratis samtale, hvor vi taler om dit brand, din nuværende digitale tilstedeværelse og hvad der skal til for at gøre den mere professionel, tydelig og konverteringsklar.
+      </div>
+      <div class="reveal" data-delay="300">
+        <div style="margin-top:36px;display:flex;justify-content:center">
+          <a class="btn btn--dark" href="#contact">
+            <span>Book en gratis samtale</span>
+            <span class="arrow">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </a>
+        </div>
+      </div>
+      <div class="reveal" data-delay="350">
+        <p class="booking__micro">30 minutter. Online. Uforpligtende.</p>
+      </div>
+      <div class="reveal" data-delay="400">
+        <div class="booking__embed">
+          <div class="booking__embed-label">Calendly · Booking embed</div>
+          <div class="booking__embed-title">Vælg et tidspunkt der passer dig.</div>
+          <p style="color:var(--text-dim);font-size:14px;max-width:480px;text-align:center">
+            Tilgængelige tider hver tirsdag, onsdag og torsdag mellem 9:00 og 16:00 (CET).
+          </p>
+          <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;justify-content:center">
+            <span style="padding:8px 14px;border:1px solid var(--border);border-radius:999px;font-size:13px;background:#fff;color:var(--text);font-weight:500">Tir 14:00</span>
+            <span style="padding:8px 14px;border:1px solid var(--border);border-radius:999px;font-size:13px;background:#fff;color:var(--text);font-weight:500">Ons 10:30</span>
+            <span style="padding:8px 14px;border:1px solid var(--border);border-radius:999px;font-size:13px;background:#fff;color:var(--text);font-weight:500">Ons 15:00</span>
+            <span style="padding:8px 14px;border:1px solid var(--border);border-radius:999px;font-size:13px;background:#fff;color:var(--text);font-weight:500">Tor 11:00</span>
+            <span style="padding:8px 14px;border:1px solid var(--border);border-radius:999px;font-size:13px;background:#fff;color:var(--text);font-weight:500">Tor 13:30</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FAQ ===================== -->
+<section class="faq section-pad" id="faq">
+  <div class="shell">
+    <div class="faq-grid">
+      <div>
+        <div class="reveal">
+          <div class="label"><span class="dot"></span>FAQ</div>
+        </div>
+        <div class="reveal" data-delay="100">
+          <h2 class="h2" style="margin-top:20px">Spørgsmål<br> før vi bygger<br> systemet.</h2>
+        </div>
+        <div class="reveal body" data-delay="200" style="margin-top:24px">
+          Har du flere spørgsmål? Skriv til <a href="mailto:hello@dibarret.com" style="color:var(--text);text-decoration:underline">hello@dibarret.com</a>.
+        </div>
+      </div>
+
+      <div class="reveal" data-delay="150">
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-item__btn" aria-expanded="false">
+              <span>Er Di Barret et marketingbureau?</span>
+              <span class="faq-item__icon">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1V13M1 7H13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+              </span>
+            </button>
+            <div class="faq-item__panel">
+              <div class="faq-item__panel-inner">Ikke på den traditionelle måde. Vi fokuserer på det visuelle og digitale system bag dit brand: hvordan du bliver set, forstået og valgt. Vi kan gøre siden klar til kampagner og tracking, men vi sælger ikke bare annoncer eller SEO-pakker.</div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-item__btn" aria-expanded="false">
+              <span>Kan I hjælpe, hvis jeg kun har en idé?</span>
+              <span class="faq-item__icon">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1V13M1 7H13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+              </span>
+            </button>
+            <div class="faq-item__panel">
+              <div class="faq-item__panel-inner">Ja. Vi kan hjælpe med at forme idéen til en klar visuel retning, en landing page eller et samlet brand-system.</div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-item__btn" aria-expanded="false">
+              <span>Laver I kun hjemmesider?</span>
+              <span class="faq-item__icon">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1V13M1 7H13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+              </span>
+            </button>
+            <div class="faq-item__panel">
+              <div class="faq-item__panel-inner">Nej. Vi bygger digitale brandoplevelser. Det kan være landing pages, websites, visuelle systemer, kampagnesider og content-struktur.</div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-item__btn" aria-expanded="false">
+              <span>Hvor hurtigt kan en landing page være klar?</span>
+              <span class="faq-item__icon">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1V13M1 7H13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+              </span>
+            </button>
+            <div class="faq-item__panel">
+              <div class="faq-item__panel-inner">Det afhænger af omfanget. En fokuseret landing page kan typisk bygges hurtigere end et komplet website, men vi prioriterer altid kvalitet, klarhed og performance.</div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-item__btn" aria-expanded="false">
+              <span>Kan siden bruges til annoncering?</span>
+              <span class="faq-item__icon">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1V13M1 7H13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+              </span>
+            </button>
+            <div class="faq-item__panel">
+              <div class="faq-item__panel-inner">Ja. Vi kan bygge siden med tydelige CTA'er, tracking og en struktur, der gør den klar til kampagner.</div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-item__btn" aria-expanded="false">
+              <span>Hvad koster det?</span>
+              <span class="faq-item__icon">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1V13M1 7H13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+              </span>
+            </button>
+            <div class="faq-item__panel">
+              <div class="faq-item__panel-inner">Det afhænger af projektets størrelse, niveauet af design, animationer og strategi. Start med en gratis visuel vurdering, så kan vi anbefale den rigtige løsning.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FINAL CTA ===================== -->
+<section class="final-cta">
+  <div class="final-cta__grid-bg"></div>
+  <div class="final-cta__bg"></div>
+  <div class="final-cta__inner">
+    <div class="reveal">
+      <div class="label on-dark"><span class="dot"></span>Til dit næste skridt</div>
+    </div>
+    <div class="reveal" data-delay="100">
+      <h2 class="final-cta__h" style="margin-top:20px">
+        No necesitas más marketing.<br>
+        Necesitas un <em>sistema</em>.
+      </h2>
+    </div>
+    <div class="reveal" data-delay="150">
+      <div class="final-cta__line"></div>
+    </div>
+    <div class="reveal" data-delay="200">
+      <p class="final-cta__sub">
+        Hvis dit brand skal føles stærkere, mere professionelt og lettere at vælge, starter det ikke med mere støj. Det starter med et system.
+      </p>
+    </div>
+    <div class="reveal final-cta__ctas" data-delay="300">
+      <a class="btn btn--amber" href="#lead">
+        <span>Få en gratis visuel vurdering</span>
+        <span class="arrow">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </a>
+      <a class="btn btn--ghost-dark" href="#booking">
+        <span>Book en gratis samtale</span>
+        <span class="arrow">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer" id="contact">
+  <div class="shell">
+    <div class="footer-grid">
+      <div>
+        <div class="footer__logo">/Di Barret</div>
+        <p class="footer__desc">Digitale brand-systemer, landing pages og weboplevelser for brands, der vil føles stærkere.</p>
+      </div>
+      <div>
+        <div class="footer__heading">Discover</div>
+        <ul class="footer__list">
+          <li><a href="#top">Home</a></li>
+          <li><a href="#system">System</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#process">Process</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__heading">Socials</div>
+        <ul class="footer__list">
+          <li><a href="#">Instagram ↗</a></li>
+          <li><a href="#">LinkedIn ↗</a></li>
+          <li><a href="#">X ↗</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__heading">Contact</div>
+        <a href="mailto:hello@dibarret.com" class="footer__email">hello@dibarret.com</a>
+        <div>
+          <a class="footer__cta" href="#booking">
+            <span>Book en gratis samtale</span>
+            <span class="arrow">
+              <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div>© 2026 Di Barret. All rights reserved.</div>
+      <div>Made with intent · København</div>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
