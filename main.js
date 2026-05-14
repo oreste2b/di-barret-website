@@ -358,8 +358,11 @@
       el.width  = w * dpr; el.height = h * dpr;
       this.ctx.setTransform(1,0,0,1,0,0);
       this.ctx.scale(dpr, dpr);
-      this.W=w; this.H=h; this.CX=w/2; this.CY=h/2;
-      this.R = Math.min(w, h) * 0.37;
+      this.W=w; this.H=h;
+      /* Center the planet slightly right + offset down to feel like reference */
+      this.CX = w * 0.58;
+      this.CY = h * 0.55;
+      this.R  = Math.min(w * 0.55, h * 0.62) * 0.5;
     }
     _pt(r, angle, tilt, rotZ) {
       const x3 =  r * Math.cos(angle);
@@ -369,10 +372,35 @@
       const py = x3 * Math.sin(rotZ) + y3 * Math.cos(rotZ);
       return [this.CX + px, this.CY + py, z3];
     }
-    _ring({ r, sides, tilt, rotZ, lineAlpha, lineColor, lw, nodeR, nodeColor }) {
+    _ring({ r, sides, tilt, rotZ, lineAlpha, lineColor, lw, nodeR, nodeColor, iridescent }) {
       const ctx = this.ctx;
       const pts = [];
       for (let i = 0; i <= sides; i++) pts.push(this._pt(r, (i / sides) * Math.PI * 2, tilt, rotZ));
+
+      /* Iridescent chromatic dispersion — multiple offset strokes blend additively */
+      if (iridescent) {
+        const layers = [
+          { dx:  1.5, dy:  0.5, color: "rgba(255, 80, 180, 0.55)" },
+          { dx: -1.5, dy: -0.5, color: "rgba(80, 200, 255, 0.55)" },
+          { dx:  0,   dy:  1.5, color: "rgba(255, 200, 80, 0.45)" },
+        ];
+        ctx.save();
+        ctx.globalCompositeOperation = "screen";
+        layers.forEach(({ dx, dy, color }) => {
+          ctx.beginPath();
+          pts.forEach(([x, y], i) => {
+            const px = x + dx, py = y + dy;
+            i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+          });
+          ctx.closePath();
+          ctx.globalAlpha = lineAlpha * 1.4;
+          ctx.strokeStyle = color;
+          ctx.lineWidth = lw;
+          ctx.stroke();
+        });
+        ctx.restore();
+      }
+
       ctx.save();
       ctx.beginPath();
       pts.forEach(([x, y], i) => i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y));
@@ -457,12 +485,12 @@
       const rot3  =  idle * 0.44 + sp * Math.PI * 0.62;
       const rotH  = -idle * 0.28 + sp * Math.PI * 0.22;
 
-      this._ring({ r: R*0.92, sides: 30, tilt: tilt3, rotZ: rot3, lineAlpha:0.13, lineColor:"rgba(255,255,255,0.55)", lw:0.55, nodeR:2.2, nodeColor:"#ffffff" });
-      this._ring({ r: R*0.74, sides: 12, tilt: tilt2*0.88, rotZ: -rotH*0.65, lineAlpha:0.10, lineColor:"rgba(255,171,0,0.45)", lw:0.5, nodeR:2.6, nodeColor:"#FFAB00" });
-      this._ring({ r: R*0.67, sides: 24, tilt: tilt2, rotZ: rot2, lineAlpha:0.22, lineColor:"rgba(255,255,255,0.65)", lw:0.85, nodeR:3.0, nodeColor:"#FFAB00" });
-      this._spokes(R*0.42, 12, tilt1*0.9, rot1*0.5, 0.09);
-      this._ring({ r: R*0.40, sides: 6,  tilt: tiltH, rotZ: rotH, lineAlpha:0.22, lineColor:"rgba(255,171,0,0.5)", lw:0.7, nodeR:3.5, nodeColor:"rgba(255,255,255,0.9)" });
-      this._ring({ r: R*0.47, sides: 18, tilt: tilt1, rotZ: rot1, lineAlpha:0.34, lineColor:"rgba(255,255,255,0.80)", lw:0.95, nodeR:3.8, nodeColor:"#FFAB00" });
+      this._ring({ r: R*1.10, sides: 60, tilt: tilt3, rotZ: rot3, lineAlpha:0.28, lineColor:"rgba(255,255,255,0.85)", lw:1.4, nodeR:2.6, nodeColor:"#ffffff", iridescent:true });
+      this._ring({ r: R*0.92, sides: 48, tilt: tilt2*0.88, rotZ: -rotH*0.65, lineAlpha:0.24, lineColor:"rgba(255,255,255,0.7)", lw:1.1, nodeR:2.4, nodeColor:"#FFAB00", iridescent:true });
+      this._ring({ r: R*0.76, sides: 36, tilt: tilt2, rotZ: rot2, lineAlpha:0.34, lineColor:"rgba(255,255,255,0.85)", lw:1.2, nodeR:3.0, nodeColor:"#FFAB00", iridescent:true });
+      this._spokes(R*0.42, 12, tilt1*0.9, rot1*0.5, 0.12);
+      this._ring({ r: R*0.42, sides: 6, tilt: tiltH, rotZ: rotH, lineAlpha:0.30, lineColor:"rgba(255,171,0,0.65)", lw:0.9, nodeR:3.5, nodeColor:"rgba(255,255,255,0.9)" });
+      this._ring({ r: R*0.55, sides: 24, tilt: tilt1, rotZ: rot1, lineAlpha:0.42, lineColor:"rgba(255,255,255,0.9)", lw:1.1, nodeR:4.0, nodeColor:"#FFAB00" });
       this._sphere();
 
       requestAnimationFrame((ts) => this._tick(ts));
@@ -482,8 +510,18 @@
   setupFAQ();
   setupForm();
 
-  /* Planet orbit kept available but not auto-mounted —
-     hero now uses 2-column layout with floating system cards */
+  /* Planet orbit — dominant 3D centerpiece of hero, scroll-driven rotation */
+  const orbitCanvas = document.getElementById("hero-orbit");
+  if (orbitCanvas && !prefersReduced) {
+    const planet = new PlanetOrbit(orbitCanvas);
+    ScrollTrigger.create({
+      trigger: ".hero",
+      start: "top top",
+      end: "bottom top",
+      scrub: 0.4,
+      onUpdate: (self) => { planet.progress = self.progress; },
+    });
+  }
 
   /* Dismiss loader on full window load, then play hero & refresh ScrollTrigger */
   function boot() {
