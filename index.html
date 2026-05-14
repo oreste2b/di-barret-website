@@ -392,6 +392,84 @@
     </div>
   </section>
 
+  <!-- ===================== LEAD FORM ===================== -->
+  <section class="lead" id="lead">
+    <div class="lead__inner">
+      <div class="lead__left">
+        <span class="kicker">07 — Gratis vurdering</span>
+        <h2 class="h2">
+          Få 3 konkrete idéer<br>
+          <span class="dim">til at løfte dit brand digitalt.</span>
+        </h2>
+        <p class="lead__lead">
+          Send os dit website, din Instagram eller bare din idé. Vi gennemgår det og sender dig 3 konkrete forslag til, hvordan du kan skabe et stærkere førstehåndsindtryk.
+        </p>
+        <ul class="lead__bullets">
+          <li><span class="lead__bullet-dot"></span>Personlig gennemgang — ikke en automatisk rapport.</li>
+          <li><span class="lead__bullet-dot"></span>Konkrete forslag du selv kan handle på.</li>
+          <li><span class="lead__bullet-dot"></span>Helt gratis. Helt uforpligtende.</li>
+        </ul>
+      </div>
+
+      <form class="lead__form" id="lead-form" autocomplete="off">
+        <div class="field-row">
+          <div class="field">
+            <label class="field__label" for="lead-name">Navn</label>
+            <input class="field__input" id="lead-name" type="text" placeholder="Dit fulde navn" required />
+          </div>
+          <div class="field">
+            <label class="field__label" for="lead-email">Email</label>
+            <input class="field__input" id="lead-email" type="email" placeholder="din@email.dk" required />
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="lead-site">Website / Instagram</label>
+          <input class="field__input" id="lead-site" type="text" placeholder="dinside.dk eller @dithandle" />
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="lead-improve">Hvad vil du gerne forbedre?</label>
+          <textarea class="field__input field__input--area" id="lead-improve" placeholder="Beskriv kort hvad der ikke virker, eller hvad du gerne vil opnå…"></textarea>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label class="field__label" for="lead-budget">Budget</label>
+            <select class="field__input field__input--select" id="lead-budget">
+              <option value="">Vælg niveau</option>
+              <option>Under 10.000 DKK</option>
+              <option>10.000–25.000 DKK</option>
+              <option>25.000–50.000 DKK</option>
+              <option>50.000+ DKK</option>
+              <option>Ved ikke endnu</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="field__label" for="lead-when">Hvornår</label>
+            <select class="field__input field__input--select" id="lead-when">
+              <option value="">Vælg tidspunkt</option>
+              <option>Så hurtigt som muligt</option>
+              <option>Inden for 1 måned</option>
+              <option>1–3 måneder</option>
+              <option>Senere på året</option>
+              <option>Bare nysgerrig</option>
+            </select>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn--primary lead__submit">
+          <span>Få min gratis vurdering</span>
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <p class="lead__fineprint">Ingen spam. Ingen hårdt salg. Kun konkrete idéer.</p>
+      </form>
+    </div>
+  </section>
+
   <!-- ===================== METRICS ===================== -->
   <section class="metrics">
     <div class="metrics__inner">
@@ -419,5 +497,6 @@
     </div>
   </section>
 
+  <script src="main.js"></script>
 </body>
 </html>

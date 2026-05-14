@@ -749,6 +749,157 @@ html, body, * { scrollbar-width: none; }
 .founder__meta-value { color: var(--ink); }
 
 /* ==========================================================
+   LEAD FORM  — 2-col, left copy + right form on dark
+   ========================================================== */
+.lead {
+  position: relative;
+  z-index: 1;
+  padding: 100px var(--pad);
+  border-top: 1px solid var(--line);
+}
+.lead__inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+.lead__left .kicker { margin-bottom: 24px; display: inline-flex; }
+.lead__lead {
+  margin-top: 28px;
+  font-family: var(--body);
+  font-size: clamp(15px, 1.15vw, 17px);
+  line-height: 1.6;
+  color: var(--ink-muted);
+  max-width: 480px;
+}
+.lead__bullets {
+  margin-top: 32px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.lead__bullets li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--body);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-muted);
+}
+.lead__bullet-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--ink);
+  flex-shrink: 0;
+}
+
+/* Form */
+.lead__form {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--line);
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.field__label {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.field__input {
+  width: 100%;
+  padding: 14px 16px;
+  background: #050505;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 14px;
+  line-height: 1.4;
+  transition: border-color 220ms ease, background 220ms ease;
+  outline: none;
+}
+.field__input::placeholder { color: var(--ink-faint); }
+.field__input:focus {
+  background: #0a0a0a;
+  border-color: var(--ink);
+}
+.field__input--area { resize: vertical; min-height: 100px; font-family: var(--body); }
+.field__input--select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'><path d='M1 1l5 5 5-5' stroke='%23ffffff' stroke-opacity='0.55' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+}
+.lead__submit {
+  margin-top: 6px;
+  justify-content: center;
+  padding: 16px 22px;
+}
+.lead__fineprint {
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--ink-faint);
+  margin-top: 4px;
+}
+
+/* Success state */
+.lead__success {
+  padding: 36px;
+  background: rgba(52,211,153,0.04);
+  border: 1px solid rgba(52,211,153,0.25);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+.lead__success-icon {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: #34d399;
+  display: grid;
+  place-items: center;
+  color: #000;
+}
+.lead__success-text {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 18px;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  max-width: 320px;
+  line-height: 1.4;
+}
+.lead__success-sub {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--ink-muted);
+}
+
+/* ==========================================================
    METRICS  — Tenbin-style big mono numbers in a hairline grid
    ========================================================== */
 .metrics {
@@ -829,6 +980,8 @@ html, body, * { scrollbar-width: none; }
   .quote { padding: 36px 28px; }
   .team__grid { grid-template-columns: 1fr; }
   .founder { grid-template-columns: 140px 1fr; padding: 28px; gap: 20px; }
+  .lead__inner { grid-template-columns: 1fr; gap: 48px; }
+  .lead__form { padding: 28px; }
 }
 @media (max-width: 480px) {
   .founder { grid-template-columns: 1fr; }
