@@ -377,6 +377,106 @@ html, body, * { scrollbar-width: none; }
 .layer--accent:hover { background: rgba(255,255,255,0.05); }
 
 /* ==========================================================
+   SERVICES  — bigger feature cards, 2×2 grid
+   ========================================================== */
+.services {
+  position: relative;
+  z-index: 1;
+  padding: 100px var(--pad);
+  border-top: 1px solid var(--line);
+}
+.services__inner {
+  max-width: var(--max);
+  margin: 0 auto;
+}
+.services__head { max-width: 720px; margin-bottom: 56px; }
+.services__head .kicker { margin-bottom: 28px; display: inline-flex; }
+.services__lead {
+  margin-top: 28px;
+  font-family: var(--body);
+  font-size: clamp(15px, 1.15vw, 17px);
+  line-height: 1.55;
+  color: var(--ink-muted);
+  max-width: 580px;
+}
+.services__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+.service {
+  position: relative;
+  padding: 48px 40px 44px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-height: 360px;
+  transition: background 320ms ease;
+}
+.service:hover { background: rgba(255,255,255,0.02); }
+.service__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.service__num {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.10em;
+  color: var(--ink-faint);
+}
+.service__tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  padding: 4px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+.service__title {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(28px, 2.6vw, 36px);
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  line-height: 1.05;
+}
+.service__desc {
+  font-family: var(--body);
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink-muted);
+  max-width: 460px;
+}
+.service__foot {
+  margin-top: auto;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.service__foot-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.service__foot-text {
+  font-family: var(--body);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-muted);
+}
+
+/* ==========================================================
    METRICS  — Tenbin-style big mono numbers in a hairline grid
    ========================================================== */
 .metrics {
@@ -447,9 +547,14 @@ html, body, * { scrollbar-width: none; }
   .problem__inner { grid-template-columns: 1fr; gap: 32px; }
   .problem__head { padding-top: 0; }
 }
+@media (max-width: 900px) {
+  .services__grid { grid-template-columns: 1fr; }
+  .service { padding: 36px 28px; min-height: auto; }
+}
 @media (max-width: 640px) {
   .system__grid { grid-template-columns: 1fr; }
-  .system { padding: 70px var(--pad); }
+  .system,
+  .services { padding: 70px var(--pad); }
 }
 @media (max-width: 768px) {
   :root { --pad: 22px; }
