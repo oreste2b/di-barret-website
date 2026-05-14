@@ -288,6 +288,95 @@ html, body, * { scrollbar-width: none; }
 }
 
 /* ==========================================================
+   SYSTEM LAYERS  — hairline grid of dark cards
+   ========================================================== */
+.system {
+  position: relative;
+  z-index: 1;
+  padding: 100px var(--pad);
+  border-top: 1px solid var(--line);
+}
+.system__inner {
+  max-width: var(--max);
+  margin: 0 auto;
+}
+.system__head { max-width: 720px; margin-bottom: 56px; }
+.system__head .kicker { margin-bottom: 28px; display: inline-flex; }
+.system__lead {
+  margin-top: 28px;
+  font-family: var(--body);
+  font-size: clamp(15px, 1.15vw, 17px);
+  line-height: 1.55;
+  color: var(--ink-muted);
+  max-width: 580px;
+}
+.system__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+.layer {
+  position: relative;
+  padding: 32px 28px 36px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-height: 240px;
+  transition: background 320ms ease;
+}
+.layer:hover { background: rgba(255,255,255,0.025); }
+.layer__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.layer__num {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.10em;
+  color: var(--ink-faint);
+}
+.layer__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+.layer__dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: #34d399;
+}
+.layer__status--beta { color: #fbbf24; }
+.layer__status--beta .layer__dot { background: #fbbf24; }
+.layer__title {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 24px;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  margin-top: auto;
+}
+.layer__desc {
+  font-family: var(--body);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink-muted);
+}
+.layer--accent {
+  background: linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%);
+}
+.layer--accent:hover { background: rgba(255,255,255,0.05); }
+
+/* ==========================================================
    METRICS  — Tenbin-style big mono numbers in a hairline grid
    ========================================================== */
 .metrics {
@@ -351,9 +440,16 @@ html, body, * { scrollbar-width: none; }
   .metric:nth-child(2) { border-right: 0; }
   .metric:nth-child(1), .metric:nth-child(2) { border-bottom: 1px solid var(--line); }
 }
+@media (max-width: 1024px) {
+  .system__grid { grid-template-columns: repeat(2, 1fr); }
+}
 @media (max-width: 900px) {
   .problem__inner { grid-template-columns: 1fr; gap: 32px; }
   .problem__head { padding-top: 0; }
+}
+@media (max-width: 640px) {
+  .system__grid { grid-template-columns: 1fr; }
+  .system { padding: 70px var(--pad); }
 }
 @media (max-width: 768px) {
   :root { --pad: 22px; }
