@@ -89,32 +89,20 @@
   })();
 
   /* ──────────────────────────────────────────────────────────
-     3. LENIS  + GSAP ticker integration  (lerp-based, snappy)
+     3. SCROLL  — native (Lenis removed for true 1:1 responsiveness)
+        Smooth anchor jumps via native scrollIntoView
   ────────────────────────────────────────────────────────── */
-  let lenis = null;
-  if (!prefersReduced && window.Lenis) {
-    lenis = new window.Lenis({
-      lerp: 0.12,            /* snappy smoothing — no buffered jumps */
-      wheelMultiplier: 1.0,  /* native-like scroll distance per tick */
-      smoothWheel: true,
-      syncTouch: false,      /* native touch scrolling on mobile */
-      touchMultiplier: 1.5,
-    });
-    lenis.on("scroll", ScrollTrigger.update);
-    gsap.ticker.add((time) => lenis.raf(time * 1000));
-    gsap.ticker.lagSmoothing(0);
-
-    document.addEventListener("click", (e) => {
-      const a = e.target.closest('a[href^="#"]');
-      if (!a) return;
-      const id = a.getAttribute("href");
-      if (!id || id === "#") return;
-      const target = document.querySelector(id);
-      if (!target) return;
-      e.preventDefault();
-      lenis.scrollTo(target, { offset: -20, duration: 0.9 });
-    });
-  }
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    const id = a.getAttribute("href");
+    if (!id || id === "#") return;
+    const target = document.querySelector(id);
+    if (!target) return;
+    e.preventDefault();
+    const top = target.getBoundingClientRect().top + window.scrollY - 20;
+    window.scrollTo({ top, behavior: "smooth" });
+  });
 
   /* ──────────────────────────────────────────────────────────
      4. LINE-MASK REVEAL for headings  — auto-splits <br>
@@ -141,8 +129,8 @@
      5. SCROLL-DRIVEN ANIMATIONS
   ────────────────────────────────────────────────────────── */
   function setupAnimations() {
-    /* — Line reveals on every heading — */
-    const heads = document.querySelectorAll(".hero__title, .h2, .final-cta__h");
+    /* — Line reveals: scroll-triggered H2s ONLY (hero handled by .hero__anim CSS) — */
+    const heads = document.querySelectorAll(".h2:not(.hero__title), .final-cta__h");
     heads.forEach((h) => splitLines(h));
 
     if (prefersReduced) {
@@ -151,20 +139,17 @@
       return;
     }
 
-    /* Sync GSAP tracking with CSS initial state for line-inner */
     gsap.set(".line-inner", { yPercent: 110 });
 
-    /* Headlines — line mask reveal */
     heads.forEach((h) => {
       const lines = h.querySelectorAll(".line-inner");
       if (!lines.length) return;
-      if (h.classList.contains("hero__title")) return; /* hero played by entrance */
       gsap.to(lines, {
         yPercent: 0,
-        duration: 1.1,
+        duration: 1.0,
         ease: "expo.out",
-        stagger: 0.12,
-        scrollTrigger: { trigger: h, start: "top 85%", once: true },
+        stagger: 0.10,
+        scrollTrigger: { trigger: h, start: "top 88%", once: true },
       });
     });
 
@@ -193,69 +178,12 @@
       });
     });
 
-    /* Marquee skew on scroll velocity */
-    const track = document.querySelector(".marquee__track");
-    if (track) {
-      ScrollTrigger.create({
-        trigger: ".marquee",
-        start: "top bottom",
-        end: "bottom top",
-        onUpdate: (self) => {
-          const v = Math.max(-1, Math.min(1, self.getVelocity() / 2500));
-          gsap.to(track, { skewX: v * -6, duration: 0.5, overwrite: true });
-        },
-      });
-    }
-
-    /* Hero corner grids — counter-parallax */
-    gsap.to(".hero__corner--tl", {
-      y: -80, opacity: 0,
-      ease: "none",
-      scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true },
-    });
-    gsap.to(".hero__corner--br", {
-      y: 80, opacity: 0,
-      ease: "none",
-      scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true },
-    });
-
-    /* Hero content fades out slightly faster than bg */
-    gsap.to(".hero__content", {
-      yPercent: -30, opacity: 0.2,
-      ease: "none",
-      scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: 1 },
-    });
-
-    /* Intro highlight pill — slow drift */
-    gsap.to(".intro__highlight", {
-      y: -30,
-      ease: "none",
-      scrollTrigger: {
-        trigger: ".intro__highlight",
-        start: "top bottom",
-        end: "bottom top",
-        scrub: 1.2,
-      },
-    });
-
-    /* Dark sections — subtle bg shift */
-    gsap.utils.toArray(".dark").forEach((sec) => {
-      gsap.fromTo(sec,
-        { backgroundPosition: "50% 0%" },
-        {
-          backgroundPosition: "50% 30%",
-          ease: "none",
-          scrollTrigger: { trigger: sec, start: "top bottom", end: "bottom top", scrub: 1.5 },
-        }
-      );
-    });
-
-    /* Final CTA — scale + grid bg parallax */
+    /* Final CTA — gentle grid scale on scroll */
     gsap.to(".final-cta__grid-bg", {
-      scale: 1.4,
-      opacity: 0.4,
+      scale: 1.3,
+      opacity: 0.5,
       ease: "none",
-      scrollTrigger: { trigger: ".final-cta", start: "top bottom", end: "bottom top", scrub: 1 },
+      scrollTrigger: { trigger: ".final-cta", start: "top bottom", end: "bottom top", scrub: 0.5 },
     });
   }
 
@@ -346,22 +274,9 @@
   function playHeroEntrance() {
     const hero = document.querySelector(".hero");
     if (!hero) return;
-    /* Removing .hero--pre fires CSS transitions on .hero__anim children
-       (label, title parent fade, sub, ctas, micro, scrollhint) */
+    /* All hero elements (label, title, sub, CTAs, proof, scrollhint) animate
+       via CSS .hero__anim transitions when .hero--pre is removed */
     hero.classList.remove("hero--pre");
-
-    /* GSAP handles only the title's line-mask reveal (CSS can't) */
-    if (prefersReduced) {
-      gsap.set(".hero__title .line-inner", { yPercent: 0 });
-      return;
-    }
-    gsap.to(".hero__title .line-inner", {
-      yPercent: 0,
-      duration: 1.3,
-      ease: "expo.out",
-      stagger: 0.13,
-      delay: 0.45,
-    });
   }
 
   /* ──────────────────────────────────────────────────────────
@@ -567,18 +482,8 @@
   setupFAQ();
   setupForm();
 
-  /* Init planet now */
-  const orbitCanvas = document.getElementById("hero-orbit");
-  if (orbitCanvas && !prefersReduced) {
-    const planet = new PlanetOrbit(orbitCanvas);
-    ScrollTrigger.create({
-      trigger: ".hero",
-      start: "top top",
-      end: "bottom top",
-      scrub: 1.8,
-      onUpdate: (self) => { planet.progress = self.progress; },
-    });
-  }
+  /* Planet orbit kept available but not auto-mounted —
+     hero now uses 2-column layout with floating system cards */
 
   /* Dismiss loader on full window load, then play hero & refresh ScrollTrigger */
   function boot() {
