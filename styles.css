@@ -900,6 +900,176 @@ html, body, * { scrollbar-width: none; }
 }
 
 /* ==========================================================
+   FINAL CTA  — large centered statement
+   ========================================================== */
+.final-cta {
+  position: relative;
+  z-index: 1;
+  padding: 140px var(--pad) 120px;
+  border-top: 1px solid var(--line);
+  text-align: center;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.04) 0%, transparent 60%),
+    var(--bg);
+}
+.final-cta__inner {
+  max-width: 920px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.final-cta .kicker { margin-bottom: 36px; }
+.final-cta__h {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(40px, 6vw, 96px);
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+  color: var(--ink);
+}
+.final-cta__h em {
+  font-style: normal;
+  background: linear-gradient(120deg, var(--ink) 0%, var(--ink) 50%, var(--ink-faint) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.final-cta__sub {
+  margin-top: 28px;
+  font-family: var(--body);
+  font-size: clamp(15px, 1.15vw, 17px);
+  line-height: 1.6;
+  color: var(--ink-muted);
+  max-width: 560px;
+}
+.final-cta__ctas {
+  margin-top: 40px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.final-cta__meta {
+  margin-top: 40px;
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+.final-cta__meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.final-cta__dot {
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--ink-faint);
+}
+
+/* ==========================================================
+   FOOTER
+   ========================================================== */
+.footer {
+  position: relative;
+  z-index: 1;
+  padding: 80px var(--pad) 32px;
+  border-top: 1px solid var(--line);
+}
+.footer__inner {
+  max-width: var(--max);
+  margin: 0 auto;
+}
+.footer__grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.2fr;
+  gap: 48px;
+  align-items: start;
+}
+.footer__logo {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 20px;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  display: inline-block;
+  margin-bottom: 16px;
+}
+.footer__desc {
+  font-family: var(--body);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ink-muted);
+  max-width: 280px;
+}
+.footer__heading {
+  display: block;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 18px;
+}
+.footer__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.footer__list a {
+  font-family: var(--body);
+  font-size: 14px;
+  color: var(--ink-muted);
+  transition: color 200ms ease;
+}
+.footer__list a:hover { color: var(--ink); }
+.footer__email {
+  display: block;
+  font-family: var(--display);
+  font-size: 17px;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 16px;
+  transition: opacity 200ms ease;
+}
+.footer__email:hover { opacity: 0.7; }
+.footer__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-family: var(--display);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink);
+  transition: background 200ms ease, border-color 200ms ease;
+}
+.footer__cta:hover { background: rgba(255,255,255,0.05); border-color: var(--line-mid); }
+.footer__bottom {
+  margin-top: 56px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--ink-faint);
+}
+
+/* ==========================================================
    METRICS  — Tenbin-style big mono numbers in a hairline grid
    ========================================================== */
 .metrics {
@@ -982,6 +1152,11 @@ html, body, * { scrollbar-width: none; }
   .founder { grid-template-columns: 140px 1fr; padding: 28px; gap: 20px; }
   .lead__inner { grid-template-columns: 1fr; gap: 48px; }
   .lead__form { padding: 28px; }
+  .footer__grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .final-cta { padding: 100px var(--pad) 80px; }
+}
+@media (max-width: 540px) {
+  .footer__grid { grid-template-columns: 1fr; gap: 32px; }
 }
 @media (max-width: 480px) {
   .founder { grid-template-columns: 1fr; }
