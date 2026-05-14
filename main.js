@@ -510,18 +510,8 @@
   setupFAQ();
   setupForm();
 
-  /* Planet orbit — dominant 3D centerpiece of hero, scroll-driven rotation */
-  const orbitCanvas = document.getElementById("hero-orbit");
-  if (orbitCanvas && !prefersReduced) {
-    const planet = new PlanetOrbit(orbitCanvas);
-    ScrollTrigger.create({
-      trigger: ".hero",
-      start: "top top",
-      end: "bottom top",
-      scrub: 0.4,
-      onUpdate: (self) => { planet.progress = self.progress; },
-    });
-  }
+  /* Hero centerpiece removed — heavy canvas was saturating the main thread
+     and causing perceived scroll lag */
 
   /* Dismiss loader on full window load, then play hero & refresh ScrollTrigger */
   function boot() {
