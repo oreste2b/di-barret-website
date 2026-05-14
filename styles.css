@@ -541,6 +541,99 @@ html, body, * { scrollbar-width: none; }
 }
 
 /* ==========================================================
+   TESTIMONIALS  — 2×2 quote cards, hairline grid
+   ========================================================== */
+.testimonials {
+  position: relative;
+  z-index: 1;
+  padding: 100px var(--pad);
+  border-top: 1px solid var(--line);
+}
+.testimonials__inner {
+  max-width: var(--max);
+  margin: 0 auto;
+}
+.testimonials__head { margin-bottom: 56px; max-width: 720px; }
+.testimonials__head .kicker { margin-bottom: 28px; display: inline-flex; }
+.testimonials__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+.quote {
+  padding: 44px 36px 36px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  position: relative;
+  transition: background 320ms ease;
+}
+.quote:hover { background: rgba(255,255,255,0.02); }
+.quote::before {
+  content: """;
+  position: absolute;
+  top: 16px; left: 32px;
+  font-family: var(--display);
+  font-size: 80px;
+  line-height: 1;
+  color: var(--ink-faint);
+  opacity: 0.4;
+  pointer-events: none;
+}
+.quote__text {
+  margin-top: 32px;
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(17px, 1.4vw, 21px);
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.quote__foot {
+  margin-top: auto;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.quote__avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--line);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  color: var(--ink);
+  flex-shrink: 0;
+}
+.quote__author {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.quote__name {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.quote__role {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--ink-muted);
+}
+
+/* ==========================================================
    METRICS  — Tenbin-style big mono numbers in a hairline grid
    ========================================================== */
 .metrics {
@@ -617,6 +710,8 @@ html, body, * { scrollbar-width: none; }
   .step { grid-template-columns: 60px 1fr; gap: 24px; padding: 28px 8px; }
   .step__duration { grid-column: 2; text-align: left; padding-top: 8px; }
   .step:hover { padding-left: 16px; }
+  .testimonials__grid { grid-template-columns: 1fr; }
+  .quote { padding: 36px 28px; }
 }
 @media (max-width: 640px) {
   .system__grid { grid-template-columns: 1fr; }
