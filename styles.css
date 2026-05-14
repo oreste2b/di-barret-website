@@ -445,7 +445,7 @@ body:not(.is-loaded) { overflow: hidden; }
   overflow: hidden;
   background: var(--bg);
   display: flex; align-items: center; justify-content: center;
-  padding: 140px 0 80px;
+  padding: 110px 0 60px;
 }
 .hero__bg {
   position: absolute; inset: 0; z-index: 0;
@@ -480,13 +480,13 @@ body:not(.is-loaded) { overflow: hidden; }
   padding: 0 24px;
   max-width: 1100px;
 }
-.hero__pill { margin-bottom: 36px; }
+.hero__pill { margin-bottom: 28px; }
 .hero__title {
   font-family: var(--display);
   font-weight: 700;
-  font-size: clamp(44px, 6.6vw, 116px);
-  line-height: 0.95;
-  letter-spacing: -0.048em;
+  font-size: clamp(40px, 5.4vw, 92px);
+  line-height: 0.98;
+  letter-spacing: -0.045em;
   color: var(--ink);
   max-width: 1000px;
   margin: 0 auto;
@@ -509,22 +509,22 @@ body:not(.is-loaded) { overflow: hidden; }
 }
 .hero__title-icon svg { width: 60%; height: 60%; }
 .hero__sub {
-  margin: 32px auto 0;
+  margin: 24px auto 0;
   font-family: var(--body);
-  font-size: clamp(16px, 1.3vw, 19px);
+  font-size: clamp(15px, 1.2vw, 18px);
   font-weight: 400;
   line-height: 1.55;
   color: var(--ink-soft);
-  max-width: 680px;
+  max-width: 640px;
 }
 .hero__ctas {
-  margin-top: 40px;
+  margin-top: 32px;
   display: flex; gap: 12px;
   justify-content: center;
   flex-wrap: wrap;
 }
 .hero__proof {
-  margin-top: 56px;
+  margin-top: 36px;
   display: inline-flex;
   align-items: center;
   gap: 24px;

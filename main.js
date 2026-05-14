@@ -89,14 +89,16 @@
   })();
 
   /* ──────────────────────────────────────────────────────────
-     3. LENIS  + GSAP ticker integration
+     3. LENIS  + GSAP ticker integration  (lerp-based, snappy)
   ────────────────────────────────────────────────────────── */
   let lenis = null;
   if (!prefersReduced && window.Lenis) {
     lenis = new window.Lenis({
-      duration: 1.15,
+      lerp: 0.12,            /* snappy smoothing — no buffered jumps */
+      wheelMultiplier: 1.0,  /* native-like scroll distance per tick */
       smoothWheel: true,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      syncTouch: false,      /* native touch scrolling on mobile */
+      touchMultiplier: 1.5,
     });
     lenis.on("scroll", ScrollTrigger.update);
     gsap.ticker.add((time) => lenis.raf(time * 1000));
@@ -110,7 +112,7 @@
       const target = document.querySelector(id);
       if (!target) return;
       e.preventDefault();
-      lenis.scrollTo(target, { offset: -20, duration: 1.4 });
+      lenis.scrollTo(target, { offset: -20, duration: 0.9 });
     });
   }
 
