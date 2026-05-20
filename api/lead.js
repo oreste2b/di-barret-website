@@ -26,8 +26,17 @@ const RATE_MAX = 5;
 const hits = new Map();
 
 function clientIp(req) {
+  // x-real-ip is set by the Vercel edge from the trusted source IP and
+  // cannot be spoofed by the client. x-forwarded-for IS client-controllable
+  // and must not be used as a rate-limit key on its own.
+  const real = req.headers["x-real-ip"];
+  if (typeof real === "string" && real.length) return real.trim();
   const xff = req.headers["x-forwarded-for"];
-  if (typeof xff === "string" && xff.length) return xff.split(",")[0].trim();
+  if (typeof xff === "string" && xff.length) {
+    // If we fall back to XFF, use the rightmost entry (closest to Vercel edge).
+    const parts = xff.split(",").map((s) => s.trim()).filter(Boolean);
+    if (parts.length) return parts[parts.length - 1];
+  }
   return req.socket?.remoteAddress || "unknown";
 }
 
@@ -70,6 +79,9 @@ function readBody(req) {
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const clean = (v, max) =>
   typeof v === "string" ? v.trim().slice(0, max) : "";
+// Strip CRLF/tabs from values that flow into headers (Subject, etc.) so a
+// crafted name can't break header rendering in receiving clients.
+const singleLine = (s) => String(s).replace(/[\r\n\t]+/g, " ").trim();
 const esc = (s) =>
   String(s).replace(/[&<>"']/g, (c) => ({
     "&": "&amp;",
@@ -174,14 +186,14 @@ module.exports = async (req, res) => {
     return res.status(400).json({ ok: false, error: "invalid_payload" });
   }
 
-  // Honeypot — bots fill hidden fields, humans never see them.
-  if (typeof body.company === "string" && body.company.trim() !== "") {
-    return res.status(200).json({ ok: true });
-  }
-
-  // Time-trap — block submissions faster than a human could type.
-  if (typeof body.t === "number" && Date.now() - body.t < 1500) {
-    return res.status(200).json({ ok: true });
+  // Honeypot + time-trap. Return 204 (no body) instead of the success-shaped
+  // 200 JSON so bots can't easily distinguish a trap response from a real
+  // submission and tune around it.
+  const isHoneypotted =
+    (typeof body.company === "string" && body.company.trim() !== "") ||
+    (typeof body.t === "number" && Date.now() - body.t < 1500);
+  if (isHoneypotted) {
+    return res.status(204).end();
   }
 
   const name = clean(body.name, MAX_NAME);
@@ -208,26 +220,35 @@ module.exports = async (req, res) => {
   }
 
   const built = buildEmails(body);
+  const subjectName = singleLine(built.name).slice(0, MAX_NAME);
 
   try {
     await sendResend(apiKey, {
       from,
       to: [notifyTo],
       reply_to: email,
-      subject: `Ny lead · ${built.name}`,
+      subject: `Ny lead · ${subjectName}`,
       html: built.html,
       text: built.text,
     });
 
-    // Auto-reply is best-effort: if it fails we still consider the lead captured.
-    sendResend(apiKey, {
-      from,
-      to: [email],
-      reply_to: replyTo,
-      subject: "Tak for din henvendelse — Di Barret",
-      html: built.autoReplyHtml,
-      text: built.autoReplyText,
-    }).catch((err) => console.error("lead: auto-reply failed", err));
+    // Auto-reply is best-effort AND gated: skip when the submission looks
+    // like spam-via-our-form (no real "improve" content + no site). This
+    // limits the auto-reply as an abuse vector for sending mail to arbitrary
+    // third parties under our verified domain reputation.
+    const hasIntent =
+      clean(body.improve, MAX_FIELD).length >= 12 ||
+      clean(body.site, MAX_FIELD).length >= 3;
+    if (hasIntent) {
+      sendResend(apiKey, {
+        from,
+        to: [email],
+        reply_to: replyTo,
+        subject: "Tak for din henvendelse — Di Barret",
+        html: built.autoReplyHtml,
+        text: built.autoReplyText,
+      }).catch((err) => console.error("lead: auto-reply failed", err));
+    }
 
     return res.status(200).json({ ok: true });
   } catch (err) {

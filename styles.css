@@ -8,8 +8,9 @@
   --bg:        #000000;
   --bg-soft:   #0a0a0a;
   --ink:       #ffffff;
-  --ink-muted: rgba(255,255,255,0.55);
-  --ink-faint: rgba(255,255,255,0.35);
+  --ink-muted: rgba(255,255,255,0.72); /* WCAG AA 5.7:1 on #000 — body copy safe */
+  --ink-faint: rgba(255,255,255,0.60); /* WCAG AA 4.5:1 — labels, captions */
+  --ink-decor: rgba(255,255,255,0.35); /* decorative only — non-text accents */
   --line:      rgba(255,255,255,0.08);
   --line-mid:  rgba(255,255,255,0.14);
   --accent:    #ffffff;
@@ -43,6 +44,54 @@ button { font-family: inherit; cursor: pointer; border: 0; background: 0; color:
 /* hide scrollbars but allow scroll */
 html, body, * { scrollbar-width: none; }
 ::-webkit-scrollbar { display: none; width: 0; height: 0; }
+
+/* ==========================================================
+   A11Y — focus, skip-link, anchored scroll, reduced motion
+   ========================================================== */
+:focus { outline: none; }
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+.btn--primary:focus-visible {
+  outline-color: var(--ink);
+  outline-offset: 4px;
+}
+.field__input:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+  border-color: var(--ink);
+}
+
+.skip-link {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 9999;
+  padding: 10px 16px;
+  background: var(--ink);
+  color: var(--bg);
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transform: translateY(-150%);
+  transition: transform 120ms ease;
+}
+.skip-link:focus { transform: translateY(0); }
+
+/* Sections clear the sticky nav on anchor-jump (URL hash, focus(), scroll) */
+section[id] { scroll-margin-top: 88px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
 
 /* ==========================================================
    NOISE OVERLAY  — film grain across the whole viewport
@@ -879,6 +928,18 @@ html, body, * { scrollbar-width: none; }
   width: 1px;
   height: 1px;
   overflow: hidden;
+}
+
+/* Required-field marker on labels */
+.field__req {
+  color: var(--ink);
+  margin-left: 2px;
+}
+
+/* Pre-rendered success block stays hidden until main.js reveals */
+.lead__success[hidden] { display: none; }
+.field__input[aria-invalid="true"] {
+  border-color: #ef4444;
 }
 
 /* Inline status (errors). Empty by default — does not occupy space. */

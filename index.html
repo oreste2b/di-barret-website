@@ -39,7 +39,8 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <!-- Trimmed to weights actually used by styles.css (400 + 500 only) -->
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Geist+Mono:wght@400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css" />
 
@@ -74,12 +75,14 @@
 </head>
 <body>
 
+  <a class="skip-link" href="#main">Spring til indhold</a>
+
   <!-- film grain overlay (purely CSS/SVG, fixed across the viewport) -->
   <div class="noise" aria-hidden="true"></div>
 
   <!-- top navigation -->
-  <nav class="nav">
-    <a class="nav__logo" href="#top">/Di Barret</a>
+  <nav class="nav" aria-label="Primær navigation">
+    <a class="nav__logo" href="#top" aria-label="Di Barret — til toppen"><span aria-hidden="true">/</span>Di Barret</a>
     <a class="nav__cta" href="#booking">
       <span>Book en samtale</span>
       <svg class="nav__cta-icon" width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true">
@@ -87,6 +90,8 @@
       </svg>
     </a>
   </nav>
+
+  <main id="main">
 
   <!-- hero -->
   <section class="hero" id="top">
@@ -493,20 +498,22 @@
       </div>
 
       <form class="lead__form" id="lead-form" autocomplete="off" novalidate>
-        <div class="lead__honeypot" aria-hidden="true">
-          <label>Virksomhed (lad være tom)
-            <input type="text" name="company" tabindex="-1" autocomplete="off" />
+        <!-- honeypot: visually + a11y hidden, focusable only to scripted bots -->
+        <div class="lead__honeypot">
+          <label aria-hidden="true">
+            Virksomhed (lad være tom)
+            <input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" />
           </label>
         </div>
 
         <div class="field-row">
           <div class="field">
-            <label class="field__label" for="lead-name">Navn</label>
-            <input class="field__input" id="lead-name" name="name" type="text" placeholder="Dit fulde navn" autocomplete="name" required />
+            <label class="field__label" for="lead-name">Navn <span class="field__req" aria-hidden="true">*</span></label>
+            <input class="field__input" id="lead-name" name="name" type="text" placeholder="Dit fulde navn" autocomplete="name" required aria-required="true" aria-describedby="lead-status" />
           </div>
           <div class="field">
-            <label class="field__label" for="lead-email">Email</label>
-            <input class="field__input" id="lead-email" name="email" type="email" placeholder="din@email.dk" autocomplete="email" required />
+            <label class="field__label" for="lead-email">Email <span class="field__req" aria-hidden="true">*</span></label>
+            <input class="field__input" id="lead-email" name="email" type="email" placeholder="din@email.dk" autocomplete="email" required aria-required="true" aria-describedby="lead-status" />
           </div>
         </div>
 
@@ -552,9 +559,20 @@
           </svg>
         </button>
 
-        <p class="lead__status" id="lead-status" role="status" aria-live="polite"></p>
+        <p class="lead__status" id="lead-status" role="status" aria-live="polite" aria-atomic="true"></p>
 
         <p class="lead__fineprint">Ingen spam. Ingen hårdt salg. Kun konkrete idéer.</p>
+
+        <!-- Success state, pre-rendered hidden so SR users consistently get the live region announcement. main.js reveals on 200 OK. -->
+        <div class="lead__success" id="lead-success" hidden role="status">
+          <div class="lead__success-icon" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M3 7.5L6 10L11 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="lead__success-text">Tak. Vi har modtaget din forespørgsel og vender tilbage med næste skridt.</div>
+          <div class="lead__success-sub">Svar inden for 2 hverdage</div>
+        </div>
       </form>
     </div>
   </section>
@@ -578,7 +596,7 @@
             <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </a>
-        <a class="btn btn--ghost" href="mailto:hello@dibarret.dk">
+        <a class="btn btn--ghost" href="mailto:kontakte@dibarret.dk">
           <span>Skriv til os</span>
         </a>
       </div>
@@ -589,6 +607,8 @@
       </div>
     </div>
   </section>
+
+  </main>
 
   <!-- ===================== FOOTER ===================== -->
   <footer class="footer" id="contact">
@@ -617,15 +637,15 @@
         <div class="footer__col">
           <span class="footer__heading">Socials</span>
           <ul class="footer__list">
-            <li><a href="#" target="_blank" rel="noopener">Instagram ↗</a></li>
-            <li><a href="#" target="_blank" rel="noopener">LinkedIn ↗</a></li>
-            <li><a href="#" target="_blank" rel="noopener">X ↗</a></li>
+            <li><a href="#" aria-label="Instagram — kommer snart" aria-disabled="true">Instagram <span aria-hidden="true">↗</span></a></li>
+            <li><a href="#" aria-label="LinkedIn — kommer snart" aria-disabled="true">LinkedIn <span aria-hidden="true">↗</span></a></li>
+            <li><a href="#" aria-label="X — kommer snart" aria-disabled="true">X <span aria-hidden="true">↗</span></a></li>
           </ul>
         </div>
 
         <div class="footer__col">
           <span class="footer__heading">Contact</span>
-          <a class="footer__email" href="mailto:hello@dibarret.dk">hello@dibarret.dk</a>
+          <a class="footer__email" href="mailto:kontakte@dibarret.dk">kontakte@dibarret.dk</a>
           <a class="footer__cta" href="#lead">
             <span>Få en gratis vurdering</span>
             <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
@@ -643,6 +663,6 @@
     </div>
   </footer>
 
-  <script src="main.js"></script>
+  <script defer src="main.js"></script>
 </body>
 </html>
