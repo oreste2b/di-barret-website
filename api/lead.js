@@ -189,10 +189,17 @@ module.exports = async (req, res) => {
   // Honeypot + time-trap. Return 204 (no body) instead of the success-shaped
   // 200 JSON so bots can't easily distinguish a trap response from a real
   // submission and tune around it.
-  const isHoneypotted =
-    (typeof body.company === "string" && body.company.trim() !== "") ||
-    (typeof body.t === "number" && Date.now() - body.t < 1500);
-  if (isHoneypotted) {
+  // Field is named `ref_url` (uncommon — password managers were autofilling
+  // the previous `company` name on legitimate human submissions). Accept the
+  // old name too for one deploy cycle in case any user has a cached HTML.
+  const honeypotFilled =
+    (typeof body.ref_url === "string" && body.ref_url.trim() !== "") ||
+    (typeof body.company === "string" && body.company.trim() !== "");
+  // Time-trap eased from 1500 → 800ms — still rejects instant scripted submits
+  // without flagging fast typers.
+  const tooFast =
+    typeof body.t === "number" && body.t > 0 && Date.now() - body.t < 800;
+  if (honeypotFilled || tooFast) {
     return res.status(204).end();
   }
 

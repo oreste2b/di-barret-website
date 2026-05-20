@@ -501,11 +501,23 @@
       </div>
 
       <form class="lead__form" id="lead-form" autocomplete="off" novalidate>
-        <!-- honeypot: visually + a11y hidden, focusable only to scripted bots -->
+        <!-- honeypot: hidden field with an uncommon name + explicit hints to
+             every major password manager (1Password, LastPass, Bitwarden, Chrome)
+             telling them NOT to autofill. Renamed from "company" → "ref_url"
+             because password managers were autofilling "company" on legit users. -->
         <div class="lead__honeypot">
           <label aria-hidden="true">
-            Virksomhed (lad være tom)
-            <input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" />
+            Reference (lad være tom)
+            <input
+              type="text"
+              name="ref_url"
+              tabindex="-1"
+              autocomplete="off"
+              aria-hidden="true"
+              data-1p-ignore="true"
+              data-lpignore="true"
+              data-bwignore="true"
+              data-form-type="other" />
           </label>
         </div>
 

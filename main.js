@@ -72,7 +72,7 @@
         improve: (fd.get("improve") || "").toString().trim(),
         budget: (fd.get("budget") || "").toString().trim(),
         when: (fd.get("when") || "").toString().trim(),
-        company: (fd.get("company") || "").toString(), // honeypot
+        ref_url: (fd.get("ref_url") || "").toString(), // honeypot
         t: renderedAt,
       };
 
