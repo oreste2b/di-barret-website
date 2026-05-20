@@ -4,6 +4,7 @@ node_modules/
 .env
 .env.local
 .env.*.local
+.claude/
 
 # Design handoff bundle — not part of production site
 "Di Barret-handoff.zip"
