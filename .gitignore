@@ -1,6 +1,9 @@
 .vercel
 .DS_Store
 node_modules/
+.env
+.env.local
+.env.*.local
 
 # Design handoff bundle — not part of production site
 "Di Barret-handoff.zip"

@@ -4,9 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-Di Barret — single-page Danish-language marketing site for a brand-system studio (`lang="da"`). Three hand-authored files at the repo root: `index.html`, `styles.css`, `main.js`. No framework, no bundler, no `package.json`, no tests, no build step. Fonts come from Google Fonts (Geist / Geist Mono / Inter); everything else is local.
+Di Barret — single-page Danish-language marketing site for a brand-system studio (`lang="da"`). Three hand-authored frontend files at the repo root (`index.html`, `styles.css`, `main.js`) plus one Vercel Function (`api/lead.js`). No framework, no bundler, no `package.json`, no tests, no build step. Fonts come from Google Fonts (Geist / Geist Mono / Inter); everything else is local.
 
-Remote: `https://github.com/oreste2b/di-barret-website.git`. Deployed via Vercel (`.vercel/` is gitignored).
+Remote: `https://github.com/oreste2b/di-barret-website.git`. Deployed via Vercel (`.vercel/` is gitignored). Project is linked to Vercel team `oreste2bs-projects`, project `di-barret-website` (id `prj_4Tt3LMRkIO4RYlYCuxs6dZJmKQsQ`). Custom domain: `www.dibarret.dk`.
 
 ## Commands
 
@@ -17,7 +17,11 @@ There is no build, lint, or test tooling. Workflow is "edit file → reload brow
 - Deploy production: `vercel deploy --prod`
 - Git history convention: commits are sequenced as `Step N — <section>` for additive section work, or `Fix · <area>` for fixes. Keep that style when adding to the canonical build order.
 
-`.gitignore` excludes `.vercel`, `node_modules/`, `.DS_Store`, and the design handoff artifacts (`di-barret/`, `Di Barret-handoff.zip`) — do not commit those.
+`.gitignore` excludes `.vercel`, `node_modules/`, `.DS_Store`, all `.env*.local` files, and the design handoff artifacts (`di-barret/`, `Di Barret-handoff.zip`) — do not commit those.
+
+### Vercel configuration (`vercel.json`)
+
+Security headers (`X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`, `Permissions-Policy`, HSTS), `Cache-Control: no-store` on `/api/*`, long-cache (`immutable`, 1y) on static assets. `cleanUrls: true`. `api/lead.js` capped at 15s.
 
 ## Architecture
 
@@ -44,10 +48,23 @@ When adding a section, give it a numeric kicker, a section ID, and a correspondi
 
 A single IIFE with two behaviors only:
 
-1. `#lead-form` submit handler: prevents default, removes the form, injects a `.lead__success` confirmation block (markup inlined in JS — keep the `.lead__success*` CSS hooks if you touch it).
+1. `#lead-form` submit handler: validates name/email, POSTs JSON to `/api/lead`, manages loading/error states via `#lead-status` (ARIA live), and on success removes the form and injects the `.lead__success` block.
 2. Delegated click handler for `a[href^="#"]` that smooth-scrolls with a 20px top offset.
 
-There is no router, no analytics, no animation library, and no fetch. The form intentionally does not POST anywhere yet — adding a backend means wiring `e.target` to a real endpoint and only swapping in the success state on success. Do not introduce frameworks or bundlers without a discussion: the project is deliberately a single HTML file.
+No router, no analytics, no animation library. Error copy is Danish-only. Do not introduce frameworks or bundlers without a discussion: the project is deliberately a single HTML file plus a single Function.
+
+### Backend (`api/lead.js`)
+
+Single Vercel Function (Node.js runtime, Fluid Compute, no npm deps). Calls Resend REST API via native `fetch` to send a notification to `kontakte@dibarret.dk` and an auto-reply to the lead. Guards: honeypot field (`company`), time-trap (rejects sub-1.5s submits), per-instance rate limiter (5/min/IP), strict payload validation, HTML escaping.
+
+Required env vars (set in Vercel dashboard or `vercel env add`):
+
+- `RESEND_API_KEY` — Resend API key with "Sending access" scope
+- `LEAD_FROM` — verified sender, e.g. `Di Barret <kontakte@dibarret.dk>`
+- `LEAD_NOTIFY_TO` — notification recipient, e.g. `kontakte@dibarret.dk`
+- `LEAD_REPLY_TO` — optional Reply-To on the auto-reply (defaults to `LEAD_NOTIFY_TO`)
+
+See `.env.example` for the template. The Resend dashboard owns DNS verification for `dibarret.dk` (SPF/DKIM/DMARC).
 
 ### Content & copy
 

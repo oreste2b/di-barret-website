@@ -433,32 +433,38 @@
         </ul>
       </div>
 
-      <form class="lead__form" id="lead-form" autocomplete="off">
+      <form class="lead__form" id="lead-form" autocomplete="off" novalidate>
+        <div class="lead__honeypot" aria-hidden="true">
+          <label>Virksomhed (lad være tom)
+            <input type="text" name="company" tabindex="-1" autocomplete="off" />
+          </label>
+        </div>
+
         <div class="field-row">
           <div class="field">
             <label class="field__label" for="lead-name">Navn</label>
-            <input class="field__input" id="lead-name" type="text" placeholder="Dit fulde navn" required />
+            <input class="field__input" id="lead-name" name="name" type="text" placeholder="Dit fulde navn" autocomplete="name" required />
           </div>
           <div class="field">
             <label class="field__label" for="lead-email">Email</label>
-            <input class="field__input" id="lead-email" type="email" placeholder="din@email.dk" required />
+            <input class="field__input" id="lead-email" name="email" type="email" placeholder="din@email.dk" autocomplete="email" required />
           </div>
         </div>
 
         <div class="field">
           <label class="field__label" for="lead-site">Website / Instagram</label>
-          <input class="field__input" id="lead-site" type="text" placeholder="dinside.dk eller @dithandle" />
+          <input class="field__input" id="lead-site" name="site" type="text" placeholder="dinside.dk eller @dithandle" autocomplete="url" />
         </div>
 
         <div class="field">
           <label class="field__label" for="lead-improve">Hvad vil du gerne forbedre?</label>
-          <textarea class="field__input field__input--area" id="lead-improve" placeholder="Beskriv kort hvad der ikke virker, eller hvad du gerne vil opnå…"></textarea>
+          <textarea class="field__input field__input--area" id="lead-improve" name="improve" placeholder="Beskriv kort hvad der ikke virker, eller hvad du gerne vil opnå…"></textarea>
         </div>
 
         <div class="field-row">
           <div class="field">
             <label class="field__label" for="lead-budget">Budget</label>
-            <select class="field__input field__input--select" id="lead-budget">
+            <select class="field__input field__input--select" id="lead-budget" name="budget">
               <option value="">Vælg niveau</option>
               <option>Under 10.000 DKK</option>
               <option>10.000–25.000 DKK</option>
@@ -469,7 +475,7 @@
           </div>
           <div class="field">
             <label class="field__label" for="lead-when">Hvornår</label>
-            <select class="field__input field__input--select" id="lead-when">
+            <select class="field__input field__input--select" id="lead-when" name="when">
               <option value="">Vælg tidspunkt</option>
               <option>Så hurtigt som muligt</option>
               <option>Inden for 1 måned</option>
@@ -481,11 +487,13 @@
         </div>
 
         <button type="submit" class="btn btn--primary lead__submit">
-          <span>Få min gratis vurdering</span>
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <span class="lead__submit-label">Få min gratis vurdering</span>
+          <svg class="lead__submit-icon" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
             <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </button>
+
+        <p class="lead__status" id="lead-status" role="status" aria-live="polite"></p>
 
         <p class="lead__fineprint">Ingen spam. Ingen hårdt salg. Kun konkrete idéer.</p>
       </form>
