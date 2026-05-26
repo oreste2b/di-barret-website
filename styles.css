@@ -499,6 +499,68 @@ section[id] { scroll-margin-top: 88px; }
   color: var(--ink-muted);
   max-width: 460px;
 }
+/* Service deliverables — 3-bullet outcome list per service card */
+.service__deliverables {
+  list-style: none;
+  margin: 18px 0 0;
+  padding: 0;
+}
+.service__deliverables li {
+  font-family: var(--body);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-muted);
+  padding: 4px 0 4px 18px;
+  position: relative;
+}
+.service__deliverables li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 12px;
+  width: 8px;
+  height: 1px;
+  background: var(--ink-faint);
+}
+
+/* Pricing row: price (fra) + tidsramme */
+.service__pricing {
+  margin: 22px 0 0;
+  padding: 18px 0;
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.service__price,
+.service__time {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.service__price-label,
+.service__time-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.service__price-value {
+  font-family: var(--display);
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+.service__time-value {
+  font-family: var(--display);
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+
 .service__foot {
   margin-top: auto;
   padding-top: 22px;
@@ -671,6 +733,197 @@ section[id] { scroll-margin-top: 88px; }
   letter-spacing: -0.01em;
   color: var(--ink);
 }
+/* ==========================================================
+   BYGGET AF OS — honest "vi er nye" section (replaces fake testimonials)
+   ========================================================== */
+.bygget {
+  position: relative;
+  z-index: 1;
+  background: var(--bg);
+  padding: 100px 0;
+}
+.bygget__inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--pad);
+}
+.bygget__head {
+  margin-bottom: 56px;
+  max-width: 880px;
+}
+.bygget__lead {
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--ink-muted);
+  margin-top: 24px;
+  max-width: 680px;
+}
+.bygget__cases {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+.case {
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 40px 36px;
+  display: flex;
+  flex-direction: column;
+  transition: background 200ms ease;
+}
+.case:hover { background: rgba(255,255,255,0.02); }
+.case__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+.case__num {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.10em;
+  color: var(--ink-faint);
+}
+.case__tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  border: 1px solid var(--line-mid);
+  padding: 5px 10px;
+}
+.case__title {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 32px;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 14px;
+}
+.case__desc {
+  font-family: var(--body);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-muted);
+  margin-bottom: 24px;
+}
+.case__stack {
+  list-style: none;
+  margin: auto 0 0;
+  padding: 20px 0 0;
+  border-top: 1px solid var(--line);
+}
+.case__stack li {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line);
+}
+.case__stack li:last-child { border-bottom: 0; }
+.case__stack-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.case__stack-value {
+  font-family: var(--body);
+  font-size: 13px;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.case__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+.case__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border: 1px solid var(--line-mid);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  transition: background 160ms ease, border-color 160ms ease;
+}
+.case__cta:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+
+/* ==========================================================
+   HVORFOR OS — answers the "why pick you" objection
+   ========================================================== */
+.hvorfor {
+  position: relative;
+  z-index: 1;
+  background: var(--bg);
+  padding: 100px 0;
+}
+.hvorfor__inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--pad);
+}
+.hvorfor__head {
+  margin-bottom: 56px;
+  max-width: 880px;
+}
+.hvorfor__lead {
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--ink-muted);
+  margin-top: 24px;
+  max-width: 680px;
+}
+.hvorfor__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+.reason {
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 36px 32px 40px;
+  display: flex;
+  flex-direction: column;
+  transition: background 200ms ease;
+}
+.reason:hover { background: rgba(255,255,255,0.02); }
+.reason__num {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.10em;
+  color: var(--ink-faint);
+  margin-bottom: 18px;
+}
+.reason__title {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 28px;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+.reason__desc {
+  font-family: var(--body);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-muted);
+  max-width: 460px;
+}
+
 .quote__role {
   font-family: var(--mono);
   font-size: 11px;
@@ -1266,9 +1519,20 @@ section[id] { scroll-margin-top: 88px; }
   .system,
   .services,
   .process,
-  .testimonials,
+  .bygget,
   .team,
+  .hvorfor,
   .lead { padding: 64px var(--pad); }
+
+  /* Collapse new 2-col grids to single column on mobile */
+  .bygget__cases { grid-template-columns: 1fr; }
+  .hvorfor__grid { grid-template-columns: 1fr; }
+  .case__stack-value { text-align: right; }
+  .case__ctas { flex-direction: column; align-items: stretch; }
+  .case__cta { justify-content: center; }
+  .service__pricing { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .service__price-value,
+  .service__time-value { font-size: 19px; }
   .final-cta { padding: 90px var(--pad) 72px; }
   .footer { padding: 64px var(--pad) 28px; }
 

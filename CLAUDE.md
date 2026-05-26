@@ -29,9 +29,11 @@ Security headers (`X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`
 
 The page is one long static document. Sections are numbered with `kicker` eyebrows (`01 — Problemet`, `02 — Brand System`, …) and must stay in this order — the numbering is part of the design and the in-page nav/footer links depend on the section IDs:
 
-`#top` (hero) → metrics → `#problem` → `#system` → `#services` → `#process` → `#testimonials` → `#team` → `#lead` → `#booking` (final CTA) → `#contact` (footer)
+`#top` (hero) → metrics → `#problem` (01) → `#system` (02) → `#services` (03) → `#process` (04) → `#bygget` (05 — honest "vi er nye", replaced the old testimonials section in Audit Pass 1) → `#team` (06) → `#hvorfor` (07 — answers the "why pick us" objection, added in Audit Pass 1) → `#lead` (08) → `#booking` (09 — final CTA) → `#contact` (footer)
 
-When adding a section, give it a numeric kicker, a section ID, and a corresponding footer link.
+When adding a section, give it a numeric kicker, a section ID, and a corresponding footer link. **Never re-introduce fictional testimonials in `#bygget` — the meta-case (this website) + "send cases via DM" pattern is intentional and matches the brand's direct/honest voice.**
+
+Services in `#services` carry Danish names (Visuel landing / Brand-oplevelse / Web-oplevelse / Vækst-fundament), a 3-bullet `service__deliverables` list, a `service__pricing` row with "Fra X DKK" and "Tidsramme", plus the original "Ideal for" footer. Pricing tier reference: Landing 8k / Brand 25k / Web 35k / Vækst 50k DKK — adjust to reality, but keep numeric anchors so buyers can self-select.
 
 ### CSS architecture (`styles.css`, ~1300 lines)
 
