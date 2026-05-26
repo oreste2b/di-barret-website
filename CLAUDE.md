@@ -23,6 +23,24 @@ There is no build, lint, or test tooling. Workflow is "edit file → reload brow
 
 Security headers (`X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`, `Permissions-Policy`, HSTS), `Cache-Control: no-store` on `/api/*`, long-cache (`immutable`, 1y) on static assets. `cleanUrls: true`. `api/lead.js` capped at 15s.
 
+### Content section: `/teardowns/`
+
+Long-form brand-system analyses of iconic brands (LEGO, Carlsberg, Novo Nordisk, etc.) — authority-building content under our own domain. Strategy is deliberately about **large brands we will never have as clients**, NOT about prospects (auditing a prospect publicly burns the prospect — see Audit Pass 1 lesson).
+
+Structure:
+- `/teardowns/teardown.css` — shared CSS for all teardown pages (article layout, scorecard, panels)
+- `/teardowns/index.html` — listing page (CollectionPage JSON-LD)
+- `/teardowns/<slug>.html` — individual teardown (Article JSON-LD, ~2500 words, scorecard 0-10 across 5 dimensions)
+- `/teardowns/og-<slug>.png` — per-teardown OG image (1200×630, generated via `python3 + Pillow`)
+
+Every teardown must:
+1. Have `lang="da"` (content is Danish like the rest of the site)
+2. Use the standard 5-dimension scorecard (Strategi & positionering, Visuel identitet, Verbal identitet, Digital oplevelse, Touchpoint-koherens — 0-10 each, total /50)
+3. Include "What they did well" + "What we'd do different" panels
+4. End with a CTA linking to `/#lead` and `https://wa.me/4528898373`
+5. Be added to `sitemap.xml` with its own `<url>` entry + image entry
+6. Be linked from `/teardowns/index.html` and from main `index.html` footer Discover list
+
 ## Architecture
 
 ### Page composition (single source of truth: `index.html`)

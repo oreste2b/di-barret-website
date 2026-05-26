@@ -17,4 +17,21 @@
       <image:title>Di Barret logo</image:title>
     </image:image>
   </url>
+  <url>
+    <loc>https://www.dibarret.dk/teardowns/</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.dibarret.dk/teardowns/carlsberg-2024</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.dibarret.dk/teardowns/og-carlsberg-2024.png</image:loc>
+      <image:title>Sådan rebrandte Carlsberg en 175-årig kategori-konge</image:title>
+      <image:caption>Brand-system teardown af Carlsbergs 2018-2024 rebranding.</image:caption>
+    </image:image>
+  </url>
 </urlset>
