@@ -21,7 +21,9 @@ There is no build, lint, or test tooling. Workflow is "edit file → reload brow
 
 ### Vercel configuration (`vercel.json`)
 
-Security headers (`X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`, `Permissions-Policy`, HSTS), `Cache-Control: no-store` on `/api/*`, long-cache (`immutable`, 1y) on static assets. `cleanUrls: true`. `api/lead.js` capped at 15s.
+Security headers (`X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`, `Permissions-Policy`, HSTS), `Cache-Control: no-store` on `/api/*`. `cleanUrls: true`. `api/lead.js` capped at 15s.
+
+**Cache policy by asset type**: images/fonts (`svg|woff2|woff|ttf|otf|png|jpg|jpeg|gif|webp|avif|ico`) stay `immutable, max-age=1y` because their filenames change when content changes (favicons, og.png are rewritten when regenerated). **CSS/JS** use `max-age=3600, must-revalidate` (1h cache with revalidation) because their filenames stay stable — without this, browsers hold the old CSS for up to a year after a deploy. When making CSS changes that need to ship immediately to existing visitors, also bump the query-string version: `styles.css?v=N` → `styles.css?v=N+1`.
 
 ### Content section: `/teardowns/`
 
