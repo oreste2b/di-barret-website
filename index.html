@@ -36,36 +36,130 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
   <link rel="manifest" href="/site.webmanifest" />
 
-  <!-- Fonts -->
+  <!-- Apple PWA / Add to Home Screen polish -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Di Barret" />
+  <meta name="application-name" content="Di Barret" />
+
+  <!-- Fonts: preconnect (modern) + dns-prefetch (older browsers fallback) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
   <!-- Trimmed to weights actually used by styles.css (400 + 500 only) -->
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Geist+Mono:wght@400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css" />
 
-  <!-- Structured data -->
+  <!-- Structured data — single @graph linking Organization, LocalBusiness,
+       Person founders, WebSite (with search action), and the 4 Services.
+       @id cross-references let Google build a unified entity graph. -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Di Barret",
-    "url": "https://www.dibarret.dk/",
-    "logo": "https://www.dibarret.dk/icon-512.png",
-    "image": "https://www.dibarret.dk/og.png",
-    "description": "Di Barret bygger digitale brand-systemer, hvor strategi, visuel identitet, webdesign og AI arbejder sammen.",
-    "email": "kontakte@dibarret.dk",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "København",
-      "addressCountry": "DK"
-    },
-    "founder": [
-      { "@type": "Person", "name": "Orestes Barret", "jobTitle": "Creative Director" },
-      { "@type": "Person", "name": "Karo Lushi", "jobTitle": "Strategy & Build" }
-    ],
-    "areaServed": "DK",
-    "knowsLanguage": ["da", "en"]
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://www.dibarret.dk/#organization",
+        "name": "Di Barret",
+        "url": "https://www.dibarret.dk/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.dibarret.dk/icon-512.png",
+          "width": 512,
+          "height": 512
+        },
+        "image": "https://www.dibarret.dk/og.png",
+        "description": "Di Barret bygger digitale brand-systemer, hvor strategi, visuel identitet, webdesign og AI arbejder sammen — så dit brand ikke bare bliver set, men valgt.",
+        "email": "kontakte@dibarret.dk",
+        "telephone": "+45 28 89 83 73",
+        "founder": [
+          { "@id": "https://www.dibarret.dk/#orestes-barret" },
+          { "@id": "https://www.dibarret.dk/#karo-lushi" }
+        ],
+        "sameAs": [
+          "https://instagram.com/di_barret.dk"
+        ]
+      },
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://www.dibarret.dk/#localbusiness",
+        "name": "Di Barret",
+        "url": "https://www.dibarret.dk/",
+        "image": "https://www.dibarret.dk/og.png",
+        "description": "Brand-system studio i København. Strategi, visuel identitet, webdesign og AI bygget som ét sammenhængende system.",
+        "priceRange": "$$$",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "København",
+          "addressRegion": "Hovedstaden",
+          "addressCountry": "DK"
+        },
+        "areaServed": [
+          { "@type": "Country", "name": "Denmark" },
+          { "@type": "Place", "name": "Europe" }
+        ],
+        "email": "kontakte@dibarret.dk",
+        "telephone": "+45 28 89 83 73",
+        "knowsLanguage": ["da", "en"],
+        "parentOrganization": { "@id": "https://www.dibarret.dk/#organization" },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Brand-system services",
+          "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Visual Landing", "description": "Premium konverteringsoptimeret landing page." } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Brand Experience", "description": "Visuel identitet og brand-system fra strategi til guidelines." } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Web Experience", "description": "Komplet weboplevelse: design, build, integration." } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Growth Foundation", "description": "Konvertering, tracking og AI-lag oven på et brand-system." } }
+          ]
+        }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://www.dibarret.dk/#orestes-barret",
+        "name": "Orestes Barret",
+        "jobTitle": "Creative Director",
+        "worksFor": { "@id": "https://www.dibarret.dk/#organization" },
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "København",
+          "addressCountry": "DK"
+        }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://www.dibarret.dk/#karo-lushi",
+        "name": "Karo Lushi",
+        "jobTitle": "Strategy & Build",
+        "worksFor": { "@id": "https://www.dibarret.dk/#organization" },
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "København",
+          "addressCountry": "DK"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.dibarret.dk/#website",
+        "url": "https://www.dibarret.dk/",
+        "name": "Di Barret",
+        "description": "Brand-systemer der får dig valgt.",
+        "inLanguage": "da-DK",
+        "publisher": { "@id": "https://www.dibarret.dk/#organization" }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://www.dibarret.dk/#webpage",
+        "url": "https://www.dibarret.dk/",
+        "name": "Di Barret — Brand-systemer der får dig valgt",
+        "description": "Di Barret bygger digitale brand-systemer, hvor strategi, visuel identitet, webdesign og AI arbejder sammen.",
+        "isPartOf": { "@id": "https://www.dibarret.dk/#website" },
+        "about": { "@id": "https://www.dibarret.dk/#organization" },
+        "primaryImageOfPage": "https://www.dibarret.dk/og.png",
+        "inLanguage": "da-DK"
+      }
+    ]
   }
   </script>
 
