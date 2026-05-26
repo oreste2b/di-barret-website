@@ -36,7 +36,27 @@ Structure:
 
 Two case types supported:
 - **Build cases** — full delivery (strategy → design → build → deploy). Example: `/cases/dibarret-dk` (meta-case showing the website as its own first case).
-- **Audit cases** — Brand Audit deliverables (12-dimension scorecard, prioritized fixes, 30-day action plan). Example: `/cases/audit-dibarret-dk` (self-audit of dibarret.dk, score 42/100). Audit cases embed the `.cs-scorecard` component (defined in `case.css`) — color-coded rows with `data-tier="good|mid|bad"` controlled by inline `--pct` CSS variable. Fix items in the execution list use `.cs-tag--fixed|pending|skip` chips for status.
+- **Audit cases** — Brand Audit deliverables (12-dimension scorecard or full 10-section template, prioritized fixes, 30-day action plan). Examples: `/cases/audit-dibarret-dk` (lightweight scorecard format) and `/cases/audit-dubbu` (full canonical 10-section template — see below).
+
+### Canonical audit template — 10 sections
+
+All client-deliverable audits going forward use this structure (anchored `#s00` through `#s10`):
+
+- **00 — Resumé / Resumen ejecutivo** — `cs-stats-3` row + `cs-quote` thesis + 3 priority leaks bullet
+- **01 — Digital røntgen / Radiografía digital** — `cs-stats-3` (value prop, journey, support) + `cs-table` friction audit
+- **02 — Trustpilot & reputación** — `cs-bars` volume chart + `cs-bars` response-time chart + `cs-stats-3` (strength/gap/opportunity)
+- **03 — Instagram & contenido** — observable fact card + estimated cost card
+- **04 — Mapa competitivo** — `cs-table` competitor map + `cs-quote` disruption risk
+- **05 — Fugas de capital / Capital leaks** — `cs-bars` monthly leaks + `cs-fugas` 6-card grid + `cs-total` summary panel
+- **06 — Matrices de posición** — two `cs-matrix` 2×2 quadrants (tech maturity, impact/effort)
+- **07 — Roadmap IA** — `cs-accordion` with 4 `<details>` items (AI agent, Trustpilot auto, content system, CRM lifecycle)
+- **08 — Propuesta económica** — `cs-phases` 3-up pricing cards + breakdown `cs-table`
+- **09 — ROI vs empleado** — `cs-roi` comparison panel (salary col vs Di Barret col + diff)
+- **10 — Próximo paso** — `cs-steps` 3-up (workshop → proposal → 90-day live) + final `cs-cta`
+
+Plus: sticky top nav `cs-audit-nav` linking to all 10 anchors, `cs-client-meta` pill row in hero with `<strong>` labels.
+
+All components defined in `cases/case.css`. Bilingual DA + ES throughout via `data-lang` spans. Article JSON-LD with `about: Organization` (with CVR identifier) or `about: Person` depending on client type. Sign as **Orestes Barret** (the brand name) — never "Baratuti". Email is always `orestes@dibarret.dk` (`.dk`, never `.com`).
 
 Every case must:
 1. Include both DA and ES copy in `<span data-lang="da">…</span><span data-lang="es">…</span>` pairs (never DA-only or ES-only — the toggle hides whichever isn't active)

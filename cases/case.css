@@ -268,6 +268,605 @@ body:not([data-active-lang]) [data-lang="da"] { display: revert; }
   .cs-scorecard__score { text-align: left; }
 }
 
+/* ==========================================================
+   AUDIT TEMPLATE — 10-section canonical structure
+   Used by /cases/audit-* pages
+   ========================================================== */
+
+/* ---------- Sticky section nav (10-point audit index) ---------- */
+.cs-audit-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+  padding: 14px 0;
+  margin-bottom: 32px;
+}
+.cs-audit-nav__inner {
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 var(--pad);
+}
+.cs-audit-nav__inner::-webkit-scrollbar { display: none; }
+.cs-audit-nav__link {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  text-decoration: none;
+  padding: 6px 14px;
+  border-right: 1px solid var(--line);
+  white-space: nowrap;
+  transition: color 160ms ease;
+}
+.cs-audit-nav__link:first-child { padding-left: 0; }
+.cs-audit-nav__link:hover { color: var(--ink); }
+.cs-audit-nav__link strong {
+  font-weight: 400;
+  color: var(--ink-muted);
+  margin-right: 6px;
+}
+
+/* ---------- Client metadata pills ---------- */
+.cs-client-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 24px 0 0;
+  padding: 16px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.cs-client-meta__pill {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--ink-muted);
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  text-transform: uppercase;
+}
+.cs-client-meta__pill strong { color: var(--ink); font-weight: 500; }
+
+/* ---------- Highlight quote block ---------- */
+.cs-quote {
+  margin: 40px 0;
+  padding: 32px 28px;
+  border-left: 2px solid var(--ink);
+  background: rgba(255,255,255,0.02);
+}
+.cs-quote p {
+  font-family: var(--display);
+  font-size: 22px;
+  line-height: 1.4;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+.cs-quote__attr {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+/* ---------- Stat cards 3-up ---------- */
+.cs-stats-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+  margin: 32px 0;
+}
+.cs-stat {
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 28px 24px;
+}
+.cs-stat__label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 12px;
+}
+.cs-stat__value {
+  font-family: var(--display);
+  font-size: 38px;
+  font-weight: 300;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.cs-stat__desc {
+  font-family: var(--body);
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--ink-muted);
+}
+
+/* ---------- Fricción/comparison table ---------- */
+.cs-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 32px 0;
+  font-family: var(--body);
+  font-size: 14px;
+}
+.cs-table th {
+  text-align: left;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--line-mid);
+  font-weight: 400;
+}
+.cs-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink-muted);
+  vertical-align: top;
+}
+.cs-table td:first-child { color: var(--ink); font-weight: 500; }
+.cs-table .gap--critical { color: #f87171; font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; }
+.cs-table .gap--high     { color: #fbbf24; font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; }
+.cs-table .gap--medium   { color: var(--ink-muted); font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; }
+.cs-table .gap--ok       { color: #34d399; font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; }
+
+/* ---------- Horizontal bar chart (CSS only) ---------- */
+.cs-bars {
+  margin: 32px 0;
+  border-top: 1px solid var(--line);
+}
+.cs-bars__caption {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+.cs-bars__row {
+  display: grid;
+  grid-template-columns: 180px 1fr 80px;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+.cs-bars__label {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--ink-muted);
+  letter-spacing: 0.04em;
+}
+.cs-bars__bar {
+  position: relative;
+  height: 14px;
+  background: rgba(255,255,255,0.04);
+  overflow: hidden;
+}
+.cs-bars__bar::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--pct, 0%);
+  background: var(--bar-color, var(--ink));
+}
+.cs-bars__row[data-emphasis="us"]    { --bar-color: #fbbf24; }
+.cs-bars__row[data-emphasis="them"]  { --bar-color: rgba(255,255,255,0.5); }
+.cs-bars__row[data-emphasis="ideal"] { --bar-color: #34d399; }
+.cs-bars__value {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+  text-align: right;
+}
+
+/* ---------- Fuga (leak) cards ---------- */
+.cs-fugas {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+  margin: 32px 0;
+}
+.cs-fuga {
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 28px 24px;
+}
+.cs-fuga__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 14px;
+  gap: 16px;
+}
+.cs-fuga__title {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 17px;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+.cs-fuga__amount {
+  font-family: var(--mono);
+  font-size: 14px;
+  color: #f87171;
+  white-space: nowrap;
+}
+.cs-fuga__hecho,
+.cs-fuga__coste {
+  font-family: var(--body);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink-muted);
+  margin-bottom: 10px;
+}
+.cs-fuga__hecho strong,
+.cs-fuga__coste strong {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+/* ---------- Total summary panel ---------- */
+.cs-total {
+  margin: 24px 0 0;
+  padding: 24px 28px;
+  border: 1px solid var(--line-mid);
+  background: rgba(248, 113, 113, 0.04);
+}
+.cs-total__label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 8px;
+}
+.cs-total__value {
+  font-family: var(--display);
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+}
+.cs-total__value strong { color: #f87171; }
+
+/* ---------- Accordion (native details/summary) ---------- */
+.cs-accordion {
+  border-top: 1px solid var(--line);
+  margin: 32px 0;
+}
+.cs-accordion details {
+  border-bottom: 1px solid var(--line);
+}
+.cs-accordion summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 24px 0;
+  display: grid;
+  grid-template-columns: 32px 1fr 24px;
+  align-items: center;
+  gap: 20px;
+  font-family: var(--display);
+  font-size: 17px;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+.cs-accordion summary::-webkit-details-marker { display: none; }
+.cs-accordion summary::after {
+  content: "+";
+  font-family: var(--mono);
+  font-size: 20px;
+  color: var(--ink-faint);
+  justify-self: end;
+  transition: transform 200ms ease;
+}
+.cs-accordion details[open] summary::after { content: "−"; }
+.cs-accordion__num {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--ink-faint);
+}
+.cs-accordion__body {
+  padding: 0 0 28px 52px;
+}
+.cs-accordion__body p {
+  font-family: var(--body);
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--ink-muted);
+  margin-bottom: 14px;
+}
+.cs-accordion__body strong { color: var(--ink); font-weight: 500; }
+.cs-accordion__stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin-top: 18px;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+.cs-accordion__stat {
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 16px;
+}
+.cs-accordion__stat-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 6px;
+}
+.cs-accordion__stat-value {
+  font-family: var(--display);
+  font-size: 22px;
+  color: var(--ink);
+  letter-spacing: -0.015em;
+}
+
+/* ---------- Quadrant matrix (2x2) ---------- */
+.cs-matrix {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 11;
+  margin: 32px 0;
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(to right,  transparent calc(50% - 0.5px), var(--line) calc(50% - 0.5px), var(--line) calc(50% + 0.5px), transparent calc(50% + 0.5px)),
+    linear-gradient(to bottom, transparent calc(50% - 0.5px), var(--line) calc(50% - 0.5px), var(--line) calc(50% + 0.5px), transparent calc(50% + 0.5px));
+}
+.cs-matrix__axis-y-top,
+.cs-matrix__axis-y-bot,
+.cs-matrix__axis-x-left,
+.cs-matrix__axis-x-right {
+  position: absolute;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.cs-matrix__axis-y-top   { top: 12px;    left: 12px; }
+.cs-matrix__axis-y-bot   { bottom: 12px; left: 12px; }
+.cs-matrix__axis-x-left  { bottom: 12px; left: 12px; }
+.cs-matrix__axis-x-right { bottom: 12px; right: 12px; text-align: right; }
+.cs-matrix__dot {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.cs-matrix__dot::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--dot-color, var(--ink-faint));
+}
+.cs-matrix__dot--us::before     { background: #fbbf24; box-shadow: 0 0 0 4px rgba(251, 191, 36, 0.15); }
+.cs-matrix__dot--us-target::before { background: #34d399; box-shadow: 0 0 0 4px rgba(52, 211, 153, 0.15); }
+.cs-matrix__label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  color: var(--ink-muted);
+  text-align: center;
+  white-space: nowrap;
+  background: var(--bg);
+  padding: 2px 6px;
+}
+
+/* ---------- Phase pricing cards (3-up) ---------- */
+.cs-phases {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+  margin: 40px 0 24px;
+}
+.cs-phase {
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+}
+.cs-phase__num {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.cs-phase__title {
+  font-family: var(--display);
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: -0.015em;
+  margin-bottom: 10px;
+}
+.cs-phase__price {
+  font-family: var(--display);
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+.cs-phase__desc {
+  font-family: var(--body);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink-muted);
+  margin-bottom: 18px;
+}
+.cs-phase__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-family: var(--body);
+  font-size: 13px;
+  color: var(--ink-muted);
+}
+.cs-phase__list li {
+  padding: 5px 0 5px 14px;
+  position: relative;
+  line-height: 1.45;
+}
+.cs-phase__list li::before {
+  content: "·";
+  position: absolute;
+  left: 0;
+  color: var(--ink-faint);
+}
+.cs-phase__badge {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #34d399;
+  border: 1px solid rgba(52, 211, 153, 0.35);
+  padding: 3px 8px;
+  margin-bottom: 12px;
+  align-self: flex-start;
+}
+
+/* ---------- ROI comparison panel ---------- */
+.cs-roi {
+  margin: 32px 0;
+  padding: 32px 28px;
+  border: 1px solid var(--line);
+  background: rgba(52, 211, 153, 0.03);
+}
+.cs-roi__label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 16px;
+}
+.cs-roi__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.cs-roi__col h4 {
+  font-family: var(--display);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+.cs-roi__row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--ink-muted);
+}
+.cs-roi__row--total {
+  border-top: 1px solid var(--line-mid);
+  margin-top: 6px;
+  padding-top: 12px;
+  border-bottom: 0;
+  font-size: 14px;
+  color: var(--ink);
+}
+.cs-roi__diff {
+  margin-top: 16px;
+  padding: 14px 16px;
+  font-family: var(--mono);
+  font-size: 13px;
+  color: #34d399;
+  border: 1px solid rgba(52, 211, 153, 0.35);
+  text-align: center;
+}
+
+/* ---------- Next-step cards (3-up) ---------- */
+.cs-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+  margin: 32px 0;
+}
+.cs-step {
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 28px 24px;
+}
+.cs-step__kicker {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 12px;
+}
+.cs-step__title {
+  font-family: var(--display);
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: -0.015em;
+  margin-bottom: 10px;
+}
+.cs-step__desc {
+  font-family: var(--body);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink-muted);
+}
+
+/* Responsive for audit components */
+@media (max-width: 900px) {
+  .cs-stats-3,
+  .cs-phases,
+  .cs-steps,
+  .cs-accordion__stats { grid-template-columns: 1fr; }
+  .cs-fugas { grid-template-columns: 1fr; }
+  .cs-roi__grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .cs-bars__row { grid-template-columns: 1fr; gap: 6px; }
+  .cs-bars__value { text-align: left; }
+  .cs-table { font-size: 13px; }
+  .cs-table th, .cs-table td { padding: 10px 8px; }
+}
+
 /* ---------- Final CTA in case ---------- */
 .cs-cta {
   margin: 72px 0 0;
