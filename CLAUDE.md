@@ -34,6 +34,10 @@ Structure:
 - `/cases/index.html` — listing page (CollectionPage JSON-LD, `inLanguage: ["da-DK","es-ES"]`, hreflang DA/ES/x-default)
 - `/cases/<slug>.html` — individual bilingual case (Article JSON-LD, key results bar, 5 narrative sections: Udfordringen/Desafío → Tilgangen/Enfoque → Udførelse/Ejecución → Resultater/Resultados → Hvad vi lærte/Lo aprendido)
 
+Two case types supported:
+- **Build cases** — full delivery (strategy → design → build → deploy). Example: `/cases/dibarret-dk` (meta-case showing the website as its own first case).
+- **Audit cases** — Brand Audit deliverables (12-dimension scorecard, prioritized fixes, 30-day action plan). Example: `/cases/audit-dibarret-dk` (self-audit of dibarret.dk, score 42/100). Audit cases embed the `.cs-scorecard` component (defined in `case.css`) — color-coded rows with `data-tier="good|mid|bad"` controlled by inline `--pct` CSS variable. Fix items in the execution list use `.cs-tag--fixed|pending|skip` chips for status.
+
 Every case must:
 1. Include both DA and ES copy in `<span data-lang="da">…</span><span data-lang="es">…</span>` pairs (never DA-only or ES-only — the toggle hides whichever isn't active)
 2. Set `<html lang="da">` initially; the toggle JS rewrites it to `es` when ES is active

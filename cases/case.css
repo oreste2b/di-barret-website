@@ -196,6 +196,78 @@ body:not([data-active-lang]) [data-lang="da"] { display: revert; }
   background: var(--ink-faint);
 }
 
+/* ---------- Embedded scorecard (audit cases) ---------- */
+.cs-scorecard {
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+  margin: 32px 0 40px;
+}
+.cs-scorecard__row {
+  display: grid;
+  grid-template-columns: 1fr 2fr auto;
+  align-items: center;
+  gap: 20px;
+  padding: 16px 20px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.cs-scorecard__name {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+}
+.cs-scorecard__bar {
+  position: relative;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+}
+.cs-scorecard__bar::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--pct, 0%);
+  background: var(--bar-color, var(--ink));
+  transition: width 400ms ease;
+}
+.cs-scorecard__row[data-tier="good"] { --bar-color: #34d399; }
+.cs-scorecard__row[data-tier="mid"]  { --bar-color: #fbbf24; }
+.cs-scorecard__row[data-tier="bad"]  { --bar-color: #f87171; }
+.cs-scorecard__score {
+  font-family: var(--mono);
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+  min-width: 36px;
+  text-align: right;
+}
+
+/* Tag chips for audit findings */
+.cs-tag {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  margin-right: 6px;
+  border: 1px solid var(--line-mid);
+  color: var(--ink-faint);
+}
+.cs-tag--fixed   { color: #34d399; border-color: rgba(52, 211, 153, 0.35); }
+.cs-tag--pending { color: #fbbf24; border-color: rgba(251, 191, 36, 0.35); }
+.cs-tag--skip    { color: var(--ink-faint); border-color: var(--line-mid); }
+
+@media (max-width: 640px) {
+  .cs-scorecard__row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .cs-scorecard__score { text-align: left; }
+}
+
 /* ---------- Final CTA in case ---------- */
 .cs-cta {
   margin: 72px 0 0;

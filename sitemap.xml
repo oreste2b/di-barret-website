@@ -35,4 +35,13 @@
     <xhtml:link xmlns:xhtml="http://www.w3.org/1999/xhtml" rel="alternate" hreflang="es" href="https://www.dibarret.dk/cases/dibarret-dk"/>
     <xhtml:link xmlns:xhtml="http://www.w3.org/1999/xhtml" rel="alternate" hreflang="x-default" href="https://www.dibarret.dk/cases/dibarret-dk"/>
   </url>
+  <url>
+    <loc>https://www.dibarret.dk/cases/audit-dibarret-dk</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link xmlns:xhtml="http://www.w3.org/1999/xhtml" rel="alternate" hreflang="da" href="https://www.dibarret.dk/cases/audit-dibarret-dk"/>
+    <xhtml:link xmlns:xhtml="http://www.w3.org/1999/xhtml" rel="alternate" hreflang="es" href="https://www.dibarret.dk/cases/audit-dibarret-dk"/>
+    <xhtml:link xmlns:xhtml="http://www.w3.org/1999/xhtml" rel="alternate" hreflang="x-default" href="https://www.dibarret.dk/cases/audit-dibarret-dk"/>
+  </url>
 </urlset>
