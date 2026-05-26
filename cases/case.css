@@ -273,14 +273,18 @@ body:not([data-active-lang]) [data-lang="da"] { display: revert; }
    Used by /cases/audit-* pages
    ========================================================== */
 
-/* ---------- Sticky section nav (10-point audit index) ---------- */
+/* ---------- Sticky section nav (10-point audit index) ----------
+   Sits BELOW the fixed main .nav (which is z-index 200, height ~70px).
+   Otherwise the full-width main .nav captures all clicks/hovers across
+   the viewport even when its visible content is only at the edges. */
 .cs-audit-nav {
   position: sticky;
-  top: 0;
+  top: 70px;
   z-index: 50;
-  background: rgba(0,0,0,0.85);
+  background: rgba(0,0,0,0.92);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+  border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   padding: 14px 0;
   margin-bottom: 32px;
@@ -876,6 +880,7 @@ body:not([data-active-lang]) [data-lang="da"] { display: revert; }
   .cs-bars__value { text-align: left; }
   .cs-table { font-size: 13px; }
   .cs-table th, .cs-table td { padding: 10px 8px; }
+  .cs-audit-nav { top: 56px; }  /* main .nav is shorter on mobile */
 }
 
 /* ---------- Final CTA in case ---------- */
