@@ -25,6 +25,28 @@ Security headers (`X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`
 
 **Cache policy by asset type**: images/fonts (`svg|woff2|woff|ttf|otf|png|jpg|jpeg|gif|webp|avif|ico`) stay `immutable, max-age=1y` because their filenames change when content changes (favicons, og.png are rewritten when regenerated). **CSS/JS** use `max-age=3600, must-revalidate` (1h cache with revalidation) because their filenames stay stable — without this, browsers hold the old CSS for up to a year after a deploy. When making CSS changes that need to ship immediately to existing visitors, also bump the query-string version: `styles.css?v=N` → `styles.css?v=N+1`.
 
+### Content section: `/cases/`
+
+Bilingual (Danish + Spanish) case study section — real client work delivered by Di Barret. Strategy is **DA + ES on purpose** (not DA + EN): ES serves both Isabella Abreu's audience (Cuban F4 driver, planned case #02) and the Cuban-American Miami market. Each case page renders both languages via `data-lang="da"` and `data-lang="es"` blocks; a fixed top-right `.lang-toggle` switches them and persists choice in `localStorage["dibarret_lang"]`. Browser locale is the initial fallback (`navigator.language` slice 0-2, default DA).
+
+Structure:
+- `/cases/case.css` — shared CSS for the index + all case pages. Defines `.cs`, `.cs-hero`, `.cs-results`, `.cs-body`, `.cs-index`, `.cs-card`, `.cs-cta`, plus the bilingual `[data-lang]` selectors and `.lang-toggle`.
+- `/cases/index.html` — listing page (CollectionPage JSON-LD, `inLanguage: ["da-DK","es-ES"]`, hreflang DA/ES/x-default)
+- `/cases/<slug>.html` — individual bilingual case (Article JSON-LD, key results bar, 5 narrative sections: Udfordringen/Desafío → Tilgangen/Enfoque → Udførelse/Ejecución → Resultater/Resultados → Hvad vi lærte/Lo aprendido)
+
+Every case must:
+1. Include both DA and ES copy in `<span data-lang="da">…</span><span data-lang="es">…</span>` pairs (never DA-only or ES-only — the toggle hides whichever isn't active)
+2. Set `<html lang="da">` initially; the toggle JS rewrites it to `es` when ES is active
+3. Embed the same language-toggle IIFE pattern (search `data-set-lang` in `/cases/index.html`)
+4. Include hreflang `<link rel="alternate">` for da, es, x-default in `<head>`
+5. Have JSON-LD with `inLanguage: ["da-DK","es-ES"]`
+6. Be added to `sitemap.xml` with `<xhtml:link rel="alternate" hreflang>` entries for da/es/x-default
+7. Be linked from `/cases/index.html` grid and (if flagship) referenced from the main site
+
+CSS-only fallback for no-JS: `body:not([data-active-lang]) [data-lang="da"] { display: revert; }` keeps DA visible until JS runs.
+
+Card states in the index grid: live cards are `<a class="cs-card">`, upcoming cases use `<div class="cs-card cs-card--soon" data-soon-label="…">` (greyed, pointer-events:none, label appended via `::after`). When Isabella's case ships, change her placeholder `<div>` to an `<a href="/cases/isabella-abreu">` and remove the `--soon` modifier.
+
 ### Content section: `/teardowns/`
 
 Long-form brand-system analyses of iconic brands (LEGO, Carlsberg, Novo Nordisk, etc.) — authority-building content under our own domain. Strategy is deliberately about **large brands we will never have as clients**, NOT about prospects (auditing a prospect publicly burns the prospect — see Audit Pass 1 lesson).

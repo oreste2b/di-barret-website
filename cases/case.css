@@ -1,0 +1,335 @@
+/* ==========================================================
+   Di Barret Cases — shared styles
+   Inherits design tokens from /styles.css
+   Adds: case-page layout, language toggle, results grid,
+   bilingual content blocks (data-lang="da" | "es")
+   ========================================================== */
+
+.cs { max-width: 980px; margin: 0 auto; padding: 0 var(--pad); }
+.cs--wide { max-width: 1320px; }
+
+/* ---------- Language toggle ---------- */
+.lang-toggle {
+  position: fixed;
+  top: 22px;
+  right: var(--pad);
+  z-index: 100;
+  display: inline-flex;
+  border: 1px solid var(--line-mid);
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.lang-toggle__btn {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  background: transparent;
+  border: 0;
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: all 160ms ease;
+}
+.lang-toggle__btn[aria-pressed="true"] {
+  color: var(--bg);
+  background: var(--ink);
+}
+.lang-toggle__btn:not([aria-pressed="true"]):hover {
+  color: var(--ink);
+}
+
+/* ---------- Bilingual content blocks ---------- */
+[data-lang] { display: none; }
+body[data-active-lang="da"] [data-lang="da"] { display: revert; }
+body[data-active-lang="es"] [data-lang="es"] { display: revert; }
+/* Default: DA visible until JS runs (no JS fallback) */
+body:not([data-active-lang]) [data-lang="da"] { display: revert; }
+
+/* ---------- Back nav ---------- */
+.cs-back { padding: 80px 0 24px; }
+.cs-back a {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.cs-back a:hover { color: var(--ink); }
+.cs-back a::before { content: "←"; font-family: var(--display); }
+
+/* ---------- Hero ---------- */
+.cs-hero { border-bottom: 1px solid var(--line); padding: 32px 0 64px; }
+.cs-hero__kicker {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 24px;
+  display: block;
+}
+.cs-hero__title {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(40px, 5.5vw, 68px);
+  letter-spacing: -0.025em;
+  line-height: 1.04;
+  color: var(--ink);
+  margin-bottom: 32px;
+}
+.cs-hero__title .dim { color: var(--ink-muted); }
+.cs-hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  border-top: 1px solid var(--line);
+  padding-top: 24px;
+}
+.cs-hero__meta-item { display: inline-flex; align-items: center; gap: 8px; }
+.cs-hero__meta-item::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  background: var(--ink);
+  border-radius: 50%;
+}
+
+/* ---------- Results bar (key metrics) ---------- */
+.cs-results {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+  margin: 56px 0;
+}
+.cs-result {
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 28px 24px;
+}
+.cs-result .label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 12px;
+}
+.cs-result .value {
+  font-size: 36px;
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--ink);
+}
+.cs-result .sub {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--ink-muted);
+  margin-top: 8px;
+}
+
+/* ---------- Body ---------- */
+.cs-body { padding: 56px 0; }
+.cs-body h2 {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(24px, 3vw, 36px);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: var(--ink);
+  margin: 64px 0 20px;
+  scroll-margin-top: 88px;
+}
+.cs-body h2 .num {
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  color: var(--ink-faint);
+  display: block;
+  margin-bottom: 10px;
+}
+.cs-body h2:first-child { margin-top: 0; }
+.cs-body p {
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--ink-muted);
+  margin-bottom: 20px;
+}
+.cs-body p strong { color: var(--ink); font-weight: 600; }
+.cs-body p em { color: var(--ink); font-style: italic; }
+.cs-body p:first-of-type { font-size: 19px; }
+.cs-body ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px;
+}
+.cs-body ul li {
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--ink-muted);
+  padding: 7px 0 7px 22px;
+  position: relative;
+}
+.cs-body ul li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 16px;
+  width: 12px;
+  height: 1px;
+  background: var(--ink-faint);
+}
+
+/* ---------- Final CTA in case ---------- */
+.cs-cta {
+  margin: 72px 0 0;
+  padding: 48px 36px;
+  border: 1px solid var(--line);
+  text-align: center;
+}
+.cs-cta__kicker {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 14px;
+  display: block;
+}
+.cs-cta__h {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(26px, 3.2vw, 38px);
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 24px;
+  line-height: 1.15;
+}
+.cs-cta__h .dim { color: var(--ink-muted); }
+.cs-cta__buttons {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+.cs-cta__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 22px;
+  background: var(--ink);
+  color: var(--bg);
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 15px;
+  letter-spacing: -0.005em;
+  border: 1px solid var(--ink);
+  text-decoration: none;
+  transition: opacity 160ms ease;
+}
+.cs-cta__btn:hover { opacity: 0.85; }
+.cs-cta__btn--ghost {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--line-mid);
+}
+.cs-cta__btn--ghost:hover { background: var(--ink); color: var(--bg); }
+
+/* ---------- Cases index grid ---------- */
+.cs-index {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+.cs-card {
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 40px 36px;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  transition: background 200ms ease;
+  border-bottom-color: var(--line) !important;
+}
+.cs-card:hover { background: rgba(255,255,255,0.02); }
+.cs-card__num {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--ink-faint);
+  margin-bottom: 18px;
+}
+.cs-card__client {
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: var(--ink-faint);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+.cs-card__title {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 28px;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+.cs-card__desc {
+  font-family: var(--body);
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink-muted);
+  margin-bottom: 28px;
+}
+.cs-card__meta {
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.cs-card--soon {
+  pointer-events: none;
+  opacity: 0.55;
+}
+.cs-card--soon .cs-card__title::after {
+  content: " · " attr(data-soon-label);
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--ink-faint);
+  letter-spacing: 0.1em;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .cs-results { grid-template-columns: repeat(2, 1fr); }
+  .cs-index { grid-template-columns: 1fr; }
+  .cs-back { padding-top: 64px; }
+  .lang-toggle { top: 12px; right: 12px; }
+}
