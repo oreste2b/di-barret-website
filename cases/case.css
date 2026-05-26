@@ -305,7 +305,8 @@ body:not([data-active-lang]) [data-lang="da"] { display: revert; }
   padding: 6px 14px;
   border-right: 1px solid var(--line);
   white-space: nowrap;
-  transition: color 160ms ease;
+  transition: color 160ms ease, background 160ms ease, box-shadow 200ms ease;
+  position: relative;
 }
 .cs-audit-nav__link:first-child { padding-left: 0; }
 .cs-audit-nav__link:hover { color: var(--ink); }
@@ -313,6 +314,16 @@ body:not([data-active-lang]) [data-lang="da"] { display: revert; }
   font-weight: 400;
   color: var(--ink-muted);
   margin-right: 6px;
+  transition: color 160ms ease;
+}
+/* Active state — scrollspy breadcrumb */
+.cs-audit-nav__link--active {
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: inset 0 -2px 0 0 var(--ink);
+}
+.cs-audit-nav__link--active strong {
+  color: var(--ink);
 }
 
 /* ---------- Client metadata pills ---------- */
@@ -911,6 +922,7 @@ body:not([data-active-lang]) [data-lang="da"] { display: revert; }
   font-size: 15px;
   letter-spacing: -0.005em;
   border: 1px solid var(--ink);
+  border-radius: 999px;
   text-decoration: none;
   transition: opacity 160ms ease;
 }

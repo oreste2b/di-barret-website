@@ -40,7 +40,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Geist+Mono:wght@400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="/styles.css?v=2" />
-  <link rel="stylesheet" href="/cases/case.css?v=4" />
+  <link rel="stylesheet" href="/cases/case.css?v=5" />
 
   <script type="application/ld+json">
   {
@@ -1306,6 +1306,49 @@
       }
       buttons.forEach((b) => b.addEventListener("click", () => setLang(b.dataset.setLang)));
       setLang(initial);
+    })();
+
+    // Scrollspy — highlight active section in sticky audit nav
+    (function () {
+      "use strict";
+      const nav = document.querySelector(".cs-audit-nav");
+      if (!nav || !("IntersectionObserver" in window)) return;
+      const navInner = nav.querySelector(".cs-audit-nav__inner");
+      const links = Array.from(nav.querySelectorAll(".cs-audit-nav__link"));
+      const linkByHref = new Map(links.map(l => [l.getAttribute("href"), l]));
+      const sections = links
+        .map(l => document.querySelector(l.getAttribute("href")))
+        .filter(Boolean);
+      if (!sections.length) return;
+
+      const activeIds = new Set();
+      function setActive(id) {
+        links.forEach(l => l.classList.toggle("cs-audit-nav__link--active",
+          l.getAttribute("href") === "#" + id));
+        const active = linkByHref.get("#" + id);
+        if (!active || !navInner) return;
+        const linkRect = active.getBoundingClientRect();
+        const navRect  = navInner.getBoundingClientRect();
+        if (linkRect.left < navRect.left + 8 || linkRect.right > navRect.right - 8) {
+          active.scrollIntoView({ inline: "center", block: "nearest", behavior: "smooth" });
+        }
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) activeIds.add(e.target.id);
+          else activeIds.delete(e.target.id);
+        });
+        if (!activeIds.size) return;
+        for (const s of sections) {
+          if (activeIds.has(s.id)) { setActive(s.id); break; }
+        }
+      }, {
+        rootMargin: "-25% 0px -65% 0px",
+        threshold: 0
+      });
+
+      sections.forEach(s => observer.observe(s));
     })();
   </script>
 
