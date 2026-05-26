@@ -119,6 +119,10 @@ section[id] { scroll-margin-top: 88px; }
   justify-content: space-between;
   align-items: center;
   gap: 16px;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
 }
 .nav__logo {
   font-family: var(--display);
