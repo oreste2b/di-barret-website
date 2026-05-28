@@ -1,0 +1,5 @@
+# Files/folders excluded from Vercel deployment.
+# These live in the repo (versioned source) but should NOT be deployed to dibarret.dk.
+
+# Social carousel assets — IG/LinkedIn upload material, not website content
+social/

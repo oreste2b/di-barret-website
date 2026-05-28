@@ -10,3 +10,8 @@ node_modules/
 "Di Barret-handoff.zip"
 Di Barret-handoff.zip
 di-barret/
+
+# Social carousel image renders — stay local only (regenerable via render-slides.js)
+social/**/*.jpg
+social/**/*.jpeg
+social/**/*.png

@@ -1,5 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /api/
+Disallow: /social/
+Disallow: /clients/
 
 Sitemap: https://www.dibarret.dk/sitemap.xml
