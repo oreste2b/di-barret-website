@@ -1,4 +1,4 @@
-// /api/chat.js — Dubbu chatbot demo
+// /api/chat.js · redeploy 2026-05-29 (forces fresh fn build)
 //
 // Routes:
 //   POST /api/chat
