@@ -73,6 +73,23 @@ module.exports = async (req, res) => {
       } catch (err) {
         diag.conversationsListError = String(err && err.message || err);
       }
+
+      // Try a real write with the SAME options chat.js uses
+      try {
+        const out = await blob.put(
+          "diag/test-" + Date.now() + ".json",
+          JSON.stringify({ test: true, ts: new Date().toISOString() }),
+          {
+            access: "public",
+            addRandomSuffix: false,
+            allowOverwrite: true,
+            contentType: "application/json"
+          }
+        );
+        diag.writeTest = { ok: true, pathname: out.pathname, url: out.url };
+      } catch (err) {
+        diag.writeTest = { ok: false, error: String(err && err.message || err), stack: (err && err.stack || "").slice(0, 400) };
+      }
     }
     return res.status(200).json(diag);
   }
