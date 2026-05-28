@@ -42,6 +42,31 @@ function getClientIp(req) {
   return "unknown";
 }
 
+// Defensive body reader — handles all Vercel runtime variations.
+// Same pattern as /api/lead.js. Returns parsed JSON object or {}.
+function readBody(req) {
+  return new Promise((resolve, reject) => {
+    if (req.body && typeof req.body === "object") return resolve(req.body);
+    let data = "";
+    req.on("data", (chunk) => {
+      data += chunk;
+      if (data.length > 64_000) {
+        req.destroy();
+        reject(new Error("payload too large"));
+      }
+    });
+    req.on("end", () => {
+      if (!data) return resolve({});
+      try {
+        resolve(JSON.parse(data));
+      } catch {
+        reject(new Error("invalid json"));
+      }
+    });
+    req.on("error", reject);
+  });
+}
+
 function checkRate(ip, sessionId) {
   const now = Date.now();
   const bucket = ipBuckets.get(ip) || { times: [] };
@@ -162,7 +187,13 @@ module.exports = async (req, res) => {
   if (req.method !== "POST") return res.status(405).json({ error: "method_not_allowed" });
 
   const ip = getClientIp(req);
-  const body = req.body || {};
+  let body;
+  try {
+    body = await readBody(req);
+  } catch (err) {
+    return res.status(400).json({ error: "bad_body", message: String(err && err.message || err) });
+  }
+  if (!body || typeof body !== "object") body = {};
   const sessionId = (body.sessionId || "").slice(0, 64);
 
   // ---------- Branch: submit email fallback ----------
