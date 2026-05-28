@@ -57,11 +57,17 @@ async function fetchConvoFromBlob(sessionId) {
 }
 
 async function writeConvoToBlob(sessionId, data) {
-  if (!process.env.BLOB_READ_WRITE_TOKEN) return;
+  if (!process.env.BLOB_READ_WRITE_TOKEN) {
+    console.warn("[chat-persist] skipped · BLOB_READ_WRITE_TOKEN not set");
+    return;
+  }
   const blob = await getBlob();
-  if (!blob) return;
+  if (!blob) {
+    console.warn("[chat-persist] skipped · @vercel/blob require failed");
+    return;
+  }
   try {
-    await blob.put(
+    const out = await blob.put(
       `conversations/${sessionId}.json`,
       JSON.stringify(data),
       {
@@ -71,9 +77,9 @@ async function writeConvoToBlob(sessionId, data) {
         contentType: "application/json"
       }
     );
+    console.log("[chat-persist] OK · pathname=" + (out && out.pathname));
   } catch (err) {
-    // best-effort; log but don't fail the chat
-    console.error("[chat] blob write failed:", err && err.message || err);
+    console.error("[chat-persist] blob write failed:", err && err.message || err);
   }
 }
 
@@ -368,10 +374,16 @@ module.exports = async (req, res) => {
     const needsEmail = /\[REQUEST_EMAIL\]/.test(replyText);
     const cleanReply = replyText.replace(/\[REQUEST_EMAIL\]/g, "").trim();
 
-    // Best-effort persist (last user message + bot reply). Never blocks response.
+    // Persist BEFORE responding · Vercel kills the function as soon as
+    // the response is sent, so fire-and-forget loses writes.
+    // Cost: +200-500ms latency. Worth it for reliable logging.
     const lastUser = cleaned[cleaned.length - 1].content;
     const lang = body.lang || "da";
-    persistTurn(sessionId, lang, lastUser, cleanReply, needsEmail).catch(() => {});
+    try {
+      await persistTurn(sessionId, lang, lastUser, cleanReply, needsEmail);
+    } catch (err) {
+      console.error("[chat] persist threw:", err && err.message || err);
+    }
 
     return res.status(200).json({
       reply: cleanReply || "Hmm, lad mig tjekke det — vil du efterlade din email, så vender vi tilbage?",
