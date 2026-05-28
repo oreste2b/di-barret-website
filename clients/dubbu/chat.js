@@ -164,13 +164,18 @@
     sendBtn.disabled = true;
 
     const typing = addTyping();
+    const requestBody = JSON.stringify({ sessionId: sessionId, messages: history.slice(-12) });
+    console.log("[dubbu-chat] POST /api/chat", { sessionId: sessionId, payload: requestBody });
+
     try {
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ sessionId: sessionId, messages: history.slice(-12) })
+        body: requestBody
       });
       typing.remove();
+
+      console.log("[dubbu-chat] response status:", res.status);
 
       if (res.status === 429) {
         const data = await res.json().catch(() => ({}));
@@ -179,7 +184,10 @@
         const data = await res.json().catch(() => ({}));
         addBubble("assistant", data.reply || "Demoen er ikke aktiv lige nu — skriv på WhatsApp.");
       } else if (!res.ok) {
-        addBubble("assistant", "Noget gik galt — prøv igen, eller skriv på WhatsApp.");
+        // Show real error info so we can diagnose
+        const rawText = await res.text().catch(() => "");
+        console.error("[dubbu-chat] API error", res.status, rawText);
+        addBubble("assistant", "Noget gik galt (HTTP " + res.status + ") — " + (rawText.slice(0, 150) || "skriv på WhatsApp."));
       } else {
         const data = await res.json();
         const reply = (data.reply || "").trim();
@@ -193,7 +201,8 @@
       }
     } catch (err) {
       typing.remove();
-      addBubble("assistant", "Ingen forbindelse — prøv igen om lidt, eller WhatsApp +45 28 89 83 73.");
+      console.error("[dubbu-chat] fetch threw:", err);
+      addBubble("assistant", "Fetch fejl: " + (err && err.message || err) + " — skriv på WhatsApp.");
     } finally {
       field.disabled = false;
       sendBtn.disabled = false;
