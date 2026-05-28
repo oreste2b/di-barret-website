@@ -44,6 +44,39 @@ module.exports = async (req, res) => {
   }
 
   // ---- Blob check ----
+  // ---- Debug mode: ?debug=1 returns diagnostic state ----
+  if (req.query && req.query.debug === "1") {
+    const blob = await getBlob();
+    const diag = {
+      env: {
+        BLOB_READ_WRITE_TOKEN_set: !!process.env.BLOB_READ_WRITE_TOKEN,
+        BLOB_READ_WRITE_TOKEN_prefix: (process.env.BLOB_READ_WRITE_TOKEN || "").slice(0, 25) + "...",
+        DUBBU_ADMIN_PASSWORD_set: !!process.env.DUBBU_ADMIN_PASSWORD,
+        ANTHROPIC_API_KEY_set: !!process.env.ANTHROPIC_API_KEY,
+      },
+      sdk: {
+        loaded: !!blob,
+        type: blob ? typeof blob.list : "n/a",
+        version: (() => { try { return require("@vercel/blob/package.json").version; } catch { return "unknown"; } })()
+      }
+    };
+    if (blob) {
+      try {
+        const all = await blob.list({ limit: 20 });
+        diag.allBlobs = (all.blobs || []).map(b => ({ pathname: b.pathname, size: b.size, uploadedAt: b.uploadedAt }));
+      } catch (err) {
+        diag.allBlobsError = String(err && err.message || err);
+      }
+      try {
+        const filtered = await blob.list({ prefix: "conversations/", limit: 20 });
+        diag.conversationsList = (filtered.blobs || []).map(b => b.pathname);
+      } catch (err) {
+        diag.conversationsListError = String(err && err.message || err);
+      }
+    }
+    return res.status(200).json(diag);
+  }
+
   if (!process.env.BLOB_READ_WRITE_TOKEN) {
     return res.status(200).json({
       configured: false,
