@@ -71,7 +71,7 @@ async function writeConvoToBlob(sessionId, data) {
       `conversations/${sessionId}.json`,
       JSON.stringify(data),
       {
-        access: "private",
+        access: "public",
         addRandomSuffix: false,
         allowOverwrite: true,
         contentType: "application/json"
