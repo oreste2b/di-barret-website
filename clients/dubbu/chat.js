@@ -8,7 +8,7 @@
   "use strict";
   // ---- Language toggle (DA / ES) ----
   const KEY = "dibarret_lang";
-  const supported = ["da", "es"];
+  const supported = ["da", "en"];
   const body = document.body;
   const buttons = document.querySelectorAll("[data-set-lang]");
   const initial = (() => {
@@ -20,7 +20,7 @@
   function setLang(lang) {
     if (!supported.includes(lang)) return;
     body.dataset.activeLang = lang;
-    document.documentElement.lang = lang === "es" ? "es" : "da";
+    document.documentElement.lang = lang === "en" ? "en" : "da";
     buttons.forEach((b) => {
       b.setAttribute("aria-pressed", b.dataset.setLang === lang ? "true" : "false");
     });
@@ -50,7 +50,7 @@
 
   const welcome = {
     da: "Hej 👋 Jeg er Dubbu's K-beauty agent. Spørg om Beauty of Joseon Glow Serum, BoJ Relief Sun SPF, COSRX Snail 96, Anua Heartleaf Toner eller Some by Mi AHA-BHA-PHA Toner.",
-    es: "Hola 👋 Soy el agente K-beauty de Dubbu. Pregúntame sobre Beauty of Joseon Glow Serum, BoJ Relief Sun SPF, COSRX Snail 96, Anua Heartleaf Toner o Some by Mi AHA-BHA-PHA Toner."
+    en: "Hi 👋 I'm Dubbu's K-beauty agent. Ask me about Beauty of Joseon Glow Serum, BoJ Relief Sun SPF, COSRX Snail 96, Anua Heartleaf Toner, or Some by Mi AHA-BHA-PHA Toner."
   };
 
   function currentLang() {
@@ -91,7 +91,7 @@
     const lang = currentLang();
     const labels = {
       da: { label: "Efterlad email — vi vender tilbage samme dag", placeholder: "din@email.dk", btn: "Send", ok: "✓ Tak — vi vender tilbage på din email." },
-      es: { label: "Deja tu email — respondemos el mismo día",      placeholder: "tu@email.com", btn: "Enviar", ok: "✓ Gracias — te respondemos por email." }
+      en: { label: "Leave your email — we'll get back to you the same day", placeholder: "you@email.com", btn: "Send", ok: "✓ Thanks — we'll get back to you by email." }
     };
     const L = labels[lang] || labels.da;
 
@@ -225,7 +225,7 @@
   // Update input placeholder when language toggles
   const observer = new MutationObserver(function () {
     const lang = currentLang();
-    const placeholder = field.dataset["placeholder" + (lang === "es" ? "Es" : "Da")];
+    const placeholder = field.dataset["placeholder" + (lang === "en" ? "En" : "Da")];
     if (placeholder) field.placeholder = placeholder;
   });
   observer.observe(document.body, { attributes: true, attributeFilter: ["data-active-lang"] });
@@ -233,6 +233,6 @@
   // Initial welcome + correct placeholder for starting language
   showWelcome();
   const initialLang = currentLang();
-  const initPlaceholder = field.dataset["placeholder" + (initialLang === "es" ? "Es" : "Da")];
+  const initPlaceholder = field.dataset["placeholder" + (initialLang === "en" ? "En" : "Da")];
   if (initPlaceholder) field.placeholder = initPlaceholder;
 })();

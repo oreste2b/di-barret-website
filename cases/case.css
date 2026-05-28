@@ -2,7 +2,7 @@
    Di Barret Cases — shared styles
    Inherits design tokens from /styles.css
    Adds: case-page layout, language toggle, results grid,
-   bilingual content blocks (data-lang="da" | "es")
+   bilingual content blocks (data-lang="da" | "en")
    ========================================================== */
 
 .cs { max-width: 980px; margin: 0 auto; padding: 0 var(--pad); }
@@ -43,6 +43,8 @@
 /* ---------- Bilingual content blocks ---------- */
 [data-lang] { display: none; }
 body[data-active-lang="da"] [data-lang="da"] { display: revert; }
+body[data-active-lang="en"] [data-lang="en"] { display: revert; }
+/* Backward compat: keep ES selector for content not yet migrated */
 body[data-active-lang="es"] [data-lang="es"] { display: revert; }
 /* Default: DA visible until JS runs (no JS fallback) */
 body:not([data-active-lang]) [data-lang="da"] { display: revert; }
