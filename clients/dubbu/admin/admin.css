@@ -1,5 +1,9 @@
 /* Dubbu chatbot admin dashboard — extends styles.css + case.css */
 
+/* Critical fix: `display: flex` on .admin-* classes overrides the [hidden]
+   attribute. Force [hidden] to win against any other display rule. */
+[hidden] { display: none !important; }
+
 main#main { padding-top: 100px; padding-bottom: 80px; }
 
 /* ---------- Password gate ---------- */
