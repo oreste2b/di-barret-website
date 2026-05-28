@@ -1,0 +1,9 @@
+{
+  "name": "di-barret-website",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Di Barret marketing site + chatbot demo for Dubbu proposal.",
+  "dependencies": {
+    "@vercel/blob": "^1.0.0"
+  }
+}

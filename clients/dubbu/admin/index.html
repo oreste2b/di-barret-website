@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="robots" content="noindex, nofollow" />
+
+  <title>Dubbu chatbot · admin · Di Barret</title>
+
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Geist+Mono:wght@400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/styles.css?v=3" />
+  <link rel="stylesheet" href="/cases/case.css?v=6" />
+  <link rel="stylesheet" href="/clients/dubbu/admin/admin.css?v=1" />
+
+  <script defer src="/clients/dubbu/admin/admin.js?v=1"></script>
+</head>
+<body>
+
+  <div class="noise" aria-hidden="true"></div>
+
+  <nav class="nav" aria-label="Primær navigation">
+    <a class="nav__logo" href="/" aria-label="Di Barret"><span aria-hidden="true">/</span>Di Barret</a>
+    <a class="nav__cta" href="/clients/dubbu">
+      <span>Tilbage til forslag</span>
+      <svg class="nav__cta-icon" width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true">
+        <path d="M2 9L9 2M9 2H4M9 2V7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </nav>
+
+  <main id="main">
+
+    <!-- Password gate -->
+    <section id="gate" class="admin-gate">
+      <div class="admin-gate__box">
+        <div class="admin-gate__kicker">Konfidentielt · admin only</div>
+        <h1 class="admin-gate__title">Dubbu chatbot · admin</h1>
+        <p class="admin-gate__sub">Indtast password for at se logs af alle samtaler.</p>
+        <form id="gate-form" autocomplete="off">
+          <input
+            type="password"
+            id="gate-input"
+            class="admin-gate__input"
+            placeholder="password"
+            aria-label="password"
+            autocomplete="current-password"
+            required
+          />
+          <button type="submit" class="admin-gate__btn">Log ind</button>
+        </form>
+        <p id="gate-error" class="admin-gate__error" hidden>Forkert password.</p>
+      </div>
+    </section>
+
+    <!-- Dashboard -->
+    <section id="dashboard" class="admin-dash" hidden>
+
+      <header class="admin-dash__header">
+        <div>
+          <div class="admin-dash__kicker">Dubbu chatbot · admin</div>
+          <h1 class="admin-dash__title">Samtaler</h1>
+        </div>
+        <button type="button" id="logout-btn" class="admin-dash__logout">Log ud</button>
+      </header>
+
+      <!-- Stats row -->
+      <div class="admin-stats" id="stats">
+        <div class="admin-stat">
+          <div class="admin-stat__label">Samtaler totalt</div>
+          <div class="admin-stat__value" id="stat-total">—</div>
+        </div>
+        <div class="admin-stat">
+          <div class="admin-stat__label">Beskeder</div>
+          <div class="admin-stat__value" id="stat-messages">—</div>
+        </div>
+        <div class="admin-stat">
+          <div class="admin-stat__label">Eskalerede</div>
+          <div class="admin-stat__value" id="stat-escalated">—</div>
+        </div>
+        <div class="admin-stat">
+          <div class="admin-stat__label">Snit beskeder/samtale</div>
+          <div class="admin-stat__value" id="stat-avg">—</div>
+        </div>
+      </div>
+
+      <!-- Conversation list -->
+      <div class="admin-list-wrap">
+        <div class="admin-list-head">
+          <span>Tidspunkt</span>
+          <span>Sprog</span>
+          <span>Beskeder</span>
+          <span>Status</span>
+          <span>Første spørgsmål</span>
+        </div>
+        <div id="convo-list" class="admin-list" aria-live="polite"></div>
+      </div>
+
+      <p id="empty-state" class="admin-empty" hidden>
+        Ingen samtaler endnu — del propuesta-linket og kom tilbage senere.
+      </p>
+
+    </section>
+
+    <!-- Conversation detail modal/panel -->
+    <section id="convo-detail" class="admin-detail" hidden>
+      <div class="admin-detail__inner">
+        <header class="admin-detail__header">
+          <div>
+            <div class="admin-detail__kicker" id="detail-meta">—</div>
+            <h2 class="admin-detail__title" id="detail-title">Samtale</h2>
+          </div>
+          <button type="button" id="detail-close" class="admin-detail__close">Luk</button>
+        </header>
+        <div id="detail-messages" class="admin-detail__messages"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer" style="border-top: 1px solid var(--line);">
+    <div class="footer__inner">
+      <div class="footer__bottom" style="border-top: 0; padding-top: 0;">
+        <span>© 2026 Di Barret</span>
+        <span>Admin · Dubbu chatbot demo</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

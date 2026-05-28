@@ -164,7 +164,11 @@
     sendBtn.disabled = true;
 
     const typing = addTyping();
-    const requestBody = JSON.stringify({ sessionId: sessionId, messages: history.slice(-12) });
+    const requestBody = JSON.stringify({
+      sessionId: sessionId,
+      lang: currentLang(),
+      messages: history.slice(-12)
+    });
     console.log("[dubbu-chat] POST /api/chat", { sessionId: sessionId, payload: requestBody });
 
     try {

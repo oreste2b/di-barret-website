@@ -25,6 +25,90 @@ const MODEL = "claude-haiku-4-5";
 const MAX_TOKENS = 300;
 const MAX_HISTORY = 12; // last 12 messages (6 turns) sent for context
 
+// ---------- Blob persistence (best-effort, never breaks chat) ----------
+let blobMod = null;
+async function getBlob() {
+  if (blobMod) return blobMod;
+  try {
+    blobMod = require("@vercel/blob");
+    return blobMod;
+  } catch {
+    blobMod = false;
+    return false;
+  }
+}
+
+async function fetchConvoFromBlob(sessionId) {
+  if (!process.env.BLOB_READ_WRITE_TOKEN) return null;
+  const blob = await getBlob();
+  if (!blob) return null;
+  try {
+    const { blobs } = await blob.list({
+      prefix: `conversations/${sessionId}.json`,
+      limit: 1
+    });
+    if (!blobs || !blobs.length) return null;
+    const r = await fetch(blobs[0].url);
+    if (!r.ok) return null;
+    return await r.json();
+  } catch {
+    return null;
+  }
+}
+
+async function writeConvoToBlob(sessionId, data) {
+  if (!process.env.BLOB_READ_WRITE_TOKEN) return;
+  const blob = await getBlob();
+  if (!blob) return;
+  try {
+    await blob.put(
+      `conversations/${sessionId}.json`,
+      JSON.stringify(data),
+      {
+        access: "public",
+        addRandomSuffix: false,
+        allowOverwrite: true,
+        contentType: "application/json"
+      }
+    );
+  } catch (err) {
+    // best-effort; log but don't fail the chat
+    console.error("[chat] blob write failed:", err && err.message || err);
+  }
+}
+
+async function persistTurn(sessionId, lang, userText, botText, needsEmail) {
+  if (!sessionId) return;
+  let convo = await fetchConvoFromBlob(sessionId);
+  const now = new Date().toISOString();
+  if (!convo) {
+    convo = {
+      sessionId,
+      createdAt: now,
+      lang: lang || "da",
+      messages: [],
+      escalated: false,
+      email: null
+    };
+  }
+  convo.messages.push({ role: "user", content: userText, ts: now });
+  if (botText) convo.messages.push({ role: "assistant", content: botText, ts: now });
+  convo.updatedAt = now;
+  if (needsEmail) convo.escalated = true;
+  if (lang && !convo.lang) convo.lang = lang;
+  await writeConvoToBlob(sessionId, convo);
+}
+
+async function markEscalationEmail(sessionId, email) {
+  if (!sessionId) return;
+  let convo = await fetchConvoFromBlob(sessionId);
+  if (!convo) return;
+  convo.email = email;
+  convo.escalatedAt = new Date().toISOString();
+  convo.escalated = true;
+  await writeConvoToBlob(sessionId, convo);
+}
+
 // ---------- In-memory rate limit ----------
 const ipBuckets = new Map();      // ip → { times: [unix] }
 const sessionLast = new Map();    // sessionId → last unix
@@ -213,6 +297,8 @@ module.exports = async (req, res) => {
       // We still tell the user "ok" so they don't feel stuck; we log silently.
       console.error("[chat] email submit failed:", out);
     }
+    // Mark conversation as escalated + record the email (best-effort)
+    await markEscalationEmail(sessionId, email);
     return res.status(200).json({ ok: true });
   }
 
@@ -281,6 +367,11 @@ module.exports = async (req, res) => {
 
     const needsEmail = /\[REQUEST_EMAIL\]/.test(replyText);
     const cleanReply = replyText.replace(/\[REQUEST_EMAIL\]/g, "").trim();
+
+    // Best-effort persist (last user message + bot reply). Never blocks response.
+    const lastUser = cleaned[cleaned.length - 1].content;
+    const lang = body.lang || "da";
+    persistTurn(sessionId, lang, lastUser, cleanReply, needsEmail).catch(() => {});
 
     return res.status(200).json({
       reply: cleanReply || "Hmm, lad mig tjekke det — vil du efterlade din email, så vender vi tilbage?",
