@@ -80,7 +80,7 @@ module.exports = async (req, res) => {
           "diag/test-" + Date.now() + ".json",
           JSON.stringify({ test: true, ts: new Date().toISOString() }),
           {
-            access: "public",
+            access: "private",
             addRandomSuffix: false,
             allowOverwrite: true,
             contentType: "application/json"
