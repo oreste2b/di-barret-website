@@ -15,3 +15,6 @@ di-barret/
 social/**/*.jpg
 social/**/*.jpeg
 social/**/*.png
+
+# Claude Code working notes for session continuity — local only
+NOTES.md

@@ -425,12 +425,159 @@ body.has-banner main { padding-top: 32px; }
 }
 .why-list li strong { color: var(--ink); font-weight: 500; }
 
+/* ---------- Production cards (section 04 — Foto + Skin Brief) ---------- */
+.prod-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+  margin: 32px 0 28px;
+}
+.prod-card {
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.prod-card__kicker {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+}
+.prod-card__title {
+  font-family: var(--display);
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin: 0;
+  line-height: 1.1;
+}
+.prod-card__sub {
+  font-family: var(--body);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink-muted);
+  margin: 0;
+}
+.prod-card__deliverables {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.prod-card__deliverables li {
+  font-family: var(--body);
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--ink-muted);
+  padding-left: 22px;
+  position: relative;
+}
+.prod-card__deliverables li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--accent-amber);
+  font-family: var(--display);
+}
+.prod-card__price {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding: 16px 0 4px;
+  border-top: 1px solid var(--line);
+  margin-top: auto;
+}
+.prod-card__price-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+}
+.prod-card__price-value {
+  font-family: var(--display);
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--accent-amber);
+  line-height: 1;
+}
+.prod-card__price-value .unit { font-size: 14px; color: var(--ink-faint); margin-left: 2px; }
+.prod-card__note {
+  font-family: var(--body);
+  font-size: 13px;
+  font-style: italic;
+  color: var(--ink-faint);
+  margin: 0;
+  line-height: 1.45;
+}
+
+/* ---------- Expectations block ---------- */
+.expect-block {
+  margin: 28px 0;
+  padding: 28px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.02);
+}
+.expect-block__title {
+  font-family: var(--display);
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--ink);
+  margin: 0 0 22px;
+  letter-spacing: -0.015em;
+}
+.expect-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.expect-list li {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 24px;
+  align-items: baseline;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+}
+.expect-list li:last-child { border-bottom: 0; padding-bottom: 0; }
+.expect-list__tag {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  color: var(--accent-amber);
+  text-transform: uppercase;
+}
+.expect-list__text {
+  font-family: var(--body);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink-muted);
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 700px) {
   .pilot-stats,
-  .adjust-grid { grid-template-columns: 1fr; }
+  .adjust-grid,
+  .prod-cards { grid-template-columns: 1fr; }
   .pilot-stat__value { font-size: 44px; }
   .chat-demo__messages { min-height: 320px; max-height: 400px; }
   .chat-bubble { font-size: 14px; max-width: 88%; }
-  .roadmap-list li { grid-template-columns: 1fr; gap: 4px; }
+  .roadmap-list li,
+  .expect-list li { grid-template-columns: 1fr; gap: 6px; }
+  .expect-block { padding: 22px 20px; }
 }
