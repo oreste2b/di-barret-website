@@ -23,6 +23,7 @@
 
   <script defer src="/_vercel/insights/script.js"></script>
   <script defer src="/clients/dubbu/chat.js?v=4"></script>
+  <script defer src="/clients/dubbu/clarity.js?v=1"></script>
 </head>
 <body class="has-banner">
 
@@ -372,7 +373,7 @@
             </span>
           </div>
 
-          <div class="chat-demo__messages" id="chat-messages" aria-live="polite"></div>
+          <div class="chat-demo__messages" id="chat-messages" aria-live="polite" data-clarity-mask="true"></div>
 
           <form class="chat-input" id="chat-form" autocomplete="off">
             <input
@@ -385,6 +386,7 @@
               data-placeholder-en="Ask about the 5 products…"
               placeholder="Spørg om de 5 produkter…"
               aria-label="Skriv et spørgsmål"
+              data-clarity-mask="true"
             />
             <button class="chat-input__send" type="submit" id="chat-send">
               <span data-lang="da">Send</span>
