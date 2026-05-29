@@ -425,7 +425,100 @@ body.has-banner main { padding-top: 32px; }
 }
 .why-list li strong { color: var(--ink); font-weight: 500; }
 
-/* ---------- Production cards (section 04 — Foto + Skin Brief) ---------- */
+/* ---------- Value panel (section 02 — à la carte vs bundle) ---------- */
+.value-panel {
+  margin: 32px 0 24px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.02);
+}
+.value-panel__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 20px 28px;
+  border-bottom: 1px solid var(--line);
+  gap: 24px;
+}
+.value-panel__row:last-child { border-bottom: 0; }
+.value-panel__label {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.value-panel__amount {
+  font-family: var(--display);
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--ink-muted);
+  white-space: nowrap;
+}
+.value-panel__row--strike .value-panel__amount {
+  text-decoration: line-through;
+  text-decoration-color: var(--ink-faint);
+  color: var(--ink-faint);
+}
+.value-panel__row--highlight {
+  background: rgba(251, 191, 36, 0.04);
+}
+.value-panel__row--highlight .value-panel__label {
+  color: var(--ink);
+}
+.value-panel__row--highlight .value-panel__amount {
+  font-size: 40px;
+  color: var(--accent-amber);
+}
+.value-panel__row--save .value-panel__label {
+  color: var(--accent-amber);
+}
+.value-panel__row--save .value-panel__amount {
+  color: var(--accent-amber);
+  font-size: 22px;
+}
+
+/* ---------- After day 30 — decision grid ---------- */
+.after-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+  margin: 32px 0 24px;
+}
+.after-cell {
+  padding: 24px 22px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.after-cell__service {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+}
+.after-cell__verdict {
+  font-family: var(--display);
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  line-height: 1.1;
+}
+.after-cell__verdict.amber { color: var(--accent-amber); }
+.after-cell__detail {
+  font-family: var(--body);
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--ink-muted);
+}
+.after-cell__detail strong { color: var(--ink); font-weight: 500; }
+
+/* ---------- Production cards (used in section 02 service grid) ---------- */
 .prod-cards {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -434,6 +527,7 @@ body.has-banner main { padding-top: 32px; }
   border-left: 1px solid var(--line);
   margin: 32px 0 28px;
 }
+.prod-cards--triple { grid-template-columns: repeat(3, 1fr); }
 .prod-card {
   border-right: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
@@ -573,8 +667,12 @@ body.has-banner main { padding-top: 32px; }
 @media (max-width: 700px) {
   .pilot-stats,
   .adjust-grid,
-  .prod-cards { grid-template-columns: 1fr; }
+  .prod-cards,
+  .prod-cards--triple,
+  .after-grid { grid-template-columns: 1fr; }
   .pilot-stat__value { font-size: 44px; }
+  .value-panel__row { padding: 16px 20px; flex-direction: column; gap: 4px; align-items: flex-start; }
+  .value-panel__row--highlight .value-panel__amount { font-size: 34px; }
   .chat-demo__messages { min-height: 320px; max-height: 400px; }
   .chat-bubble { font-size: 14px; max-width: 88%; }
   .roadmap-list li,
