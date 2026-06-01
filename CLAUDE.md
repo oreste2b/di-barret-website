@@ -42,7 +42,13 @@ Two case types supported:
 
 Pre-publication audit drafts for clients pending approval live at root level under `/audit-<client>` with `<meta name="robots" content="noindex,nofollow,noarchive,nosnippet">`, NOT linked from anywhere on the site and NOT added to sitemap. On client sign-off, the audit either migrates into `/cases/audit-<client>` with the canonical bilingual format, or stays at root and gets the `noindex` dropped + a CASE card in `/cases/index.html` linking to it.
 
-Current live (1 jun 2026): `/audit-1nationup` (Miami brand-system + production agency, ES-only, linked as CASE 04 from `/cases/index.html`). Page remains at root rather than `/cases/audit-1nationup` because it was authored as a standalone deliverable in ES; canonical bilingual /cases/ migration is optional future work.
+Current live (1 jun 2026):
+- `/audit-1nationup` (Miami brand-system + production agency, ES-only, linked as CASE 04 from `/cases/index.html`).
+- `/audit-lospichyboys` (Cuban-American comedy podcast in Miami, business audit with revenue model 60/25/15 + customer journey dual sponsor/fan + plan A/B/C, ES-only, linked as CASE 05).
+- `/auditoria-seo-lospichyboys` (Companion SEO audit for same client. Premium interactive HTML with Chart.js embedded, dark/light toggle, sticky sidebar, severity filter, sortable comparison table, kanban action plan, print-to-PDF. 290 KB. 45 findings, 40/100 score, 10 keyword opportunities with real SERP validation).
+- `/propuesta-web-lospichyboys` (3-tier custom Next.js + GSAP + Sanity build proposal anchored to Rebeca 2026 premiere).
+
+Pages remain at root rather than `/cases/<slug>` because they were authored as standalone ES-only deliverables; canonical bilingual /cases/ migration is optional future work. CASE 05 in `/cases/index.html` links to the business audit at `/audit-lospichyboys`; from there the user can navigate to the SEO companion and the web proposal.
 
 ### Canonical audit template — 10 sections
 
