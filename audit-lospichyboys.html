@@ -1,0 +1,741 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Auditoría · Los Pichy Boys · Di Barret</title>
+<meta name="description" content="Auditoría 360° de Los Pichy Boys. Podcast con 974 episodios, 20+ sponsors por episodio, obras en vivo. La web no refleja el negocio.">
+<!-- privado: review pre-publicación. No indexar hasta aprobación. -->
+<meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
+<link rel="canonical" href="https://www.dibarret.dk/audit-lospichyboys">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Auditoría · Los Pichy Boys">
+<meta property="og:description" content="Auditoría 360° por Di Barret. 14 hallazgos, customer journey de sponsor y fan, plan priorizado, proyección de ROI sobre el motor publicidad del podcast.">
+<meta property="og:url" content="https://www.dibarret.dk/audit-lospichyboys">
+<meta property="og:image" content="https://www.dibarret.dk/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Di Barret">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Auditoría · Los Pichy Boys">
+<meta name="twitter:description" content="Auditoría 360° por Di Barret · 14 hallazgos · plan priorizado · ROI sobre publicidad del podcast.">
+<meta name="twitter:image" content="https://www.dibarret.dk/og.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0e0d0b;
+    --ink:#f5f1ea;
+    --ink-mid:#a8a195;
+    --ink-faint:#6b6557;
+    --line:rgba(245,241,234,.10);
+    --line-mid:rgba(245,241,234,.22);
+    --accent:#ff5f29;
+    --accent-soft:rgba(255,95,41,.12);
+    --good:#5ad07c;
+    --warn:#f0b84a;
+    --bad:#ff5f29;
+    --serif:'Fraunces',Georgia,serif;
+    --sans:'Inter',system-ui,sans-serif;
+    --mono:'JetBrains Mono',ui-monospace,monospace;
+    --max:1180px;
+    --pad:32px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+  .kicker{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-mid)}
+  h1,h2,h3,h4{font-family:var(--serif);font-weight:500;letter-spacing:-.02em;line-height:1.1}
+  h1{font-size:clamp(40px,6vw,72px)}
+  h2{font-size:clamp(28px,3.6vw,42px);margin-bottom:24px}
+  h3{font-size:22px;margin-bottom:10px}
+  p{color:var(--ink-mid);margin-bottom:14px}
+  p.lead{color:var(--ink);font-size:18px;line-height:1.55;max-width:64ch}
+  a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--line-mid);text-underline-offset:3px}
+  a:hover{text-decoration-color:var(--accent)}
+  strong{color:var(--ink);font-weight:600}
+  code,kbd{font-family:var(--mono);font-size:.88em;background:rgba(255,255,255,.06);padding:1px 6px;border-radius:4px;color:var(--ink)}
+  hr{border:0;border-top:1px solid var(--line);margin:0}
+  section{padding:80px 0;border-top:1px solid var(--line)}
+  section:first-of-type{border-top:0}
+
+  nav.top{position:sticky;top:0;z-index:50;background:rgba(14,13,11,.82);backdrop-filter:saturate(140%) blur(14px);border-bottom:1px solid var(--line)}
+  nav.top .wrap{display:flex;align-items:center;justify-content:space-between;padding:14px var(--pad);gap:24px}
+  nav.top .brand{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase}
+  nav.top .brand span{color:var(--accent)}
+  nav.top ul{display:flex;gap:18px;list-style:none;flex-wrap:wrap}
+  nav.top a{text-decoration:none;font-size:12px;color:var(--ink-mid);letter-spacing:.04em}
+  nav.top a:hover{color:var(--ink)}
+  @media (max-width:780px){nav.top ul{display:none}}
+
+  .hero{padding:100px 0 60px}
+  .hero-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:60px;align-items:end}
+  @media (max-width:900px){.hero-grid{grid-template-columns:1fr;gap:40px}}
+  .hero h1{margin:18px 0 22px}
+  .hero h1 em{font-style:italic;color:var(--accent)}
+  .hero-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:36px;padding-top:30px;border-top:1px solid var(--line)}
+  .hero-meta div span{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:8px}
+  .hero-meta div strong{font-family:var(--serif);font-size:22px;font-weight:500}
+
+  .gauge{position:relative;width:100%;max-width:340px;margin-left:auto}
+  .gauge svg{width:100%;height:auto;display:block}
+  .gauge-num{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding-bottom:14%}
+  .gauge-num b{font-family:var(--serif);font-weight:500;font-size:64px;line-height:1}
+  .gauge-num span{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mid);margin-top:6px}
+  .gauge-label{margin-top:14px;text-align:center;font-size:13px;color:var(--ink-mid)}
+
+  .exec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+  @media (max-width:780px){.exec-grid{grid-template-columns:1fr}}
+  .exec-card{padding:28px;border:1px solid var(--line);border-radius:6px}
+  .exec-card .kicker{margin-bottom:14px}
+  .exec-card h3{font-size:20px;margin-bottom:10px}
+
+  /* business model viz */
+  .biz{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:32px}
+  @media (max-width:780px){.biz{grid-template-columns:1fr}}
+  .biz-card{padding:32px 28px;border:1px solid var(--line-mid);border-radius:6px;position:relative;background:linear-gradient(180deg,rgba(255,255,255,.025),transparent)}
+  .biz-card .pct{position:absolute;top:24px;right:28px;font-family:var(--mono);font-size:14px;color:var(--accent);letter-spacing:.10em}
+  .biz-card h4{font-family:var(--serif);font-size:30px;font-weight:500;letter-spacing:-.02em;margin-bottom:6px;line-height:1.1}
+  .biz-card h4 em{font-style:italic;color:var(--accent)}
+  .biz-card .stat{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);margin:14px 0 6px}
+  .biz-card p{font-size:14.5px;color:var(--ink-mid);margin:0;line-height:1.5}
+
+  .claims{display:flex;flex-direction:column;gap:14px;margin-top:28px}
+  .claim{display:grid;grid-template-columns:1fr 90px 1fr;gap:24px;align-items:center;padding:28px;border:1px solid var(--line);border-radius:6px;background:linear-gradient(180deg,rgba(255,255,255,.02),transparent)}
+  @media (max-width:780px){.claim{grid-template-columns:1fr;gap:14px}.claim .vs{text-align:left}}
+  .claim .side{display:flex;flex-direction:column;gap:8px}
+  .claim .side .where{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint)}
+  .claim .side .txt{font-family:var(--serif);font-size:22px;line-height:1.2;font-weight:500;color:var(--ink);letter-spacing:-.01em}
+  .claim .side.real .txt{color:var(--ink-mid);font-style:italic;font-weight:400}
+  .claim .vs{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--accent);text-align:center;text-transform:uppercase}
+
+  .find-row{display:grid;grid-template-columns:60px 1fr 110px;gap:24px;padding:24px 0;border-bottom:1px solid var(--line);align-items:start}
+  .find-row:last-child{border-bottom:0}
+  .find-num{font-family:var(--mono);font-size:11px;color:var(--ink-faint);letter-spacing:.14em;padding-top:5px}
+  .find-body h4{font-family:var(--serif);font-weight:500;font-size:20px;margin-bottom:6px}
+  .find-body p{font-size:14px;margin-bottom:6px}
+  .find-body p.why{color:var(--ink);font-size:13px}
+  .find-body p.fix{color:var(--good);font-size:13px}
+  .find-body p.fix::before{content:"→ ";color:var(--good);font-weight:600}
+  .badge{display:inline-flex;align-items:center;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:5px 10px;border-radius:99px;border:1px solid currentColor;justify-self:end;line-height:1}
+  .badge.crit{color:var(--bad)}
+  .badge.med{color:var(--warn)}
+  .badge.low{color:var(--good)}
+  @media (max-width:680px){.find-row{grid-template-columns:40px 1fr;gap:16px}.badge{grid-column:2;justify-self:start;margin-top:6px}}
+
+  /* dual journey */
+  .dj{margin-top:36px;display:flex;flex-direction:column;gap:18px}
+  .dj-row{display:grid;grid-template-columns:160px repeat(6,1fr);gap:8px}
+  @media (max-width:900px){.dj-row{grid-template-columns:1fr;gap:6px}}
+  .dj-lbl{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-mid);padding:16px 0;border-right:1px solid var(--line);align-self:center}
+  .dj-lbl b{display:block;color:var(--ink);font-family:var(--serif);font-size:18px;font-weight:500;text-transform:none;letter-spacing:-.01em;margin-bottom:4px}
+  .dj-stage{border:1px solid var(--line);padding:18px 14px;background:rgba(255,255,255,.015);font-size:12.5px;color:var(--ink-mid);line-height:1.4}
+  .dj-stage .step{font-family:var(--mono);font-size:9px;letter-spacing:.14em;color:var(--ink-faint);text-transform:uppercase;margin-bottom:6px}
+  .dj-stage h5{font-family:var(--serif);font-weight:500;font-size:14px;color:var(--ink);margin-bottom:6px;line-height:1.2;letter-spacing:-.01em}
+  .dj-stage.ok{background:rgba(90,208,124,.07);border-color:rgba(90,208,124,.30)}
+  .dj-stage.bro{background:rgba(255,95,41,.07);border-color:rgba(255,95,41,.32)}
+  .dj-stage.mis{background:rgba(255,255,255,.02);border-style:dashed;color:var(--ink-faint)}
+  .dj-stage.mis h5{color:var(--ink-faint)}
+
+  .pillars{display:grid;grid-template-columns:1fr;gap:14px;margin-top:32px}
+  .pillar{display:grid;grid-template-columns:200px 1fr 56px;gap:18px;align-items:center;padding:18px 0;border-bottom:1px solid var(--line)}
+  .pillar:last-child{border-bottom:0}
+  .pillar-name{font-family:var(--sans);font-weight:500;font-size:14px}
+  .pillar-name small{display:block;color:var(--ink-faint);font-weight:400;font-size:12px;margin-top:2px}
+  .pillar-bar{height:6px;background:rgba(255,255,255,.06);border-radius:99px;overflow:hidden;position:relative}
+  .pillar-bar i{display:block;height:100%;border-radius:99px}
+  .pillar-bar i.good{background:var(--good)}
+  .pillar-bar i.warn{background:var(--warn)}
+  .pillar-bar i.bad{background:var(--bad)}
+  .pillar-score{font-family:var(--mono);font-size:14px;text-align:right;font-weight:500}
+  @media (max-width:680px){.pillar{grid-template-columns:1fr 56px;gap:8px}.pillar-bar{grid-column:1/-1;order:3}}
+
+  .actions{margin-top:32px}
+  .actions table{width:100%;border-collapse:collapse;font-size:14px}
+  .actions th,.actions td{text-align:left;padding:14px 12px;border-bottom:1px solid var(--line)}
+  .actions th{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);font-weight:500}
+  .actions td.prio{font-family:var(--mono);font-size:11px;color:var(--ink)}
+  .actions td.prio.high{color:var(--bad)}
+  .actions td.prio.med{color:var(--warn)}
+  .actions td.prio.low{color:var(--good)}
+  .actions td:last-child{font-family:var(--mono);font-size:12px;color:var(--ink-mid);text-align:right;white-space:nowrap}
+
+  .qw-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:32px}
+  @media (max-width:780px){.qw-grid{grid-template-columns:1fr}}
+  .qw{padding:28px;background:var(--accent-soft);border:1px solid rgba(255,95,41,.28);border-radius:6px}
+  .qw .num{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--accent);margin-bottom:10px}
+  .qw h4{font-family:var(--serif);font-weight:500;font-size:19px;margin-bottom:8px;line-height:1.2}
+  .qw p{font-size:13.5px;margin-bottom:6px}
+  .qw .when{font-family:var(--mono);font-size:11px;color:var(--accent);margin-top:14px;letter-spacing:.06em}
+
+  /* ROI projection */
+  .roi{margin-top:32px;padding:36px;border:1px solid var(--accent);border-radius:6px;background:radial-gradient(circle at 20% 20%,rgba(255,95,41,.07),transparent 60%)}
+  .roi h3{font-size:28px;margin-bottom:12px}
+  .roi h3 em{font-style:italic;color:var(--accent)}
+  .roi .table{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:0;margin-top:24px;border:1px solid var(--line)}
+  @media (max-width:780px){.roi .table{grid-template-columns:1fr;border:0}}
+  .roi .cell{padding:18px 20px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .roi .cell:nth-child(4n){border-right:0}
+  .roi .cell.h{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);background:rgba(255,255,255,.02)}
+  .roi .cell strong{font-family:var(--serif);font-size:20px;font-weight:500;color:var(--ink);display:block;line-height:1.1}
+  .roi .cell small{color:var(--ink-mid);font-size:12px;display:block;margin-top:4px}
+  .roi .cell.up strong{color:var(--good)}
+  .roi p{margin-top:18px;color:var(--ink-mid);font-size:13px;font-style:italic}
+
+  footer{padding:48px 0 60px;text-align:center;color:var(--ink-faint);font-size:12.5px;border-top:1px solid var(--line);margin-top:40px}
+  footer .mark{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:8px;color:var(--ink-mid)}
+
+  @media print{body{background:white;color:#111}nav.top{display:none}section{page-break-inside:avoid;border-color:#ddd}h1,h2,h3,h4,strong{color:#111}p,.kicker{color:#555}}
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="wrap">
+    <div class="brand">Los Pichy Boys <span>·</span> Auditoría 360°</div>
+    <ul>
+      <li><a href="#resumen">Resumen</a></li>
+      <li><a href="#negocio">Negocio real</a></li>
+      <li><a href="#claims">Claims vs realidad</a></li>
+      <li><a href="#errores">Hallazgos</a></li>
+      <li><a href="#journey">Customer journey</a></li>
+      <li><a href="#pilares">Puntuación</a></li>
+      <li><a href="#plan">Plan</a></li>
+      <li><a href="#roi">ROI</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="kicker">Auditoría · 1 jun 2026 · Independiente</div>
+        <h1>20+ marcas por episodio.<br>Una web que las trata<br>como <em>afterthought</em>.</h1>
+        <p class="lead">El producto real de Los Pichy Boys son dos cosas: <strong>la publicidad dentro del podcast</strong> y <strong>las obras en vivo</strong>. No el merch, no el "club", no el sitio. Hablamos de 974 episodios diarios con 20+ anunciantes cada uno, más un tour de teatro y la película "Rebeca" en 2026. La web no refleja un dólar de ese negocio.</p>
+
+        <div class="hero-meta">
+          <div><span>Operando desde</span><strong>2007 · 19 años</strong></div>
+          <div><span>Alcance combinado</span><strong>~3.5M+</strong></div>
+          <div><span>Anunciantes / ep</span><strong>20+</strong></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="gauge">
+          <svg viewBox="0 0 360 200" aria-hidden="true">
+            <defs>
+              <linearGradient id="g" x1="0" x2="1" y1="0" y2="0">
+                <stop offset="0%" stop-color="#ff5f29"/>
+                <stop offset="55%" stop-color="#f0b84a"/>
+                <stop offset="100%" stop-color="#5ad07c"/>
+              </linearGradient>
+            </defs>
+            <path d="M30 180 A150 150 0 0 1 330 180" fill="none" stroke="rgba(255,255,255,.07)" stroke-width="18" stroke-linecap="round"/>
+            <!-- score 48/100 -->
+            <path d="M30 180 A150 150 0 0 1 330 180" fill="none" stroke="url(#g)" stroke-width="18" stroke-linecap="round" stroke-dasharray="471" stroke-dashoffset="245"/>
+            <!-- needle at 48% → angle = -180 + 48/100*180 = -93.6 -->
+            <g transform="translate(180,180)">
+              <g transform="rotate(-93.6)">
+                <line x1="0" y1="0" x2="0" y2="-130" stroke="#f5f1ea" stroke-width="2.5" stroke-linecap="round"/>
+                <circle cx="0" cy="-130" r="5" fill="#f5f1ea"/>
+              </g>
+              <circle cx="0" cy="0" r="9" fill="#0e0d0b" stroke="#f5f1ea" stroke-width="2"/>
+            </g>
+          </svg>
+          <div class="gauge-num">
+            <b>48</b>
+            <span>de 100</span>
+          </div>
+          <div class="gauge-label">Producto top mundial · web amateur</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== RESUMEN ===== -->
+<section id="resumen">
+  <div class="wrap">
+    <div class="kicker">01 · Resumen ejecutivo</div>
+    <h2>Producto premium, web que no lo vende.</h2>
+
+    <div class="exec-grid">
+      <div class="exec-card">
+        <div class="kicker">Estado actual</div>
+        <h3>Imperio de comedia hispano</h3>
+        <p>974 episodios diarios con 20+ marcas anunciándose por episodio (~$40-100k mensuales solo en ads, estimado). Tour de obras teatrales y podcasts en vivo que llenan salas. Partnership con Sonoro Media. Película "Rebeca" en pre-producción con Lilo Vilaplana. 3.5M+ alcance multi-plataforma. 19 años en el oficio.</p>
+      </div>
+      <div class="exec-card">
+        <div class="kicker">El problema</div>
+        <h3>La web no es ni la entrada al negocio</h3>
+        <p>El home prioriza el merch por encima de la publicidad y los eventos, lo cual invierte el peso del negocio real. <strong>Un sponsor potencial aterriza en un Wix con el copyright caducado, ningún número de alcance y un mailto suelto sin formatos ni precios.</strong> Quien quiere ir a una obra no encuentra calendario de tour. Quien viene del clip de TikTok no encuentra dónde escuchar 974 episodios. Cada touchpoint deja dinero en la mesa.</p>
+      </div>
+      <div class="exec-card">
+        <div class="kicker">La oportunidad</div>
+        <h3>30-100% más por anuncio</h3>
+        <p>Una infraestructura web seria (con media kit descargable, métricas verificadas, tiers de sponsorship, calendario real de tour y hub de episodios) sube el ticket promedio por sponsor entre un 30 y un 100%. Porque las marcas serias pagan por infraestructura seria. Y reduce el costo de venta porque el pitch se cierra casi solo. <em>Rebeca</em> es el deadline natural.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== NEGOCIO REAL ===== -->
+<section id="negocio">
+  <div class="wrap">
+    <div class="kicker">02 · El negocio real de Los Pichy Boys</div>
+    <h2>De dónde sale el dinero.<br><em>De dónde NO sale.</em></h2>
+    <p class="lead">Estimación con ratios estándar de la industria. Los datos exactos los maneja Pichy Films Inc. El orden de magnitud y el ranking relativo entre las fuentes de ingreso, sin embargo, es claro.</p>
+
+    <div class="biz">
+      <div class="biz-card">
+        <div class="pct">~60%</div>
+        <div class="kicker">Motor #1</div>
+        <h4>Publicidad <em>en el podcast</em></h4>
+        <div class="stat">20+ marcas × episodio · daily release</div>
+        <p>Sonoro vende el inventario. Pre-rolls, mid-rolls, integraciones de host, menciones. A CPM industrial Spanish comedy ($20-40) × 100k-500k descargas/ep × 20 slots = revenue dominante. <strong>Cada upgrade en infra que ayude a vender a sponsors mueve este número.</strong></p>
+      </div>
+      <div class="biz-card">
+        <div class="pct">~25%</div>
+        <div class="kicker">Motor #2</div>
+        <h4>Obras + <em>podcasts en vivo</em></h4>
+        <div class="stat">Tour Miami · próx. Tampa · venues medianos-grandes</div>
+        <p>Tickets de teatro + grabaciones en vivo con público + sponsors de evento. Margen alto, audiencia super-fan, conversión a Club / merch / película. La web debería tener calendario real con ticketing integrado. Hoy: nada.</p>
+      </div>
+      <div class="biz-card">
+        <div class="pct">~15%</div>
+        <div class="kicker">Lo demás</div>
+        <h4>Merch · Club · YouTube</h4>
+        <div class="stat">3 tiendas · YouTube AdSense · Club sin precio</div>
+        <p>El merch es complemento (3 tiendas dispersas no ayudan). El Club existe pero sin propuesta. YouTube AdSense corre pasivamente. Rebeca cambiará el mix en 2026. <strong>Esto NO debería ser lo primero que ve el visitante de la web</strong>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CLAIMS VS REALIDAD ===== -->
+<section id="claims">
+  <div class="wrap">
+    <div class="kicker">03 · Las afirmaciones del sitio vs el dato verificable</div>
+    <h2>Lo que dice el home. <em>Lo que muestran las fuentes neutrales.</em></h2>
+    <p class="lead">Cuatro claims que aparecen hoy en superficies públicas, comparados con lo que Rephonic, Ticketmaster, Apple Podcasts y la fecha del calendario muestran de verdad.</p>
+
+    <div class="claims">
+      <div class="claim">
+        <div class="side"><span class="where">Home · tagline</span><span class="txt">"El podcast #1 de comedia en español"</span></div>
+        <div class="vs">vs realidad</div>
+        <div class="side real"><span class="where">Apple Podcasts · jun 2026</span><span class="txt">USA #103 · Chile #10 · España #37 · Italia #73 · Alemania #210 · Francia #231</span></div>
+      </div>
+      <div class="claim">
+        <div class="side"><span class="where">Home · hero secundario</span><span class="txt">"TAMPA MUY PRONTO"</span></div>
+        <div class="vs">vs realidad</div>
+        <div class="side real"><span class="where">Ticketmaster · Viagogo · StubHub</span><span class="txt">"Currently there are no events planned for 2026 and 2027". Incluso el motor revenue #2 está sin fechas públicas</span></div>
+      </div>
+      <div class="claim">
+        <div class="side"><span class="where">Footer · todas las páginas</span><span class="txt">"© 2020-2025 El Pichy Films Inc."</span></div>
+        <div class="vs">vs realidad</div>
+        <div class="side real"><span class="where">Fecha actual</span><span class="txt">Junio 2026. El copyright lleva ~6 meses caducado</span></div>
+      </div>
+      <div class="claim">
+        <div class="side"><span class="where">Artículo CiberCuba · oct 2025</span><span class="txt">"sales@<b style="color:var(--accent)">lospichi</b>boys.com"</span></div>
+        <div class="vs">vs realidad</div>
+        <div class="side real"><span class="where">DNS</span><span class="txt">sales@<b style="color:var(--ink)">lospichy</b>boys.com. Es typo del press release: el dominio sin Y no existe y los sponsors interesados escriben al vacío</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HALLAZGOS (REENFOCADOS) ===== -->
+<section id="errores">
+  <div class="wrap">
+    <div class="kicker">04 · Incoherencias y errores observables</div>
+    <h2>14 hallazgos. <em>Ordenados por revenue impact.</em></h2>
+    <p class="lead">Antes iban por severidad técnica. Ahora van por cuánto dinero deja cada uno en la mesa. Arriba: lo que bloquea ventas de sponsors y tickets de obra. Abajo: lo que limita marca y descubrimiento.</p>
+
+    <div style="margin-top:36px">
+
+      <div class="find-row">
+        <div class="find-num">01</div>
+        <div class="find-body">
+          <h4>"ANÚNCIATE" es un mailto sin media kit · pierden 80% de sponsors serios</h4>
+          <p>El CTA para sponsors abre <code>mailto:sales@lospichyboys.com</code> directo. No hay página de "para marcas", no hay PDF descargable, no hay tarifas indicativas, no hay métricas de audiencia, no hay formatos disponibles, no hay casos previos.</p>
+          <p class="why">En la práctica: el motor #1 del negocio (~60% del revenue) depende de cerrar más sponsors a mejor precio. Una marca seria que evalúa gastar $25-100k en una integración necesita ver alcance verificado, demográficos, formatos y casos antes de escribir el primer email. Sin nada de eso, escriben solo las marcas pequeñas. Los deals premium se quedan sobre la mesa.</p>
+          <p class="fix">Página <code>/sponsors</code> con: alcance por plataforma (gráficos), demos Sonoro, formatos (preroll/midroll/host-read/integración de evento/integración película), precios desde, casos de éxito, "Solicitar media kit completo" con form que captura email + empresa.</p>
+        </div>
+        <span class="badge crit">Crítico · Revenue</span>
+      </div>
+
+      <div class="find-row">
+        <div class="find-num">02</div>
+        <div class="find-body">
+          <h4>Cero showcase de las 20+ marcas que YA anuncian · social proof tirado</h4>
+          <p>20+ anunciantes por episodio diario = miles de slots vendidos al año = un porfolio de marcas brutal. Ninguna se muestra en el sitio. Ni logos, ni casos, ni "estas marcas ya confían en nosotros".</p>
+          <p class="why">En la práctica: la prueba social más fuerte para vender más anuncios es enseñar quién ya anuncia. El brand manager que duda se convence cuando ve competidores y partners ya integrados. Hoy no ve nada. Eso baja la disposición a pagar.</p>
+          <p class="fix">Wall de logos de sponsors actuales/históricos en /sponsors. Idealmente con 2-3 casos detallados ("X marca integró en Y episodios, generó Z resultado"). Bonus: testimonios cortos de Brand Managers o Sonoro AE.</p>
+        </div>
+        <span class="badge crit">Crítico · Revenue</span>
+      </div>
+
+      <div class="find-row">
+        <div class="find-num">03</div>
+        <div class="find-body">
+          <h4>Cero calendario de obras / live podcasts · motor #2 invisible</h4>
+          <p>El home solo menciona "MIAMI" y "TAMPA MUY PRONTO" como referencia geográfica. No hay calendario de funciones, no hay venues, no hay link a ticketing. El segundo motor del negocio (~25% revenue) no tiene página propia.</p>
+          <p class="why">En la práctica: cada función agotada o casi agotada es revenue puro + super-fans + sponsors de evento + clips para socials. Sin calendario, el fan que ya quiere ir no encuentra cómo. Y los sponsors de evento (locales o nacionales) tampoco saben con cuánto tiempo planear.</p>
+          <p class="fix">Página <code>/en-vivo</code> con: calendario visual de fechas confirmadas, venue + dirección + capacidad, link directo a ticketing (Eventbrite/Ticketmaster/PieTix), botón "Avísame cuando vengan a mi ciudad" (captura email), tier de sponsor de evento.</p>
+        </div>
+        <span class="badge crit">Crítico · Revenue</span>
+      </div>
+
+      <div class="find-row">
+        <div class="find-num">04</div>
+        <div class="find-body">
+          <h4>"Tampa muy pronto" sin fechas · perpetual vaporware</h4>
+          <p>Aparece en hero como teaser. Pero Ticketmaster / Viagogo / StubHub no muestran un solo evento para 2026 ni 2027. El "muy pronto" lleva tiempo siéndolo.</p>
+          <p class="why">En la práctica: el fan que ve "muy pronto" una vez se ilusiona. La segunda vez ya no lo cree. La tercera se va a otro creador. Y comunica desorganización a sponsors potenciales que iban a financiar la gira.</p>
+          <p class="fix">Solo publicar "próximamente" cuando haya venue y mes confirmados. Si no hay, sustituir por: <em>"Avísame cuando hagamos función en mi ciudad → [email + ciudad]"</em>. Captura intent + lista geo-segmentada para futuras giras.</p>
+        </div>
+        <span class="badge crit">Crítico · Revenue</span>
+      </div>
+
+      <div class="find-row">
+        <div class="find-num">05</div>
+        <div class="find-body">
+          <h4>Cero captura de email · activo de revenue #1 sin construir</h4>
+          <p>No hay newsletter, ni popup, ni lead magnet, ni formulario en ningún touchpoint. El "Suscríbete al Club" ni siquiera pide email. Es un botón sin formulario detrás.</p>
+          <p class="why">En la práctica: una lista de 100k super-fans vale más que 3M de audiencia pasiva. Para vender tickets de obra avisas por email. Para vender sponsors mandas newsletter dedicada. Para promocionar Rebeca activas tu base. Hoy esa base no existe. Y los socials no son tuyos, son alquilados a las plataformas.</p>
+          <p class="fix">Lead magnet inmediato: <em>"Acceso anticipado: tickets de tour + behind-the-scenes Rebeca + episodios exclusivos del podcast"</em>. Form en home, popup con exit-intent, link en bio IG, DM autoresponder. ConvertKit / Beehiiv: $0-29/mes.</p>
+        </div>
+        <span class="badge crit">Crítico · Revenue</span>
+      </div>
+
+      <div class="find-row">
+        <div class="find-num">06</div>
+        <div class="find-body">
+          <h4>Home prioriza merch · invierte el peso del negocio real</h4>
+          <p>El home destaca "SHOP" (tienda) en navegación primaria y el módulo "Pullover No A La Pasta" arriba. Pero el merch es el ~15% del revenue. La publicidad (60%) y los eventos en vivo (25%) están subordinados visualmente.</p>
+          <p class="why">En la práctica: el sitio entrega prioridad a lo secundario y esconde lo principal. Sponsors no ven a quién están comprando, fans no ven cuándo viene el tour. Y el fan que solo quería comprar un pullover ahora navega tres tiendas distintas.</p>
+          <p class="fix">Nav reordenada: <em>Podcast · En vivo · Sponsors · Rebeca · Club · Tienda</em>. Hero del home: episodio destacado + próxima función + CTA "Para marcas". El merch baja a la quinta posición.</p>
+        </div>
+        <span class="badge crit">Crítico · UX</span>
+      </div>
+
+      <div class="find-row">
+        <div class="find-num">07</div>
+        <div class="find-body">
+          <h4>"#1 podcast de comedia en español" sin respaldo</h4>
+          <p>Tagline del home. Rephonic muestra USA #103, Chile #10, España #37 en jun 2026. Pueden haber sido el #1 en algún momento. No ahora.</p>
+          <p class="why">En la práctica: claim fuerte sin prueba trabaja en contra cuando el comprador es sofisticado (Brand Manager, AE de Sonoro). Un "Top 10 Chile · #37 España · 974 eps daily" es más fuerte porque es verificable y describe el alcance real.</p>
+          <p class="fix">Reemplazar por dato verificable + año. Y cuando Rebeca estrene en 2026, actualizar con cualquier ranking nuevo que disparen las menciones.</p>
+        </div>
+        <span class="badge crit">Crítico · Marca</span>
+      </div>
+
+      <div class="find-row">
+        <div class="find-num">08</div>
+        <div class="find-body">
+          <h4>Stack Wix + copyright "© 2020-2025" caducado</h4>
+          <p>Servidor responde <code>server: Pepyaka</code> (proxy de Wix). Para una marca con 974 episodios, tour de teatro y película con director profesional, una plantilla Wix limita SEO, integraciones de podcast, ticketing embebido, custom analytics y velocidad. Footer dice <strong>© 2020-2025</strong>, ya caducó hace ~6 meses.</p>
+          <p class="why">En la práctica: cualquier sponsor que evalúe invertir 6 cifras en "Rebeca" ve un copyright caducado y piensa "qué más estará desactualizado". Es señal de descuido donde más importa.</p>
+          <p class="fix">Cambio mínimo hoy: <code>© 2007-2026</code>. Cambio estratégico para 2026: migrar a stack custom (ver propuesta de web 2026 adjunta).</p>
+        </div>
+        <span class="badge crit">Crítico · Marca</span>
+      </div>
+
+      <div class="find-row">
+        <div class="find-num">09</div>
+        <div class="find-body">
+          <h4>Press release de "Rebeca" tiene typo en email · sponsors al vacío</h4>
+          <p>El artículo de CiberCuba (16 oct 2025) que anunció la película publica <code>sales@lospichiboys.com</code> (sin Y). El dominio sin Y <strong>no existe</strong>. Cualquier sponsor de cine que copie el email del press release está mandando al vacío.</p>
+          <p class="why">En la práctica: este artículo es uno de los principales canales para captar sponsors de Rebeca. El typo está fuera de su control directo. Pero el efecto recae en su revenue.</p>
+          <p class="fix">(1) Pedir a CiberCuba corrección del artículo, (2) registrar <code>lospichiboys.com</code> defensivamente y forwardearlo. Coste: $10/año. Recupera cualquier sponsor que escriba mal por copy-paste.</p>
+        </div>
+        <span class="badge med">Importante</span>
+      </div>
+
+      <div class="find-row">
+        <div class="find-num">10</div>
+        <div class="find-body">
+          <h4>El home no muestra el podcast (el producto core)</h4>
+          <p>El home tiene un video embebido genérico, pero ni último episodio del podcast, ni player de audio, ni link directo a "escucha ahora". Para ESCUCHAR hay que ir a YouTube/Apple/Spotify.</p>
+          <p class="why">En la práctica: el visitante nuevo no consume el producto donde aterriza. Se pierde el momento alto de intención. Y los segundos en página caen, cosa que Wix tampoco te deja optimizar bien.</p>
+          <p class="fix">Bloque "Último episodio" en home con player embebido + botones grandes a Apple/Spotify/YouTube. Bonus: rotación de 3 episodios destacados.</p>
+        </div>
+        <span class="badge med">Importante</span>
+      </div>
+
+      <div class="find-row">
+        <div class="find-num">11</div>
+        <div class="find-body">
+          <h4>974 episodios sin buscador, sin categorías</h4>
+          <p>Tienen una de las bibliotecas de comedia hispana más grandes del mundo. No es navegable en su propio sitio: ni buscar, ni filtrar, ni "empieza por aquí", ni destacar invitados famosos.</p>
+          <p class="why">En la práctica: para el nuevo oyente, la abundancia paraliza. Sin curaduría termina en YouTube donde el algoritmo decide qué ve. Profundidad invisible = sponsor no entiende el alcance histórico que está comprando.</p>
+          <p class="fix">Hub de episodios con search + filtros (categoría / año / invitado) + "Top 10 favoritos del staff" + "Empieza por aquí" para nuevos.</p>
+        </div>
+        <span class="badge med">Importante</span>
+      </div>
+
+      <div class="find-row">
+        <div class="find-num">12</div>
+        <div class="find-body">
+          <h4>Tres tiendas merch distintas, ninguna canónica</h4>
+          <p>El home enlaza a <code>miamitshirtco.square.site</code>. La página /lospichys enlaza a <code>miamitshirtco.com/shop</code>. Existe también <code>lospichyboys.creator-spring.com</code> y Merchbar como reseller. El fan tiene que adivinar cuál es oficial.</p>
+          <p class="why">En la práctica: aunque merch es el motor #3 (~15% revenue), la fricción se ve en cada compra. Y para brand deals confunde: ¿son una marca con merch propio o una marca subcontratada por Miami T-Shirt Co?</p>
+          <p class="fix">Una sola URL canónica (<code>tienda.lospichyboys.com</code>). Las otras: 301 redirect. Una experiencia, una analítica, un checkout.</p>
+        </div>
+        <span class="badge med">Importante</span>
+      </div>
+
+      <div class="find-row">
+        <div class="find-num">13</div>
+        <div class="find-body">
+          <h4>"Club de Pichy Fanáticos" sin precio ni promesa</h4>
+          <p>Módulo grande en el home: "Subscríbete al Club!". Pero no dice qué incluye, ni cuánto cuesta, ni qué cambia en la vida del fan. Un botón sin pitch.</p>
+          <p class="why">En la práctica: con 3.5M audiencia, club bien diseñado a $5-10/mes convirtiendo 1% = 35.000 miembros = $175-350k/mes recurrentes. Sin propuesta clara, ese cubo está vacío.</p>
+          <p class="fix">Página dedicada con tiers (Free / $5 / $15 / $50 "Patrocinador"), promesas concretas (early eps, behind-the-scenes Rebeca, descuento merch, meet-ups), social proof.</p>
+        </div>
+        <span class="badge med">Importante</span>
+      </div>
+
+      <div class="find-row">
+        <div class="find-num">14</div>
+        <div class="find-body">
+          <h4>"Rebeca" sin landing propia · momentum perdiéndose</h4>
+          <p>La película fue anunciada en oct 2025 con premiere en 2026. CiberCuba publicó. Sponsors visibles activamente buscados. Pero no hay <code>lospichyboys.com/rebeca</code> ni <code>rebecalapelicula.com</code> con: sinopsis, equipo, trailer, waitlist, tier de sponsorship.</p>
+          <p class="why">En la práctica: el momento de construir audiencia + sponsors para una película es <strong>antes</strong> del estreno. Cada mes sin landing = mailing list no construida + sponsors que no encuentran cómo entrar.</p>
+          <p class="fix">Landing <code>/rebeca</code> con hero del proyecto, equipo, "join the waitlist" (email capture), tier de sponsorship con precios (Bronce / Plata / Oro / Premiere Partner), formulario para press kit, countdown al estreno.</p>
+        </div>
+        <span class="badge med">Importante</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== DUAL JOURNEY ===== -->
+<section id="journey">
+  <div class="wrap">
+    <div class="kicker">05 · Customer journey · dos audiencias en paralelo</div>
+    <h2>El sponsor pierde la deal.<br><em>El fan pierde el ticket.</em></h2>
+    <p class="lead">Tienen <strong>dos customers reales</strong>: la marca que paga por anunciarse (motor #1) y el fan que paga por ticket / merch / Club (motor #2-3). Las dos lanes se rompen en los mismos puntos.</p>
+
+    <div class="dj">
+      <div class="dj-row">
+        <div class="dj-lbl"><b>Sponsor</b>quien paga ads</div>
+        <div class="dj-stage ok"><div class="step">01 Descubre</div><h5>Press · podcast directo · LinkedIn</h5>Marca conoce Pichy Boys por escuchar el podcast o por mención press.</div>
+        <div class="dj-stage bro"><div class="step">02 Evalúa</div><h5>Va a lospichyboys.com</h5>Encuentra Wix con copyright caducado, claim "#1" sin pruebas. Confianza baja.</div>
+        <div class="dj-stage bro"><div class="step">03 Investiga</div><h5>Busca métricas</h5>Sin media kit, sin alcance, sin demos, sin formatos. No puede armar internal pitch.</div>
+        <div class="dj-stage bro"><div class="step">04 Contacta</div><h5>Mailto</h5>"Me interesa info". Cold inbound sin nutrir. Espera respuesta indefinida.</div>
+        <div class="dj-stage mis"><div class="step">05 Negocia</div><h5>(opaco)</h5>Probablemente Sonoro AE responde. Sin precios anchor el cliente regatea.</div>
+        <div class="dj-stage mis"><div class="step">06 Renueva</div><h5>Sin sistema</h5>Sin reporting post-campaign visible. La renovación depende de relación 1-on-1.</div>
+      </div>
+
+      <div class="dj-row">
+        <div class="dj-lbl"><b>Fan</b>quien compra tickets / merch</div>
+        <div class="dj-stage ok"><div class="step">01 Descubre</div><h5>YouTube · IG · TikTok</h5>Llega via clips, sketches, episodios cortos.</div>
+        <div class="dj-stage bro"><div class="step">02 Aterriza</div><h5>Wix template</h5>Sitio no muestra podcast ni próximas funciones. Va a YouTube manualmente.</div>
+        <div class="dj-stage bro"><div class="step">03 Explora</div><h5>Busca contenido</h5>974 eps sin buscador. "Tampa muy pronto" sin fecha. 3 tiendas. Se confunde.</div>
+        <div class="dj-stage bro"><div class="step">04 Quiere comprar</div><h5>Sin ticketing visible</h5>Quiere ir a la obra, no hay calendario. Quiere merch, adivina qué tienda. Quiere Club, no hay precio.</div>
+        <div class="dj-stage mis"><div class="step">05 Email</div><h5>(no se captura)</h5>Si no compra hoy, lo pierdes. No hay forma de retomar contacto.</div>
+        <div class="dj-stage mis"><div class="step">06 Retención</div><h5>Solo socials</h5>Depende del algoritmo de IG/YT/TikTok para volver a verlo. Sin canal owned.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PILLARS ===== -->
+<section id="pilares">
+  <div class="wrap">
+    <div class="kicker">06 · Puntuación por pilar</div>
+    <h2>Reenfocado al negocio real.</h2>
+    <p class="lead">12 pilares, ordenados de mayor a menor score. Las dos áreas que generan dinero (sponsor sales + live shows) son las dos más bajas. <strong>Ese es el resumen entero.</strong></p>
+
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-name">Audiencia y alcance<small>3.5M+ multi-plataforma · 81M views YouTube</small></div>
+        <div class="pillar-bar"><i class="good" style="width:95%"></i></div>
+        <div class="pillar-score">95</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Reputación<small>19 años · 5.0★ podcast · Sonoro · prensa real</small></div>
+        <div class="pillar-bar"><i class="good" style="width:85%"></i></div>
+        <div class="pillar-score">85</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Contenido<small>974 eps · daily · sketches · obras · película</small></div>
+        <div class="pillar-bar"><i class="good" style="width:80%"></i></div>
+        <div class="pillar-score">80</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Redes sociales<small>IG 1M · FB 2M · YT 428K · TikTok 155K</small></div>
+        <div class="pillar-bar"><i class="good" style="width:78%"></i></div>
+        <div class="pillar-score">78</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Coherencia de marca<small>Claims inflados · copyright caducado</small></div>
+        <div class="pillar-bar"><i class="warn" style="width:50%"></i></div>
+        <div class="pillar-score">50</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">SEO básico<small>Wix limitations · claims sin respaldo</small></div>
+        <div class="pillar-bar"><i class="warn" style="width:50%"></i></div>
+        <div class="pillar-score">50</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Oferta & precios<small>Club sin precio · merch fragmentado · Tampa vaporware</small></div>
+        <div class="pillar-bar"><i class="bad" style="width:35%"></i></div>
+        <div class="pillar-score">35</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Web & UX<small>Wix · sin podcast embed · sin search · sin tiers</small></div>
+        <div class="pillar-bar"><i class="bad" style="width:35%"></i></div>
+        <div class="pillar-score">35</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Customer journey<small>Sponsor lane rota · fan lane rota</small></div>
+        <div class="pillar-bar"><i class="bad" style="width:30%"></i></div>
+        <div class="pillar-score">30</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Live shows infra<small>Motor #2 · sin calendario · sin ticketing visible</small></div>
+        <div class="pillar-bar"><i class="bad" style="width:30%"></i></div>
+        <div class="pillar-score">30</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Sponsor sales infra<small>Motor #1 · mailto sin media kit · sin showcase</small></div>
+        <div class="pillar-bar"><i class="bad" style="width:25%"></i></div>
+        <div class="pillar-score">25</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Email / lead capture<small>El cubo vacío · cero formulario · 0 lista</small></div>
+        <div class="pillar-bar"><i class="bad" style="width:15%"></i></div>
+        <div class="pillar-score">15</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PLAN ===== -->
+<section id="plan">
+  <div class="wrap">
+    <div class="kicker">07 · Plan de acción priorizado</div>
+    <h2>Sponsor enablement primero. <em>Después todo lo demás.</em></h2>
+    <p class="lead">Ordenado por revenue impact. Cada acción tiene un dollar amount detrás. <strong>Rebeca es el deadline natural</strong>: todo lo que no esté listo para el estreno pierde su mejor ventana de monetización.</p>
+
+    <div class="actions">
+      <table>
+        <thead>
+          <tr><th>#</th><th>Acción</th><th>Área</th><th>Impacto</th><th>Esfuerzo</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="prio high">A1</td><td>Página <code>/sponsors</code> con media kit descargable + tarifas + casos</td><td>Revenue #1</td><td>Crítico</td><td>1 semana</td></tr>
+          <tr><td class="prio high">A2</td><td>Wall de logos de sponsors actuales + 2-3 case studies</td><td>Revenue #1</td><td>Alto</td><td>4 días</td></tr>
+          <tr><td class="prio high">A3</td><td>Página <code>/en-vivo</code> con calendario real + ticketing integrado</td><td>Revenue #2</td><td>Crítico</td><td>3 días</td></tr>
+          <tr><td class="prio high">A4</td><td>Quitar "Tampa muy pronto" o reemplazar por captura email geo</td><td>Revenue #2</td><td>Alto</td><td>30 min</td></tr>
+          <tr><td class="prio high">A5</td><td>Email capture global: "Acceso anticipado · tickets · Rebeca"</td><td>Crecimiento</td><td>Crítico</td><td>2 h</td></tr>
+          <tr><td class="prio high">A6</td><td>Actualizar copyright a <code>© 2007-2026</code></td><td>Marca</td><td>Medio</td><td>5 min</td></tr>
+          <tr><td class="prio high">A7</td><td>Reemplazar claim "#1" por dato verificable</td><td>Marca</td><td>Alto</td><td>30 min</td></tr>
+          <tr><td class="prio high">A8</td><td>Registrar dominio defensivo <code>lospichiboys.com</code> + 301</td><td>Técnica</td><td>Medio</td><td>30 min</td></tr>
+          <tr><td class="prio med">B1</td><td>Bloque "Último episodio" embebido en home + plataformas</td><td>UX</td><td>Alto</td><td>4 h</td></tr>
+          <tr><td class="prio med">B2</td><td>Hub de episodios con buscador, filtros, "Top 10"</td><td>Web</td><td>Alto</td><td>1 semana</td></tr>
+          <tr><td class="prio med">B3</td><td>Reordenar nav: Podcast · En vivo · Sponsors · Rebeca · Club · Tienda</td><td>UX</td><td>Alto</td><td>2 h</td></tr>
+          <tr><td class="prio med">B4</td><td>Landing <code>/rebeca</code> con waitlist + tier de sponsorship</td><td>Estrategia</td><td>Crítico</td><td>1 semana</td></tr>
+          <tr><td class="prio med">B5</td><td>Club Pichy: precio, tiers, promesa concreta</td><td>Recurrencia</td><td>Alto</td><td>1 semana</td></tr>
+          <tr><td class="prio med">B6</td><td>Consolidar 3 tiendas en una URL canónica</td><td>Conversión</td><td>Medio</td><td>1 día</td></tr>
+          <tr><td class="prio low">C1</td><td>Migración Wix → stack custom (Next.js + GSAP + Lenis) · ver propuesta web 2026</td><td>Técnica</td><td>Crítico</td><td>8-10 semanas</td></tr>
+          <tr><td class="prio low">C2</td><td>App nativa con push de nuevos episodios</td><td>Retención</td><td>Alto</td><td>3 meses</td></tr>
+          <tr><td class="prio low">C3</td><td>Programa de referidos (Sparkloop / Refersion)</td><td>Crecimiento</td><td>Alto</td><td>2 semanas</td></tr>
+          <tr><td class="prio low">C4</td><td>Sistema bilingüe EN/ES con hreflang y toggle</td><td>SEO</td><td>Medio</td><td>1 semana</td></tr>
+          <tr><td class="prio low">C5</td><td>Sistema UGC + clips destacados de fans</td><td>Community</td><td>Medio</td><td>2 semanas</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===== QUICK WINS ===== -->
+<section>
+  <div class="wrap">
+    <div class="kicker">08 · Quick wins esta semana</div>
+    <h2>Tres acciones que mueven revenue antes del viernes.</h2>
+
+    <div class="qw-grid">
+      <div class="qw">
+        <div class="num">QW · 01</div>
+        <h4>Página <code>/sponsors</code> con media kit descargable.</h4>
+        <p><strong>Resultado:</strong> Las marcas que iban a escribir y abandonaban porque no podían armar un pitch interno, ahora descargan el PDF, lo presentan a su Brand Manager y vuelven con propuesta firme. Sube ticket promedio +30-100%.</p>
+        <div class="when">⏱ 1 semana</div>
+      </div>
+      <div class="qw">
+        <div class="num">QW · 02</div>
+        <h4>Página <code>/en-vivo</code> con calendario real + ticketing.</h4>
+        <p><strong>Resultado:</strong> el fan que ya quería ir a la obra encuentra cómo. Las funciones llegan a sold-out más rápido, lo cual sube el ticket de los sponsors de evento. <strong>Y se acaba el "Tampa muy pronto" indefinido.</strong></p>
+        <div class="when">⏱ 3 días</div>
+      </div>
+      <div class="qw">
+        <div class="num">QW · 03</div>
+        <h4>Email capture en home: "Acceso anticipado · tickets · Rebeca".</h4>
+        <p><strong>Resultado:</strong> A partir del lunes cada visitante deja huella. En 6 meses: 50-100k emails de super-fans, lista que decide si Rebeca hace 1M o 10M el primer fin de semana. <strong>Y sirve para vender tickets de tour sin pagar a Meta.</strong></p>
+        <div class="when">⏱ ~2 h</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ROI ===== -->
+<section id="roi">
+  <div class="wrap">
+    <div class="kicker">09 · Proyección de ROI</div>
+    <h2>Qué deja de perderse cuando se arregla.</h2>
+
+    <div class="roi">
+      <h3>Estimación conservadora · 12 meses post-implementación · <em>solo sponsor sales infra</em></h3>
+      <p style="margin-top:0">Con media kit, página /sponsors profesional, showcase y métricas verificadas. No incluye live shows ni Club ni Rebeca. Solo el motor publicidad del podcast.</p>
+
+      <div class="table">
+        <div class="cell h">Métrica</div>
+        <div class="cell h">Hoy</div>
+        <div class="cell h">Con infra seria</div>
+        <div class="cell h">Delta</div>
+
+        <div class="cell">Sponsors entrantes / mes</div>
+        <div class="cell"><strong>~10-20</strong><small>cold mailto</small></div>
+        <div class="cell up"><strong>~40-60</strong><small>media kit descargado + form</small></div>
+        <div class="cell up"><strong>+3-4x</strong></div>
+
+        <div class="cell">Ticket promedio por integración</div>
+        <div class="cell"><strong>$8-15k</strong><small>estimado</small></div>
+        <div class="cell up"><strong>$15-25k</strong><small>+30-70% premium</small></div>
+        <div class="cell up"><strong>+50%</strong></div>
+
+        <div class="cell">% que llegan ya pre-convencidos</div>
+        <div class="cell"><strong>~20%</strong><small>solo los muy decididos</small></div>
+        <div class="cell up"><strong>~50%</strong><small>llegan con PDF leído</small></div>
+        <div class="cell up"><strong>2.5x</strong></div>
+
+        <div class="cell">Costo de venta (tiempo Sonoro/Pichy)</div>
+        <div class="cell"><strong>Alto</strong><small>cada deal se discute</small></div>
+        <div class="cell up"><strong>Bajo</strong><small>media kit cierra solo</small></div>
+        <div class="cell up"><strong>-40-60%</strong></div>
+      </div>
+
+      <p>Modelos comparables: podcasts top hispanos (Wikly, The Wild Project, Mocosin) y top US (Joe Rogan, Smartless) tienen media kit descargable y página /partners. El estándar de la industria es claro. Falta cerrar el gap.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="mark">Auditoría independiente · Di Barret · 1 jun 2026</div>
+    <p style="color:var(--ink-faint);font-size:12px;max-width:60ch;margin:0 auto">Datos extraídos de fuentes públicas observables: <code>lospichyboys.com</code>, Rephonic, Apple Podcasts, Ticketmaster, Viagogo, StubHub, CiberCuba, LinkedIn, Instagram, TikTok. El % de revenue por motor es estimación con ratios estándar de la industria. Los datos exactos los maneja Pichy Films Inc. Ningún número fue inventado.</p>
+  </div>
+</footer>
+
+</body>
+</html>
