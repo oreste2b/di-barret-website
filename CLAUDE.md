@@ -35,8 +35,12 @@ Structure:
 - `/cases/<slug>.html` — individual bilingual case (Article JSON-LD, key results bar, 5 narrative sections: Udfordringen/Desafío → Tilgangen/Enfoque → Udførelse/Ejecución → Resultater/Resultados → Hvad vi lærte/Lo aprendido)
 
 Two case types supported:
-- **Build cases** — full delivery (strategy → design → build → deploy). Example: `/cases/dibarret-dk` (meta-case showing the website as its own first case).
-- **Audit cases** — Brand Audit deliverables (12-dimension scorecard or full 10-section template, prioritized fixes, 30-day action plan). Examples: `/cases/audit-dibarret-dk` (lightweight scorecard format) and `/cases/audit-dubbu` (full canonical 10-section template — see below).
+- **Build cases** — full delivery (strategy → design → build → deploy). Example: `/cases/isabella-abreu` (Phase 2 personal-brand build for Cuban F4 driver).
+- **Audit cases** — Brand Audit deliverables (12-dimension scorecard or full 10-section template, prioritized fixes, 30-day action plan). Examples: `/cases/audit-dubbu` (full canonical 10-section template — see below) and `/cases/audit-isabella-abreu` (personal-brand audit format).
+
+`/cases/` is reserved for **client work only**. The previous self-references (`/cases/dibarret-dk` build meta-case and `/cases/audit-dibarret-dk` self-audit) were removed in June 2026 — the site itself stands as proof of capability, the cases section showcases clients.
+
+Pre-publication audit drafts for clients pending approval live at root level under `/audit-<client>` with `<meta name="robots" content="noindex,nofollow,noarchive,nosnippet">`, NOT linked from anywhere on the site and NOT added to sitemap. On client sign-off, the audit migrates into `/cases/audit-<client>` with the canonical bilingual format and the noindex is dropped. Current pending: `/audit-1nationup` (Miami brand-system + production agency).
 
 ### Canonical audit template — 10 sections
 
