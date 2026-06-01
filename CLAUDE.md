@@ -40,7 +40,9 @@ Two case types supported:
 
 `/cases/` is reserved for **client work only**. The previous self-references (`/cases/dibarret-dk` build meta-case and `/cases/audit-dibarret-dk` self-audit) were removed in June 2026 — the site itself stands as proof of capability, the cases section showcases clients.
 
-Pre-publication audit drafts for clients pending approval live at root level under `/audit-<client>` with `<meta name="robots" content="noindex,nofollow,noarchive,nosnippet">`, NOT linked from anywhere on the site and NOT added to sitemap. On client sign-off, the audit migrates into `/cases/audit-<client>` with the canonical bilingual format and the noindex is dropped. Current pending: `/audit-1nationup` (Miami brand-system + production agency).
+Pre-publication audit drafts for clients pending approval live at root level under `/audit-<client>` with `<meta name="robots" content="noindex,nofollow,noarchive,nosnippet">`, NOT linked from anywhere on the site and NOT added to sitemap. On client sign-off, the audit either migrates into `/cases/audit-<client>` with the canonical bilingual format, or stays at root and gets the `noindex` dropped + a CASE card in `/cases/index.html` linking to it.
+
+Current live (1 jun 2026): `/audit-1nationup` (Miami brand-system + production agency, ES-only, linked as CASE 04 from `/cases/index.html`). Page remains at root rather than `/cases/audit-1nationup` because it was authored as a standalone deliverable in ES; canonical bilingual /cases/ migration is optional future work.
 
 ### Canonical audit template — 10 sections
 
