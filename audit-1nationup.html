@@ -1,24 +1,28 @@
 <!doctype html>
-<html lang="es">
+<html lang="da">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Auditoría · 1NationUp · Di Barret</title>
-<meta name="description" content="Auditoría 360° de 1NationUp, agencia de branding y producción física en Miami. Hallazgos, incoherencias, customer journey y plan de acción priorizado.">
+<title>Audit · 1NationUp · Di Barret</title>
+<meta name="description" content="Komplet audit af 1NationUp, branding og fysisk produktion bureau i Miami. Findings, inkonsekvenser, kunderejse og prioriteret handlingsplan. Tosproget DA / ES.">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://www.dibarret.dk/audit-1nationup">
+<link rel="alternate" hreflang="da" href="https://www.dibarret.dk/audit-1nationup">
+<link rel="alternate" hreflang="es" href="https://www.dibarret.dk/audit-1nationup">
+<link rel="alternate" hreflang="x-default" href="https://www.dibarret.dk/audit-1nationup">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Auditoría · 1NationUp">
-<meta property="og:description" content="Auditoría 360° de 1NationUp por Di Barret. 14 hallazgos, customer journey completo, plan de acción priorizado.">
+<meta property="og:title" content="Audit · 1NationUp">
+<meta property="og:description" content="Komplet audit af 1NationUp ved Di Barret. 14 findings, kunderejse, prioriteret handlingsplan. Tosproget DA / ES.">
 <meta property="og:url" content="https://www.dibarret.dk/audit-1nationup">
 <meta property="og:image" content="https://www.dibarret.dk/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:site_name" content="Di Barret">
-<meta property="og:locale" content="es_ES">
+<meta property="og:locale" content="da_DK">
+<meta property="og:locale:alternate" content="es_ES">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Auditoría · 1NationUp">
-<meta name="twitter:description" content="Auditoría 360° por Di Barret · 14 hallazgos · plan de acción priorizado.">
+<meta name="twitter:title" content="Audit · 1NationUp">
+<meta name="twitter:description" content="Komplet audit ved Di Barret · 14 findings · prioriteret handlingsplan · DA / ES.">
 <meta name="twitter:image" content="https://www.dibarret.dk/og.png">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
@@ -75,6 +79,20 @@
   hr{border:0;border-top:1px solid var(--line);margin:0}
   section{padding:80px 0;border-top:1px solid var(--line)}
   section:first-of-type{border-top:0}
+
+  /* ===== Lang toggle ===== */
+  .lang-toggle{position:fixed;top:78px;right:18px;z-index:60;display:inline-flex;border:1px solid var(--line-mid);background:rgba(14,13,11,.85);border-radius:99px;padding:3px;backdrop-filter:blur(10px)}
+  .lang-toggle__btn{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);background:transparent;border:none;cursor:pointer;padding:7px 14px;border-radius:99px;transition:all .15s}
+  .lang-toggle__btn[aria-pressed="true"]{color:var(--bg);background:var(--ink)}
+  .lang-toggle__btn:not([aria-pressed="true"]):hover{color:var(--ink)}
+  @media (max-width:780px){.lang-toggle{top:68px;right:12px}}
+
+  /* ===== Bilingual content blocks ===== */
+  [data-lang]{display:none}
+  body[data-active-lang="da"] [data-lang="da"]{display:revert}
+  body[data-active-lang="es"] [data-lang="es"]{display:revert}
+  /* No-JS fallback: show DA by default */
+  body:not([data-active-lang]) [data-lang="da"]{display:revert}
 
   /* ===== Nav ===== */
   nav.top{
@@ -200,7 +218,7 @@
   /* Print */
   @media print{
     body{background:white;color:#111}
-    nav.top{display:none}
+    nav.top,.lang-toggle{display:none}
     section{page-break-inside:avoid;border-color:#ddd}
     .tagline-card,.exec-card,.qw,.stage{border-color:#ddd !important;background:white !important}
     h1,h2,h3,h4,strong{color:#111}
@@ -210,15 +228,20 @@
 </head>
 <body>
 
+<div class="lang-toggle" role="group" aria-label="Sprog · Idioma">
+  <button class="lang-toggle__btn" type="button" data-set-lang="da" aria-pressed="true">DA</button>
+  <button class="lang-toggle__btn" type="button" data-set-lang="es" aria-pressed="false">ES</button>
+</div>
+
 <nav class="top">
   <div class="wrap">
-    <div class="brand">1NationUp <span>·</span> Auditoría 360°</div>
+    <div class="brand">1NationUp <span>·</span> <span data-lang="da">Audit 360°</span><span data-lang="es">Auditoría 360°</span></div>
     <ul>
-      <li><a href="#resumen">Resumen</a></li>
-      <li><a href="#voces">Voces de marca</a></li>
-      <li><a href="#errores">Incoherencias</a></li>
-      <li><a href="#journey">Customer journey</a></li>
-      <li><a href="#pilares">Puntuación</a></li>
+      <li><a href="#resumen"><span data-lang="da">Resumé</span><span data-lang="es">Resumen</span></a></li>
+      <li><a href="#voces"><span data-lang="da">Brandstemmer</span><span data-lang="es">Voces de marca</span></a></li>
+      <li><a href="#errores"><span data-lang="da">Inkonsekvenser</span><span data-lang="es">Incoherencias</span></a></li>
+      <li><a href="#journey"><span data-lang="da">Kunderejse</span><span data-lang="es">Customer journey</span></a></li>
+      <li><a href="#pilares"><span data-lang="da">Score</span><span data-lang="es">Puntuación</span></a></li>
       <li><a href="#plan">Plan</a></li>
     </ul>
   </div>
@@ -229,14 +252,32 @@
   <div class="wrap">
     <div class="hero-grid">
       <div>
-        <div class="kicker">Auditoría · 1 jun 2026 · Independiente</div>
-        <h1>Sign shop sólido,<br><em>cuatro voces distintas</em>.</h1>
-        <p class="lead">1NationUp lleva 7 años en Miami. Tiene 40K en Instagram, A+ en BBB y reputación local sólida. Aun así, cada canal en el que aparecen cuenta una historia distinta de lo que hacen. Cuatro propuestas de valor según dónde entres, dos teléfonos en circulación, un email que vive en otro dominio. La conversión paga la factura.</p>
+        <div class="kicker">
+          <span data-lang="da">Audit · 1. juni 2026 · Uafhængig</span>
+          <span data-lang="es">Auditoría · 1 jun 2026 · Independiente</span>
+        </div>
+        <h1>
+          <span data-lang="da">Solidt sign shop,<br><em>fire forskellige stemmer</em>.</span>
+          <span data-lang="es">Sign shop sólido,<br><em>cuatro voces distintas</em>.</span>
+        </h1>
+        <p class="lead">
+          <span data-lang="da">1NationUp har 7 år i Miami. 40K på Instagram, A+ hos BBB og solidt lokalt omdømme. Alligevel fortæller hver kanal de er på en forskellig historie om hvad de laver. Fire værdiforslag afhængigt af hvor du går ind, to telefonnumre i omløb, en email der bor på et andet domæne. Konverteringen betaler regningen.</span>
+          <span data-lang="es">1NationUp lleva 7 años en Miami. Tiene 40K en Instagram, A+ en BBB y reputación local sólida. Aun así, cada canal en el que aparecen cuenta una historia distinta de lo que hacen. Cuatro propuestas de valor según dónde entres, dos teléfonos en circulación, un email que vive en otro dominio. La conversión paga la factura.</span>
+        </p>
 
         <div class="hero-meta">
-          <div><span>Negocio</span><strong>1Nation All, Inc</strong></div>
-          <div><span>Operando desde</span><strong>Feb 2019 · 7 años</strong></div>
-          <div><span>Sede</span><strong>Miami, FL</strong></div>
+          <div>
+            <span><span data-lang="da">Virksomhed</span><span data-lang="es">Negocio</span></span>
+            <strong>1Nation All, Inc</strong>
+          </div>
+          <div>
+            <span><span data-lang="da">I drift siden</span><span data-lang="es">Operando desde</span></span>
+            <strong><span data-lang="da">Feb 2019 · 7 år</span><span data-lang="es">Feb 2019 · 7 años</span></strong>
+          </div>
+          <div>
+            <span><span data-lang="da">Hjemsted</span><span data-lang="es">Sede</span></span>
+            <strong>Miami, FL</strong>
+          </div>
         </div>
       </div>
 
@@ -251,9 +292,7 @@
               </linearGradient>
             </defs>
             <path d="M30 180 A150 150 0 0 1 330 180" fill="none" stroke="rgba(255,255,255,.07)" stroke-width="18" stroke-linecap="round"/>
-            <!-- score 53/100 → 53% of arc -->
             <path d="M30 180 A150 150 0 0 1 330 180" fill="none" stroke="url(#g)" stroke-width="18" stroke-linecap="round" stroke-dasharray="471" stroke-dashoffset="221"/>
-            <!-- needle at ~53% → angle = -180 + 53/100*180 = -84.6° from horizontal right -->
             <g transform="translate(180,180)">
               <g transform="rotate(-84.6)">
                 <line x1="0" y1="0" x2="0" y2="-130" stroke="#f5f1ea" stroke-width="2.5" stroke-linecap="round"/>
@@ -264,9 +303,12 @@
           </svg>
           <div class="gauge-num">
             <b>53</b>
-            <span>de 100</span>
+            <span><span data-lang="da">ud af 100</span><span data-lang="es">de 100</span></span>
           </div>
-          <div class="gauge-label">Producto fuerte · sistema flojo</div>
+          <div class="gauge-label">
+            <span data-lang="da">Stærkt produkt · svagt system</span>
+            <span data-lang="es">Producto fuerte · sistema flojo</span>
+          </div>
         </div>
       </div>
     </div>
@@ -276,24 +318,36 @@
 <!-- ===== EXECUTIVE SUMMARY ===== -->
 <section id="resumen">
   <div class="wrap">
-    <div class="kicker">01 · Resumen ejecutivo</div>
-    <h2>Dónde está, dónde duele, qué puede ganar.</h2>
+    <div class="kicker"><span data-lang="da">01 · Resumé</span><span data-lang="es">01 · Resumen ejecutivo</span></div>
+    <h2>
+      <span data-lang="da">Hvor de står, hvor det gør ondt, hvad de kan vinde.</span>
+      <span data-lang="es">Dónde está, dónde duele, qué puede ganar.</span>
+    </h2>
 
     <div class="exec-grid">
       <div class="exec-card">
-        <div class="kicker">Estado actual</div>
-        <h3>Producción real, marca borrosa</h3>
-        <p>Hacen branding completo, del logo al sign instalado, pasando por vinilos para coche y uniformes. Llevan 7 años en Miami, son entre 3 y 13 personas según fuente, tienen A+ en BBB sin quejas y 40K seguidores en Instagram. También gestionan un programa de Partner Stores con creadores como Carnota, Mario Otero o los Garcia Brothers. La marca tiene base.</p>
+        <div class="kicker"><span data-lang="da">Aktuel status</span><span data-lang="es">Estado actual</span></div>
+        <h3><span data-lang="da">Reel produktion, sløret brand</span><span data-lang="es">Producción real, marca borrosa</span></h3>
+        <p>
+          <span data-lang="da">De laver komplet branding, fra logoet til det installerede skilt, gennem bilfolier og uniformer. De har været i Miami i 7 år, mellem 3 og 13 personer afhængigt af kilden, A+ hos BBB uden klager og 40K følgere på Instagram. De driver også et Partner Stores-program med skabere som Carnota, Mario Otero eller Garcia Brothers. Brandet har fundament.</span>
+          <span data-lang="es">Hacen branding completo, del logo al sign instalado, pasando por vinilos para coche y uniformes. Llevan 7 años en Miami, son entre 3 y 13 personas según fuente, tienen A+ en BBB sin quejas y 40K seguidores en Instagram. También gestionan un programa de Partner Stores con creadores como Carnota, Mario Otero o los Garcia Brothers. La marca tiene base.</span>
+        </p>
       </div>
       <div class="exec-card">
-        <div class="kicker">El problema</div>
-        <h3>Cuatro voces, dos teléfonos</h3>
-        <p>Cada canal cuenta una historia distinta de lo que hacen. El home dice una cosa, /services/ dice otra, LinkedIn una tercera y la landing una cuarta. A eso se suma un teléfono que cambia según dónde estés mirando y un email comercial alojado en otro dominio (<code>@1nationgfx.com</code>). El catálogo tampoco ayuda: 14 categorías en el home, 7 servicios en /services/, productos sueltos, ningún precio público. El cliente decide por agotamiento.</p>
+        <div class="kicker"><span data-lang="da">Problemet</span><span data-lang="es">El problema</span></div>
+        <h3><span data-lang="da">Fire stemmer, to telefoner</span><span data-lang="es">Cuatro voces, dos teléfonos</span></h3>
+        <p>
+          <span data-lang="da">Hver kanal fortæller en forskellig historie om hvad de laver. Hjemmesiden siger én ting, /services/ siger en anden, LinkedIn en tredje og landingen en fjerde. Hertil kommer et telefonnummer der ændrer sig afhængigt af hvor du kigger og en kommerciel email på et andet domæne (<code>@1nationgfx.com</code>). Kataloget hjælper heller ikke: 14 kategorier på hjemmesiden, 7 services på /services/, løse produkter, ingen offentlige priser. Kunden beslutter sig af træthed.</span>
+          <span data-lang="es">Cada canal cuenta una historia distinta de lo que hacen. El home dice una cosa, /services/ dice otra, LinkedIn una tercera y la landing una cuarta. A eso se suma un teléfono que cambia según dónde estés mirando y un email comercial alojado en otro dominio (<code>@1nationgfx.com</code>). El catálogo tampoco ayuda: 14 categorías en el home, 7 servicios en /services/, productos sueltos, ningún precio público. El cliente decide por agotamiento.</span>
+        </p>
       </div>
       <div class="exec-card">
-        <div class="kicker">La oportunidad</div>
-        <h3>Un sistema, no más tráfico</h3>
-        <p>El tráfico ya entra. La reputación ya está hecha. Lo que falta es el sistema que convierta lo uno en lo otro. Si la propuesta es única, el teléfono es uno solo, el email lleva el mismo dominio que la web y los precios aparecen aunque sea como rango, la conversión sube dos o tres puntos sin gastar un dólar más en ads. El negocio existe. Falta arreglar cómo se cuenta.</p>
+        <div class="kicker"><span data-lang="da">Muligheden</span><span data-lang="es">La oportunidad</span></div>
+        <h3><span data-lang="da">Et system, ikke mere trafik</span><span data-lang="es">Un sistema, no más tráfico</span></h3>
+        <p>
+          <span data-lang="da">Trafikken kommer allerede ind. Omdømmet er allerede bygget. Det der mangler er systemet der konverterer det ene til det andet. Hvis værdiforslaget er ét, telefonen er én, emailen bærer samme domæne som hjemmesiden og priserne dukker op om så bare som interval, stiger konverteringen to eller tre point uden at bruge en dollar mere på ads. Forretningen findes. Det handler om at få ordnet hvordan den fortælles.</span>
+          <span data-lang="es">El tráfico ya entra. La reputación ya está hecha. Lo que falta es el sistema que convierta lo uno en lo otro. Si la propuesta es única, el teléfono es uno solo, el email lleva el mismo dominio que la web y los precios aparecen aunque sea como rango, la conversión sube dos o tres puntos sin gastar un dólar más en ads. El negocio existe. Falta arreglar cómo se cuenta.</span>
+        </p>
       </div>
     </div>
   </div>
@@ -302,30 +356,45 @@
 <!-- ===== THE 4 VOICES ===== -->
 <section id="voces">
   <div class="wrap">
-    <div class="kicker">02 · Las cuatro voces de 1NationUp</div>
-    <h2>Misma empresa, propuestas distintas.</h2>
-    <p class="lead">Texto literal de cada canal, capturado hoy. Un cliente que conoce la marca por Instagram y luego entra al sitio no piensa que es la misma empresa. Google tampoco.</p>
+    <div class="kicker"><span data-lang="da">02 · 1NationUps fire stemmer</span><span data-lang="es">02 · Las cuatro voces de 1NationUp</span></div>
+    <h2><span data-lang="da">Samme firma, forskellige forslag.</span><span data-lang="es">Misma empresa, propuestas distintas.</span></h2>
+    <p class="lead">
+      <span data-lang="da">Bogstavelig tekst fra hver kanal, fanget i dag. En kunde der kender brandet via Instagram og derefter går ind på siden, tænker ikke at det er det samme firma. Det gør Google heller ikke.</span>
+      <span data-lang="es">Texto literal de cada canal, capturado hoy. Un cliente que conoce la marca por Instagram y luego entra al sitio no piensa que es la misma empresa. Google tampoco.</span>
+    </p>
 
     <div class="taglines">
       <div class="tagline-card">
-        <div class="where"><span>Home · www.1nationup.com</span><i>H1 principal</i></div>
+        <div class="where">
+          <span><span data-lang="da">Hjemmeside · www.1nationup.com</span><span data-lang="es">Home · www.1nationup.com</span></span>
+          <i><span data-lang="da">Primær H1</span><span data-lang="es">H1 principal</span></i>
+        </div>
         <blockquote>"For Those who believe in leaving a Mark"</blockquote>
-        <p class="vibe">Brandy, emocional, abstracto. No dice qué hacen.</p>
+        <p class="vibe"><span data-lang="da">Brand-agtigt, emotionelt, abstrakt. Siger ikke hvad de laver.</span><span data-lang="es">Brandy, emocional, abstracto. No dice qué hacen.</span></p>
       </div>
       <div class="tagline-card">
-        <div class="where"><span>Página /services/</span><i>H1 servicios</i></div>
+        <div class="where">
+          <span><span data-lang="da">Side /services/</span><span data-lang="es">Página /services/</span></span>
+          <i><span data-lang="da">Services H1</span><span data-lang="es">H1 servicios</span></i>
+        </div>
         <blockquote>"Transform Your Space with Art"</blockquote>
-        <p class="vibe">Tono de decoración / interiorismo. Aleja a clientes B2B.</p>
+        <p class="vibe"><span data-lang="da">Indretningstone. Skubber B2B-kunder væk.</span><span data-lang="es">Tono de decoración / interiorismo. Aleja a clientes B2B.</span></p>
       </div>
       <div class="tagline-card">
-        <div class="where"><span>LinkedIn · 1,214 seguidores</span><i>Tagline empresa</i></div>
+        <div class="where">
+          <span><span data-lang="da">LinkedIn · 1.214 følgere</span><span data-lang="es">LinkedIn · 1,214 seguidores</span></span>
+          <i><span data-lang="da">Virksomheds-tagline</span><span data-lang="es">Tagline empresa</span></i>
+        </div>
         <blockquote>"Build a connection with your customers."</blockquote>
-        <p class="vibe">Tono marketing-as-service. Genérico, podría ser de cualquiera.</p>
+        <p class="vibe"><span data-lang="da">Marketing-as-service-tone. Generisk, kunne være hvem som helst.</span><span data-lang="es">Tono marketing-as-service. Genérico, podría ser de cualquiera.</span></p>
       </div>
       <div class="tagline-card">
-        <div class="where"><span>landing.1nationup.com</span><i>Hero landing pagado</i></div>
+        <div class="where">
+          <span>landing.1nationup.com</span>
+          <i><span data-lang="da">Hero på paid landing</span><span data-lang="es">Hero landing pagado</span></i>
+        </div>
         <blockquote>"Elevate your Brand with Impact Signage"</blockquote>
-        <p class="vibe">Signage-only, performance-driven, separado del resto.</p>
+        <p class="vibe"><span data-lang="da">Kun signage, performance-drevet, adskilt fra resten.</span><span data-lang="es">Signage-only, performance-driven, separado del resto.</span></p>
       </div>
     </div>
   </div>
@@ -334,164 +403,293 @@
 <!-- ===== INCOHERENCIAS / FINDINGS ===== -->
 <section id="errores">
   <div class="wrap">
-    <div class="kicker">03 · Incoherencias y errores observables</div>
-    <h2>Lo que se ve en producción, ahora mismo.</h2>
-    <p class="lead">Cada hallazgo sale de una página pública que cualquier persona puede abrir ahora. No es opinión de marca. Es algo que un cliente o un competidor comprueba en 30 segundos.</p>
+    <div class="kicker"><span data-lang="da">03 · Observerbare inkonsekvenser og fejl</span><span data-lang="es">03 · Incoherencias y errores observables</span></div>
+    <h2><span data-lang="da">Hvad man ser i produktion lige nu.</span><span data-lang="es">Lo que se ve en producción, ahora mismo.</span></h2>
+    <p class="lead">
+      <span data-lang="da">Hver finding kommer fra en offentlig side som enhver kan åbne nu. Det er ikke brand-meninger. Det er noget en kunde eller en konkurrent kan tjekke på 30 sekunder.</span>
+      <span data-lang="es">Cada hallazgo sale de una página pública que cualquier persona puede abrir ahora. No es opinión de marca. Es algo que un cliente o un competidor comprueba en 30 segundos.</span>
+    </p>
 
     <div style="margin-top:36px">
 
       <div class="find-row">
         <div class="find-num">01</div>
         <div class="find-body">
-          <h4>Bug de copy-paste en /services/</h4>
-          <p>Las descripciones de <strong>"Logo Design"</strong> y <strong>"Storefronts"</strong> son <em>literalmente la misma frase</em>: "Unique logos that capture the heart of your business." Uno de los dos olvidó reescribirse.</p>
-          <p class="why">En la práctica: un visitante que estaba decidiendo entre los dos servicios pierde confianza inmediata. Y Google penaliza el duplicate content.</p>
-          <p class="fix">Reescribir la descripción de Storefronts con foco en interiorismo comercial. 15 minutos.</p>
+          <h4><span data-lang="da">Copy-paste-bug på /services/</span><span data-lang="es">Bug de copy-paste en /services/</span></h4>
+          <p>
+            <span data-lang="da">Beskrivelserne af <strong>"Logo Design"</strong> og <strong>"Storefronts"</strong> er <em>bogstaveligt talt den samme sætning</em>: "Unique logos that capture the heart of your business." En af de to glemte at blive omskrevet.</span>
+            <span data-lang="es">Las descripciones de <strong>"Logo Design"</strong> y <strong>"Storefronts"</strong> son <em>literalmente la misma frase</em>: "Unique logos that capture the heart of your business." Uno de los dos olvidó reescribirse.</span>
+          </p>
+          <p class="why">
+            <span data-lang="da">I praksis: en besøgende der var ved at vælge mellem de to services mister tilliden med det samme. Og Google straffer duplicate content.</span>
+            <span data-lang="es">En la práctica: un visitante que estaba decidiendo entre los dos servicios pierde confianza inmediata. Y Google penaliza el duplicate content.</span>
+          </p>
+          <p class="fix">
+            <span data-lang="da">Omskriv Storefronts-beskrivelsen med fokus på kommerciel indretning. 15 minutter.</span>
+            <span data-lang="es">Reescribir la descripción de Storefronts con foco en interiorismo comercial. 15 minutos.</span>
+          </p>
         </div>
-        <span class="badge crit">Crítico</span>
+        <span class="badge crit"><span data-lang="da">Kritisk</span><span data-lang="es">Crítico</span></span>
       </div>
 
       <div class="find-row">
         <div class="find-num">02</div>
         <div class="find-body">
-          <h4>Dos números de teléfono en circulación</h4>
-          <p>El home, el footer y el perfil de BBB muestran <code>(786) 304-2439</code>. La landing page <code>landing.1nationup.com</code> muestra <code>(786) 637-0933</code>. No hay disclaimer ni nota explicativa.</p>
-          <p class="why">En la práctica: si el segundo es un número de tracking, está bien usarlo. Pero entonces el principal debería estar en el sitio y el de tracking solo en la landing. Hoy conviven sin lógica visible.</p>
-          <p class="fix">Decidir un teléfono master + uno tracking, y documentarlo. Asegurar que el master coincide en Google Business, BBB, FB, IG bio.</p>
+          <h4><span data-lang="da">To telefonnumre i omløb</span><span data-lang="es">Dos números de teléfono en circulación</span></h4>
+          <p>
+            <span data-lang="da">Hjemmesiden, footeren og BBB-profilen viser <code>(786) 304-2439</code>. Landingssiden <code>landing.1nationup.com</code> viser <code>(786) 637-0933</code>. Ingen disclaimer eller forklarende note.</span>
+            <span data-lang="es">El home, el footer y el perfil de BBB muestran <code>(786) 304-2439</code>. La landing page <code>landing.1nationup.com</code> muestra <code>(786) 637-0933</code>. No hay disclaimer ni nota explicativa.</span>
+          </p>
+          <p class="why">
+            <span data-lang="da">I praksis: hvis det andet er et tracking-nummer, er det fint at bruge. Men så burde det primære stå på siden og tracking kun på landingen. I dag eksisterer de side om side uden synlig logik.</span>
+            <span data-lang="es">En la práctica: si el segundo es un número de tracking, está bien usarlo. Pero entonces el principal debería estar en el sitio y el de tracking solo en la landing. Hoy conviven sin lógica visible.</span>
+          </p>
+          <p class="fix">
+            <span data-lang="da">Beslut et master-nummer + et tracking-nummer, og dokumentér det. Sørg for at master matcher på Google Business, BBB, FB, IG bio.</span>
+            <span data-lang="es">Decidir un teléfono master + uno tracking, y documentarlo. Asegurar que el master coincide en Google Business, BBB, FB, IG bio.</span>
+          </p>
         </div>
-        <span class="badge crit">Crítico</span>
+        <span class="badge crit"><span data-lang="da">Kritisk</span><span data-lang="es">Crítico</span></span>
       </div>
 
       <div class="find-row">
         <div class="find-num">03</div>
         <div class="find-body">
-          <h4>Email comercial en dominio distinto</h4>
-          <p>El footer del home termina con <code>sales@1nationgfx.com</code>. Dominio diferente al de la web (<code>1nationup.com</code>).</p>
-          <p class="why">En la práctica: el cliente lo ve y lo borra por sospechoso. Gmail y Outlook bajan la confianza del envío cuando el dominio del remitente no coincide con la web pública. Y la marca pierde aire profesional en el primer email. Probable dominio heredado de cuando la empresa se llamaba algo con "graphics".</p>
-          <p class="fix">Migrar a <code>sales@1nationup.com</code> con redirección permanente del antiguo. Configurar SPF/DKIM/DMARC.</p>
+          <h4><span data-lang="da">Kommerciel email på andet domæne</span><span data-lang="es">Email comercial en dominio distinto</span></h4>
+          <p>
+            <span data-lang="da">Hjemmesidens footer slutter med <code>sales@1nationgfx.com</code>. Et andet domæne end webstedet (<code>1nationup.com</code>).</span>
+            <span data-lang="es">El footer del home termina con <code>sales@1nationgfx.com</code>. Dominio diferente al de la web (<code>1nationup.com</code>).</span>
+          </p>
+          <p class="why">
+            <span data-lang="da">I praksis: kunden ser det og sletter det som mistænkeligt. Gmail og Outlook sænker afsendertilliden når afsenderdomænet ikke matcher den offentlige hjemmeside. Og brandet mister professionel luft i den første email. Sandsynligvis et arvet domæne fra da firmaet hed noget med "graphics".</span>
+            <span data-lang="es">En la práctica: el cliente lo ve y lo borra por sospechoso. Gmail y Outlook bajan la confianza del envío cuando el dominio del remitente no coincide con la web pública. Y la marca pierde aire profesional en el primer email. Probable dominio heredado de cuando la empresa se llamaba algo con "graphics".</span>
+          </p>
+          <p class="fix">
+            <span data-lang="da">Migrer til <code>sales@1nationup.com</code> med permanent redirect fra det gamle. Konfigurer SPF/DKIM/DMARC.</span>
+            <span data-lang="es">Migrar a <code>sales@1nationup.com</code> con redirección permanente del antiguo. Configurar SPF/DKIM/DMARC.</span>
+          </p>
         </div>
-        <span class="badge crit">Crítico</span>
+        <span class="badge crit"><span data-lang="da">Kritisk</span><span data-lang="es">Crítico</span></span>
       </div>
 
       <div class="find-row">
         <div class="find-num">04</div>
         <div class="find-body">
-          <h4>Promoción "Spring Specials March-May" sigue visible en junio</h4>
-          <p>El hero del home muestra: <em>"Spring Specials Are Live · March through May only, our 3 best sellers are on special."</em> Hoy es 1 de junio.</p>
-          <p class="why">En la práctica: comunica descuido. Si el cliente compra hoy esperando el precio especial, ahí hay una incomodidad. Y si no hay un calendario de banners, el siguiente quedará igual de obsoleto.</p>
-          <p class="fix">Quitar el banner hoy o reemplazar por la promo de junio. Crear un calendario de campañas en Notion / Google Calendar con fechas de inicio y de retiro.</p>
+          <h4><span data-lang="da">Kampagnen "Spring Specials March-May" stadig synlig i juni</span><span data-lang="es">Promoción "Spring Specials March-May" sigue visible en junio</span></h4>
+          <p>
+            <span data-lang="da">Hjemmesidens hero viser: <em>"Spring Specials Are Live · March through May only, our 3 best sellers are on special."</em> I dag er det 1. juni.</span>
+            <span data-lang="es">El hero del home muestra: <em>"Spring Specials Are Live · March through May only, our 3 best sellers are on special."</em> Hoy es 1 de junio.</span>
+          </p>
+          <p class="why">
+            <span data-lang="da">I praksis: kommunikerer skødesløshed. Hvis kunden køber i dag og forventer specialprisen, opstår der gnidninger. Og hvis der ikke er en banner-kalender, bliver den næste lige så forældet.</span>
+            <span data-lang="es">En la práctica: comunica descuido. Si el cliente compra hoy esperando el precio especial, ahí hay una incomodidad. Y si no hay un calendario de banners, el siguiente quedará igual de obsoleto.</span>
+          </p>
+          <p class="fix">
+            <span data-lang="da">Fjern banneret i dag eller erstat med juni-kampagnen. Lav en kampagnekalender i Notion / Google Calendar med start- og slutdatoer.</span>
+            <span data-lang="es">Quitar el banner hoy o reemplazar por la promo de junio. Crear un calendario de campañas en Notion / Google Calendar con fechas de inicio y de retiro.</span>
+          </p>
         </div>
-        <span class="badge crit">Crítico</span>
+        <span class="badge crit"><span data-lang="da">Kritisk</span><span data-lang="es">Crítico</span></span>
       </div>
 
       <div class="find-row">
         <div class="find-num">05</div>
         <div class="find-body">
-          <h4>"Marketing" como servicio describe… merchandising</h4>
-          <p>En /services/ el servicio "Marketing" se describe como <em>"Merchandise that promotes your brand beyond the office."</em> Eso no es marketing. Es promotional products o swag corporativo.</p>
-          <p class="why">En la práctica: un cliente buscando una agencia de marketing aterriza, ve "Marketing", lee la descripción y se va. Un cliente buscando swag corporativo no entra a "Marketing".</p>
-          <p class="fix">Renombrar a <strong>"Promotional Products"</strong> o <strong>"Brand Merchandise"</strong>. Si quieren ofrecer marketing de verdad (ads, growth), crear un servicio separado y serio.</p>
+          <h4><span data-lang="da">"Marketing" som service beskriver... merchandising</span><span data-lang="es">"Marketing" como servicio describe… merchandising</span></h4>
+          <p>
+            <span data-lang="da">På /services/ beskrives "Marketing"-servicen som <em>"Merchandise that promotes your brand beyond the office."</em> Det er ikke marketing. Det er promotional products eller corporate swag.</span>
+            <span data-lang="es">En /services/ el servicio "Marketing" se describe como <em>"Merchandise that promotes your brand beyond the office."</em> Eso no es marketing. Es promotional products o swag corporativo.</span>
+          </p>
+          <p class="why">
+            <span data-lang="da">I praksis: en kunde der søger et marketingbureau lander, ser "Marketing", læser beskrivelsen og forlader siden. En kunde der søger corporate swag går ikke ind på "Marketing".</span>
+            <span data-lang="es">En la práctica: un cliente buscando una agencia de marketing aterriza, ve "Marketing", lee la descripción y se va. Un cliente buscando swag corporativo no entra a "Marketing".</span>
+          </p>
+          <p class="fix">
+            <span data-lang="da">Omdøb til <strong>"Promotional Products"</strong> eller <strong>"Brand Merchandise"</strong>. Hvis de vil tilbyde rigtig marketing (ads, growth), skab en separat og seriøs service.</span>
+            <span data-lang="es">Renombrar a <strong>"Promotional Products"</strong> o <strong>"Brand Merchandise"</strong>. Si quieren ofrecer marketing de verdad (ads, growth), crear un servicio separado y serio.</span>
+          </p>
         </div>
-        <span class="badge med">Importante</span>
+        <span class="badge med"><span data-lang="da">Vigtigt</span><span data-lang="es">Importante</span></span>
       </div>
 
       <div class="find-row">
         <div class="find-num">06</div>
         <div class="find-body">
-          <h4>Cero precios en cualquier servicio</h4>
-          <p>Ningún servicio en /services/ tiene rango, tier o "desde X". Solo hay precios en algunos productos físicos del catálogo. Para Logo Design, Signage, Wallpapers, Vehicle Wraps, Storefronts, Business Cards: nada.</p>
-          <p class="why">En la práctica: el cliente B2B compara opciones. Sin precio anchor asume caro y se rebota al competidor que sí publica un "desde X". Publicar precios bajos no debilita; filtra.</p>
-          <p class="fix">Para cada servicio, añadir "From $X", "Typical project: $X a $Y" y un plazo aproximado (ejemplo: "5 a 7 días"). No hace falta cotizar todo, basta con dar señal.</p>
+          <h4><span data-lang="da">Ingen priser på nogen service</span><span data-lang="es">Cero precios en cualquier servicio</span></h4>
+          <p>
+            <span data-lang="da">Ingen service på /services/ har interval, tier eller "fra X". Der er kun priser på nogle fysiske produkter i kataloget. For Logo Design, Signage, Wallpapers, Vehicle Wraps, Storefronts, Business Cards: intet.</span>
+            <span data-lang="es">Ningún servicio en /services/ tiene rango, tier o "desde X". Solo hay precios en algunos productos físicos del catálogo. Para Logo Design, Signage, Wallpapers, Vehicle Wraps, Storefronts, Business Cards: nada.</span>
+          </p>
+          <p class="why">
+            <span data-lang="da">I praksis: B2B-kunden sammenligner muligheder. Uden anker-pris antager man dyrt og bouncer til konkurrenten der publicerer et "fra X". At publicere lave priser svækker ikke; det filtrerer.</span>
+            <span data-lang="es">En la práctica: el cliente B2B compara opciones. Sin precio anchor asume caro y se rebota al competidor que sí publica un "desde X". Publicar precios bajos no debilita; filtra.</span>
+          </p>
+          <p class="fix">
+            <span data-lang="da">For hver service, tilføj "From $X", "Typical project: $X til $Y" og en omtrentlig deadline (eksempel: "5 til 7 dage"). Det er ikke nødvendigt at give pris på alt, det er nok at sende et signal.</span>
+            <span data-lang="es">Para cada servicio, añadir "From $X", "Typical project: $X a $Y" y un plazo aproximado (ejemplo: "5 a 7 días"). No hace falta cotizar todo, basta con dar señal.</span>
+          </p>
         </div>
-        <span class="badge med">Importante</span>
+        <span class="badge med"><span data-lang="da">Vigtigt</span><span data-lang="es">Importante</span></span>
       </div>
 
       <div class="find-row">
         <div class="find-num">07</div>
         <div class="find-body">
-          <h4>Arquitectura de información: 14 categorías + 7 servicios + productos</h4>
-          <p>El home lista 14 categorías ("Acrylic Logos, Banners, Best Sellers, Business Cards, Custom Wear, Logo Design, Marketing, Popular Products, Promotional Items, Signs, Stationery, The Heat is Up, Vehicle Wraps, Wall Art"), más 7 servicios en /services/, más productos individuales. Sin jerarquía.</p>
-          <p class="why">En la práctica: el cliente no sabe si está en un e-commerce, en un sitio de agencia o en una tienda física. Las decisiones se diluyen y el "Start a Project" pierde fuerza.</p>
-          <p class="fix">Colapsar a 3 verticales claras: <strong>Brand System</strong> (logo + style guide + assets), <strong>Sign &amp; Space</strong> (signage + wallpaper + storefronts + wraps), <strong>Print &amp; Merch</strong> (cards + stationery + uniforms + promo). Una capa, no tres.</p>
+          <h4><span data-lang="da">Informationsarkitektur: 14 kategorier + 7 services + produkter</span><span data-lang="es">Arquitectura de información: 14 categorías + 7 servicios + productos</span></h4>
+          <p>
+            <span data-lang="da">Hjemmesiden viser 14 kategorier ("Acrylic Logos, Banners, Best Sellers, Business Cards, Custom Wear, Logo Design, Marketing, Popular Products, Promotional Items, Signs, Stationery, The Heat is Up, Vehicle Wraps, Wall Art"), plus 7 services på /services/, plus individuelle produkter. Uden hierarki.</span>
+            <span data-lang="es">El home lista 14 categorías ("Acrylic Logos, Banners, Best Sellers, Business Cards, Custom Wear, Logo Design, Marketing, Popular Products, Promotional Items, Signs, Stationery, The Heat is Up, Vehicle Wraps, Wall Art"), más 7 servicios en /services/, más productos individuales. Sin jerarquía.</span>
+          </p>
+          <p class="why">
+            <span data-lang="da">I praksis: kunden ved ikke om de er på en e-commerce, en bureau-side eller en fysisk butik. Beslutningerne udvandes og "Start a Project" mister kraft.</span>
+            <span data-lang="es">En la práctica: el cliente no sabe si está en un e-commerce, en un sitio de agencia o en una tienda física. Las decisiones se diluyen y el "Start a Project" pierde fuerza.</span>
+          </p>
+          <p class="fix">
+            <span data-lang="da">Komprimer til 3 klare verticaler: <strong>Brand System</strong> (logo + style guide + assets), <strong>Sign &amp; Space</strong> (signage + wallpaper + storefronts + wraps), <strong>Print &amp; Merch</strong> (cards + stationery + uniforms + promo). Ét lag, ikke tre.</span>
+            <span data-lang="es">Colapsar a 3 verticales claras: <strong>Brand System</strong> (logo + style guide + assets), <strong>Sign &amp; Space</strong> (signage + wallpaper + storefronts + wraps), <strong>Print &amp; Merch</strong> (cards + stationery + uniforms + promo). Una capa, no tres.</span>
+          </p>
         </div>
-        <span class="badge med">Importante</span>
+        <span class="badge med"><span data-lang="da">Vigtigt</span><span data-lang="es">Importante</span></span>
       </div>
 
       <div class="find-row">
         <div class="find-num">08</div>
         <div class="find-body">
-          <h4>DNS roto: <code>www.1nationup.com</code> apunta a una IP de AWS sin respuesta</h4>
-          <p>Resolución actual: <code>www.1nationup.com → 34.230.44.100</code> (AWS EC2). Esa IP no responde a ping ni a HTTP/HTTPS desde la red de auditoría (timeout). El apex (<code>1nationup.com</code>) sí está en Cloudflare y redirige <em>a www</em>, generando un bucle inalcanzable para un porcentaje desconocido de visitantes.</p>
-          <p class="why">En la práctica: depende del lado del usuario, pueden estar perdiendo tráfico sin verlo en Analytics (los rebotes ni siquiera llegan a cargar la página). Crítico cuando se gasta dinero en ads que apuntan al sitio.</p>
-          <p class="fix">Auditar los registros DNS y consolidar todo bajo Cloudflare o apuntar correctamente la A del www al origen real. Probar desde varias redes/regiones.</p>
+          <h4><span data-lang="da">DNS brudt: <code>www.1nationup.com</code> peger på en AWS-IP uden svar</span><span data-lang="es">DNS roto: <code>www.1nationup.com</code> apunta a una IP de AWS sin respuesta</span></h4>
+          <p>
+            <span data-lang="da">Aktuel opløsning: <code>www.1nationup.com → 34.230.44.100</code> (AWS EC2). Den IP svarer ikke på ping eller HTTP/HTTPS fra auditnetværket (timeout). Apex (<code>1nationup.com</code>) er på Cloudflare og redirecter til www, hvilket skaber en uopnåelig loop for en ukendt procentdel besøgende.</span>
+            <span data-lang="es">Resolución actual: <code>www.1nationup.com → 34.230.44.100</code> (AWS EC2). Esa IP no responde a ping ni a HTTP/HTTPS desde la red de auditoría (timeout). El apex (<code>1nationup.com</code>) sí está en Cloudflare y redirige <em>a www</em>, generando un bucle inalcanzable para un porcentaje desconocido de visitantes.</span>
+          </p>
+          <p class="why">
+            <span data-lang="da">I praksis: afhængigt af brugerens side kan de miste trafik uden at se det i Analytics (bouncen når ikke engang at indlæse siden). Kritisk når man bruger penge på ads der peger på siden.</span>
+            <span data-lang="es">En la práctica: depende del lado del usuario, pueden estar perdiendo tráfico sin verlo en Analytics (los rebotes ni siquiera llegan a cargar la página). Crítico cuando se gasta dinero en ads que apuntan al sitio.</span>
+          </p>
+          <p class="fix">
+            <span data-lang="da">Tjek DNS-registrene og konsolider alt under Cloudflare eller peg A-recorden for www korrekt mod det rigtige origin. Test fra flere netværk/regioner.</span>
+            <span data-lang="es">Auditar los registros DNS y consolidar todo bajo Cloudflare o apuntar correctamente la A del www al origen real. Probar desde varias redes/regiones.</span>
+          </p>
         </div>
-        <span class="badge crit">Crítico</span>
+        <span class="badge crit"><span data-lang="da">Kritisk</span><span data-lang="es">Crítico</span></span>
       </div>
 
       <div class="find-row">
         <div class="find-num">09</div>
         <div class="find-body">
-          <h4>Mezcla de inglés y español sin sistema</h4>
-          <p>El home incluye frases sueltas en español ("ahora es el momento", "son una herramienta poderosa") mientras el resto está en inglés. No hay selector de idioma ni versión <code>/es/</code>.</p>
-          <p class="why">En la práctica: para Miami bilingüe puede funcionar bien. Hoy parece accidental, no decidido. Y para SEO, no captura inglés limpio ni español limpio: queda en tierra de nadie.</p>
-          <p class="fix">Decidir: ¿sitio EN con copy puntual en ES (intencional), o sitio bilingüe con toggle DA/ES-style? Cualquiera de las dos suma. La mezcla actual resta.</p>
+          <h4><span data-lang="da">Engelsk og spansk blandet uden system</span><span data-lang="es">Mezcla de inglés y español sin sistema</span></h4>
+          <p>
+            <span data-lang="da">Hjemmesiden indeholder løse sætninger på spansk ("ahora es el momento", "son una herramienta poderosa") mens resten er på engelsk. Ingen sprogvælger eller <code>/es/</code>-version.</span>
+            <span data-lang="es">El home incluye frases sueltas en español ("ahora es el momento", "son una herramienta poderosa") mientras el resto está en inglés. No hay selector de idioma ni versión <code>/es/</code>.</span>
+          </p>
+          <p class="why">
+            <span data-lang="da">I praksis: for det tosprogede Miami kan det fungere fint. I dag virker det tilfældigt, ikke besluttet. Og for SEO fanger man hverken rent engelsk eller rent spansk: man ender i ingenmandsland.</span>
+            <span data-lang="es">En la práctica: para Miami bilingüe puede funcionar bien. Hoy parece accidental, no decidido. Y para SEO, no captura inglés limpio ni español limpio: queda en tierra de nadie.</span>
+          </p>
+          <p class="fix">
+            <span data-lang="da">Beslut: EN-side med spotvis ES-copy (intentionel), eller bilingual side med DA/ES-style toggle? Begge muligheder bidrager. Den nuværende blanding trækker fra.</span>
+            <span data-lang="es">Decidir: ¿sitio EN con copy puntual en ES (intencional), o sitio bilingüe con toggle DA/ES-style? Cualquiera de las dos suma. La mezcla actual resta.</span>
+          </p>
         </div>
-        <span class="badge med">Importante</span>
+        <span class="badge med"><span data-lang="da">Vigtigt</span><span data-lang="es">Importante</span></span>
       </div>
 
       <div class="find-row">
         <div class="find-num">10</div>
         <div class="find-body">
-          <h4>Sin formulario de captura: el landing solo tiene CTAs telefónicos</h4>
-          <p>En <code>landing.1nationup.com</code> los cuatro CTAs son "Get FREE Quote" + 3 variantes de "Contact us NOW!", todos a teléfono. No hay form con email + proyecto + presupuesto.</p>
-          <p class="why">En la práctica: el comprador moderno B2B prefiere escribir y comparar antes de llamar. Sin form, no hay lead magnet, no hay email para nurturing, no hay attribution real del ad spend.</p>
-          <p class="fix">Añadir un form simple (Nombre / Empresa / Email / Tipo de proyecto / Budget range / Mensaje) con autoresponder. Mantener el botón de teléfono como secundario.</p>
+          <h4><span data-lang="da">Ingen leadcapture-form: landingen har kun telefon-CTA'er</span><span data-lang="es">Sin formulario de captura: el landing solo tiene CTAs telefónicos</span></h4>
+          <p>
+            <span data-lang="da">På <code>landing.1nationup.com</code> er de fire CTA'er "Get FREE Quote" + 3 varianter af "Contact us NOW!", alle til telefon. Ingen form med email + projekt + budget.</span>
+            <span data-lang="es">En <code>landing.1nationup.com</code> los cuatro CTAs son "Get FREE Quote" + 3 variantes de "Contact us NOW!", todos a teléfono. No hay form con email + proyecto + presupuesto.</span>
+          </p>
+          <p class="why">
+            <span data-lang="da">I praksis: den moderne B2B-køber foretrækker at skrive og sammenligne før han ringer. Uden form, ingen lead magnet, ingen email til nurturing, ingen reel attribution af ad spend.</span>
+            <span data-lang="es">En la práctica: el comprador moderno B2B prefiere escribir y comparar antes de llamar. Sin form, no hay lead magnet, no hay email para nurturing, no hay attribution real del ad spend.</span>
+          </p>
+          <p class="fix">
+            <span data-lang="da">Tilføj en simpel form (Navn / Firma / Email / Projekttype / Budget range / Besked) med autoresponder. Behold telefonknappen som sekundær.</span>
+            <span data-lang="es">Añadir un form simple (Nombre / Empresa / Email / Tipo de proyecto / Budget range / Mensaje) con autoresponder. Mantener el botón de teléfono como secundario.</span>
+          </p>
         </div>
-        <span class="badge med">Importante</span>
+        <span class="badge med"><span data-lang="da">Vigtigt</span><span data-lang="es">Importante</span></span>
       </div>
 
       <div class="find-row">
         <div class="find-num">11</div>
         <div class="find-body">
-          <h4>Programa de Partner Stores escondido en una sub-página</h4>
-          <p>Existe un programa real (<code>/stores/</code>) con creadores activos: Run 4 Vibes (running club de Carnota), De La Vida Podcast, Garcia Brothers, Mario Otero / Otero Academy. Es un modelo B2B único y diferenciador.</p>
-          <p class="why">En la práctica: esta es la cosa más original que hacen y nadie llega ahí desde el home. Pierden la oportunidad de posicionar 1NationUp como "el back-end de producción de creadores". Es un nicho con margen y recurrencia.</p>
-          <p class="fix">Surfaceear "Partner Stores" como sección propia en home con casos visibles. Crear case studies con números (units shipped, % AOV, fan reach). Considerar un sub-brand: <strong>1NationUp Studio for Creators</strong>.</p>
+          <h4><span data-lang="da">Partner Stores-programmet skjult på en underside</span><span data-lang="es">Programa de Partner Stores escondido en una sub-página</span></h4>
+          <p>
+            <span data-lang="da">Der findes et reelt program (<code>/stores/</code>) med aktive skabere: Run 4 Vibes (Carnotas running club), De La Vida Podcast, Garcia Brothers, Mario Otero / Otero Academy. Det er en unik og differentierende B2B-model.</span>
+            <span data-lang="es">Existe un programa real (<code>/stores/</code>) con creadores activos: Run 4 Vibes (running club de Carnota), De La Vida Podcast, Garcia Brothers, Mario Otero / Otero Academy. Es un modelo B2B único y diferenciador.</span>
+          </p>
+          <p class="why">
+            <span data-lang="da">I praksis: dette er det mest originale de laver og ingen kommer derhen fra hjemmesiden. De spilder muligheden for at positionere 1NationUp som "creators' produktions-back-end". Det er en niche med margen og tilbagevenden.</span>
+            <span data-lang="es">En la práctica: esta es la cosa más original que hacen y nadie llega ahí desde el home. Pierden la oportunidad de posicionar 1NationUp como "el back-end de producción de creadores". Es un nicho con margen y recurrencia.</span>
+          </p>
+          <p class="fix">
+            <span data-lang="da">Træk "Partner Stores" frem som selvstændig sektion på hjemmesiden med synlige cases. Lav case studies med tal (units shipped, % AOV, fan reach). Overvej et sub-brand: <strong>1NationUp Studio for Creators</strong>.</span>
+            <span data-lang="es">Surfaceear "Partner Stores" como sección propia en home con casos visibles. Crear case studies con números (units shipped, % AOV, fan reach). Considerar un sub-brand: <strong>1NationUp Studio for Creators</strong>.</span>
+          </p>
         </div>
-        <span class="badge low">Oportunidad</span>
+        <span class="badge low"><span data-lang="da">Mulighed</span><span data-lang="es">Oportunidad</span></span>
       </div>
 
       <div class="find-row">
         <div class="find-num">12</div>
         <div class="find-body">
-          <h4>Reseñas de Google no son trazables desde el sitio</h4>
-          <p>La landing declara "<em>140+ five-star Google reviews</em>" pero no enlaza al perfil de Google Business. BBB no muestra resumen de reviews. El visitante tiene que buscar manualmente en Google Maps.</p>
-          <p class="why">En la práctica: 140+ five-star es un activo serio, y está enterrado. Es la prueba social más fuerte que tienen, y no la usan.</p>
-          <p class="fix">Embeber widget de Google Reviews (Trustindex, EmbedSocial, o custom) en home + landing. Linkear directo al perfil. Pedir 1 review nueva por proyecto entregado.</p>
+          <h4><span data-lang="da">Google-anmeldelser kan ikke spores fra siden</span><span data-lang="es">Reseñas de Google no son trazables desde el sitio</span></h4>
+          <p>
+            <span data-lang="da">Landingen erklærer "<em>140+ five-star Google reviews</em>" men linker ikke til Google Business-profilen. BBB viser intet review-summary. Den besøgende skal manuelt søge på Google Maps.</span>
+            <span data-lang="es">La landing declara "<em>140+ five-star Google reviews</em>" pero no enlaza al perfil de Google Business. BBB no muestra resumen de reviews. El visitante tiene que buscar manualmente en Google Maps.</span>
+          </p>
+          <p class="why">
+            <span data-lang="da">I praksis: 140+ five-star er et seriøst aktiv, og det er begravet. Det er det stærkeste sociale bevis de har, og de bruger det ikke.</span>
+            <span data-lang="es">En la práctica: 140+ five-star es un activo serio, y está enterrado. Es la prueba social más fuerte que tienen, y no la usan.</span>
+          </p>
+          <p class="fix">
+            <span data-lang="da">Indlejr Google Reviews-widget (Trustindex, EmbedSocial eller custom) på hjemmeside + landing. Link direkte til profilen. Bed om 1 ny review per leveret projekt.</span>
+            <span data-lang="es">Embeber widget de Google Reviews (Trustindex, EmbedSocial, o custom) en home + landing. Linkear directo al perfil. Pedir 1 review nueva por proyecto entregado.</span>
+          </p>
         </div>
-        <span class="badge low">Oportunidad</span>
+        <span class="badge low"><span data-lang="da">Mulighed</span><span data-lang="es">Oportunidad</span></span>
       </div>
 
       <div class="find-row">
         <div class="find-num">13</div>
         <div class="find-body">
-          <h4>Big-name clients (Audi, BK, Walmart, Mega TV) sin prueba</h4>
-          <p>La landing declara "5,000+ companies trusted" y muestra logos de Audi, Burger King, Mega TV, Walmart. No hay case studies, ni piezas concretas hechas para ellos.</p>
-          <p class="why">En la práctica: para un comprador sofisticado, logo sin caso significa humo. Para uno menos exigente puede generar confianza, pero también abre riesgo legal si los logos se usan sin permiso explícito.</p>
-          <p class="fix">Convertir dos o tres trabajos reales con marcas grandes en case studies de una página: problema, solución, entregable, foto del producto instalado. Y asegurar permiso por escrito para usar cada logo.</p>
+          <h4><span data-lang="da">Big-name clients (Audi, BK, Walmart, Mega TV) uden bevis</span><span data-lang="es">Big-name clients (Audi, BK, Walmart, Mega TV) sin prueba</span></h4>
+          <p>
+            <span data-lang="da">Landingen erklærer "5,000+ companies trusted" og viser logoer fra Audi, Burger King, Mega TV, Walmart. Ingen case studies, ingen konkrete stykker lavet for dem.</span>
+            <span data-lang="es">La landing declara "5,000+ companies trusted" y muestra logos de Audi, Burger King, Mega TV, Walmart. No hay case studies, ni piezas concretas hechas para ellos.</span>
+          </p>
+          <p class="why">
+            <span data-lang="da">I praksis: for en sofistikeret køber betyder logo uden case røg. For en mindre krævende kan det skabe tillid, men åbner også for juridisk risiko hvis logoerne bruges uden eksplicit tilladelse.</span>
+            <span data-lang="es">En la práctica: para un comprador sofisticado, logo sin caso significa humo. Para uno menos exigente puede generar confianza, pero también abre riesgo legal si los logos se usan sin permiso explícito.</span>
+          </p>
+          <p class="fix">
+            <span data-lang="da">Konverter to eller tre rigtige arbejder med store brands til case studies på én side: problem, løsning, leverance, foto af det installerede produkt. Og sikr skriftlig tilladelse til at bruge hvert logo.</span>
+            <span data-lang="es">Convertir dos o tres trabajos reales con marcas grandes en case studies de una página: problema, solución, entregable, foto del producto instalado. Y asegurar permiso por escrito para usar cada logo.</span>
+          </p>
         </div>
-        <span class="badge med">Importante</span>
+        <span class="badge med"><span data-lang="da">Vigtigt</span><span data-lang="es">Importante</span></span>
       </div>
 
       <div class="find-row">
         <div class="find-num">14</div>
         <div class="find-body">
-          <h4>Stack WordPress fragmentado</h4>
-          <p>Las imágenes del home se sirven desde <code>wp.1nationup.com</code> (subdominio WordPress separado). Probable instalación WP + WooCommerce headless o custom frontend.</p>
-          <p class="why">En la práctica: dos sistemas (front custom + WP backend) implica double maintenance, dos cachés, dos puntos de fallo. Si el stack es por capricho técnico y no por necesidad, es deuda invisible.</p>
-          <p class="fix">Auditar si la separación aporta o resta. Considerar consolidar en una sola pieza (WP completo, o front custom con WP solo como CMS headless documentado).</p>
+          <h4><span data-lang="da">Fragmenteret WordPress-stack</span><span data-lang="es">Stack WordPress fragmentado</span></h4>
+          <p>
+            <span data-lang="da">Billederne på hjemmesiden serveres fra <code>wp.1nationup.com</code> (separat WordPress-subdomæne). Sandsynligvis WP + WooCommerce headless eller custom frontend-installation.</span>
+            <span data-lang="es">Las imágenes del home se sirven desde <code>wp.1nationup.com</code> (subdominio WordPress separado). Probable instalación WP + WooCommerce headless o custom frontend.</span>
+          </p>
+          <p class="why">
+            <span data-lang="da">I praksis: to systemer (custom front + WP backend) betyder dobbelt vedligeholdelse, to caches, to fejlpunkter. Hvis stacken er teknisk lune og ikke nødvendighed, er det usynlig gæld.</span>
+            <span data-lang="es">En la práctica: dos sistemas (front custom + WP backend) implica double maintenance, dos cachés, dos puntos de fallo. Si el stack es por capricho técnico y no por necesidad, es deuda invisible.</span>
+          </p>
+          <p class="fix">
+            <span data-lang="da">Audit om adskillelsen bidrager eller trækker fra. Overvej at konsolidere i ét stykke (komplet WP, eller custom front med WP kun som dokumenteret headless CMS).</span>
+            <span data-lang="es">Auditar si la separación aporta o resta. Considerar consolidar en una sola pieza (WP completo, o front custom con WP solo como CMS headless documentado).</span>
+          </p>
         </div>
-        <span class="badge low">Oportunidad</span>
+        <span class="badge low"><span data-lang="da">Mulighed</span><span data-lang="es">Oportunidad</span></span>
       </div>
 
     </div>
@@ -501,40 +699,61 @@
 <!-- ===== CUSTOMER JOURNEY ===== -->
 <section id="journey">
   <div class="wrap">
-    <div class="kicker">04 · Customer journey completo</div>
-    <h2>Dónde se pierden los clientes.</h2>
-    <p class="lead">La parte de pre-venta funciona razonablemente. Donde sangra el negocio es en <em>post-venta</em>. No hay sistema visible de retención, upsell ni programa de referidos. Una agencia que solo capta y entrega deja sobre la mesa entre el 30 y el 50% del revenue posible.</p>
+    <div class="kicker"><span data-lang="da">04 · Komplet kunderejse</span><span data-lang="es">04 · Customer journey completo</span></div>
+    <h2><span data-lang="da">Hvor kunderne mistes.</span><span data-lang="es">Dónde se pierden los clientes.</span></h2>
+    <p class="lead">
+      <span data-lang="da">Pre-salgs-delen fungerer rimeligt. Hvor forretningen bløder er på <em>post-salg</em>. Intet synligt system for retention, upsell eller referral-program. Et bureau der kun fanger og leverer efterlader mellem 30 og 50% af den mulige omsætning på bordet.</span>
+      <span data-lang="es">La parte de pre-venta funciona razonablemente. Donde sangra el negocio es en <em>post-venta</em>. No hay sistema visible de retención, upsell ni programa de referidos. Una agencia que solo capta y entrega deja sobre la mesa entre el 30 y el 50% del revenue posible.</span>
+    </p>
 
     <div class="journey">
       <div class="stage">
-        <div class="step">01 · Descubre</div>
+        <div class="step"><span data-lang="da">01 · Opdager</span><span data-lang="es">01 · Descubre</span></div>
         <h4>IG · TikTok · Google</h4>
-        <p>40K en IG, contenido constante. Google Reviews fuertes. Boca a boca local.</p>
+        <p>
+          <span data-lang="da">40K på IG, konstant indhold. Stærke Google Reviews. Lokal word of mouth.</span>
+          <span data-lang="es">40K en IG, contenido constante. Google Reviews fuertes. Boca a boca local.</span>
+        </p>
       </div>
       <div class="stage broken">
-        <div class="step">02 · Aterriza</div>
-        <h4>Sitio o landing</h4>
-        <p>Cuatro voces distintas. www roto desde algunas redes. 14 categorías sin jerarquía.</p>
+        <div class="step"><span data-lang="da">02 · Lander</span><span data-lang="es">02 · Aterriza</span></div>
+        <h4><span data-lang="da">Site eller landing</span><span data-lang="es">Sitio o landing</span></h4>
+        <p>
+          <span data-lang="da">Fire forskellige stemmer. www brudt fra nogle netværk. 14 kategorier uden hierarki.</span>
+          <span data-lang="es">Cuatro voces distintas. www roto desde algunas redes. 14 categorías sin jerarquía.</span>
+        </p>
       </div>
       <div class="stage broken">
-        <div class="step">03 · Considera</div>
-        <h4>Compara opciones</h4>
-        <p>Cero precios visibles. No hay tiers. No hay case studies con números. Comparar es difícil.</p>
+        <div class="step"><span data-lang="da">03 · Overvejer</span><span data-lang="es">03 · Considera</span></div>
+        <h4><span data-lang="da">Sammenligner muligheder</span><span data-lang="es">Compara opciones</span></h4>
+        <p>
+          <span data-lang="da">Ingen synlige priser. Ingen tiers. Ingen case studies med tal. Svært at sammenligne.</span>
+          <span data-lang="es">Cero precios visibles. No hay tiers. No hay case studies con números. Comparar es difícil.</span>
+        </p>
       </div>
       <div class="stage broken">
-        <div class="step">04 · Contacta</div>
-        <h4>Llamada o WhatsApp</h4>
-        <p>Solo CTAs telefónicos en landing. Sin form, sin captura de email, sin attribution real.</p>
+        <div class="step"><span data-lang="da">04 · Kontakter</span><span data-lang="es">04 · Contacta</span></div>
+        <h4><span data-lang="da">Opkald eller WhatsApp</span><span data-lang="es">Llamada o WhatsApp</span></h4>
+        <p>
+          <span data-lang="da">Kun telefon-CTA'er på landingen. Ingen form, ingen email-capture, ingen reel attribution.</span>
+          <span data-lang="es">Solo CTAs telefónicos en landing. Sin form, sin captura de email, sin attribution real.</span>
+        </p>
       </div>
       <div class="stage missing">
-        <div class="step">05 · Compra & entrega</div>
-        <h4>Producción (no visible)</h4>
-        <p>El proceso interno presumiblemente funciona (140+ 5-star). No se documenta públicamente.</p>
+        <div class="step"><span data-lang="da">05 · Køb &amp; levering</span><span data-lang="es">05 · Compra &amp; entrega</span></div>
+        <h4><span data-lang="da">Produktion (ikke synlig)</span><span data-lang="es">Producción (no visible)</span></h4>
+        <p>
+          <span data-lang="da">Den interne proces fungerer formentlig (140+ 5-star). Dokumenteres ikke offentligt.</span>
+          <span data-lang="es">El proceso interno presumiblemente funciona (140+ 5-star). No se documenta públicamente.</span>
+        </p>
       </div>
       <div class="stage missing">
-        <div class="step">06 · Post-venta</div>
-        <h4>Retención · upsell · referido</h4>
-        <p>Sin newsletter visible. Sin onboarding al cliente. Sin programa de referidos. Sin lifecycle.</p>
+        <div class="step"><span data-lang="da">06 · Post-salg</span><span data-lang="es">06 · Post-venta</span></div>
+        <h4><span data-lang="da">Retention · upsell · henvisning</span><span data-lang="es">Retención · upsell · referido</span></h4>
+        <p>
+          <span data-lang="da">Intet synligt newsletter. Ingen kunde-onboarding. Intet referral-program. Ingen lifecycle.</span>
+          <span data-lang="es">Sin newsletter visible. Sin onboarding al cliente. Sin programa de referidos. Sin lifecycle.</span>
+        </p>
       </div>
     </div>
   </div>
@@ -543,63 +762,99 @@
 <!-- ===== PILLAR SCORES ===== -->
 <section id="pilares">
   <div class="wrap">
-    <div class="kicker">05 · Puntuación por pilar</div>
-    <h2>Dónde están sólidos y dónde flojos.</h2>
-    <p class="lead">Cada pilar es un área del negocio que un comprador o auditor evaluaría por separado. La media ponderada es el 53 del dial superior.</p>
+    <div class="kicker"><span data-lang="da">05 · Score per pillar</span><span data-lang="es">05 · Puntuación por pilar</span></div>
+    <h2><span data-lang="da">Hvor de er stærke og hvor svage.</span><span data-lang="es">Dónde están sólidos y dónde flojos.</span></h2>
+    <p class="lead">
+      <span data-lang="da">Hver pillar er et område af forretningen som en køber eller auditor ville vurdere separat. Det vægtede gennemsnit er 53 på den øvre måler.</span>
+      <span data-lang="es">Cada pilar es un área del negocio que un comprador o auditor evaluaría por separado. La media ponderada es el 53 del dial superior.</span>
+    </p>
 
     <div class="pillars">
       <div class="pillar">
-        <div class="pillar-name">Reputación<small>BBB A+, 0 quejas, 140+ five-star, 7 años</small></div>
+        <div class="pillar-name">
+          <span data-lang="da">Omdømme<small>BBB A+, 0 klager, 140+ five-star, 7 år</small></span>
+          <span data-lang="es">Reputación<small>BBB A+, 0 quejas, 140+ five-star, 7 años</small></span>
+        </div>
         <div class="pillar-bar"><i class="good" style="width:78%"></i></div>
         <div class="pillar-score">78</div>
       </div>
       <div class="pillar">
-        <div class="pillar-name">Redes sociales<small>IG 40K · TikTok activo · LinkedIn 1.2K · FB · YouTube</small></div>
+        <div class="pillar-name">
+          <span data-lang="da">Sociale medier<small>IG 40K · TikTok aktiv · LinkedIn 1.2K · FB · YouTube</small></span>
+          <span data-lang="es">Redes sociales<small>IG 40K · TikTok activo · LinkedIn 1.2K · FB · YouTube</small></span>
+        </div>
         <div class="pillar-bar"><i class="good" style="width:75%"></i></div>
         <div class="pillar-score">75</div>
       </div>
       <div class="pillar">
-        <div class="pillar-name">Reseñas / social proof<small>Tiene volumen pero no lo expone bien</small></div>
+        <div class="pillar-name">
+          <span data-lang="da">Anmeldelser / social proof<small>Har volumen men eksponerer det dårligt</small></span>
+          <span data-lang="es">Reseñas / social proof<small>Tiene volumen pero no lo expone bien</small></span>
+        </div>
         <div class="pillar-bar"><i class="warn" style="width:65%"></i></div>
         <div class="pillar-score">65</div>
       </div>
       <div class="pillar">
-        <div class="pillar-name">SEO básico<small>Tagline brandy, no keyword. Múltiples H1.</small></div>
+        <div class="pillar-name">
+          <span data-lang="da">SEO basis<small>Brand-tagline, intet keyword. Flere H1.</small></span>
+          <span data-lang="es">SEO básico<small>Tagline brandy, no keyword. Múltiples H1.</small></span>
+        </div>
         <div class="pillar-bar"><i class="warn" style="width:60%"></i></div>
         <div class="pillar-score">60</div>
       </div>
       <div class="pillar">
-        <div class="pillar-name">Contenido<small>Activo, falta sistematizar Partner Stores y case studies</small></div>
+        <div class="pillar-name">
+          <span data-lang="da">Indhold<small>Aktivt, mangler at systematisere Partner Stores og case studies</small></span>
+          <span data-lang="es">Contenido<small>Activo, falta sistematizar Partner Stores y case studies</small></span>
+        </div>
         <div class="pillar-bar"><i class="warn" style="width:60%"></i></div>
         <div class="pillar-score">60</div>
       </div>
       <div class="pillar">
-        <div class="pillar-name">Web & UX<small>WP fragmentado, IA confusa, promo expirada</small></div>
+        <div class="pillar-name">
+          <span data-lang="da">Web &amp; UX<small>Fragmenteret WP, forvirrende IA, udløbet kampagne</small></span>
+          <span data-lang="es">Web &amp; UX<small>WP fragmentado, IA confusa, promo expirada</small></span>
+        </div>
         <div class="pillar-bar"><i class="warn" style="width:55%"></i></div>
         <div class="pillar-score">55</div>
       </div>
       <div class="pillar">
-        <div class="pillar-name">Anuncios (Meta)<small>No verificable hoy · landing dedicada sugiere paid traffic</small></div>
+        <div class="pillar-name">
+          <span data-lang="da">Annoncer (Meta)<small>Ikke verificerbar i dag · dedikeret landing antyder paid traffic</small></span>
+          <span data-lang="es">Anuncios (Meta)<small>No verificable hoy · landing dedicada sugiere paid traffic</small></span>
+        </div>
         <div class="pillar-bar"><i class="warn" style="width:50%"></i></div>
         <div class="pillar-score">50</div>
       </div>
       <div class="pillar">
-        <div class="pillar-name">Customer journey<small>Pre-venta OK · post-venta inexistente</small></div>
+        <div class="pillar-name">
+          <span data-lang="da">Kunderejse<small>Pre-salg OK · post-salg ikke-eksisterende</small></span>
+          <span data-lang="es">Customer journey<small>Pre-venta OK · post-venta inexistente</small></span>
+        </div>
         <div class="pillar-bar"><i class="warn" style="width:45%"></i></div>
         <div class="pillar-score">45</div>
       </div>
       <div class="pillar">
-        <div class="pillar-name">Copy & comunicación<small>Cuatro voces, bug copy-paste, mezcla EN/ES</small></div>
+        <div class="pillar-name">
+          <span data-lang="da">Copy &amp; kommunikation<small>Fire stemmer, copy-paste-bug, blanding EN/ES</small></span>
+          <span data-lang="es">Copy &amp; comunicación<small>Cuatro voces, bug copy-paste, mezcla EN/ES</small></span>
+        </div>
         <div class="pillar-bar"><i class="bad" style="width:40%"></i></div>
         <div class="pillar-score">40</div>
       </div>
       <div class="pillar">
-        <div class="pillar-name">Oferta & precios<small>Sin precios, sin tiers, sin plazos</small></div>
+        <div class="pillar-name">
+          <span data-lang="da">Tilbud &amp; priser<small>Ingen priser, ingen tiers, ingen deadlines</small></span>
+          <span data-lang="es">Oferta &amp; precios<small>Sin precios, sin tiers, sin plazos</small></span>
+        </div>
         <div class="pillar-bar"><i class="bad" style="width:35%"></i></div>
         <div class="pillar-score">35</div>
       </div>
       <div class="pillar">
-        <div class="pillar-name">Coherencia de marca<small>El pilar más crítico. 4 propuestas, 2 teléfonos, 2 dominios de email</small></div>
+        <div class="pillar-name">
+          <span data-lang="da">Brand-konsistens<small>Den mest kritiske pillar. 4 forslag, 2 telefoner, 2 email-domæner</small></span>
+          <span data-lang="es">Coherencia de marca<small>El pilar más crítico. 4 propuestas, 2 teléfonos, 2 dominios de email</small></span>
+        </div>
         <div class="pillar-bar"><i class="bad" style="width:30%"></i></div>
         <div class="pillar-score">30</div>
       </div>
@@ -610,34 +865,151 @@
 <!-- ===== ACTION PLAN ===== -->
 <section id="plan">
   <div class="wrap">
-    <div class="kicker">06 · Plan de acción priorizado</div>
-    <h2>Qué hacer y en qué orden.</h2>
-    <p class="lead">Ordenado por <em>impacto sobre esfuerzo</em>. Arriba lo que mueve más conversión con menos trabajo. La lógica detrás es la de siempre: la coherencia es gratis, la conversión es barata y el crecimiento se invierte cuando lo anterior ya está cerrado.</p>
+    <div class="kicker"><span data-lang="da">06 · Prioriteret handlingsplan</span><span data-lang="es">06 · Plan de acción priorizado</span></div>
+    <h2><span data-lang="da">Hvad man skal gøre og i hvilken rækkefølge.</span><span data-lang="es">Qué hacer y en qué orden.</span></h2>
+    <p class="lead">
+      <span data-lang="da">Sorteret efter <em>impact over effort</em>. Øverst det der flytter mest konvertering med mindst arbejde. Logikken bagved er den vanlige: konsistens er gratis, konvertering er billig, og vækst investerer man når det foregående er lukket.</span>
+      <span data-lang="es">Ordenado por <em>impacto sobre esfuerzo</em>. Arriba lo que mueve más conversión con menos trabajo. La lógica detrás es la de siempre: la coherencia es gratis, la conversión es barata y el crecimiento se invierte cuando lo anterior ya está cerrado.</span>
+    </p>
 
     <div class="actions">
       <table>
         <thead>
-          <tr><th>#</th><th>Acción</th><th>Área</th><th>Impacto</th><th>Esfuerzo</th></tr>
+          <tr>
+            <th>#</th>
+            <th><span data-lang="da">Handling</span><span data-lang="es">Acción</span></th>
+            <th><span data-lang="da">Område</span><span data-lang="es">Área</span></th>
+            <th>Impact</th>
+            <th>Effort</th>
+          </tr>
         </thead>
         <tbody>
-          <tr><td class="prio high">A1</td><td>Quitar el banner "Spring Specials March-May" expirado</td><td>Web</td><td>Medio</td><td>10 min</td></tr>
-          <tr><td class="prio high">A2</td><td>Reescribir la descripción de "Storefronts" (hoy es copia de Logo Design)</td><td>Web</td><td>Medio</td><td>15 min</td></tr>
-          <tr><td class="prio high">A3</td><td>Renombrar "Marketing" → "Promotional Products" (o "Brand Merchandise")</td><td>Web</td><td>Alto</td><td>30 min</td></tr>
-          <tr><td class="prio high">A4</td><td>Unificar teléfono master vs tracking, documentar la regla interna</td><td>Marca</td><td>Alto</td><td>1 h</td></tr>
-          <tr><td class="prio high">A5</td><td>Migrar email comercial a <code>@1nationup.com</code> + redirección + SPF/DKIM</td><td>Marca</td><td>Alto</td><td>2 h</td></tr>
-          <tr><td class="prio high">A6</td><td>Diagnosticar y corregir DNS roto en <code>www.1nationup.com</code></td><td>Técnica</td><td>Crítico</td><td>2 h</td></tr>
-          <tr><td class="prio high">A7</td><td>Una sola propuesta de valor en home + LinkedIn + landing</td><td>Marca</td><td>Crítico</td><td>1 día</td></tr>
-          <tr><td class="prio med">B1</td><td>Añadir "From $X · Typical $X a $Y · ~Y days" a cada servicio</td><td>Oferta</td><td>Alto</td><td>4 h</td></tr>
-          <tr><td class="prio med">B2</td><td>Colapsar 14 categorías a 3 verticales (Brand · Sign & Space · Print & Merch)</td><td>UX</td><td>Alto</td><td>1 día</td></tr>
-          <tr><td class="prio med">B3</td><td>Formulario de captura en landing (no solo teléfono)</td><td>Conversión</td><td>Alto</td><td>3 h</td></tr>
-          <tr><td class="prio med">B4</td><td>Embeber Google Reviews widget en home + landing</td><td>Reputación</td><td>Alto</td><td>2 h</td></tr>
-          <tr><td class="prio med">B5</td><td>3 case studies con marcas reales (Audi/BK/Walmart si hay permiso, o partners)</td><td>Contenido</td><td>Alto</td><td>1 semana</td></tr>
-          <tr><td class="prio med">B6</td><td>Calendario público de promociones para terminar con banners caducados</td><td>Operativa</td><td>Medio</td><td>1 h</td></tr>
-          <tr><td class="prio low">C1</td><td>Surfacear "Partner Stores" en home para posicionarse como back-end de creadores</td><td>Estrategia</td><td>Alto</td><td>1 semana</td></tr>
-          <tr><td class="prio low">C2</td><td>Newsletter mensual + onboarding email post-compra</td><td>Retención</td><td>Alto</td><td>2 semanas</td></tr>
-          <tr><td class="prio low">C3</td><td>Programa de referidos con tracking simple (Refersion / Rewardful)</td><td>Crecimiento</td><td>Alto</td><td>2 semanas</td></tr>
-          <tr><td class="prio low">C4</td><td>Decidir EN solo o EN+ES bilingüe formal, quitar la mezcla accidental</td><td>Marca</td><td>Medio</td><td>1 semana</td></tr>
-          <tr><td class="prio low">C5</td><td>Auditar stack WP fragmentado (wp.subdominio), consolidar o documentar</td><td>Técnica</td><td>Medio</td><td>1 semana</td></tr>
+          <tr>
+            <td class="prio high">A1</td>
+            <td><span data-lang="da">Fjern det udløbne "Spring Specials March-May"-banner</span><span data-lang="es">Quitar el banner "Spring Specials March-May" expirado</span></td>
+            <td>Web</td>
+            <td><span data-lang="da">Medium</span><span data-lang="es">Medio</span></td>
+            <td>10 min</td>
+          </tr>
+          <tr>
+            <td class="prio high">A2</td>
+            <td><span data-lang="da">Omskriv "Storefronts"-beskrivelsen (i dag kopi af Logo Design)</span><span data-lang="es">Reescribir la descripción de "Storefronts" (hoy es copia de Logo Design)</span></td>
+            <td>Web</td>
+            <td><span data-lang="da">Medium</span><span data-lang="es">Medio</span></td>
+            <td>15 min</td>
+          </tr>
+          <tr>
+            <td class="prio high">A3</td>
+            <td><span data-lang="da">Omdøb "Marketing" → "Promotional Products" (eller "Brand Merchandise")</span><span data-lang="es">Renombrar "Marketing" → "Promotional Products" (o "Brand Merchandise")</span></td>
+            <td>Web</td>
+            <td><span data-lang="da">Høj</span><span data-lang="es">Alto</span></td>
+            <td>30 min</td>
+          </tr>
+          <tr>
+            <td class="prio high">A4</td>
+            <td><span data-lang="da">Foren master- vs tracking-telefon, dokumenter den interne regel</span><span data-lang="es">Unificar teléfono master vs tracking, documentar la regla interna</span></td>
+            <td><span data-lang="da">Brand</span><span data-lang="es">Marca</span></td>
+            <td><span data-lang="da">Høj</span><span data-lang="es">Alto</span></td>
+            <td>1 h</td>
+          </tr>
+          <tr>
+            <td class="prio high">A5</td>
+            <td><span data-lang="da">Migrer kommerciel email til <code>@1nationup.com</code> + redirect + SPF/DKIM</span><span data-lang="es">Migrar email comercial a <code>@1nationup.com</code> + redirección + SPF/DKIM</span></td>
+            <td><span data-lang="da">Brand</span><span data-lang="es">Marca</span></td>
+            <td><span data-lang="da">Høj</span><span data-lang="es">Alto</span></td>
+            <td>2 h</td>
+          </tr>
+          <tr>
+            <td class="prio high">A6</td>
+            <td><span data-lang="da">Diagnosticer og fix brudt DNS på <code>www.1nationup.com</code></span><span data-lang="es">Diagnosticar y corregir DNS roto en <code>www.1nationup.com</code></span></td>
+            <td><span data-lang="da">Teknik</span><span data-lang="es">Técnica</span></td>
+            <td><span data-lang="da">Kritisk</span><span data-lang="es">Crítico</span></td>
+            <td>2 h</td>
+          </tr>
+          <tr>
+            <td class="prio high">A7</td>
+            <td><span data-lang="da">Ét enkelt værdiforslag på hjemmeside + LinkedIn + landing</span><span data-lang="es">Una sola propuesta de valor en home + LinkedIn + landing</span></td>
+            <td><span data-lang="da">Brand</span><span data-lang="es">Marca</span></td>
+            <td><span data-lang="da">Kritisk</span><span data-lang="es">Crítico</span></td>
+            <td><span data-lang="da">1 dag</span><span data-lang="es">1 día</span></td>
+          </tr>
+          <tr>
+            <td class="prio med">B1</td>
+            <td><span data-lang="da">Tilføj "From $X · Typical $X til $Y · ~Y days" til hver service</span><span data-lang="es">Añadir "From $X · Typical $X a $Y · ~Y days" a cada servicio</span></td>
+            <td><span data-lang="da">Tilbud</span><span data-lang="es">Oferta</span></td>
+            <td><span data-lang="da">Høj</span><span data-lang="es">Alto</span></td>
+            <td>4 h</td>
+          </tr>
+          <tr>
+            <td class="prio med">B2</td>
+            <td><span data-lang="da">Komprimer 14 kategorier til 3 verticaler (Brand · Sign &amp; Space · Print &amp; Merch)</span><span data-lang="es">Colapsar 14 categorías a 3 verticales (Brand · Sign &amp; Space · Print &amp; Merch)</span></td>
+            <td>UX</td>
+            <td><span data-lang="da">Høj</span><span data-lang="es">Alto</span></td>
+            <td><span data-lang="da">1 dag</span><span data-lang="es">1 día</span></td>
+          </tr>
+          <tr>
+            <td class="prio med">B3</td>
+            <td><span data-lang="da">Lead-form på landing (ikke kun telefon)</span><span data-lang="es">Formulario de captura en landing (no solo teléfono)</span></td>
+            <td><span data-lang="da">Konvertering</span><span data-lang="es">Conversión</span></td>
+            <td><span data-lang="da">Høj</span><span data-lang="es">Alto</span></td>
+            <td>3 h</td>
+          </tr>
+          <tr>
+            <td class="prio med">B4</td>
+            <td><span data-lang="da">Indlejr Google Reviews-widget på hjemmeside + landing</span><span data-lang="es">Embeber Google Reviews widget en home + landing</span></td>
+            <td><span data-lang="da">Omdømme</span><span data-lang="es">Reputación</span></td>
+            <td><span data-lang="da">Høj</span><span data-lang="es">Alto</span></td>
+            <td>2 h</td>
+          </tr>
+          <tr>
+            <td class="prio med">B5</td>
+            <td><span data-lang="da">3 case studies med ægte brands (Audi/BK/Walmart hvis tilladelse, eller partners)</span><span data-lang="es">3 case studies con marcas reales (Audi/BK/Walmart si hay permiso, o partners)</span></td>
+            <td><span data-lang="da">Indhold</span><span data-lang="es">Contenido</span></td>
+            <td><span data-lang="da">Høj</span><span data-lang="es">Alto</span></td>
+            <td><span data-lang="da">1 uge</span><span data-lang="es">1 semana</span></td>
+          </tr>
+          <tr>
+            <td class="prio med">B6</td>
+            <td><span data-lang="da">Offentlig kampagnekalender for at slutte med udløbne bannere</span><span data-lang="es">Calendario público de promociones para terminar con banners caducados</span></td>
+            <td><span data-lang="da">Drift</span><span data-lang="es">Operativa</span></td>
+            <td><span data-lang="da">Medium</span><span data-lang="es">Medio</span></td>
+            <td>1 h</td>
+          </tr>
+          <tr>
+            <td class="prio low">C1</td>
+            <td><span data-lang="da">Træk "Partner Stores" frem på hjemmesiden for at positionere som creators' back-end</span><span data-lang="es">Surfacear "Partner Stores" en home para posicionarse como back-end de creadores</span></td>
+            <td><span data-lang="da">Strategi</span><span data-lang="es">Estrategia</span></td>
+            <td><span data-lang="da">Høj</span><span data-lang="es">Alto</span></td>
+            <td><span data-lang="da">1 uge</span><span data-lang="es">1 semana</span></td>
+          </tr>
+          <tr>
+            <td class="prio low">C2</td>
+            <td><span data-lang="da">Månedligt newsletter + onboarding-email efter køb</span><span data-lang="es">Newsletter mensual + onboarding email post-compra</span></td>
+            <td>Retention</td>
+            <td><span data-lang="da">Høj</span><span data-lang="es">Alto</span></td>
+            <td><span data-lang="da">2 uger</span><span data-lang="es">2 semanas</span></td>
+          </tr>
+          <tr>
+            <td class="prio low">C3</td>
+            <td><span data-lang="da">Henvisningsprogram med simpel tracking (Refersion / Rewardful)</span><span data-lang="es">Programa de referidos con tracking simple (Refersion / Rewardful)</span></td>
+            <td><span data-lang="da">Vækst</span><span data-lang="es">Crecimiento</span></td>
+            <td><span data-lang="da">Høj</span><span data-lang="es">Alto</span></td>
+            <td><span data-lang="da">2 uger</span><span data-lang="es">2 semanas</span></td>
+          </tr>
+          <tr>
+            <td class="prio low">C4</td>
+            <td><span data-lang="da">Beslut kun EN eller formel EN+ES bilingual, fjern den tilfældige blanding</span><span data-lang="es">Decidir EN solo o EN+ES bilingüe formal, quitar la mezcla accidental</span></td>
+            <td><span data-lang="da">Brand</span><span data-lang="es">Marca</span></td>
+            <td><span data-lang="da">Medium</span><span data-lang="es">Medio</span></td>
+            <td><span data-lang="da">1 uge</span><span data-lang="es">1 semana</span></td>
+          </tr>
+          <tr>
+            <td class="prio low">C5</td>
+            <td><span data-lang="da">Audit fragmenteret WP-stack (wp.subdomæne), konsolider eller dokumenter</span><span data-lang="es">Auditar stack WP fragmentado (wp.subdominio), consolidar o documentar</span></td>
+            <td><span data-lang="da">Teknik</span><span data-lang="es">Técnica</span></td>
+            <td><span data-lang="da">Medium</span><span data-lang="es">Medio</span></td>
+            <td><span data-lang="da">1 uge</span><span data-lang="es">1 semana</span></td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -647,26 +1019,38 @@
 <!-- ===== QUICK WINS ===== -->
 <section>
   <div class="wrap">
-    <div class="kicker">07 · Quick wins esta semana</div>
-    <h2>Tres cosas que se pueden cerrar antes del viernes.</h2>
+    <div class="kicker"><span data-lang="da">07 · Quick wins denne uge</span><span data-lang="es">07 · Quick wins esta semana</span></div>
+    <h2><span data-lang="da">Tre ting der kan lukkes inden fredag.</span><span data-lang="es">Tres cosas que se pueden cerrar antes del viernes.</span></h2>
 
     <div class="qw-grid">
       <div class="qw">
         <div class="num">QW · 01</div>
-        <h4>Quitar el banner caducado y arreglar el bug de copy-paste en Storefronts.</h4>
-        <p><strong>Resultado:</strong> La página principal y /services/ dejan de comunicar descuido. Tarda menos de 30 minutos juntas.</p>
+        <h4><span data-lang="da">Fjern det udløbne banner og fix copy-paste-buggen på Storefronts.</span><span data-lang="es">Quitar el banner caducado y arreglar el bug de copy-paste en Storefronts.</span></h4>
+        <p>
+          <strong><span data-lang="da">Resultat:</span><span data-lang="es">Resultado:</span></strong>
+          <span data-lang="da">Hjemmesiden og /services/ holder op med at kommunikere skødesløshed. Tager mindre end 30 minutter tilsammen.</span>
+          <span data-lang="es">La página principal y /services/ dejan de comunicar descuido. Tarda menos de 30 minutos juntas.</span>
+        </p>
         <div class="when">⏱ &lt; 30 min</div>
       </div>
       <div class="qw">
         <div class="num">QW · 02</div>
-        <h4>Migrar el email a <code>sales@1nationup.com</code> con redirect del antiguo.</h4>
-        <p><strong>Resultado:</strong> Las respuestas a propuestas dejan de ir a spam folders. La marca recupera coherencia en el touch más usado por clientes serios.</p>
+        <h4><span data-lang="da">Migrer emailen til <code>sales@1nationup.com</code> med redirect fra den gamle.</span><span data-lang="es">Migrar el email a <code>sales@1nationup.com</code> con redirect del antiguo.</span></h4>
+        <p>
+          <strong><span data-lang="da">Resultat:</span><span data-lang="es">Resultado:</span></strong>
+          <span data-lang="da">Svar på forslag holder op med at ryge i spam folders. Brandet genvinder konsistens i den touch seriøse kunder bruger mest.</span>
+          <span data-lang="es">Las respuestas a propuestas dejan de ir a spam folders. La marca recupera coherencia en el touch más usado por clientes serios.</span>
+        </p>
         <div class="when">⏱ ~2 h</div>
       </div>
       <div class="qw">
         <div class="num">QW · 03</div>
-        <h4>Decidir teléfono master + revisar DNS de <code>www.1nationup.com</code>.</h4>
-        <p><strong>Resultado:</strong> Cero confusión sobre a dónde llamar. Y se cierra la fuga invisible de visitantes que hoy ven el sitio caído sin que aparezca en Analytics.</p>
+        <h4><span data-lang="da">Beslut master-telefon + revider DNS for <code>www.1nationup.com</code>.</span><span data-lang="es">Decidir teléfono master + revisar DNS de <code>www.1nationup.com</code>.</span></h4>
+        <p>
+          <strong><span data-lang="da">Resultat:</span><span data-lang="es">Resultado:</span></strong>
+          <span data-lang="da">Nul forvirring om hvor man skal ringe. Og den usynlige lækage af besøgende der i dag ser siden nede uden at det viser sig i Analytics, lukkes.</span>
+          <span data-lang="es">Cero confusión sobre a dónde llamar. Y se cierra la fuga invisible de visitantes que hoy ven el sitio caído sin que aparezca en Analytics.</span>
+        </p>
         <div class="when">⏱ ~3 h</div>
       </div>
     </div>
@@ -675,10 +1059,46 @@
 
 <footer>
   <div class="wrap">
-    <div class="mark">Auditoría independiente · Di Barret · 1 jun 2026</div>
-    <p style="color:var(--ink-faint);font-size:12px;max-width:60ch;margin:0 auto">Datos extraídos de fuentes públicas observables: <code>1nationup.com</code>, <code>landing.1nationup.com</code>, BBB, LinkedIn, Instagram, TikTok, Facebook. Lo no verificable está marcado como tal. Ningún número fue inventado.</p>
+    <div class="mark"><span data-lang="da">Uafhængig audit · Di Barret · 1. juni 2026</span><span data-lang="es">Auditoría independiente · Di Barret · 1 jun 2026</span></div>
+    <p style="color:var(--ink-faint);font-size:12px;max-width:60ch;margin:0 auto">
+      <span data-lang="da">Data udtrukket fra observerbare offentlige kilder: <code>1nationup.com</code>, <code>landing.1nationup.com</code>, BBB, LinkedIn, Instagram, TikTok, Facebook. Det ikke-verificerbare er markeret som sådant. Intet tal blev opfundet.</span>
+      <span data-lang="es">Datos extraídos de fuentes públicas observables: <code>1nationup.com</code>, <code>landing.1nationup.com</code>, BBB, LinkedIn, Instagram, TikTok, Facebook. Lo no verificable está marcado como tal. Ningún número fue inventado.</span>
+    </p>
   </div>
 </footer>
+
+<script>
+(function () {
+  "use strict";
+  var KEY = "dibarret_lang";
+  var supported = ["da", "es"];
+  var body = document.body;
+  var buttons = document.querySelectorAll("[data-set-lang]");
+  function getInitial(){
+    try {
+      var saved = localStorage.getItem(KEY);
+      if (supported.indexOf(saved) !== -1) return saved;
+    } catch(e){}
+    var browser = (navigator.language || "da").slice(0, 2).toLowerCase();
+    return supported.indexOf(browser) !== -1 ? browser : "da";
+  }
+  function setLang(lang){
+    if (supported.indexOf(lang) === -1) return;
+    body.dataset.activeLang = lang;
+    document.documentElement.lang = lang === "es" ? "es" : "da";
+    for (var i=0; i<buttons.length; i++){
+      buttons[i].setAttribute("aria-pressed", buttons[i].dataset.setLang === lang ? "true" : "false");
+    }
+    try { localStorage.setItem(KEY, lang); } catch(e){}
+  }
+  for (var i=0; i<buttons.length; i++){
+    buttons[i].addEventListener("click", (function(btn){
+      return function(){ setLang(btn.dataset.setLang); };
+    })(buttons[i]));
+  }
+  setLang(getInitial());
+})();
+</script>
 
 </body>
 </html>

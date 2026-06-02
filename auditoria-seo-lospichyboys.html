@@ -255,8 +255,45 @@ footer .mark{font-family:ui-monospace,monospace;font-size:10px;letter-spacing:.1
 //# sourceMappingURL=chart.umd.js.map
 
 </script>
+<style>
+.lang-banner{position:fixed;top:0;left:0;right:0;z-index:200;background:var(--ink);color:var(--bg);font-family:Inter,system-ui,sans-serif;font-size:12.5px;display:flex;justify-content:center;align-items:center;gap:24px;padding:9px 24px;letter-spacing:.02em;transition:transform .25s}
+.lang-banner.hide{transform:translateY(-100%)}
+.lang-banner span{opacity:.9}
+.lang-banner b{color:var(--bg);font-weight:600;margin-right:4px}
+.lang-banner .sep{opacity:.35;margin:0 6px}
+.lang-banner button{background:transparent;border:1px solid currentColor;color:inherit;font-family:ui-monospace,monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:5px 11px;border-radius:99px;cursor:pointer;opacity:.7;transition:opacity .15s}
+.lang-banner button:hover{opacity:1}
+[data-theme="dark"] .lang-banner{background:var(--ink);color:var(--bg)}
+body.with-banner{padding-top:38px}
+@media print{.lang-banner{display:none}body.with-banner{padding-top:0}}
+@media (max-width:780px){.lang-banner{font-size:11.5px;padding:8px 14px;gap:12px}.lang-banner .sep{display:none}}
+</style>
 </head>
-<body>
+<body class="with-banner">
+<div class="lang-banner" id="langBanner" role="note" aria-label="Sprog · Idioma">
+  <span><b>DA:</b> Dette dokument er på spansk (klientens sprog).</span>
+  <span class="sep">·</span>
+  <span><b>ES:</b> Documento en español (idioma del cliente).</span>
+  <button type="button" id="langBannerClose" aria-label="Skjul / Cerrar">Skjul ✕</button>
+</div>
+<script>
+(function(){
+  try {
+    var KEY = "pichy_seo_banner_dismissed";
+    var b = document.getElementById("langBanner");
+    var btn = document.getElementById("langBannerClose");
+    if (localStorage.getItem(KEY) === "1") {
+      b.classList.add("hide");
+      document.body.classList.remove("with-banner");
+    }
+    btn.addEventListener("click", function(){
+      b.classList.add("hide");
+      document.body.classList.remove("with-banner");
+      try { localStorage.setItem(KEY, "1"); } catch(e){}
+    });
+  } catch(e){}
+})();
+</script>
 
 <div class="scroll-prog"><i id="scroll-i"></i></div>
 
