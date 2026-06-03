@@ -47,6 +47,7 @@ Current live (1 jun 2026):
 - `/audit-lospichyboys` (Cuban-American comedy podcast in Miami, business audit with revenue model 60/25/15 + customer journey dual sponsor/fan + plan A/B/C, ES-only, linked as CASE 05).
 - `/auditoria-seo-lospichyboys` (Companion SEO audit for same client. Premium interactive HTML with Chart.js embedded, dark/light toggle, sticky sidebar, severity filter, sortable comparison table, kanban action plan, print-to-PDF. 290 KB. 45 findings, 40/100 score, 10 keyword opportunities with real SERP validation).
 - `/propuesta-web-lospichyboys` (3-tier custom Next.js + GSAP + Sanity build proposal anchored to Rebeca 2026 premiere).
+- `/audit-efectonoh` (Cuban boutique brand studio with two cofounders working remote from US and Spain. 15 findings including invisible-on-Google-by-own-name, 2 duplicate H1 with typo, LinkedIn link going to admin dashboard, 42% images without alt, Hostinger Builder limits. Score 40/100. ES-only, linked as CASE 06).
 
 Pages remain at root rather than `/cases/<slug>` because they were authored as standalone ES-only deliverables; canonical bilingual /cases/ migration is optional future work. CASE 05 in `/cases/index.html` links to the business audit at `/audit-lospichyboys`; from there the user can navigate to the SEO companion and the web proposal.
 
