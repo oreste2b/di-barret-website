@@ -59,6 +59,14 @@
     <xhtml:link xmlns:xhtml="http://www.w3.org/1999/xhtml" rel="alternate" hreflang="x-default" href="https://www.dibarret.dk/propuesta-web-lospichyboys"/>
   </url>
   <url>
+    <loc>https://www.dibarret.dk/demo-lospichyboys</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link xmlns:xhtml="http://www.w3.org/1999/xhtml" rel="alternate" hreflang="es" href="https://www.dibarret.dk/demo-lospichyboys"/>
+    <xhtml:link xmlns:xhtml="http://www.w3.org/1999/xhtml" rel="alternate" hreflang="x-default" href="https://www.dibarret.dk/demo-lospichyboys"/>
+  </url>
+  <url>
     <loc>https://www.dibarret.dk/audit-efectonoh</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>yearly</changefreq>
