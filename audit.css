@@ -46,8 +46,8 @@ h1, h2, h3, h4 {
   line-height: 1.05;
   color: var(--ink);
 }
-h1 { font-size: clamp(48px, 7vw, 92px); }
-h2 { font-size: clamp(32px, 4.2vw, 56px); margin-bottom: 24px; }
+h1 { font-size: clamp(48px, 7.6vw, 124px); line-height: 0.96; font-weight: 400; }
+h2 { font-size: clamp(32px, 4.2vw, 56px); margin-bottom: 24px; line-height: 0.98; font-weight: 400; }
 h3 { font-size: 22px; margin-bottom: 10px; font-weight: 500; }
 
 p { color: var(--ink-muted); margin-bottom: 14px; }
@@ -136,8 +136,8 @@ section:first-of-type { border-top: 0; }
 .audit-hero { padding: 140px 0 80px; border-top: 0; }
 .audit-hero-grid {
   display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  gap: 60px;
+  grid-template-columns: 1.7fr 1fr;
+  gap: 80px;
   align-items: end;
 }
 @media (max-width: 900px) {
