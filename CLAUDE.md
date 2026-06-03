@@ -27,7 +27,7 @@ Security headers (`X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`
 
 ### Content section: `/cases/`
 
-Bilingual (Danish + Spanish) case study section — real client work delivered by Di Barret. Strategy is **DA + ES on purpose** (not DA + EN): ES serves both Isabella Abreu's audience (Cuban F4 driver, planned case #02) and the Cuban-American Miami market. Each case page renders both languages via `data-lang="da"` and `data-lang="es"` blocks; a fixed top-right `.lang-toggle` switches them and persists choice in `localStorage["dibarret_lang"]`. Browser locale is the initial fallback (`navigator.language` slice 0-2, default DA).
+Bilingual (Danish + Spanish) case study section — real client work delivered by Di Barret. Strategy is **DA + ES on purpose** (not DA + EN): ES serves the Cuban-American Miami market (Pichy Boys, 1NationUp, Efecto Ñoh) and Spain (Clínica Bioever). Each case page renders both languages via `data-lang="da"` and `data-lang="es"` blocks; a fixed top-right `.lang-toggle` switches them and persists choice in `localStorage["dibarret_lang"]`. Browser locale is the initial fallback (`navigator.language` slice 0-2, default DA).
 
 Structure:
 - `/cases/case.css` — shared CSS for the index + all case pages. Defines `.cs`, `.cs-hero`, `.cs-results`, `.cs-body`, `.cs-index`, `.cs-card`, `.cs-cta`, plus the bilingual `[data-lang]` selectors and `.lang-toggle`.
@@ -35,8 +35,10 @@ Structure:
 - `/cases/<slug>.html` — individual bilingual case (Article JSON-LD, key results bar, 5 narrative sections: Udfordringen/Desafío → Tilgangen/Enfoque → Udførelse/Ejecución → Resultater/Resultados → Hvad vi lærte/Lo aprendido)
 
 Two case types supported:
-- **Build cases** — full delivery (strategy → design → build → deploy). Example: `/cases/isabella-abreu` (Phase 2 personal-brand build for Cuban F4 driver).
-- **Audit cases** — Brand Audit deliverables (12-dimension scorecard or full 10-section template, prioritized fixes, 30-day action plan). Examples: `/cases/audit-dubbu` (full canonical 10-section template — see below) and `/cases/audit-isabella-abreu` (personal-brand audit format).
+- **Build cases** — full delivery (strategy → design → build → deploy). None currently published; live cases are all audit-type.
+- **Audit cases** — Brand Audit deliverables (12-dimension scorecard or full 10-section template, prioritized fixes, 30-day action plan). Example: `/cases/audit-dubbu` (full canonical 10-section template — see below).
+
+**Retirados (jun 2026)**: `/cases/isabella-abreu` (Phase 2 build personal brand Cuban F4 driver) y `/cases/audit-isabella-abreu` (personal brand audit). Cliente no responde mensajes ni email, decisión de retirar el case. Archivos eliminados del repo y sitemap, no redirect (404 normal).
 
 `/cases/` is reserved for **client work only**. The previous self-references (`/cases/dibarret-dk` build meta-case and `/cases/audit-dibarret-dk` self-audit) were removed in June 2026 — the site itself stands as proof of capability, the cases section showcases clients.
 
@@ -84,7 +86,7 @@ Every case must:
 
 CSS-only fallback for no-JS: `body:not([data-active-lang]) [data-lang="da"] { display: revert; }` keeps DA visible until JS runs.
 
-Card states in the index grid: live cards are `<a class="cs-card">`, upcoming cases use `<div class="cs-card cs-card--soon" data-soon-label="…">` (greyed, pointer-events:none, label appended via `::after`). When Isabella's case ships, change her placeholder `<div>` to an `<a href="/cases/isabella-abreu">` and remove the `--soon` modifier.
+Card states in the index grid: live cards are `<a class="cs-card">`, upcoming cases use `<div class="cs-card cs-card--soon" data-soon-label="…">` (greyed, pointer-events:none, label appended via `::after`).
 
 ## Architecture
 

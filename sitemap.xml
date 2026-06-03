@@ -91,22 +91,4 @@
     <xhtml:link xmlns:xhtml="http://www.w3.org/1999/xhtml" rel="alternate" hreflang="es" href="https://www.dibarret.dk/cases/audit-dubbu"/>
     <xhtml:link xmlns:xhtml="http://www.w3.org/1999/xhtml" rel="alternate" hreflang="x-default" href="https://www.dibarret.dk/cases/audit-dubbu"/>
   </url>
-  <url>
-    <loc>https://www.dibarret.dk/cases/audit-isabella-abreu</loc>
-    <lastmod>2026-05-26</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link xmlns:xhtml="http://www.w3.org/1999/xhtml" rel="alternate" hreflang="da" href="https://www.dibarret.dk/cases/audit-isabella-abreu"/>
-    <xhtml:link xmlns:xhtml="http://www.w3.org/1999/xhtml" rel="alternate" hreflang="es" href="https://www.dibarret.dk/cases/audit-isabella-abreu"/>
-    <xhtml:link xmlns:xhtml="http://www.w3.org/1999/xhtml" rel="alternate" hreflang="x-default" href="https://www.dibarret.dk/cases/audit-isabella-abreu"/>
-  </url>
-  <url>
-    <loc>https://www.dibarret.dk/cases/isabella-abreu</loc>
-    <lastmod>2026-05-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link xmlns:xhtml="http://www.w3.org/1999/xhtml" rel="alternate" hreflang="da" href="https://www.dibarret.dk/cases/isabella-abreu"/>
-    <xhtml:link xmlns:xhtml="http://www.w3.org/1999/xhtml" rel="alternate" hreflang="es" href="https://www.dibarret.dk/cases/isabella-abreu"/>
-    <xhtml:link xmlns:xhtml="http://www.w3.org/1999/xhtml" rel="alternate" hreflang="x-default" href="https://www.dibarret.dk/cases/isabella-abreu"/>
-  </url>
 </urlset>
