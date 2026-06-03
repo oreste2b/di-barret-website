@@ -62,13 +62,14 @@ section:first-of-type{border-top:0}
 .exec-card .kicker{margin-bottom:14px}
 .exec-card h3{font-size:20px;margin-bottom:10px}
 
-.find-row{display:grid;grid-template-columns:60px 1fr 110px;gap:24px;padding:24px 0;border-bottom:1px solid var(--line);align-items:start}
+.find-row{display:grid;grid-template-columns:60px 1fr 110px;gap:32px;padding:48px 0;border-bottom:1px solid var(--line);align-items:start}
 .find-row:last-child{border-bottom:0}
 .find-num{font-family:var(--mono);font-size:11px;color:var(--ink-faint);letter-spacing:.14em;padding-top:5px}
-.find-body h4{font-family:var(--serif);font-weight:500;font-size:20px;margin-bottom:6px}
-.find-body p{font-size:14px;margin-bottom:6px}
-.find-body p.why{color:var(--ink);font-size:13px}
-.find-body p.fix{color:var(--good);font-size:13px}
+.find-body h4{font-family:var(--serif);font-weight:500;font-size:20px;margin-bottom:14px;line-height:1.25}
+.find-body p{font-size:14px;margin-bottom:14px;line-height:1.65}
+.find-body p:last-child{margin-bottom:0}
+.find-body p.why{color:var(--ink);font-size:14px;margin-top:18px}
+.find-body p.fix{color:var(--good);font-size:14px;margin-top:18px}
 .find-body p.fix::before{content:"→ ";color:var(--good);font-weight:600}
 .badge{display:inline-flex;align-items:center;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:5px 10px;border-radius:99px;border:1px solid currentColor;justify-self:end;line-height:1}
 .badge.crit{color:var(--bad)}.badge.med{color:var(--warn)}.badge.low{color:var(--good)}
@@ -114,7 +115,7 @@ section:first-of-type{border-top:0}
 .qw p{font-size:13.5px;margin-bottom:6px}
 .qw .when{font-family:var(--mono);font-size:11px;color:var(--accent);margin-top:14px;letter-spacing:.06em}
 
-.evidence{margin-top:18px;padding:24px 28px;background:rgba(0,0,0,.30);border:1px solid var(--line-mid);border-radius:6px;font-family:var(--mono);font-size:13px;line-height:1.6;color:var(--ink)}
+.evidence{margin:28px 0 32px;padding:28px 32px;background:rgba(0,0,0,.30);border:1px solid var(--line-mid);border-radius:6px;font-family:var(--mono);font-size:13px;line-height:1.6;color:var(--ink)}
 .evidence .key{color:var(--ink-faint)}
 .evidence .bad{color:var(--accent)}
 .evidence .ok{color:var(--good)}
