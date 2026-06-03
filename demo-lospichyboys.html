@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Demo · Los Pichy Boys · Di Barret</title>
-<meta name="description" content="Demo interactivo de la web propuesta para Los Pichy Boys. Podcast cubano-americano de Miami, 974 episodios cada miércoles. Stack Next.js + GSAP + Sanity. Construido por Di Barret.">
+<meta name="description" content="Demo interactivo de la web propuesta para Los Pichy Boys. Podcast cubano-americano de Miami, 974 episodios. Lunes a jueves y viernes para el Club. Stack Next.js + GSAP + Sanity. Construido por Di Barret.">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://www.dibarret.dk/demo-lospichyboys">
 <meta property="og:type" content="article">
@@ -399,6 +399,106 @@ footer .credit b{color:var(--accent);font-weight:500}
 footer .disclaim{font-size:13px;color:var(--ink-faint);max-width:620px;margin:0 auto;line-height:1.55}
 footer .disclaim a{color:var(--ink-mid);border-bottom:1px solid var(--line-mid)}
 
+/* SCHEDULE (calendario semanal) */
+.schedule-section{padding:140px 0;border-top:1px solid var(--line)}
+.schedule{display:grid;grid-template-columns:repeat(7,1fr);gap:14px;margin-top:40px}
+.day{display:flex;flex-direction:column;align-items:center;gap:10px;padding:32px 14px;border:1px solid var(--line);background:var(--bg-soft);position:relative;transition:transform .3s ease,border-color .3s ease}
+.day:hover{transform:translateY(-3px)}
+.day .day-letter{font-family:var(--display);font-size:54px;line-height:1;letter-spacing:.005em}
+.day .day-name{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mid)}
+.day .day-tag{font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;padding:3px 8px;border-radius:99px;border:1px solid currentColor;margin-top:4px}
+.day.on{background:var(--accent);border-color:var(--accent)}
+.day.on .day-letter,.day.on .day-name,.day.on .day-tag{color:var(--ink)}
+.day.club{background:var(--bg-soft);border-color:var(--accent-warm)}
+.day.club .day-letter{color:var(--accent-warm)}
+.day.club .day-tag{color:var(--accent-warm)}
+.day.off{opacity:.42}
+.day.off .day-letter{color:var(--ink-mid)}
+.day.off .day-tag{color:var(--ink-faint);border-color:var(--ink-faint)}
+@media (max-width:780px){.schedule{grid-template-columns:repeat(4,1fr)}}
+@media (max-width:460px){.schedule{grid-template-columns:repeat(2,1fr)}}
+
+/* TEAM */
+.team-section{padding:140px 0;border-top:1px solid var(--line)}
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+.host-card{background:var(--bg-soft);border:1px solid var(--line);overflow:hidden;display:flex;flex-direction:column;transition:transform .3s ease,border-color .3s ease}
+.host-card:hover{transform:translateY(-4px);border-color:var(--accent)}
+.host-portrait{aspect-ratio:4/3;background:linear-gradient(135deg,var(--accent) 0%,var(--accent-warm) 100%);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:clamp(96px,12vw,156px);color:var(--ink);position:relative;letter-spacing:.005em}
+.host-portrait::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle,rgba(30,20,50,.32) 1.8px,transparent 2px);background-size:10px 10px;mix-blend-mode:multiply}
+.host-portrait::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 50%,rgba(30,20,50,.28) 100%)}
+.host-portrait span{position:relative;z-index:2;text-shadow:0 4px 0 rgba(30,20,50,.18)}
+.host-body{padding:28px 26px 32px}
+.host-name{font-family:var(--display);font-size:30px;color:var(--ink);text-transform:uppercase;letter-spacing:.005em;margin-bottom:6px;line-height:1}
+.host-role{font-family:var(--mono);font-size:10px;letter-spacing:.20em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+.host-bio{font-size:14.5px;color:var(--ink-mid);line-height:1.6}
+@media (max-width:780px){.team-grid{grid-template-columns:1fr}}
+
+/* PRESS STRIP */
+.press-strip{padding:70px 0;border-top:1px solid var(--line);background:var(--bg-deep)}
+.press-label{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-faint);text-align:center;margin-bottom:36px}
+.press-logos{display:flex;justify-content:space-around;align-items:center;flex-wrap:wrap;gap:40px}
+.press-logo{font-family:var(--display);font-size:clamp(24px,3vw,40px);color:var(--ink-mid);letter-spacing:.005em;text-transform:uppercase;opacity:.65;transition:opacity .3s ease,color .3s ease;cursor:default}
+.press-logo:hover{opacity:1;color:var(--accent)}
+@media (max-width:560px){.press-logos{gap:24px}}
+
+/* CLUB DEDICATED */
+.club-section{padding:140px 0;border-top:1px solid var(--line);position:relative;overflow:hidden}
+.club-section::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,87,51,.14) 1.8px,transparent 2.2px);background-size:14px 14px;mask-image:radial-gradient(ellipse 60% 50% at 70% 50%,#000,transparent 70%);-webkit-mask-image:radial-gradient(ellipse 60% 50% at 70% 50%,#000,transparent 70%);opacity:.55;z-index:0}
+.club-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:80px;align-items:center;position:relative;z-index:1}
+.club-content .kicker{margin-bottom:18px;display:inline-block}
+.club-content h2{margin-bottom:22px}
+.club-content > p{font-size:18px;line-height:1.55;color:var(--ink);margin-bottom:32px;max-width:48ch}
+.club-perks{list-style:none;margin:0 0 36px;display:grid;gap:13px}
+.club-perks li{font-size:15.5px;color:var(--ink);display:flex;align-items:baseline;gap:14px;line-height:1.5}
+.club-perks .check{color:var(--accent);font-family:var(--display);font-size:28px;line-height:1;flex-shrink:0}
+.club-card{padding:48px 40px;border:1px solid var(--accent);background:var(--bg-deep);position:relative;overflow:hidden}
+.club-card-tag{font-family:var(--mono);font-size:11px;letter-spacing:.20em;text-transform:uppercase;color:var(--accent);margin-bottom:28px}
+.club-card-price{display:flex;align-items:baseline;gap:8px;margin-bottom:14px;font-family:var(--display);color:var(--ink);letter-spacing:.005em}
+.club-card-price .amount{font-size:96px;line-height:.9}
+.club-card-price .period{font-size:24px;color:var(--ink-mid);text-transform:lowercase;font-family:var(--sans);font-weight:400}
+.club-card-note{font-size:14px;color:var(--ink-mid);margin-bottom:32px}
+.club-stat{padding-top:24px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mid)}
+.club-stat b{color:var(--accent);font-weight:400;font-family:var(--display);font-size:20px;letter-spacing:.005em;margin-right:6px}
+@media (max-width:900px){.club-grid{grid-template-columns:1fr;gap:48px}}
+
+/* TOUR */
+.tour-section{padding:140px 0;border-top:1px solid var(--line)}
+.tour-list{margin-top:40px;border-top:1px solid var(--line)}
+.tour-row{display:grid;grid-template-columns:140px 1fr 1.4fr 140px;gap:24px;align-items:center;padding:24px 8px;border-bottom:1px solid var(--line);transition:padding .3s ease,background .3s ease}
+.tour-row:hover{background:var(--bg-soft);padding-left:20px;padding-right:20px}
+.tour-date{display:flex;align-items:baseline;gap:10px;font-family:var(--display);color:var(--ink);text-transform:uppercase}
+.tour-date b{font-size:48px;font-weight:400;line-height:1;letter-spacing:.005em;color:var(--accent)}
+.tour-date span{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--ink-mid)}
+.tour-city{font-family:var(--display);font-size:24px;color:var(--ink);text-transform:uppercase;letter-spacing:.005em;line-height:1}
+.tour-venue{font-size:14px;color:var(--ink-mid)}
+.tour-cta{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);text-align:right;transition:color .3s ease;justify-self:end}
+.tour-cta:hover{color:var(--ink)}
+.tour-cta.sold{color:var(--ink-faint);cursor:not-allowed;pointer-events:none}
+.tour-foot{padding-top:32px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint);text-align:center}
+.tour-foot a{color:var(--accent);border-bottom:1px solid var(--accent)}
+@media (max-width:780px){.tour-row{grid-template-columns:90px 1fr;gap:14px;align-items:start}.tour-venue,.tour-cta{grid-column:2}.tour-cta{text-align:left;justify-self:start;margin-top:6px}.tour-date b{font-size:36px}}
+
+/* NEWSLETTER */
+.newsletter-section{padding:140px 0;border-top:1px solid var(--line);background:var(--bg-deep)}
+.newsletter-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.newsletter-content .kicker{margin-bottom:18px;display:inline-block}
+.newsletter-content h2{margin-bottom:18px}
+.newsletter-content p{font-size:17px;line-height:1.6;color:var(--ink)}
+.newsletter-form{display:flex;flex-direction:column;gap:16px}
+.newsletter-form label{display:flex;flex-direction:column;gap:8px}
+.newsletter-form label span{font-family:var(--mono);font-size:10px;letter-spacing:.20em;text-transform:uppercase;color:var(--ink-mid)}
+.newsletter-form input{padding:22px 24px;background:var(--bg);border:1px solid var(--line-mid);color:var(--ink);font-family:var(--sans);font-size:16px;outline:none;transition:border-color .3s ease}
+.newsletter-form input:focus{border-color:var(--accent)}
+.newsletter-form input::placeholder{color:var(--ink-faint)}
+.newsletter-form button{margin-top:6px;width:100%;justify-content:center;cursor:pointer}
+.newsletter-form small{font-size:12px;color:var(--ink-faint);text-align:center;margin-top:6px;font-family:var(--mono);letter-spacing:.16em;text-transform:uppercase}
+@media (max-width:780px){.newsletter-grid{grid-template-columns:1fr;gap:36px}}
+
+/* Episodes "view all" link */
+.ep-foot{padding:48px 0 0;text-align:center}
+.ep-foot a{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);border-bottom:1px solid var(--accent);padding-bottom:4px;transition:color .3s ease,border-color .3s ease}
+.ep-foot a:hover{color:var(--ink);border-color:var(--ink)}
+
 /* Fade-up util */
 .fade{opacity:0;transform:translateY(40px);will-change:transform,opacity}
 
@@ -415,7 +515,8 @@ footer .disclaim a{color:var(--ink-mid);border-bottom:1px solid var(--line-mid)}
   <a class="brand" href="/"><b>DI BARRET</b> · DEMO</a>
   <div class="right">
     <a href="#episodes">Episodios</a>
-    <a href="#listen">Donde escuchar</a>
+    <a href="#club">Club</a>
+    <a href="#tour">Gira</a>
     <a href="#cta" class="cta">Ver propuesta</a>
   </div>
 </nav>
@@ -432,12 +533,12 @@ footer .disclaim a{color:var(--ink-mid);border-bottom:1px solid var(--line-mid)}
     <span class="dot"></span>
   </div>
   <h1 id="hero-title">LOS PICHY BOYS</h1>
-  <p class="sub"><b>Comedia cubano-americana.</b><br>Episodio nuevo cada miércoles.</p>
+  <p class="sub"><b>Comedia cubano-americana.</b><br>Lunes a jueves. Y los viernes, episodio extra para el Club.</p>
   <div class="meta-bottom">
     <span><b>974</b> · Episodios</span>
     <span><b>8</b> · Años</span>
     <span><b>38</b> · Países</span>
-    <span><b>MIÉ</b> · Cadencia</span>
+    <span><b>L-J</b> · Cadencia</span>
   </div>
   <div class="scroll-hint">Scroll<i></i></div>
 </section>
@@ -446,12 +547,14 @@ footer .disclaim a{color:var(--ink-mid);border-bottom:1px solid var(--line-mid)}
 <div class="marquee">
   <div class="marquee-track" id="marquee">
     <span class="marquee-item"><b>974</b>EPISODIOS<span class="sep">·</span></span>
-    <span class="marquee-item"><b>CADA MIÉRCOLES</b>DESDE 2017<span class="sep">·</span></span>
+    <span class="marquee-item"><b>LUNES A JUEVES</b>DESDE 2017<span class="sep">·</span></span>
+    <span class="marquee-item"><b>VIERNES</b>EPISODIO DEL CLUB<span class="sep">·</span></span>
     <span class="marquee-item"><b>HIALEAH</b>DONDE EMPEZÓ TODO<span class="sep">·</span></span>
     <span class="marquee-item"><b>MICKEY</b>CHRISTIAN Y ROSANJELIS<span class="sep">·</span></span>
     <span class="marquee-item"><b>38 PAÍSES</b>LO ESCUCHAN<span class="sep">·</span></span>
     <span class="marquee-item"><b>974</b>EPISODIOS<span class="sep">·</span></span>
-    <span class="marquee-item"><b>CADA MIÉRCOLES</b>DESDE 2017<span class="sep">·</span></span>
+    <span class="marquee-item"><b>LUNES A JUEVES</b>DESDE 2017<span class="sep">·</span></span>
+    <span class="marquee-item"><b>VIERNES</b>EPISODIO DEL CLUB<span class="sep">·</span></span>
     <span class="marquee-item"><b>HIALEAH</b>DONDE EMPEZÓ TODO<span class="sep">·</span></span>
     <span class="marquee-item"><b>MICKEY</b>CHRISTIAN Y ROSANJELIS<span class="sep">·</span></span>
     <span class="marquee-item"><b>38 PAÍSES</b>LO ESCUCHAN<span class="sep">·</span></span>
@@ -464,7 +567,7 @@ footer .disclaim a{color:var(--ink-mid);border-bottom:1px solid var(--line-mid)}
     <div class="section-head fade">
       <span class="kicker">El motor</span>
       <h2>Los episodios</h2>
-      <p>Aquí pasa todo. El show en vivo, el tour, la película: brotan desde aquí. Cada miércoles sale uno nuevo. Lleva 974 sin saltarse uno.</p>
+      <p>Aquí pasa todo. El show en vivo, el tour, la película: brotan desde aquí. De lunes a jueves sale uno nuevo. Los viernes, episodio extra para miembros del Club. Llevan 974 publicados.</p>
     </div>
 
     <div class="episodes-grid">
@@ -534,6 +637,57 @@ footer .disclaim a{color:var(--ink-mid);border-bottom:1px solid var(--line-mid)}
         </div>
       </article>
     </div>
+    <div class="ep-foot fade">
+      <a href="#">Ver los 974 episodios →</a>
+    </div>
+  </div>
+</section>
+
+<!-- SCHEDULE / CADENCIA SEMANAL -->
+<section class="schedule-section" id="schedule">
+  <div class="wrap">
+    <div class="section-head fade">
+      <span class="kicker">La semana</span>
+      <h2>Cuatro días al aire. Y los viernes, el Club.</h2>
+      <p>El podcast sale de lunes a jueves, sin saltarse uno desde 2017. El viernes hay episodio extra solo para miembros del Club Pichy. Sábado y domingo descansan.</p>
+    </div>
+    <div class="schedule fade">
+      <div class="day on">
+        <span class="day-letter">L</span>
+        <span class="day-name">Lunes</span>
+        <span class="day-tag">Episodio</span>
+      </div>
+      <div class="day on">
+        <span class="day-letter">M</span>
+        <span class="day-name">Martes</span>
+        <span class="day-tag">Episodio</span>
+      </div>
+      <div class="day on">
+        <span class="day-letter">X</span>
+        <span class="day-name">Miércoles</span>
+        <span class="day-tag">Episodio</span>
+      </div>
+      <div class="day on">
+        <span class="day-letter">J</span>
+        <span class="day-name">Jueves</span>
+        <span class="day-tag">Episodio</span>
+      </div>
+      <div class="day club">
+        <span class="day-letter">V</span>
+        <span class="day-name">Viernes</span>
+        <span class="day-tag">Club</span>
+      </div>
+      <div class="day off">
+        <span class="day-letter">S</span>
+        <span class="day-name">Sábado</span>
+        <span class="day-tag">Off</span>
+      </div>
+      <div class="day off">
+        <span class="day-letter">D</span>
+        <span class="day-name">Domingo</span>
+        <span class="day-tag">Off</span>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -571,10 +725,47 @@ footer .disclaim a{color:var(--ink-mid);border-bottom:1px solid var(--line-mid)}
   </div>
 </section>
 
+<!-- TEAM / EL EQUIPO -->
+<section class="team-section" id="team">
+  <div class="wrap">
+    <div class="section-head fade">
+      <span class="kicker">El equipo</span>
+      <h2>Tres voces. Un micrófono.</h2>
+      <p>Empezó como dos primos en una cocina de Hialeah. Se sumó la tercera voz en 2023. Hoy son el motor del show.</p>
+    </div>
+    <div class="team-grid">
+      <article class="host-card fade">
+        <div class="host-portrait"><span>M</span></div>
+        <div class="host-body">
+          <div class="host-name">Mickey Carbajal</div>
+          <div class="host-role">Cofundador · desde 2017</div>
+          <p class="host-bio">Mitad del podcast original. Hialeah, cocina, micrófono. El cubano que mira a la cámara cuando algo no tiene sentido.</p>
+        </div>
+      </article>
+      <article class="host-card fade">
+        <div class="host-portrait"><span>C</span></div>
+        <div class="host-body">
+          <div class="host-name">Christian Carbajal</div>
+          <div class="host-role">Cofundador · desde 2017</div>
+          <p class="host-bio">Primo de Mickey y la otra mitad del podcast original. El que se ríe primero. El que cuenta la versión larga de la historia.</p>
+        </div>
+      </article>
+      <article class="host-card fade">
+        <div class="host-portrait"><span>R</span></div>
+        <div class="host-body">
+          <div class="host-name">Rosanjelis</div>
+          <div class="host-role">Tercera voz · desde 2023</div>
+          <p class="host-bio">La voz que faltaba. Comediante y locutora cubana. Convirtió el dúo en trío y el ritmo del show cambió.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
 <!-- STATS -->
 <section class="stats">
   <div class="wrap">
-    <p class="lead fade">Ocho años publicando cada miércoles. <span>Sin saltarse uno.</span></p>
+    <p class="lead fade">Ocho años publicando de lunes a jueves. <span>Sin saltarse uno.</span></p>
     <div class="stats-grid">
       <div class="stat fade">
         <div class="num"><span class="counter" data-to="974">0</span></div>
@@ -582,7 +773,7 @@ footer .disclaim a{color:var(--ink-mid);border-bottom:1px solid var(--line-mid)}
       </div>
       <div class="stat fade">
         <div class="num"><span class="counter" data-to="8">0</span><em>años</em></div>
-        <div class="label">Cada miércoles, desde 2017</div>
+        <div class="label">De lunes a jueves, desde 2017</div>
       </div>
       <div class="stat fade">
         <div class="num"><span class="counter" data-to="2">0</span><em>M+</em></div>
@@ -592,6 +783,20 @@ footer .disclaim a{color:var(--ink-mid);border-bottom:1px solid var(--line-mid)}
         <div class="num"><span class="counter" data-to="38">0</span></div>
         <div class="label">Países que sintonizan</div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRESS STRIP -->
+<section class="press-strip">
+  <div class="wrap">
+    <div class="press-label fade">Apariciones en prensa</div>
+    <div class="press-logos fade">
+      <span class="press-logo">CNN</span>
+      <span class="press-logo">CiberCuba</span>
+      <span class="press-logo">Univisión</span>
+      <span class="press-logo">Mega TV</span>
+      <span class="press-logo">Local 10</span>
     </div>
   </div>
 </section>
@@ -609,7 +814,7 @@ footer .disclaim a{color:var(--ink-mid);border-bottom:1px solid var(--line-mid)}
         <div class="act" data-act="1">
           <div class="num">Acto 02 · 2017 → hoy</div>
           <h3>Ocho años. <span class="italic">974 episodios</span>.</h3>
-          <p>Rosanjelis se suma. La audiencia se expande a 38 países. El podcast no para. Sigue saliendo cada miércoles. Aquí late el negocio entero.</p>
+          <p>Rosanjelis se suma en 2023. La audiencia se expande a 38 países. El podcast no para. Lunes, martes, miércoles, jueves. Cuatro episodios por semana sin saltarse uno. Aquí late el negocio entero.</p>
         </div>
         <div class="act" data-act="2">
           <div class="num">Acto 03 · 2023 → hoy</div>
@@ -619,7 +824,7 @@ footer .disclaim a{color:var(--ink-mid);border-bottom:1px solid var(--line-mid)}
         <div class="act" data-act="3">
           <div class="num">Acto 04 · 2026</div>
           <h3>El podcast llega al <span class="italic">cine</span>.</h3>
-          <p>Rebeca. Primer largometraje. Estreno en Miami. Ocho años de audio se convierten en una película. El podcast sigue saliendo cada miércoles.</p>
+          <p>Rebeca. Primer largometraje. Estreno en Miami. Ocho años de audio se convierten en una película. El podcast sigue saliendo de lunes a jueves.</p>
         </div>
       </div>
       <div class="scrolly-visual">
@@ -658,7 +863,7 @@ footer .disclaim a{color:var(--ink-mid);border-bottom:1px solid var(--line-mid)}
         </div>
         <div>
           <h3>El motor. <span class="italic">974 episodios.</span></h3>
-          <p>Sale cada miércoles desde 2017. Aquí late el negocio. Todo lo demás brota desde aquí.</p>
+          <p>Sale de lunes a jueves desde 2017. Aquí late el negocio. Todo lo demás brota desde aquí.</p>
         </div>
       </article>
 
@@ -716,6 +921,109 @@ footer .disclaim a{color:var(--ink-mid);border-bottom:1px solid var(--line-mid)}
           <p>Comunidad de pago. Episodios extra, acceso a grabaciones en vivo, descuentos en merch y entradas.</p>
         </div>
       </article>
+    </div>
+  </div>
+</section>
+
+<!-- CLUB PICHY DEDICATED -->
+<section class="club-section" id="club">
+  <div class="wrap">
+    <div class="club-grid">
+      <div class="club-content fade">
+        <span class="kicker">Club Pichy</span>
+        <h2>Donde el podcast no se acaba el jueves.</h2>
+        <p>Para los que escuchan los cuatro episodios por semana y quieren más. El viernes hay episodio nuevo solo para ustedes.</p>
+        <ul class="club-perks">
+          <li><span class="check">+</span> Episodio extra cada viernes, fuera del feed público</li>
+          <li><span class="check">+</span> Acceso anticipado a fechas de gira y preventa</li>
+          <li><span class="check">+</span> Behind the scenes y grabaciones extra</li>
+          <li><span class="check">+</span> Descuento permanente en merch</li>
+          <li><span class="check">+</span> Discord privado con Mickey, Christian y Rosanjelis</li>
+        </ul>
+        <div class="magnetic-wrap">
+          <a class="cta-btn magnetic" href="#">Unirse al Club <span class="arrow">→</span></a>
+        </div>
+      </div>
+      <div class="club-card fade">
+        <div class="club-card-tag">Membresía</div>
+        <div class="club-card-price">
+          <span class="amount">$9</span>
+          <span class="period">/mes</span>
+        </div>
+        <p class="club-card-note">O paga el año entero y ahorras dos meses.</p>
+        <div class="club-stat"><b>5 mil+</b> miembros activos</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOUR DATES -->
+<section class="tour-section" id="tour">
+  <div class="wrap">
+    <div class="section-head fade">
+      <span class="kicker">En vivo</span>
+      <h2>Tour 2026. De Miami a Los Ángeles.</h2>
+      <p>El podcast sube al escenario. Mismo show. Ahora con público delante y sin filtro.</p>
+    </div>
+    <div class="tour-list">
+      <div class="tour-row fade">
+        <div class="tour-date"><b>12</b> <span>SEP</span></div>
+        <div class="tour-city">Miami, FL</div>
+        <div class="tour-venue">James L. Knight Center</div>
+        <a class="tour-cta" href="#">Entradas →</a>
+      </div>
+      <div class="tour-row fade">
+        <div class="tour-date"><b>19</b> <span>SEP</span></div>
+        <div class="tour-city">Orlando, FL</div>
+        <div class="tour-venue">Hard Rock Live</div>
+        <a class="tour-cta" href="#">Entradas →</a>
+      </div>
+      <div class="tour-row fade">
+        <div class="tour-date"><b>26</b> <span>SEP</span></div>
+        <div class="tour-city">Tampa, FL</div>
+        <div class="tour-venue">The Cuban Club</div>
+        <a class="tour-cta sold" href="#">Sold out</a>
+      </div>
+      <div class="tour-row fade">
+        <div class="tour-date"><b>03</b> <span>OCT</span></div>
+        <div class="tour-city">Houston, TX</div>
+        <div class="tour-venue">Bayou Music Center</div>
+        <a class="tour-cta" href="#">Entradas →</a>
+      </div>
+      <div class="tour-row fade">
+        <div class="tour-date"><b>10</b> <span>OCT</span></div>
+        <div class="tour-city">Las Vegas, NV</div>
+        <div class="tour-venue">The Theater at Virgin Hotels</div>
+        <a class="tour-cta" href="#">Entradas →</a>
+      </div>
+      <div class="tour-row fade">
+        <div class="tour-date"><b>17</b> <span>OCT</span></div>
+        <div class="tour-city">Los Ángeles, CA</div>
+        <div class="tour-venue">The Wiltern</div>
+        <a class="tour-cta" href="#">Entradas →</a>
+      </div>
+    </div>
+    <div class="tour-foot fade">Más fechas próximamente. <a href="#newsletter">Apúntate al boletín</a> para enterarte primero.</div>
+  </div>
+</section>
+
+<!-- NEWSLETTER FORM -->
+<section class="newsletter-section" id="newsletter">
+  <div class="wrap">
+    <div class="newsletter-grid">
+      <div class="newsletter-content fade">
+        <span class="kicker">El boletín</span>
+        <h2>El resumen de la semana en tu correo.</h2>
+        <p>Cada viernes. Adelanto del lunes, fechas de gira nuevas, lo que no se dijo al aire. Setenta mil cubanos ya lo reciben.</p>
+      </div>
+      <form class="newsletter-form fade" onsubmit="event.preventDefault();this.querySelector('button').textContent='Listo, te apuntaste ✓';return false;">
+        <label>
+          <span>Tu correo</span>
+          <input type="email" placeholder="tunombre@email.com" required>
+        </label>
+        <button type="submit" class="cta-btn">Suscribirme <span class="arrow">→</span></button>
+        <small>Sin spam. Cancelas cuando quieras.</small>
+      </form>
     </div>
   </div>
 </section>
