@@ -27,7 +27,7 @@ Security headers (`X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`
 
 ### Content section: `/cases/`
 
-Bilingual (Danish + Spanish) case study section — real client work delivered by Di Barret. Strategy is **DA + ES on purpose** (not DA + EN): ES serves the Cuban-American Miami market (Pichy Boys, 1NationUp, Efecto Ñoh) and Spain (Clínica Bioever). Each case page renders both languages via `data-lang="da"` and `data-lang="es"` blocks; a fixed top-right `.lang-toggle` switches them and persists choice in `localStorage["dibarret_lang"]`. Browser locale is the initial fallback (`navigator.language` slice 0-2, default DA).
+Bilingual (Danish + Spanish) case study section — real client work delivered by Di Barret. Strategy is **DA + ES on purpose** (not DA + EN): ES serves the Cuban-American Miami market (Pichy Boy, 1NationUp, Efecto Ñoh) and Spain (Clínica Bioever). Each case page renders both languages via `data-lang="da"` and `data-lang="es"` blocks; a fixed top-right `.lang-toggle` switches them and persists choice in `localStorage["dibarret_lang"]`. Browser locale is the initial fallback (`navigator.language` slice 0-2, default DA).
 
 Structure:
 - `/cases/case.css` — shared CSS for the index + all case pages. Defines `.cs`, `.cs-hero`, `.cs-results`, `.cs-body`, `.cs-index`, `.cs-card`, `.cs-cta`, plus the bilingual `[data-lang]` selectors and `.lang-toggle`.
