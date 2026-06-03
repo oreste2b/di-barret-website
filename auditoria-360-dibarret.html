@@ -1,0 +1,605 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Auditoría 360° · Dibarret.dk · informe interno</title>
+<meta name="description" content="Auditoría interna de dibarret.dk. 18 hallazgos verificables, plan A/B/C, quick wins. Informe de errores para refactor de la home.">
+<meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0e0d0b; --ink:#f5f1ea; --ink-mid:#a8a195; --ink-faint:#6b6557;
+  --line:rgba(245,241,234,.10); --line-mid:rgba(245,241,234,.22);
+  --accent:#ff5f29; --accent-soft:rgba(255,95,41,.12);
+  --good:#5ad07c; --warn:#f0b84a; --bad:#ff5f29;
+  --serif:'Fraunces',Georgia,serif; --sans:'Inter',system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace;
+  --max:1180px; --pad:32px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+.kicker{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-mid)}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:500;letter-spacing:-.02em;line-height:1.1}
+h1{font-size:clamp(40px,6vw,72px)}
+h2{font-size:clamp(28px,3.6vw,42px);margin-bottom:24px}
+h3{font-size:22px;margin-bottom:10px}
+p{color:var(--ink-mid);margin-bottom:14px}
+p.lead{color:var(--ink);font-size:18px;line-height:1.55;max-width:64ch}
+strong{color:var(--ink);font-weight:600}
+code{font-family:var(--mono);font-size:.88em;background:rgba(255,255,255,.06);padding:1px 6px;border-radius:4px;color:var(--ink)}
+em{font-style:italic;color:var(--accent)}
+section{padding:80px 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:0}
+
+nav.top{position:sticky;top:0;z-index:50;background:rgba(14,13,11,.82);backdrop-filter:saturate(140%) blur(14px);border-bottom:1px solid var(--line)}
+nav.top .wrap{display:flex;align-items:center;justify-content:space-between;padding:14px var(--pad);gap:24px}
+nav.top .brand{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase}
+nav.top .brand span{color:var(--accent)}
+nav.top ul{display:flex;gap:18px;list-style:none}
+nav.top a{text-decoration:none;font-size:12px;color:var(--ink-mid);letter-spacing:.04em}
+nav.top a:hover{color:var(--ink)}
+@media (max-width:780px){nav.top ul{display:none}}
+
+.hero{padding:100px 0 60px}
+.hero-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:60px;align-items:end}
+@media (max-width:900px){.hero-grid{grid-template-columns:1fr;gap:40px}}
+.hero h1{margin:18px 0 22px}
+.hero-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:36px;padding-top:30px;border-top:1px solid var(--line)}
+.hero-meta div span{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:8px}
+.hero-meta div strong{font-family:var(--serif);font-size:22px;font-weight:500}
+
+.gauge{position:relative;width:100%;max-width:340px;margin-left:auto}
+.gauge svg{width:100%;height:auto;display:block}
+.gauge-num{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding-bottom:14%}
+.gauge-num b{font-family:var(--serif);font-weight:500;font-size:64px;line-height:1}
+.gauge-num span{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mid);margin-top:6px}
+.gauge-label{margin-top:14px;text-align:center;font-size:13px;color:var(--ink-mid)}
+
+.exec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+@media (max-width:780px){.exec-grid{grid-template-columns:1fr}}
+.exec-card{padding:28px;border:1px solid var(--line);border-radius:6px}
+.exec-card .kicker{margin-bottom:14px}
+.exec-card h3{font-size:20px;margin-bottom:10px}
+
+.find-row{display:grid;grid-template-columns:60px 1fr 110px;gap:24px;padding:24px 0;border-bottom:1px solid var(--line);align-items:start}
+.find-row:last-child{border-bottom:0}
+.find-num{font-family:var(--mono);font-size:11px;color:var(--ink-faint);letter-spacing:.14em;padding-top:5px}
+.find-body h4{font-family:var(--serif);font-weight:500;font-size:20px;margin-bottom:6px}
+.find-body p{font-size:14px;margin-bottom:6px}
+.find-body p.why{color:var(--ink);font-size:13px}
+.find-body p.fix{color:var(--good);font-size:13px}
+.find-body p.fix::before{content:"→ ";color:var(--good);font-weight:600}
+.badge{display:inline-flex;align-items:center;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:5px 10px;border-radius:99px;border:1px solid currentColor;justify-self:end;line-height:1}
+.badge.crit{color:var(--bad)}.badge.med{color:var(--warn)}.badge.low{color:var(--good)}
+@media (max-width:680px){.find-row{grid-template-columns:40px 1fr;gap:16px}.badge{grid-column:2;justify-self:start;margin-top:6px}}
+
+.pillars{display:grid;gap:14px;margin-top:32px}
+.pillar{display:grid;grid-template-columns:200px 1fr 56px;gap:18px;align-items:center;padding:18px 0;border-bottom:1px solid var(--line)}
+.pillar:last-child{border-bottom:0}
+.pillar-name{font-weight:500;font-size:14px}
+.pillar-name small{display:block;color:var(--ink-faint);font-weight:400;font-size:12px;margin-top:2px}
+.pillar-bar{height:6px;background:rgba(255,255,255,.06);border-radius:99px;overflow:hidden}
+.pillar-bar i{display:block;height:100%;border-radius:99px}
+.pillar-bar i.good{background:var(--good)}.pillar-bar i.warn{background:var(--warn)}.pillar-bar i.bad{background:var(--bad)}
+.pillar-score{font-family:var(--mono);font-size:14px;text-align:right;font-weight:500}
+@media (max-width:680px){.pillar{grid-template-columns:1fr 56px}.pillar-bar{grid-column:1/-1;grid-row:2}}
+
+.plan{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:32px}
+@media (max-width:900px){.plan{grid-template-columns:1fr}}
+.plan-col{padding:32px 26px;border:1px solid var(--line);border-radius:6px}
+.plan-col h4{font-family:var(--serif);font-size:22px;margin-bottom:8px}
+.plan-col .plan-meta{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:24px}
+.plan-col ul{list-style:none;display:grid;gap:14px}
+.plan-col li{font-size:14px;color:var(--ink);padding-left:18px;position:relative;line-height:1.5}
+.plan-col li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);position:absolute;left:0;top:7px}
+
+.qw{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:32px}
+@media (max-width:780px){.qw{grid-template-columns:1fr}}
+.qw-card{padding:24px;border:1px solid var(--good);border-radius:6px;background:rgba(90,208,124,.05)}
+.qw-card .kicker{color:var(--good);margin-bottom:10px}
+.qw-card h4{font-family:var(--serif);font-size:18px;margin-bottom:8px}
+.qw-card p{font-size:13.5px;margin-bottom:6px}
+.qw-card small{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--ink-faint);text-transform:uppercase}
+
+.journey{margin-top:32px;display:grid;grid-template-columns:repeat(6,1fr);gap:0}
+@media (max-width:900px){.journey{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:560px){.journey{grid-template-columns:repeat(2,1fr)}}
+.stage{border:1px solid var(--line);border-right:0;padding:22px 18px;background:rgba(255,255,255,.015)}
+.stage:last-child{border-right:1px solid var(--line)}
+.stage .step{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--ink-faint);margin-bottom:8px}
+.stage h4{font-family:var(--serif);font-weight:500;font-size:17px;margin-bottom:8px}
+.stage p{font-size:12.5px;line-height:1.5;margin:0;color:var(--ink-mid)}
+.stage.broken{background:rgba(255,95,41,.06)}
+.stage.broken h4::after{content:" ⚠";color:var(--bad)}
+.stage.missing{background:rgba(255,255,255,.02);border-style:dashed}
+.stage.missing h4{color:var(--ink-faint)}
+
+footer{padding:60px 0 40px;text-align:center;font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--ink-faint)}
+footer b{color:var(--accent);font-weight:500}
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="wrap">
+    <div class="brand">DI BARRET <span>·</span> AUDITORÍA INTERNA</div>
+    <ul>
+      <li><a href="#resumen">Resumen</a></li>
+      <li><a href="#hallazgos">Hallazgos</a></li>
+      <li><a href="#journey">Journey</a></li>
+      <li><a href="#pilares">Pilares</a></li>
+      <li><a href="#plan">Plan</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="kicker">Auditoría 360° · interna · 3 jun 2026</span>
+        <h1>Fundación técnica sólida. <em>Sin máquina de cierre.</em></h1>
+        <p class="lead">La web hace bien los fundamentos: SEO técnico, performance, copy claro, tier pricing visible. Pero faltan tres cosas que cierran clientes: prueba social en home, fricción cero para comprar Tier 1, y coherencia entre "vi er nye" y los números aspiracionales.</p>
+        <div class="hero-meta">
+          <div><span>Dominio</span><strong>dibarret.dk</strong></div>
+          <div><span>Hallazgos</span><strong>18 verificables</strong></div>
+          <div><span>Críticos</span><strong>5 de 18</strong></div>
+        </div>
+      </div>
+      <div>
+        <div class="gauge">
+          <svg viewBox="0 0 200 130">
+            <path d="M20 110 A 80 80 0 0 1 180 110" stroke="rgba(255,255,255,.08)" stroke-width="14" fill="none" stroke-linecap="round"/>
+            <path d="M20 110 A 80 80 0 0 1 180 110" stroke="url(#g)" stroke-width="14" fill="none" stroke-linecap="round" stroke-dasharray="251" stroke-dashoffset="96"/>
+            <defs>
+              <linearGradient id="g" x1="0" x2="1">
+                <stop offset="0" stop-color="#ff5f29"/>
+                <stop offset=".55" stop-color="#f0b84a"/>
+                <stop offset="1" stop-color="#5ad07c"/>
+              </linearGradient>
+            </defs>
+            <line x1="100" y1="110" x2="100" y2="42" stroke="#f5f1ea" stroke-width="2.5" stroke-linecap="round" transform="rotate(38 100 110)"/>
+            <circle cx="100" cy="110" r="5" fill="#f5f1ea"/>
+          </svg>
+          <div class="gauge-num">
+            <b>62</b>
+            <span>de 100</span>
+          </div>
+          <div class="gauge-label">Buen suelo. Falta conversion stack.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="resumen">
+  <div class="wrap">
+    <span class="kicker">Resumen ejecutivo</span>
+    <h2>Tres ideas que mueven el score 62 → 80.</h2>
+    <div class="exec-grid">
+      <div class="exec-card">
+        <span class="kicker">Estado actual</span>
+        <h3>Foundation strong.</h3>
+        <p>SEO técnico cumple. JSON-LD @graph con 6 entidades. HSTS preload. CSP estricta. Performance 230ms TTFB. Copy con voz clara. Pricing por tiers visible. Lo básico está hecho.</p>
+      </div>
+      <div class="exec-card">
+        <span class="kicker">El problema</span>
+        <h3>Cero proof, máxima fricción.</h3>
+        <p>La home no muestra los 7 cases que ya hay publicados en /cases/. El form pide 8 campos para "vurdering gratis". No hay Stripe ni calendar booking. El Tier 1 de 8.000 DKK no se puede comprar instant.</p>
+      </div>
+      <div class="exec-card">
+        <span class="kicker">La oportunidad</span>
+        <h3>40-60% más leads cualificados.</h3>
+        <p>Surface /cases/ en home, recorta form a 3 campos, añade Stripe checkout para Tier 1, y la conversión sube. Sin tocar tráfico. Sin gastar en ads. Solo arreglando el funnel que ya está hecho a medias.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="hallazgos">
+  <div class="wrap">
+    <span class="kicker">18 hallazgos · 5 críticos · 8 importantes · 5 oportunidad</span>
+    <h2>Lo que está roto.</h2>
+
+    <div style="margin-top:32px">
+
+      <div class="find-row">
+        <div class="find-num">01</div>
+        <div class="find-body">
+          <h4>Contradicción "40+ Brand-systemer leveret" vs "Vi er nye"</h4>
+          <p>La sección METRICS dice <code>40+ Brand-systemer leveret · 2.3× Konvertering i snit</code>. La sección BYGGET dice <code>Vi er nye</code>. Si un visitante hace scroll completo ve los dos. Pierde credibilidad.</p>
+          <p class="why">Por qué importa: el visitante decide si confiar en los primeros 30 segundos. Encontrar una claim aspiracional + una confesión de novato en la misma página genera duda. La duda mata el lead.</p>
+          <p class="fix">Decidir: o bien quitar las métricas (más honesto, coherente con bygget), o bien re-etiquetarlas como "Combinado experiencia previa de los fundadores" con tooltip que lo aclare.</p>
+        </div>
+        <span class="badge crit">Crítico</span>
+      </div>
+
+      <div class="find-row">
+        <div class="find-num">02</div>
+        <div class="find-body">
+          <h4>35 em dashes + 5 en dashes en el copy</h4>
+          <p>Verificado con <code>grep '—'</code>: 35 instancias de em dash en index.html. Más 5 en dashes (<code>3–6u</code>, <code>10.000–25.000 DKK</code>, etc.). Humanizer pass nunca tocó el sitio principal.</p>
+          <p class="why">Cada audit que mandamos al cliente pasa por humanizer. La home del studio no. Es incoherente predicar humanizer y servir 40 em dashes en la página de "nosotros".</p>
+          <p class="fix">Pasar humanizer.js sobre index.html. Sustituir em dashes por punto, coma, paréntesis o reescritura. Tiempo estimado: 30 min.</p>
+        </div>
+        <span class="badge crit">Crítico</span>
+      </div>
+
+      <div class="find-row">
+        <div class="find-num">03</div>
+        <div class="find-body">
+          <h4>Cero imágenes en una web "premium"</h4>
+          <p>Verificado: <code>grep -c '&lt;img'</code> retorna 0. No hay fotos de los fundadores, ni samples de trabajo, ni screenshots de cases.</p>
+          <p class="why">Vendes "brand-systemer der får dig valgt" pero no enseñas un solo brand-system trabajado. Los founders se presentan como monogramas "O · B" y "K · L" en lugar de foto. Para un cliente de 25-50k DKK, eso parece menos serio.</p>
+          <p class="fix">Foto profesional de Orestes y Karo en la sección Team. 4-6 thumbnails reales linkando a los cases publicados en /cases/. Hero opcional con video o still del demo de Pichy en loop.</p>
+        </div>
+        <span class="badge crit">Crítico</span>
+      </div>
+
+      <div class="find-row">
+        <div class="find-num">04</div>
+        <div class="find-body">
+          <h4>Cases publicados pero gateados con "sendes direkte"</h4>
+          <p>Hay 7 cases live en <code>/cases/</code>: Isabella Abreu, Dubbu, 1NationUp, Pichy Boys, Efecto Ñoh, Clínica Bioever. La home solo dice <code>Cases sendes direkte</code> y empuja a WhatsApp.</p>
+          <p class="why">Los cases son la prueba más fuerte que tienes. Esconderlos detrás de un click extra a WhatsApp pierde el 70% de los visitantes que querían ver portfolio.</p>
+          <p class="fix">Sustituir la card "Cases sendes direkte" por un grid de 4-6 case thumbnails con link directo a /cases/[slug]. Mantener WhatsApp como CTA secundario para casos no publicados.</p>
+        </div>
+        <span class="badge crit">Crítico</span>
+      </div>
+
+      <div class="find-row">
+        <div class="find-num">05</div>
+        <div class="find-body">
+          <h4>Sin Stripe ni botón de compra en Tier 1</h4>
+          <p>Visuel landing cuesta 8.000 DKK con scope cerrado. Web Audit 3.000 DKK. Ninguno de los dos tiene botón "Comprar ahora". Todo va a un form de 8 campos o a WhatsApp.</p>
+          <p class="why">Tier 1 y el audit son productos definidos. Un visitante listo para comprar el lunes pierde 48 horas esperando respuesta humana. Esa fricción mata las decisiones rápidas.</p>
+          <p class="fix">Stripe Payment Link para Brand Audit 3.000 DKK y Visual Landing 8.000 DKK. Botón "Reservar slot" en la sección Services. Cobro upfront. Onboarding form post-pago.</p>
+        </div>
+        <span class="badge crit">Crítico</span>
+      </div>
+
+      <div class="find-row">
+        <div class="find-num">06</div>
+        <div class="find-body">
+          <h4>Form de lead pide 8 campos para "vurdering gratis"</h4>
+          <p>Verificado: navn, email, site, improve, budget, when, plus 2 selects (budget + when). 8 fields para algo que dice ser gratis y sin compromiso.</p>
+          <p class="why">"Gratis vurdering" implica baja fricción. Pedir presupuesto y timeline antes de la primera conversación es fricción alta. Ratio submit ~ 5-10% con form así.</p>
+          <p class="fix">Recortar a 3 campos: nombre, email, web/Instagram. Los selects budget+when se preguntan en la primera llamada. O hacer 2 versiones: form corto (vurdering) + form largo (cotización).</p>
+        </div>
+        <span class="badge med">Importante</span>
+      </div>
+
+      <div class="find-row">
+        <div class="find-num">07</div>
+        <div class="find-body">
+          <h4>Solo en danés. Excluye los clientes que ya sirven.</h4>
+          <p>Lang da. Cero alternancia. Los cases live en <code>/cases/</code> son bilingües (DA + ES). Pero la home solo habla danés.</p>
+          <p class="why">El demo de Pichy, los audits de 1NationUp, Efecto Ñoh, Clínica Bioever están en español. Si un cliente cubano-americano de Miami llega a dibarret.dk en lugar de directamente a la página del audit, ve danés y rebota.</p>
+          <p class="fix">Toggle DA / ES / EN en top-right como ya está en /cases/. Mínimo bilingüe DA + ES. EN ayuda para SaaS / nordics. Mismo patrón que /cases/ con data-lang.</p>
+        </div>
+        <span class="badge med">Importante</span>
+      </div>
+
+      <div class="find-row">
+        <div class="find-num">08</div>
+        <div class="find-body">
+          <h4>Sin CVR / sin registro empresarial visible</h4>
+          <p>Buscar <code>CVR</code> en el footer: 0 resultados. Para un studio que cobra 25-50k DKK a empresas danesas, falta el CVR-nummer.</p>
+          <p class="why">Las empresas danesas piden factura con CVR. Si no aparece en el footer, hay una llamada extra antes de firmar. Para clientes corporate es señal de informalidad.</p>
+          <p class="fix">Añadir <code>CVR: XXXXXXXX</code> al footer. Plus dirección registrada (puede ser virtual office). Plus link a tilmelding.virk.dk para verificación instantánea.</p>
+        </div>
+        <span class="badge med">Importante</span>
+      </div>
+
+      <div class="find-row">
+        <div class="find-num">09</div>
+        <div class="find-body">
+          <h4>Sin garantía explícita</h4>
+          <p>Sección Hvorfor os tiene 4 razones (founders directos, sistema único, sin revisions-faktura, 4-8 uger). Ninguna es una garantía.</p>
+          <p class="why">Para un studio nuevo sin reviews públicas, una garantía explícita reduce el riesgo percibido. "Si en la primera semana no te convence el moodboard, devolvemos el 100%" cambia la conversación.</p>
+          <p class="fix">Añadir garantía concreta: 7-day money-back en el moodboard inicial. O Net-Promoter clause: "Si no nos recomendarías, el último pago lo decides tú". Ponerlo cerca del form o en Hvorfor os.</p>
+        </div>
+        <span class="badge med">Importante</span>
+      </div>
+
+      <div class="find-row">
+        <div class="find-num">10</div>
+        <div class="find-body">
+          <h4>Sin booking calendar (Cal.com / Calendly)</h4>
+          <p>El único path para hablar es: rellenar form de 8 campos, o mandar WhatsApp, o email. Cero auto-scheduling.</p>
+          <p class="why">Las llamadas de qualification se cierran en 24 horas o se pierden. Un Cal.com embebido permite que el lead reserve directo. Reduce el ciclo de 48-72h a 0.</p>
+          <p class="fix">Cal.com gratis con slot de 20 min "Vurdering call". Embebido en la página o link en el botón secundario del hero. Que el lead reserve solo. Confirmación automática.</p>
+        </div>
+        <span class="badge med">Importante</span>
+      </div>
+
+      <div class="find-row">
+        <div class="find-num">11</div>
+        <div class="find-body">
+          <h4>Brand Audit 3.000 DKK debilita el posicionamiento premium</h4>
+          <p>El audit cuesta 3.000 DKK. El siguiente tier salta a 8.000 DKK. La diferencia 3:8 es grande para el cliente: si el audit cuesta tan poco, debe ser superficial.</p>
+          <p class="why">Los audits que has publicado (1NationUp, Pichy, Efecto Ñoh, Bioever) son trabajo de 8-12 horas. A 3.000 DKK eso es ~250 DKK/hora. Por debajo del rate de un junior. Y minimiza el valor.</p>
+          <p class="fix">Opción A: subir Brand Audit a 5.500-7.500 DKK (alineado con el effort real). Opción B: mantener 3.000 como "Audit express" 5 páginas + 1 call, y crear "Audit completo" a 7.500 con los entregables que ya estás dando.</p>
+        </div>
+        <span class="badge med">Importante</span>
+      </div>
+
+      <div class="find-row">
+        <div class="find-num">12</div>
+        <div class="find-body">
+          <h4>Founders presentados como monogramas en lugar de fotos</h4>
+          <p>La sección Team usa monogramas tipográficos "O · B" y "K · L" en una caja con borde. Cero foto real.</p>
+          <p class="why">"Vi er to designere. Du arbejder direkte med os" es la promesa. Pero el cliente no sabe con quién va a hablar. Para un compromiso de 25-50k DKK eso es raro. Casi todos los freelance/boutique que cobran ese rango muestran cara.</p>
+          <p class="fix">Sesión de fotos profesional. Mínimo: 2 retratos individuales (Orestes y Karo) + 1 foto del dúo trabajando. Sin necesidad de estudio caro. Iluminación natural y look honesto vence al moodboard genérico.</p>
+        </div>
+        <span class="badge med">Importante</span>
+      </div>
+
+      <div class="find-row">
+        <div class="find-num">13</div>
+        <div class="find-body">
+          <h4>5 CTAs distintos compiten en la misma página</h4>
+          <p>Verificado: 5 instancias de btn--primary/btn--ghost solo en index.html. "Få en gratis vurdering", "Skriv på WhatsApp", "Få min gratis vurdering", "Email os", "Send vurdering". Distintos copies para el mismo deseo.</p>
+          <p class="why">Cuando hay 5 CTAs distintos, el visitante hace pausa y no elige ninguno. Hick's law: más opciones, decisión más lenta o nula.</p>
+          <p class="fix">Reducir a 2 paths claros: CTA primario "Reservar audit gratuito" (calendar) o "Comprar Visual Landing" (Stripe). CTA secundario WhatsApp como fallback. Cero variaciones de copy en CTAs primarios.</p>
+        </div>
+        <span class="badge med">Importante</span>
+      </div>
+
+      <div class="find-row">
+        <div class="find-num">14</div>
+        <div class="find-body">
+          <h4>Demo de Pichy Boys en vivo pero no surfaceado en home</h4>
+          <p>Acabas de construir <code>/demo-lospichyboys</code>: un demo GSAP en vivo de Tier 2-3. La home no lo menciona.</p>
+          <p class="why">Es el mejor sample de capacidad técnica que tienes. Un demo viviente vale más que una caja de servicios. Esconderlo en una case-link es desperdicio.</p>
+          <p class="fix">Añadir card en sección Services "Ver demo en vivo Tier 2" linking a /demo-lospichyboys. O thumbnail dentro de la card de Web Experience. O reel en hero con loop del demo.</p>
+        </div>
+        <span class="badge low">Oportunidad</span>
+      </div>
+
+      <div class="find-row">
+        <div class="find-num">15</div>
+        <div class="find-body">
+          <h4>"2.3× Konvertering i snit" sin fuente verificable</h4>
+          <p>La métrica afirma 2.3× conversión media. Sin disclaimer, sin link a cómo se mide, sin caso de referencia.</p>
+          <p class="why">Si un comprador pregunta "2.3× de qué baseline, en cuántos clientes", no hay respuesta pública. Una métrica sin source pierde el efecto de credibilidad que pretende.</p>
+          <p class="fix">Tooltip o nota al pie: "Media de 6 proyectos previos de los fundadores, before vs after." O cambiar el número por un range honesto ("hasta 2.3×") con caso de referencia. O quitar la métrica si no se puede defender.</p>
+        </div>
+        <span class="badge low">Oportunidad</span>
+      </div>
+
+      <div class="find-row">
+        <div class="find-num">16</div>
+        <div class="find-body">
+          <h4>AI & Tracking marcada como "Beta". Debilita en lugar de diferenciar</h4>
+          <p>Layer 05 muestra status "Beta" en el grid de sistema. Las otras 4 son "Aktiv".</p>
+          <p class="why">"Beta" en un servicio de pago señala incertidumbre. En productos software es ok, en servicios profesionales suena como excusa anticipada por si algo falla.</p>
+          <p class="fix">Cambiar Beta por "Nuevo" o "2026" o sin badge. La capacidad AI está madura en el sector hace 2 años. Mantener el badge solo si quieres cobrarlo más barato como precio early access.</p>
+        </div>
+        <span class="badge low">Oportunidad</span>
+      </div>
+
+      <div class="find-row">
+        <div class="find-num">17</div>
+        <div class="find-body">
+          <h4>Sin Instagram link o feed embed</h4>
+          <p>JSON-LD menciona <code>https://instagram.com/di_barret.dk</code> en sameAs. El HTML visible no tiene icon ni link a Instagram en footer ni en social bar.</p>
+          <p class="why">Instagram es el canal donde se generan los DMs de prospección. Si un visitante quiere seguirte para ver más trabajo en el feed, no encuentra cómo. Pierdes warm follow-up.</p>
+          <p class="fix">Social icon en footer y nav. Link a @di_barret.dk. Opcional: embed de últimos 3 posts en una sección "Latest work" o en la sección Team.</p>
+        </div>
+        <span class="badge low">Oportunidad</span>
+      </div>
+
+      <div class="find-row">
+        <div class="find-num">18</div>
+        <div class="find-body">
+          <h4>Sin nurture post-form (cero email follow-up automático)</h4>
+          <p>El form va a <code>/api/lead</code> que manda email a kontakte@dibarret.dk y un auto-reply al lead. Ese auto-reply es la última comunicación automática. Sin secuencia.</p>
+          <p class="why">Si el lead manda el form un viernes a las 22h y nadie responde hasta el lunes, hay 60h de silencio. La probabilidad de conversión cae 40-60%. Una sequence de 3 emails automáticos en 72h mantiene el lead caliente.</p>
+          <p class="fix">Mailchimp / Brevo / Loops free tier. Sequence de 3 emails: día 0 confirmación + ejemplo de audit, día 1 case study (Pichy), día 3 calendar link de Orestes. Coste 0. Setup 90 min.</p>
+        </div>
+        <span class="badge low">Oportunidad</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="journey">
+  <div class="wrap">
+    <span class="kicker">Customer journey</span>
+    <h2>Donde se rompe el funnel.</h2>
+    <p class="lead">Mapeado paso a paso: cómo llega un lead, qué encuentra, dónde se pierde. Las etapas con ⚠ tienen friction crítica.</p>
+
+    <div class="journey">
+      <div class="stage broken">
+        <div class="step">01 · Awareness</div>
+        <h4>Descubrimiento</h4>
+        <p>Sin tráfico orgánico. Instagram en cero. SEO indexado pero no posicionado. La awareness depende 100% de boca a boca y DM.</p>
+      </div>
+      <div class="stage">
+        <div class="step">02 · Landing</div>
+        <h4>Hero</h4>
+        <p>Hero claro, propuesta de valor en 5 segundos. Pricing visible debajo. Esto funciona.</p>
+      </div>
+      <div class="stage broken">
+        <div class="step">03 · Consideration</div>
+        <h4>Cases gateados</h4>
+        <p>Cliente busca cases. Encuentra "Cases sendes direkte" + WhatsApp. Click extra mata la consideración para 70% de visitantes.</p>
+      </div>
+      <div class="stage broken">
+        <div class="step">04 · Intent</div>
+        <h4>Form 8 campos</h4>
+        <p>Cliente quiere reservar. Form pide budget + when + improve + site. Submit rate cae para "free vurdering" con esa fricción.</p>
+      </div>
+      <div class="stage broken">
+        <div class="step">05 · Decision</div>
+        <h4>Sin Stripe / sin calendar</h4>
+        <p>Decisión queda en manos humanas. 24-72h hasta primera respuesta. Pierde momentum.</p>
+      </div>
+      <div class="stage missing">
+        <div class="step">06 · Post-conversion</div>
+        <h4>Sin nurture</h4>
+        <p>Auto-reply es la única comunicación. Sin email sequence. Sin retargeting. Sin upsell automatizado al cliente activo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pilares">
+  <div class="wrap">
+    <span class="kicker">12 pilares</span>
+    <h2>Score por área.</h2>
+
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-name">SEO técnico <small>Meta, JSON-LD, canonical, sitemap</small></div>
+        <div class="pillar-bar"><i class="good" style="width:88%"></i></div>
+        <div class="pillar-score">88</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Performance <small>TTFB, total load, cache headers</small></div>
+        <div class="pillar-bar"><i class="good" style="width:90%"></i></div>
+        <div class="pillar-score">90</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Security <small>HSTS, CSP, X-Frame, HTTPS</small></div>
+        <div class="pillar-bar"><i class="good" style="width:85%"></i></div>
+        <div class="pillar-score">85</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Copy y voz <small>Humanizer compliance</small></div>
+        <div class="pillar-bar"><i class="bad" style="width:38%"></i></div>
+        <div class="pillar-score">38</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Visual proof <small>Imágenes, fotos, samples</small></div>
+        <div class="pillar-bar"><i class="bad" style="width:20%"></i></div>
+        <div class="pillar-score">20</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Social proof <small>Testimonios, cases en home</small></div>
+        <div class="pillar-bar"><i class="bad" style="width:35%"></i></div>
+        <div class="pillar-score">35</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Conversion stack <small>Stripe, calendar, CTAs claros</small></div>
+        <div class="pillar-bar"><i class="bad" style="width:30%"></i></div>
+        <div class="pillar-score">30</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Trust signals <small>CVR, garantía, fotos founders</small></div>
+        <div class="pillar-bar"><i class="warn" style="width:50%"></i></div>
+        <div class="pillar-score">50</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Lead form <small>Friction, fields, options</small></div>
+        <div class="pillar-bar"><i class="warn" style="width:55%"></i></div>
+        <div class="pillar-score">55</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Multi-idioma <small>DA / ES / EN coverage</small></div>
+        <div class="pillar-bar"><i class="bad" style="width:33%"></i></div>
+        <div class="pillar-score">33</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Coherencia narrativa <small>Vi er nye vs 40+ metric</small></div>
+        <div class="pillar-bar"><i class="warn" style="width:60%"></i></div>
+        <div class="pillar-score">60</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Nurturing post-lead <small>Email sequence, follow-up</small></div>
+        <div class="pillar-bar"><i class="bad" style="width:25%"></i></div>
+        <div class="pillar-score">25</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="plan">
+  <div class="wrap">
+    <span class="kicker">Plan A / B / C</span>
+    <h2>18 acciones organizadas por velocidad.</h2>
+
+    <div class="plan">
+      <div class="plan-col">
+        <h4>Plan A · Esta semana</h4>
+        <div class="plan-meta">3-5 horas · Cero costo · Solo Orestes</div>
+        <ul>
+          <li>Sustituir card "Cases sendes direkte" por grid de 6 case thumbnails con link a /cases/[slug]</li>
+          <li>Pasar humanizer sobre index.html (35 em dashes + 5 en dashes)</li>
+          <li>Reducir form de 8 a 3 campos. Mantener budget+when para form largo separado</li>
+          <li>Decidir métricas: o reescribir como "Combinado experiencia previa", o quitar</li>
+          <li>Añadir CVR al footer</li>
+          <li>Surface demo de Pichy en card de Web Experience</li>
+        </ul>
+      </div>
+      <div class="plan-col">
+        <h4>Plan B · Mes 1</h4>
+        <div class="plan-meta">12-18 horas · Costo 0-500 DKK · Setup técnico</div>
+        <ul>
+          <li>Stripe Payment Link para Brand Audit y Visual Landing</li>
+          <li>Cal.com embebido para "Vurdering call" 20 min</li>
+          <li>Sesión fotos founders + 4-6 thumbnails de cases reales</li>
+          <li>Bilingüe DA + ES con toggle (mismo patrón que /cases/)</li>
+          <li>Email sequence post-form en Loops / Brevo (3 emails en 72h)</li>
+          <li>Reescribir 5 CTAs a 2 paths claros</li>
+        </ul>
+      </div>
+      <div class="plan-col">
+        <h4>Plan C · Q3 2026</h4>
+        <div class="plan-meta">Estratégico · Posicionamiento · Foundation</div>
+        <ul>
+          <li>Subir Brand Audit a 5.500-7.500 DKK + crear tier express 3.000 DKK</li>
+          <li>Trilingüe DA + ES + EN (acceso nórdico + ES + nordics inglés)</li>
+          <li>Garantía explícita 7-day moodboard money-back</li>
+          <li>Instagram feed embed + reels content cadence semanal</li>
+          <li>Quitar badge "Beta" de AI & Tracking</li>
+          <li>2-3 testimonios cortos (incluso de proyectos pre-Di-Barret con permiso)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="quick-wins">
+  <div class="wrap">
+    <span class="kicker">Quick wins</span>
+    <h2>Tres cosas para hoy.</h2>
+    <p class="lead">Si solo haces estas tres antes del fin del día, el score sube de 62 a 70.</p>
+
+    <div class="qw">
+      <div class="qw-card">
+        <span class="kicker">90 minutos</span>
+        <h4>Humanizer sobre index.html</h4>
+        <p>Buscar y reemplazar las 35 em dashes y 5 en dashes. Reescribir donde el dash hacía estructural. La voz queda más limpia y consistente con los audits que mandas.</p>
+        <small>Impacto: alto · esfuerzo: bajo</small>
+      </div>
+      <div class="qw-card">
+        <span class="kicker">2 horas</span>
+        <h4>Reemplazar card "Cases sendes direkte"</h4>
+        <p>Card actual: gateada con WhatsApp. Card nueva: grid de 6 thumbnails de los cases publicados con link directo. Los assets ya existen. Solo cortar y pegar el grid de /cases/.</p>
+        <small>Impacto: alto · esfuerzo: bajo</small>
+      </div>
+      <div class="qw-card">
+        <span class="kicker">60 minutos</span>
+        <h4>Decidir las métricas del hero</h4>
+        <p>O quitar "40+ Brand-systemer · 2.3× Konvertering" para coherencia con bygget. O añadir disclaimer "Combinado experiencia previa" con tooltip. Decisión binaria. No puede coexistir con "Vi er nye".</p>
+        <small>Impacto: medio · esfuerzo: bajo</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Auditoría interna · <b>Di Barret</b> · 3 jun 2026 · noindex · informe de trabajo para refactor de la home
+  </div>
+</footer>
+
+</body>
+</html>
