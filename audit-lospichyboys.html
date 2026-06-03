@@ -48,11 +48,11 @@
   html{scroll-behavior:smooth}
   body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
   .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
-  .kicker{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-mid)}
-  h1,h2,h3,h4{font-family:var(--serif);font-weight:500;letter-spacing:-.02em;line-height:1.1}
-  h1{font-size:clamp(40px,6vw,72px)}
-  h2{font-size:clamp(28px,3.6vw,42px);margin-bottom:24px}
-  h3{font-size:22px;margin-bottom:10px}
+  .kicker{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint)}.hero-eyebrow{display:inline-flex;align-items:center;gap:12px;padding:8px 16px;border:1px solid var(--line-mid);border-radius:99px;background:rgba(255,255,255,0.02);font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mid);margin-bottom:24px}.hero-eyebrow .dot{width:6px;height:6px;border-radius:50%;background:#34d399;flex-shrink:0}
+  h1,h2,h3,h4{font-family:var(--serif);font-weight:500;letter-spacing:-.025em;line-height:1.02;color:var(--ink)}
+  h1{font-size:clamp(48px,7vw,96px);font-weight:500}
+  h2{font-size:clamp(32px,4.2vw,56px);margin-bottom:24px;font-weight:500}
+  h3{font-size:22px;margin-bottom:10px;font-weight:500}
   p{color:var(--ink-mid);margin-bottom:14px}
   p.lead{color:var(--ink);font-size:18px;line-height:1.55;max-width:64ch}
   a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--line-mid);text-underline-offset:3px}
@@ -60,23 +60,23 @@
   strong{color:var(--ink);font-weight:600}
   code,kbd{font-family:var(--mono);font-size:.88em;background:rgba(255,255,255,.06);padding:1px 6px;border-radius:4px;color:var(--ink)}
   hr{border:0;border-top:1px solid var(--line);margin:0}
-  section{padding:80px 0;border-top:1px solid var(--line)}
+  section{padding:120px 0;border-top:1px solid var(--line)}
   section:first-of-type{border-top:0}
 
-  nav.top{position:sticky;top:0;z-index:50;background:rgba(14,13,11,.82);backdrop-filter:saturate(140%) blur(14px);border-bottom:1px solid var(--line)}
+  nav.top{position:sticky;top:0;z-index:50;background:rgba(0,0,0,0.82);backdrop-filter:saturate(140%) blur(14px);border-bottom:1px solid var(--line)}
   nav.top .wrap{display:flex;align-items:center;justify-content:space-between;padding:14px var(--pad);gap:24px}
-  nav.top .brand{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase}
-  nav.top .brand span{color:var(--accent)}
+  nav.top .brand{font-family:var(--serif);font-size:17px;font-weight:500;letter-spacing:-.02em;color:var(--ink);text-decoration:none;text-transform:none}nav.top .brand .slash{color:var(--ink-faint);margin-right:1px}nav.top .context{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);flex:1;margin-left:24px}
+  nav.top .brand span{color:inherit}
   nav.top ul{display:flex;gap:18px;list-style:none;flex-wrap:wrap}
-  nav.top a{text-decoration:none;font-size:12px;color:var(--ink-mid);letter-spacing:.04em}
+  nav.top a{text-decoration:none;font-family:var(--mono);font-size:11px;color:var(--ink-mid);letter-spacing:.16em;text-transform:uppercase}
   nav.top a:hover{color:var(--ink)}
   @media (max-width:780px){nav.top ul{display:none}}
 
-  .hero{padding:100px 0 60px}
+  .hero{padding:140px 0 100px}
   .hero-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:60px;align-items:end}
   @media (max-width:900px){.hero-grid{grid-template-columns:1fr;gap:40px}}
   .hero h1{margin:18px 0 22px}
-  .hero h1 em{font-style:italic;color:var(--accent)}
+  .hero h1 em{font-style:normal;background:linear-gradient(120deg,var(--ink) 0%,var(--ink) 50%,var(--ink-faint) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
   .hero-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:36px;padding-top:30px;border-top:1px solid var(--line)}
   .hero-meta div span{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:8px}
   .hero-meta div strong{font-family:var(--serif);font-size:22px;font-weight:500}
@@ -100,7 +100,7 @@
   .biz-card{padding:32px 28px;border:1px solid var(--line-mid);border-radius:6px;position:relative;background:linear-gradient(180deg,rgba(255,255,255,.025),transparent)}
   .biz-card .pct{position:absolute;top:24px;right:28px;font-family:var(--mono);font-size:14px;color:var(--accent);letter-spacing:.10em}
   .biz-card h4{font-family:var(--serif);font-size:30px;font-weight:500;letter-spacing:-.02em;margin-bottom:6px;line-height:1.1}
-  .biz-card h4 em{font-style:italic;color:var(--accent)}
+  .biz-card h4 em{font-style:normal;background:linear-gradient(120deg,var(--ink) 0%,var(--ink) 50%,var(--ink-faint) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
   .biz-card .stat{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);margin:14px 0 6px}
   .biz-card p{font-size:14.5px;color:var(--ink-mid);margin:0;line-height:1.5}
 
@@ -175,7 +175,7 @@
   /* ROI projection */
   .roi{margin-top:32px;padding:36px;border:1px solid var(--accent);border-radius:6px;background:radial-gradient(circle at 20% 20%,rgba(239,68,68,0.07),transparent 60%)}
   .roi h3{font-size:28px;margin-bottom:12px}
-  .roi h3 em{font-style:italic;color:var(--accent)}
+  .roi h3 em{font-style:normal;background:linear-gradient(120deg,var(--ink) 0%,var(--ink) 50%,var(--ink-faint) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
   .roi .table{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:0;margin-top:24px;border:1px solid var(--line)}
   @media (max-width:780px){.roi .table{grid-template-columns:1fr;border:0}}
   .roi .cell{padding:18px 20px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -196,7 +196,8 @@
 
 <nav class="top">
   <div class="wrap">
-    <div class="brand">Pichy Boy <span>·</span> Auditoría 360°</div>
+    <a class="brand" href="/"><span class="slash">/</span>Di Barret</a>
+    <span class="context">Auditoría · Pichy Boy</span>
     <ul>
       <li><a href="#resumen">Resumen</a></li>
       <li><a href="#negocio">Negocio real</a></li>
@@ -215,7 +216,7 @@
   <div class="wrap">
     <div class="hero-grid">
       <div>
-        <div class="kicker">Auditoría · 1 jun 2026 · Independiente</div>
+        <div class="hero-eyebrow"><span class="dot"></span><span>Auditoría · 1 jun 2026 · Independiente</span></div>
         <h1>20+ marcas por episodio.<br>Una web que las trata<br>como <em>afterthought</em>.</h1>
         <p class="lead">El producto real de Pichy Boy son dos cosas: <strong>la publicidad dentro del podcast</strong> y <strong>las obras en vivo</strong>. No el merch, no el "club", no el sitio. Hablamos de 974 episodios diarios con 20+ anunciantes cada uno, más un tour de teatro y la película "Rebeca" en 2026. La web no refleja un dólar de ese negocio.</p>
 

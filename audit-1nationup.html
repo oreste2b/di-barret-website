@@ -66,10 +66,10 @@
     text-transform:uppercase;
     color:var(--ink-mid);
   }
-  h1,h2,h3,h4{font-family:var(--serif);font-weight:500;letter-spacing:-.02em;line-height:1.1}
-  h1{font-size:clamp(40px,6vw,72px)}
-  h2{font-size:clamp(28px,3.6vw,42px);margin-bottom:24px}
-  h3{font-size:22px;margin-bottom:10px}
+  h1,h2,h3,h4{font-family:var(--serif);font-weight:500;letter-spacing:-.025em;line-height:1.02;color:var(--ink)}
+  h1{font-size:clamp(48px,7vw,96px);font-weight:500}
+  h2{font-size:clamp(32px,4.2vw,56px);margin-bottom:24px;font-weight:500}
+  h3{font-size:22px;margin-bottom:10px;font-weight:500}
   p{color:var(--ink-mid);margin-bottom:14px}
   p.lead{color:var(--ink);font-size:18px;line-height:1.55;max-width:64ch}
   a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--line-mid);text-underline-offset:3px}
@@ -77,7 +77,7 @@
   strong{color:var(--ink);font-weight:600}
   code,kbd{font-family:var(--mono);font-size:.88em;background:rgba(255,255,255,.06);padding:1px 6px;border-radius:4px;color:var(--ink)}
   hr{border:0;border-top:1px solid var(--line);margin:0}
-  section{padding:80px 0;border-top:1px solid var(--line)}
+  section{padding:120px 0;border-top:1px solid var(--line)}
   section:first-of-type{border-top:0}
 
   /* ===== Lang toggle ===== */
@@ -101,19 +101,19 @@
     border-bottom:1px solid var(--line);
   }
   nav.top .wrap{display:flex;align-items:center;justify-content:space-between;padding:14px var(--pad);gap:24px}
-  nav.top .brand{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase}
-  nav.top .brand span{color:var(--accent)}
+  nav.top .brand{font-family:var(--serif);font-size:17px;font-weight:500;letter-spacing:-.02em;color:var(--ink);text-decoration:none;text-transform:none}nav.top .brand .slash{color:var(--ink-faint);margin-right:1px}nav.top .context{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);flex:1;margin-left:24px}
+  nav.top .brand span{color:inherit}
   nav.top ul{display:flex;gap:18px;list-style:none}
-  nav.top a{text-decoration:none;font-size:12px;color:var(--ink-mid);letter-spacing:.04em}
+  nav.top a{text-decoration:none;font-family:var(--mono);font-size:11px;color:var(--ink-mid);letter-spacing:.16em;text-transform:uppercase}
   nav.top a:hover{color:var(--ink)}
   @media (max-width:780px){nav.top ul{display:none}}
 
   /* ===== Hero ===== */
-  .hero{padding:100px 0 60px}
+  .hero{padding:140px 0 100px}
   .hero-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:60px;align-items:end}
   @media (max-width:900px){.hero-grid{grid-template-columns:1fr;gap:40px}}
   .hero h1{margin:18px 0 22px}
-  .hero h1 em{font-style:italic;color:var(--accent)}
+  .hero h1 em{font-style:normal;background:linear-gradient(120deg,var(--ink) 0%,var(--ink) 50%,var(--ink-faint) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
   .hero-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:36px;padding-top:30px;border-top:1px solid var(--line)}
   .hero-meta div span{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:8px}
   .hero-meta div strong{font-family:var(--serif);font-size:22px;font-weight:500}
@@ -235,7 +235,8 @@
 
 <nav class="top">
   <div class="wrap">
-    <div class="brand">1NationUp <span>·</span> <span data-lang="da">Audit 360°</span><span data-lang="es">Auditoría 360°</span></div>
+    <a class="brand" href="/"><span class="slash">/</span>Di Barret</a>
+    <span class="context">Auditoría · 1NationUp</span>
     <ul>
       <li><a href="#resumen"><span data-lang="da">Resumé</span><span data-lang="es">Resumen</span></a></li>
       <li><a href="#voces"><span data-lang="da">Brandstemmer</span><span data-lang="es">Voces de marca</span></a></li>
