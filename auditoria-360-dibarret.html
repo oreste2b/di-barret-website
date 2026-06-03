@@ -6,127 +6,20 @@
 <title>Auditoría 360° · Dibarret.dk · informe interno</title>
 <meta name="description" content="Auditoría interna de dibarret.dk. 18 hallazgos verificables, plan A/B/C, quick wins. Informe de errores para refactor de la home.">
 <meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-:root{
-  --bg:#0e0d0b; --ink:#f5f1ea; --ink-mid:#a8a195; --ink-faint:#6b6557;
-  --line:rgba(245,241,234,.10); --line-mid:rgba(245,241,234,.22);
-  --accent:#ff5f29; --accent-soft:rgba(255,95,41,.12);
-  --good:#5ad07c; --warn:#f0b84a; --bad:#ff5f29;
-  --serif:'Fraunces',Georgia,serif; --sans:'Inter',system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace;
-  --max:1180px; --pad:32px;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
-.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
-.kicker{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-mid)}
-h1,h2,h3,h4{font-family:var(--serif);font-weight:500;letter-spacing:-.02em;line-height:1.1}
-h1{font-size:clamp(40px,6vw,72px)}
-h2{font-size:clamp(28px,3.6vw,42px);margin-bottom:24px}
-h3{font-size:22px;margin-bottom:10px}
-p{color:var(--ink-mid);margin-bottom:14px}
-p.lead{color:var(--ink);font-size:18px;line-height:1.55;max-width:64ch}
-strong{color:var(--ink);font-weight:600}
-code{font-family:var(--mono);font-size:.88em;background:rgba(255,255,255,.06);padding:1px 6px;border-radius:4px;color:var(--ink)}
-em{font-style:italic;color:var(--accent)}
-section{padding:80px 0;border-top:1px solid var(--line)}
-section:first-of-type{border-top:0}
-
-nav.top{position:sticky;top:0;z-index:50;background:rgba(14,13,11,.82);backdrop-filter:saturate(140%) blur(14px);border-bottom:1px solid var(--line)}
-nav.top .wrap{display:flex;align-items:center;justify-content:space-between;padding:14px var(--pad);gap:24px}
-nav.top .brand{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase}
-nav.top .brand span{color:var(--accent)}
-nav.top ul{display:flex;gap:18px;list-style:none}
-nav.top a{text-decoration:none;font-size:12px;color:var(--ink-mid);letter-spacing:.04em}
-nav.top a:hover{color:var(--ink)}
-@media (max-width:780px){nav.top ul{display:none}}
-
-.hero{padding:100px 0 60px}
-.hero-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:60px;align-items:end}
-@media (max-width:900px){.hero-grid{grid-template-columns:1fr;gap:40px}}
-.hero h1{margin:18px 0 22px}
-.hero-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:36px;padding-top:30px;border-top:1px solid var(--line)}
-.hero-meta div span{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:8px}
-.hero-meta div strong{font-family:var(--serif);font-size:22px;font-weight:500}
-
-.gauge{position:relative;width:100%;max-width:340px;margin-left:auto}
-.gauge svg{width:100%;height:auto;display:block}
-.gauge-num{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding-bottom:14%}
-.gauge-num b{font-family:var(--serif);font-weight:500;font-size:64px;line-height:1}
-.gauge-num span{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mid);margin-top:6px}
-.gauge-label{margin-top:14px;text-align:center;font-size:13px;color:var(--ink-mid)}
-
-.exec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
-@media (max-width:780px){.exec-grid{grid-template-columns:1fr}}
-.exec-card{padding:28px;border:1px solid var(--line);border-radius:6px}
-.exec-card .kicker{margin-bottom:14px}
-.exec-card h3{font-size:20px;margin-bottom:10px}
-
-.find-row{display:grid;grid-template-columns:60px 1fr 110px;gap:24px;padding:24px 0;border-bottom:1px solid var(--line);align-items:start}
-.find-row:last-child{border-bottom:0}
-.find-num{font-family:var(--mono);font-size:11px;color:var(--ink-faint);letter-spacing:.14em;padding-top:5px}
-.find-body h4{font-family:var(--serif);font-weight:500;font-size:20px;margin-bottom:6px}
-.find-body p{font-size:14px;margin-bottom:6px}
-.find-body p.why{color:var(--ink);font-size:13px}
-.find-body p.fix{color:var(--good);font-size:13px}
-.find-body p.fix::before{content:"→ ";color:var(--good);font-weight:600}
-.badge{display:inline-flex;align-items:center;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:5px 10px;border-radius:99px;border:1px solid currentColor;justify-self:end;line-height:1}
-.badge.crit{color:var(--bad)}.badge.med{color:var(--warn)}.badge.low{color:var(--good)}
-@media (max-width:680px){.find-row{grid-template-columns:40px 1fr;gap:16px}.badge{grid-column:2;justify-self:start;margin-top:6px}}
-
-.pillars{display:grid;gap:14px;margin-top:32px}
-.pillar{display:grid;grid-template-columns:200px 1fr 56px;gap:18px;align-items:center;padding:18px 0;border-bottom:1px solid var(--line)}
-.pillar:last-child{border-bottom:0}
-.pillar-name{font-weight:500;font-size:14px}
-.pillar-name small{display:block;color:var(--ink-faint);font-weight:400;font-size:12px;margin-top:2px}
-.pillar-bar{height:6px;background:rgba(255,255,255,.06);border-radius:99px;overflow:hidden}
-.pillar-bar i{display:block;height:100%;border-radius:99px}
-.pillar-bar i.good{background:var(--good)}.pillar-bar i.warn{background:var(--warn)}.pillar-bar i.bad{background:var(--bad)}
-.pillar-score{font-family:var(--mono);font-size:14px;text-align:right;font-weight:500}
-@media (max-width:680px){.pillar{grid-template-columns:1fr 56px}.pillar-bar{grid-column:1/-1;grid-row:2}}
-
-.plan{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:32px}
-@media (max-width:900px){.plan{grid-template-columns:1fr}}
-.plan-col{padding:32px 26px;border:1px solid var(--line);border-radius:6px}
-.plan-col h4{font-family:var(--serif);font-size:22px;margin-bottom:8px}
-.plan-col .plan-meta{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:24px}
-.plan-col ul{list-style:none;display:grid;gap:14px}
-.plan-col li{font-size:14px;color:var(--ink);padding-left:18px;position:relative;line-height:1.5}
-.plan-col li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);position:absolute;left:0;top:7px}
-
-.qw{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:32px}
-@media (max-width:780px){.qw{grid-template-columns:1fr}}
-.qw-card{padding:24px;border:1px solid var(--good);border-radius:6px;background:rgba(90,208,124,.05)}
-.qw-card .kicker{color:var(--good);margin-bottom:10px}
-.qw-card h4{font-family:var(--serif);font-size:18px;margin-bottom:8px}
-.qw-card p{font-size:13.5px;margin-bottom:6px}
-.qw-card small{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--ink-faint);text-transform:uppercase}
-
-.journey{margin-top:32px;display:grid;grid-template-columns:repeat(6,1fr);gap:0}
-@media (max-width:900px){.journey{grid-template-columns:repeat(3,1fr)}}
-@media (max-width:560px){.journey{grid-template-columns:repeat(2,1fr)}}
-.stage{border:1px solid var(--line);border-right:0;padding:22px 18px;background:rgba(255,255,255,.015)}
-.stage:last-child{border-right:1px solid var(--line)}
-.stage .step{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--ink-faint);margin-bottom:8px}
-.stage h4{font-family:var(--serif);font-weight:500;font-size:17px;margin-bottom:8px}
-.stage p{font-size:12.5px;line-height:1.5;margin:0;color:var(--ink-mid)}
-.stage.broken{background:rgba(255,95,41,.06)}
-.stage.broken h4::after{content:" ⚠";color:var(--bad)}
-.stage.missing{background:rgba(255,255,255,.02);border-style:dashed}
-.stage.missing h4{color:var(--ink-faint)}
-
-footer{padding:60px 0 40px;text-align:center;font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--ink-faint)}
-footer b{color:var(--accent);font-weight:500}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Geist+Mono:wght@400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css?v=5">
+<link rel="stylesheet" href="/audit.css?v=1">
 </head>
 <body>
 
-<nav class="top">
+<nav class="audit-nav">
   <div class="wrap">
-    <div class="brand">DI BARRET <span>·</span> AUDITORÍA INTERNA</div>
+    <a class="brand" href="/"><span class="slash">/</span>Di Barret</a>
+    <span class="context">Auditoría · interna</span>
     <ul>
       <li><a href="#resumen">Resumen</a></li>
       <li><a href="#hallazgos">Hallazgos</a></li>
@@ -137,14 +30,14 @@ footer b{color:var(--accent);font-weight:500}
   </div>
 </nav>
 
-<section class="hero">
+<section class="audit-hero">
   <div class="wrap">
-    <div class="hero-grid">
+    <div class="audit-hero-grid">
       <div>
         <span class="kicker">Auditoría 360° · interna · 3 jun 2026</span>
         <h1>Fundación técnica sólida. <em>Sin máquina de cierre.</em></h1>
         <p class="lead">La web hace bien los fundamentos: SEO técnico, performance, copy claro, tier pricing visible. Pero faltan tres cosas que cierran clientes: prueba social en home, fricción cero para comprar Tier 1, y coherencia entre "vi er nye" y los números aspiracionales.</p>
-        <div class="hero-meta">
+        <div class="audit-hero-meta">
           <div><span>Dominio</span><strong>dibarret.dk</strong></div>
           <div><span>Hallazgos</span><strong>18 verificables</strong></div>
           <div><span>Críticos</span><strong>5 de 18</strong></div>
@@ -157,13 +50,13 @@ footer b{color:var(--accent);font-weight:500}
             <path d="M20 110 A 80 80 0 0 1 180 110" stroke="url(#g)" stroke-width="14" fill="none" stroke-linecap="round" stroke-dasharray="251" stroke-dashoffset="96"/>
             <defs>
               <linearGradient id="g" x1="0" x2="1">
-                <stop offset="0" stop-color="#ff5f29"/>
-                <stop offset=".55" stop-color="#f0b84a"/>
-                <stop offset="1" stop-color="#5ad07c"/>
+                <stop offset="0" stop-color="#ef4444"/>
+                <stop offset=".55" stop-color="#fbbf24"/>
+                <stop offset="1" stop-color="#34d399"/>
               </linearGradient>
             </defs>
-            <line x1="100" y1="110" x2="100" y2="42" stroke="#f5f1ea" stroke-width="2.5" stroke-linecap="round" transform="rotate(38 100 110)"/>
-            <circle cx="100" cy="110" r="5" fill="#f5f1ea"/>
+            <line x1="100" y1="110" x2="100" y2="42" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" transform="rotate(38 100 110)"/>
+            <circle cx="100" cy="110" r="5" fill="#ffffff"/>
           </svg>
           <div class="gauge-num">
             <b>62</b>
@@ -595,7 +488,7 @@ footer b{color:var(--accent);font-weight:500}
   </div>
 </section>
 
-<footer>
+<footer class="audit-footer">
   <div class="wrap">
     Auditoría interna · <b>Di Barret</b> · 3 jun 2026 · noindex · informe de trabajo para refactor de la home
   </div>
