@@ -51,29 +51,9 @@ em{font-style:normal;background:linear-gradient(120deg,var(--ink) 0%,var(--ink) 
 section{padding:120px 0;border-top:1px solid var(--line)}
 section:first-of-type{border-top:0}
 
-nav.top{position:sticky;top:0;z-index:50;background:rgba(0,0,0,0.82);backdrop-filter:saturate(140%) blur(14px);border-bottom:1px solid var(--line)}
-nav.top .wrap{display:flex;align-items:center;justify-content:space-between;padding:14px var(--pad);gap:24px}
-nav.top .brand{font-family:var(--serif);font-size:17px;font-weight:500;letter-spacing:-.02em;color:var(--ink);text-decoration:none;text-transform:none}nav.top .brand .slash{color:var(--ink-faint);margin-right:1px}nav.top .context{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);flex:1;margin-left:24px}
-nav.top .brand span{color:inherit}
-nav.top ul{display:flex;gap:18px;list-style:none}
-nav.top a{text-decoration:none;font-family:var(--mono);font-size:11px;color:var(--ink-mid);letter-spacing:.16em;text-transform:uppercase}
-nav.top a:hover{color:var(--ink)}
-@media (max-width:780px){nav.top ul{display:none}}
-
-.hero{padding:140px 0 100px}
-.hero-grid{display:grid;grid-template-columns:1.7fr 1fr;gap:80px;align-items:end}
-@media (max-width:900px){.hero-grid{grid-template-columns:1fr;gap:40px}}
-.hero h1{margin:18px 0 22px}
-.hero-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:36px;padding-top:30px;border-top:1px solid var(--line)}
-.hero-meta div span{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:8px}
-.hero-meta div strong{font-family:var(--serif);font-size:22px;font-weight:500}
-
-.gauge{position:relative;width:100%;max-width:340px;margin-left:auto}
-.gauge svg{width:100%;height:auto;display:block}
-.gauge-num{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding-bottom:14%}
-.gauge-num b{font-family:var(--serif);font-weight:500;font-size:64px;line-height:1}
-.gauge-num span{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mid);margin-top:6px}
-.gauge-label{margin-top:14px;text-align:center;font-size:13px;color:var(--ink-mid)}
+/* nav + hero + metrics use home /styles.css patterns. */
+.hero__title em{font-style:normal;background:linear-gradient(120deg,var(--ink) 0%,var(--ink) 50%,var(--ink-faint) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.audit-meta-value{font-size:clamp(20px,2.2vw,28px)!important;line-height:1.15!important;letter-spacing:-.02em}
 
 .exec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
 @media (max-width:780px){.exec-grid{grid-template-columns:1fr}}
@@ -146,55 +126,65 @@ footer .mark{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-tr
 </head>
 <body>
 
-<nav class="top">
-  <div class="wrap">
-    <a class="brand" href="/"><span class="slash">/</span>Di Barret</a>
-    <span class="context">Auditoría · Efecto Ñoh</span>
-    <ul>
-      <li><a href="#resumen">Resumen</a></li>
-      <li><a href="#errores">Hallazgos</a></li>
-      <li><a href="#journey">Customer journey</a></li>
-      <li><a href="#pilares">Puntuación</a></li>
-      <li><a href="#plan">Plan</a></li>
-    </ul>
-  </div>
+<nav class="nav" aria-label="Primær navigation">
+  <a class="nav__logo" href="/" aria-label="Di Barret"><span aria-hidden="true">/</span>Di Barret</a>
+  <a class="nav__cta" href="#resumen">
+    <span>Auditoría · Efecto Ñoh</span>
+    <svg class="nav__cta-icon" width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true">
+      <path d="M2 9L9 2M9 2H4M9 2V7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
 </nav>
 
+<main id="main">
+
 <!-- HERO -->
-<header class="hero">
-  <div class="wrap">
-    <div class="hero-grid">
-      <div>
-        <div class="hero-eyebrow"><span class="dot"></span><span>Auditoría · 3 jun 2026 · Independiente</span></div>
-        <h1>Estudio con historia.<br><em>Web que la entierra.</em></h1>
-        <p class="lead">Efecto Ñoh es una dupla cubana de branding y diseño con una historia bonita: dos amigas que se conocieron en La Habana, se separaron en 2022 y se reunieron en 2024 desde EEUU y España para volver a trabajar juntas. La web que cuenta esa historia hoy tiene problemas que cualquier cliente potencial detecta en treinta segundos.</p>
-
-        <div class="hero-meta">
-          <div><span>Tipo</span><strong>Estudio boutique</strong></div>
-          <div><span>Equipo</span><strong>2 cofundadoras</strong></div>
-          <div><span>Bases</span><strong>EEUU · España</strong></div>
-        </div>
-      </div>
-
-      <div>
-        <div class="gauge">
-          <svg viewBox="0 0 360 200" aria-hidden="true">
-            <defs><linearGradient id="g" x1="0" x2="1" y1="0" y2="0">
-              <stop offset="0%" stop-color="#ef4444"/><stop offset="55%" stop-color="#fbbf24"/><stop offset="100%" stop-color="#34d399"/>
-            </linearGradient></defs>
-            <path d="M30 180 A150 150 0 0 1 330 180" fill="none" stroke="rgba(255,255,255,.07)" stroke-width="18" stroke-linecap="round"/>
-            <!-- score 40/100 → 40% del arco -->
-            <path d="M30 180 A150 150 0 0 1 330 180" fill="none" stroke="url(#g)" stroke-width="18" stroke-linecap="round" stroke-dasharray="471" stroke-dashoffset="283"/>
-            <!-- needle at -180 + 40/100*180 = -108 -->
-            <g transform="translate(180,180)"><g transform="rotate(-108)"><line x1="0" y1="0" x2="0" y2="-130" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/><circle cx="0" cy="-130" r="5" fill="#ffffff"/></g><circle cx="0" cy="0" r="9" fill="#0e0d0b" stroke="#ffffff" stroke-width="2"/></g>
-          </svg>
-          <div class="gauge-num"><b>40</b><span>de 100</span></div>
-          <div class="gauge-label">Story bonita · ejecución floja</div>
-        </div>
-      </div>
+<section class="hero" id="top">
+  <div class="hero__inner">
+    <div class="hero__eyebrow">
+      <span class="hero__dot"></span>
+      <span>Auditoría · 3 jun 2026 · Independiente</span>
+    </div>
+    <h1 class="hero__title">Estudio con historia.<br><em>Web que la entierra.</em></h1>
+    <p class="hero__sub">Efecto Ñoh es una dupla cubana de branding y diseño con una historia bonita: dos amigas que se conocieron en La Habana, se separaron en 2022 y se reunieron en 2024 desde EEUU y España para volver a trabajar juntas. La web que cuenta esa historia hoy tiene problemas que cualquier cliente potencial detecta en treinta segundos.</p>
+    <div class="hero__ctas">
+      <a class="btn btn--primary" href="#resumen">
+        <span>Ver resumen</span>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a class="btn btn--ghost" href="#plan">
+        <span>Ver plan de acción</span>
+      </a>
     </div>
   </div>
-</header>
+</section>
+
+<!-- AUDIT SCORE -->
+<section class="metrics" aria-label="Score y contexto del audit">
+  <div class="metrics__inner">
+    <div class="metric">
+      <div class="metric__value">40<span class="metric__suffix">/100</span></div>
+      <div class="metric__label">Score global</div>
+    </div>
+    <div class="metric">
+      <div class="metric__value audit-meta-value">Estudio<br>boutique</div>
+      <div class="metric__label">Tipo</div>
+    </div>
+    <div class="metric">
+      <div class="metric__value audit-meta-value">2<br>cofundadoras</div>
+      <div class="metric__label">Equipo</div>
+    </div>
+    <div class="metric">
+      <div class="metric__value audit-meta-value">EEUU<br>· España</div>
+      <div class="metric__label">Bases</div>
+    </div>
+  </div>
+</section>
+
+<!-- legacy gauge removed: score moved to .metrics section -->
+</div>
 
 <!-- RESUMEN -->
 <section id="resumen">
@@ -530,8 +520,10 @@ footer .mark{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-tr
   </div>
 </section>
 
-<footer>
-  <div class="wrap">
+  </main>
+
+<footer class="footer">
+  <div class="footer__inner">
     <div class="mark">Auditoría independiente · Di Barret · 3 jun 2026</div>
     <p style="color:var(--ink-faint);font-size:12px;max-width:60ch;margin:0 auto">Datos extraídos de fuentes públicas observables: <code>efectonoh.com</code> (HTML, cabeceras HTTP), Google Search bajo nombre de marca, enlaces de redes sociales declaradas en el footer del sitio. Lo no verificable está marcado como tal. Ningún dato fue inventado.</p>
   </div>
