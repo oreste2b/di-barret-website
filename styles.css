@@ -821,6 +821,47 @@ section[id] { scroll-margin-top: 88px; }
   transition: gap 240ms ease, color 240ms ease;
 }
 .service__demo a:hover { gap: 12px; color: var(--accent); }
+
+/* ============================================================
+   BILINGUAL TOGGLE (DA / ES)
+   ============================================================ */
+.lang-toggle {
+  position: fixed;
+  top: 22px;
+  right: var(--pad);
+  z-index: 100;
+  display: inline-flex;
+  border: 1px solid var(--line-mid);
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.lang-toggle__btn {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  background: transparent;
+  border: 0;
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: all 160ms ease;
+}
+.lang-toggle__btn[aria-pressed="true"] {
+  color: var(--bg);
+  background: var(--ink);
+}
+.lang-toggle__btn:not([aria-pressed="true"]):hover { color: var(--ink); }
+@media (max-width: 640px) {
+  .lang-toggle { top: 12px; right: 12px; }
+}
+
+/* Bilingual content blocks */
+[data-lang] { display: none; }
+body[data-active-lang="da"] [data-lang="da"] { display: revert; }
+body[data-active-lang="es"] [data-lang="es"] { display: revert; }
+body:not([data-active-lang]) [data-lang="da"] { display: revert; }
 .case {
   border-right: 1px solid var(--line);
   border-bottom: 1px solid var(--line);

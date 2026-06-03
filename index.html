@@ -11,6 +11,9 @@
   <meta name="author" content="Di Barret" />
   <meta name="theme-color" content="#000000" />
   <link rel="canonical" href="https://www.dibarret.dk/" />
+  <link rel="alternate" hreflang="da" href="https://www.dibarret.dk/" />
+  <link rel="alternate" hreflang="es" href="https://www.dibarret.dk/" />
+  <link rel="alternate" hreflang="x-default" href="https://www.dibarret.dk/" />
 
   <!-- Open Graph / Facebook / LinkedIn -->
   <meta property="og:type" content="website" />
@@ -50,7 +53,7 @@
   <!-- Trimmed to weights actually used by styles.css (400 + 500 only) -->
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Geist+Mono:wght@400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="/styles.css?v=4" />
+  <link rel="stylesheet" href="/styles.css?v=5" />
 
   <!-- Structured data, single @graph linking Organization, LocalBusiness,
        Person founders, WebSite (with search action), and the 4 Services.
@@ -169,16 +172,26 @@
 </head>
 <body>
 
-  <a class="skip-link" href="#main">Spring til indhold</a>
+  <a class="skip-link" href="#main">
+    <span data-lang="da">Spring til indhold</span>
+    <span data-lang="es">Saltar al contenido</span>
+  </a>
 
   <!-- film grain overlay (purely CSS/SVG, fixed across the viewport) -->
   <div class="noise" aria-hidden="true"></div>
 
+  <!-- Language toggle (top right, persistent) -->
+  <div class="lang-toggle" role="group" aria-label="Sprog · Idioma">
+    <button class="lang-toggle__btn" data-set-lang="da" aria-pressed="true">DA</button>
+    <button class="lang-toggle__btn" data-set-lang="es" aria-pressed="false">ES</button>
+  </div>
+
   <!-- top navigation -->
   <nav class="nav" aria-label="Primær navigation">
-    <a class="nav__logo" href="#top" aria-label="Di Barret · til toppen"><span aria-hidden="true">/</span>Di Barret</a>
+    <a class="nav__logo" href="#top" aria-label="Di Barret"><span aria-hidden="true">/</span>Di Barret</a>
     <a class="nav__cta" href="#lead">
-      <span>Få en vurdering</span>
+      <span data-lang="da">Få en vurdering</span>
+      <span data-lang="es">Pedir auditoría</span>
       <svg class="nav__cta-icon" width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true">
         <path d="M2 9L9 2M9 2H4M9 2V7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
@@ -192,27 +205,31 @@
     <div class="hero__inner">
       <div class="hero__eyebrow">
         <span class="hero__dot"></span>
-        <span>Brand-system studio · 2026</span>
+        <span data-lang="da">Brand-system studio · 2026</span>
+        <span data-lang="es">Brand-system studio · 2026</span>
       </div>
       <h1 class="hero__title">
-        Brand-systemer<br>
-        der får dig valgt.
+        <span data-lang="da">Brand-systemer<br>der får dig valgt.</span>
+        <span data-lang="es">Sistemas de marca<br>por los que te eligen.</span>
       </h1>
       <p class="hero__sub">
-        Vi designer og bygger digitale brand-systemer hvor strategi, visuel identitet, webdesign og AI arbejder sammen, så dit brand ikke bare bliver set, men valgt.
+        <span data-lang="da">Vi designer og bygger digitale brand-systemer hvor strategi, visuel identitet, webdesign og AI arbejder sammen, så dit brand ikke bare bliver set, men valgt.</span>
+        <span data-lang="es">Diseñamos y construimos sistemas de marca digitales donde la estrategia, la identidad visual, el diseño web y la IA trabajan como uno. Tu marca deja de ser solo vista. Empieza a ser elegida.</span>
       </p>
       <div class="hero__ctas">
         <a class="btn btn--primary" href="#lead">
-          <span>Få en gratis vurdering</span>
+          <span data-lang="da">Få en gratis vurdering</span>
+          <span data-lang="es">Pedir auditoría gratuita</span>
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
             <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </a>
-        <a class="btn btn--ghost" href="https://wa.me/4528898373" target="_blank" rel="noopener" aria-label="Skriv på WhatsApp (åbnes i nyt vindue)">
+        <a class="btn btn--ghost" href="https://wa.me/4528898373" target="_blank" rel="noopener" aria-label="WhatsApp">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
             <path d="M2 12L2.95 9.25C2.34 8.34 2 7.21 2 6C2 3.24 4.24 1 7 1C9.76 1 12 3.24 12 6C12 8.76 9.76 11 7 11C5.95 11 4.97 10.68 4.17 10.14L2 12Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
           </svg>
-          <span>Skriv på WhatsApp</span>
+          <span data-lang="da">Skriv på WhatsApp</span>
+          <span data-lang="es">WhatsApp directo</span>
         </a>
       </div>
     </div>
@@ -223,19 +240,31 @@
     <div class="metrics__inner">
       <div class="metric">
         <div class="metric__value">7<span class="metric__suffix">+</span></div>
-        <div class="metric__label">Publicerede cases</div>
+        <div class="metric__label">
+          <span data-lang="da">Publicerede cases</span>
+          <span data-lang="es">Casos publicados</span>
+        </div>
       </div>
       <div class="metric">
         <div class="metric__value">5</div>
-        <div class="metric__label">Brancher dækket</div>
+        <div class="metric__label">
+          <span data-lang="da">Brancher dækket</span>
+          <span data-lang="es">Sectores cubiertos</span>
+        </div>
       </div>
       <div class="metric">
         <div class="metric__value">3-6<span class="metric__suffix">u</span></div>
-        <div class="metric__label">Leveringstid</div>
+        <div class="metric__label">
+          <span data-lang="da">Leveringstid</span>
+          <span data-lang="es">Tiempo de entrega</span>
+        </div>
       </div>
       <div class="metric">
         <div class="metric__value">100<span class="metric__suffix">%</span></div>
-        <div class="metric__label">Direkte med founders</div>
+        <div class="metric__label">
+          <span data-lang="da">Direkte med founders</span>
+          <span data-lang="es">Directo con fundadores</span>
+        </div>
       </div>
     </div>
   </section>
@@ -244,20 +273,27 @@
   <section class="problem" id="problem">
     <div class="problem__inner">
       <div class="problem__head">
-        <span class="kicker">01 · Problemet</span>
+        <span class="kicker"><span data-lang="da">01 · Problemet</span><span data-lang="es">01 · El problema</span></span>
       </div>
       <div class="problem__body">
         <h2 class="h2">
-          Din kunde vurderer dig,<br>
-          <span class="dim">før de kontakter dig.</span>
+          <span data-lang="da">Din kunde vurderer dig,<br><span class="dim">før de kontakter dig.</span></span>
+          <span data-lang="es">Tu cliente te evalúa<br><span class="dim">antes de escribirte.</span></span>
         </h2>
         <div class="problem__text">
-          <p>Hvis dit website, dine billeder eller dit budskab føles generisk, uklart eller utroværdigt, mister du tillid før samtalen overhovedet starter.</p>
-          <p>Problemet er sjældent, at du mangler mere marketing. Problemet er, at dit brand ikke har et system, der gør det nemt for kunden at forstå, huske og vælge dig.</p>
+          <p>
+            <span data-lang="da">Hvis dit website, dine billeder eller dit budskab føles generisk, uklart eller utroværdigt, mister du tillid før samtalen overhovedet starter.</span>
+            <span data-lang="es">Si tu web, tus imágenes o tu mensaje se sienten genéricos, confusos o poco creíbles, pierdes la confianza antes de que empiece la conversación.</span>
+          </p>
+          <p>
+            <span data-lang="da">Problemet er sjældent, at du mangler mere marketing. Problemet er, at dit brand ikke har et system, der gør det nemt for kunden at forstå, huske og vælge dig.</span>
+            <span data-lang="es">El problema casi nunca es que falte marketing. El problema es que tu marca no tiene un sistema que le facilite al cliente entenderte, recordarte y elegirte.</span>
+          </p>
         </div>
         <div class="problem__note">
           <span class="problem__note-dot"></span>
-          Mere trafik hjælper ikke, hvis førstehåndsindtrykket ikke konverterer.
+          <span data-lang="da">Mere trafik hjælper ikke, hvis førstehåndsindtrykket ikke konverterer.</span>
+          <span data-lang="es">Más tráfico no sirve si la primera impresión no convierte.</span>
         </div>
       </div>
     </div>
@@ -267,13 +303,14 @@
   <section class="system" id="system">
     <div class="system__inner">
       <div class="system__head">
-        <span class="kicker">02 · Brand System</span>
+        <span class="kicker"><span data-lang="da">02 · Brand System</span><span data-lang="es">02 · Sistema de marca</span></span>
         <h2 class="h2">
-          Fem lag der<br>
-          <span class="dim">arbejder sammen.</span>
+          <span data-lang="da">Fem lag der<br><span class="dim">arbejder sammen.</span></span>
+          <span data-lang="es">Cinco capas<br><span class="dim">trabajando como una.</span></span>
         </h2>
         <p class="system__lead">
-          Vi bygger ikke isolerede design-elementer. Vi bygger et samlet brand-system, hvor visuel retning, budskab, weboplevelse og konvertering arbejder sammen.
+          <span data-lang="da">Vi bygger ikke isolerede design-elementer. Vi bygger et samlet brand-system, hvor visuel retning, budskab, weboplevelse og konvertering arbejder sammen.</span>
+          <span data-lang="es">No construimos piezas sueltas de diseño. Construimos un sistema de marca donde la dirección visual, el mensaje, la experiencia web y la conversión funcionan en bloque.</span>
         </p>
       </div>
 
@@ -281,46 +318,61 @@
         <article class="layer">
           <div class="layer__top">
             <span class="layer__num">01</span>
-            <span class="layer__status"><span class="layer__dot"></span>Aktiv</span>
+            <span class="layer__status"><span class="layer__dot"></span><span data-lang="da">Aktiv</span><span data-lang="es">Activo</span></span>
           </div>
-          <h3 class="layer__title">Strategi</h3>
-          <p class="layer__desc">Vi definerer, hvad dit brand skal kommunikere, hvem det skal ramme, og hvorfor kunden skal vælge dig.</p>
+          <h3 class="layer__title"><span data-lang="da">Strategi</span><span data-lang="es">Estrategia</span></h3>
+          <p class="layer__desc">
+            <span data-lang="da">Vi definerer, hvad dit brand skal kommunikere, hvem det skal ramme, og hvorfor kunden skal vælge dig.</span>
+            <span data-lang="es">Definimos qué tiene que decir tu marca, a quién, y por qué el cliente debería elegirte.</span>
+          </p>
         </article>
 
         <article class="layer">
           <div class="layer__top">
             <span class="layer__num">02</span>
-            <span class="layer__status"><span class="layer__dot"></span>Aktiv</span>
+            <span class="layer__status"><span class="layer__dot"></span><span data-lang="da">Aktiv</span><span data-lang="es">Activo</span></span>
           </div>
-          <h3 class="layer__title">Visuel identitet</h3>
-          <p class="layer__desc">Vi skaber en visuel retning, der får dit brand til at føles professionelt, genkendeligt og stærkere end konkurrenterne.</p>
+          <h3 class="layer__title"><span data-lang="da">Visuel identitet</span><span data-lang="es">Identidad visual</span></h3>
+          <p class="layer__desc">
+            <span data-lang="da">Vi skaber en visuel retning, der får dit brand til at føles professionelt, genkendeligt og stærkere end konkurrenterne.</span>
+            <span data-lang="es">Construimos una dirección visual que hace que tu marca se sienta profesional, reconocible y más fuerte que la competencia.</span>
+          </p>
         </article>
 
         <article class="layer">
           <div class="layer__top">
             <span class="layer__num">03</span>
-            <span class="layer__status"><span class="layer__dot"></span>Aktiv</span>
+            <span class="layer__status"><span class="layer__dot"></span><span data-lang="da">Aktiv</span><span data-lang="es">Activo</span></span>
           </div>
-          <h3 class="layer__title">Weboplevelse</h3>
-          <p class="layer__desc">Vi designer landing pages og websites med struktur, rytme, animationer og storytelling, der holder opmærksomheden.</p>
+          <h3 class="layer__title"><span data-lang="da">Weboplevelse</span><span data-lang="es">Experiencia web</span></h3>
+          <p class="layer__desc">
+            <span data-lang="da">Vi designer landing pages og websites med struktur, rytme, animationer og storytelling, der holder opmærksomheden.</span>
+            <span data-lang="es">Diseñamos landings y webs con estructura, ritmo, animaciones y narrativa que sostienen la atención.</span>
+          </p>
         </article>
 
         <article class="layer">
           <div class="layer__top">
             <span class="layer__num">04</span>
-            <span class="layer__status"><span class="layer__dot"></span>Aktiv</span>
+            <span class="layer__status"><span class="layer__dot"></span><span data-lang="da">Aktiv</span><span data-lang="es">Activo</span></span>
           </div>
-          <h3 class="layer__title">Konvertering</h3>
-          <p class="layer__desc">Vi bygger klare CTA'er, kontaktflows og sektioner, der guider besøgende fra interesse til handling.</p>
+          <h3 class="layer__title"><span data-lang="da">Konvertering</span><span data-lang="es">Conversión</span></h3>
+          <p class="layer__desc">
+            <span data-lang="da">Vi bygger klare CTA'er, kontaktflows og sektioner, der guider besøgende fra interesse til handling.</span>
+            <span data-lang="es">Construimos CTAs claros, flujos de contacto y secciones que llevan al visitante del interés a la acción.</span>
+          </p>
         </article>
 
         <article class="layer">
           <div class="layer__top">
             <span class="layer__num">05</span>
-            <span class="layer__status"><span class="layer__dot"></span>Aktiv</span>
+            <span class="layer__status"><span class="layer__dot"></span><span data-lang="da">Aktiv</span><span data-lang="es">Activo</span></span>
           </div>
-          <h3 class="layer__title">AI &amp; Tracking</h3>
-          <p class="layer__desc">Vi gør systemet klar til måling, kampagner og optimering, så du ikke bare får en flot side, men en stærkere digital base.</p>
+          <h3 class="layer__title"><span data-lang="da">AI &amp; Tracking</span><span data-lang="es">IA y tracking</span></h3>
+          <p class="layer__desc">
+            <span data-lang="da">Vi gør systemet klar til måling, kampagner og optimering, så du ikke bare får en flot side, men en stærkere digital base.</span>
+            <span data-lang="es">Dejamos el sistema preparado para medir, lanzar campañas y optimizar. No solo te llevas una web bonita: te llevas una base digital más fuerte.</span>
+          </p>
         </article>
       </div>
     </div>
@@ -330,13 +382,14 @@
   <section class="services" id="services">
     <div class="services__inner">
       <div class="services__head">
-        <span class="kicker">03 · Services</span>
+        <span class="kicker"><span data-lang="da">03 · Services</span><span data-lang="es">03 · Servicios</span></span>
         <h2 class="h2">
-          Det vi<br>
-          <span class="dim">bygger.</span>
+          <span data-lang="da">Det vi<br><span class="dim">bygger.</span></span>
+          <span data-lang="es">Lo que<br><span class="dim">construimos.</span></span>
         </h2>
         <p class="services__lead">
-          Fra en fokuseret landing page til et samlet digitalt brand-system, vi bygger den struktur, der gør dit brand mere tydeligt, professionelt og værd at vælge.
+          <span data-lang="da">Fra en fokuseret landing page til et samlet digitalt brand-system, vi bygger den struktur, der gør dit brand mere tydeligt, professionelt og værd at vælge.</span>
+          <span data-lang="es">Desde una landing enfocada hasta un sistema de marca digital completo. Construimos la estructura que hace tu marca más clara, más profesional y más fácil de elegir.</span>
         </p>
       </div>
 
@@ -347,26 +400,41 @@
             <span class="service__num">01</span>
             <span class="service__tag">Audit</span>
           </div>
-          <h3 class="service__title">Brand Audit</h3>
-          <p class="service__desc">En 360° diagnose af din digitale tilstedeværelse, web, copy, sociale medier, ads, customer journey og konkurrence. Med problemer prioriteret og en konkret 30-dages plan.</p>
+          <h3 class="service__title"><span data-lang="da">Brand Audit</span><span data-lang="es">Auditoría de marca</span></h3>
+          <p class="service__desc">
+            <span data-lang="da">En 360° diagnose af din digitale tilstedeværelse, web, copy, sociale medier, ads, customer journey og konkurrence. Med problemer prioriteret og en konkret 30-dages plan.</span>
+            <span data-lang="es">Diagnóstico 360° de tu presencia digital: web, copy, redes, ads, customer journey y competencia. Problemas priorizados y plan concreto de 30 días.</span>
+          </p>
           <ul class="service__deliverables">
-            <li>12-dimensions scoreboard: web, SEO, copy, social, journey, konkurrence</li>
-            <li>Problemer prioriteret (kritisk / vigtigt / nice-to-have)</li>
-            <li>30-dages handlingsplan + quick wins du kan starte i dag</li>
+            <li>
+              <span data-lang="da">12-dimensions scoreboard: web, SEO, copy, social, journey, konkurrence</span>
+              <span data-lang="es">Scoreboard de 12 dimensiones: web, SEO, copy, redes, journey, competencia</span>
+            </li>
+            <li>
+              <span data-lang="da">Problemer prioriteret (kritisk / vigtigt / nice-to-have)</span>
+              <span data-lang="es">Problemas priorizados (crítico / importante / nice-to-have)</span>
+            </li>
+            <li>
+              <span data-lang="da">30-dages handlingsplan + quick wins du kan starte i dag</span>
+              <span data-lang="es">Plan de acción de 30 días + quick wins que puedes empezar hoy</span>
+            </li>
           </ul>
           <div class="service__pricing">
             <div class="service__price">
-              <span class="service__price-label">Fra</span>
+              <span class="service__price-label"><span data-lang="da">Fra</span><span data-lang="es">Desde</span></span>
               <span class="service__price-value">3.000 DKK</span>
             </div>
             <div class="service__time">
-              <span class="service__time-label">Tidsramme</span>
+              <span class="service__time-label"><span data-lang="da">Tidsramme</span><span data-lang="es">Tiempo</span></span>
               <span class="service__time-value">1 uge</span>
             </div>
           </div>
           <div class="service__foot">
-            <span class="service__foot-label">Ideal for</span>
-            <span class="service__foot-text">Brands der vil vide præcis hvor de står, og hvad der skal fixes først.</span>
+            <span class="service__foot-label"><span data-lang="da">Ideal for</span><span data-lang="es">Ideal para</span></span>
+            <span class="service__foot-text">
+              <span data-lang="da">Brands der vil vide præcis hvor de står, og hvad der skal fixes først.</span>
+              <span data-lang="es">Marcas que quieren saber exactamente dónde están y qué arreglar primero.</span>
+            </span>
           </div>
         </article>
 
@@ -375,26 +443,32 @@
             <span class="service__num">02</span>
             <span class="service__tag">Landing</span>
           </div>
-          <h3 class="service__title">Visuel landing</h3>
-          <p class="service__desc">En premium landing page bygget til at forklare dit brand hurtigt, skabe tillid og få besøgende til at tage kontakt.</p>
+          <h3 class="service__title"><span data-lang="da">Visuel landing</span><span data-lang="es">Visual Landing</span></h3>
+          <p class="service__desc">
+            <span data-lang="da">En premium landing page bygget til at forklare dit brand hurtigt, skabe tillid og få besøgende til at tage kontakt.</span>
+            <span data-lang="es">Una landing page premium pensada para explicar tu marca rápido, generar confianza y mover al visitante a escribirte.</span>
+          </p>
           <ul class="service__deliverables">
-            <li>Strategi-session + budskab</li>
-            <li>Komplet landing-page design + build</li>
-            <li>Deploy, hastighed og basis-tracking</li>
+            <li><span data-lang="da">Strategi-session + budskab</span><span data-lang="es">Sesión de estrategia + mensaje</span></li>
+            <li><span data-lang="da">Komplet landing-page design + build</span><span data-lang="es">Diseño y construcción completa de la landing</span></li>
+            <li><span data-lang="da">Deploy, hastighed og basis-tracking</span><span data-lang="es">Deploy, velocidad y tracking básico</span></li>
           </ul>
           <div class="service__pricing">
             <div class="service__price">
-              <span class="service__price-label">Fra</span>
+              <span class="service__price-label"><span data-lang="da">Fra</span><span data-lang="es">Desde</span></span>
               <span class="service__price-value">8.000 DKK</span>
             </div>
             <div class="service__time">
-              <span class="service__time-label">Tidsramme</span>
+              <span class="service__time-label"><span data-lang="da">Tidsramme</span><span data-lang="es">Tiempo</span></span>
               <span class="service__time-value">2-3 uger</span>
             </div>
           </div>
           <div class="service__foot">
-            <span class="service__foot-label">Ideal for</span>
-            <span class="service__foot-text">Kampagner, nye brands, servicevirksomheder, events og produkter.</span>
+            <span class="service__foot-label"><span data-lang="da">Ideal for</span><span data-lang="es">Ideal para</span></span>
+            <span class="service__foot-text">
+              <span data-lang="da">Kampagner, nye brands, servicevirksomheder, events og produkter.</span>
+              <span data-lang="es">Campañas, marcas nuevas, empresas de servicio, eventos y productos.</span>
+            </span>
           </div>
         </article>
 
@@ -403,26 +477,32 @@
             <span class="service__num">03</span>
             <span class="service__tag">Identitet</span>
           </div>
-          <h3 class="service__title">Brand-oplevelse</h3>
-          <p class="service__desc">Et samlet digitalt brandunivers med visuel retning, storytelling, webdesign og animationer, der gør dit brand mindeværdigt.</p>
+          <h3 class="service__title"><span data-lang="da">Brand-oplevelse</span><span data-lang="es">Brand Experience</span></h3>
+          <p class="service__desc">
+            <span data-lang="da">Et samlet digitalt brandunivers med visuel retning, storytelling, webdesign og animationer, der gør dit brand mindeværdigt.</span>
+            <span data-lang="es">Un universo de marca digital completo: dirección visual, narrativa, diseño web y animaciones que hacen tu marca memorable.</span>
+          </p>
           <ul class="service__deliverables">
-            <li>Brand-strategi + visuel retning</li>
-            <li>Design-system: typografi, farver, komponenter</li>
-            <li>Guidelines + skabeloner du selv kan bruge</li>
+            <li><span data-lang="da">Brand-strategi + visuel retning</span><span data-lang="es">Estrategia de marca + dirección visual</span></li>
+            <li><span data-lang="da">Design-system: typografi, farver, komponenter</span><span data-lang="es">Design system: tipografía, color, componentes</span></li>
+            <li><span data-lang="da">Guidelines + skabeloner du selv kan bruge</span><span data-lang="es">Guidelines y plantillas que puedes usar tú mismo</span></li>
           </ul>
           <div class="service__pricing">
             <div class="service__price">
-              <span class="service__price-label">Fra</span>
+              <span class="service__price-label"><span data-lang="da">Fra</span><span data-lang="es">Desde</span></span>
               <span class="service__price-value">25.000 DKK</span>
             </div>
             <div class="service__time">
-              <span class="service__time-label">Tidsramme</span>
+              <span class="service__time-label"><span data-lang="da">Tidsramme</span><span data-lang="es">Tiempo</span></span>
               <span class="service__time-value">4-5 uger</span>
             </div>
           </div>
           <div class="service__foot">
-            <span class="service__foot-label">Ideal for</span>
-            <span class="service__foot-text">Virksomheder, der vil se mere professionelle, premium og mindeværdige ud.</span>
+            <span class="service__foot-label"><span data-lang="da">Ideal for</span><span data-lang="es">Ideal para</span></span>
+            <span class="service__foot-text">
+              <span data-lang="da">Virksomheder, der vil se mere professionelle, premium og mindeværdige ud.</span>
+              <span data-lang="es">Empresas que quieren verse más profesionales, premium y memorables.</span>
+            </span>
           </div>
         </article>
 
@@ -431,30 +511,37 @@
             <span class="service__num">04</span>
             <span class="service__tag">Web</span>
           </div>
-          <h3 class="service__title">Web-oplevelse</h3>
-          <p class="service__desc">Et interaktivt website med bevægelse, struktur og sektioner designet til at fastholde opmærksomhed og skille sig ud.</p>
+          <h3 class="service__title"><span data-lang="da">Web-oplevelse</span><span data-lang="es">Web Experience</span></h3>
+          <p class="service__desc">
+            <span data-lang="da">Et interaktivt website med bevægelse, struktur og sektioner designet til at fastholde opmærksomhed og skille sig ud.</span>
+            <span data-lang="es">Una web interactiva con movimiento, estructura y secciones diseñadas para sostener la atención y diferenciarte.</span>
+          </p>
           <ul class="service__deliverables">
-            <li>Brand-system + komplet webdesign</li>
-            <li>Build med animationer og interaktioner</li>
-            <li>SEO, A11Y, performance og tracking-setup</li>
+            <li><span data-lang="da">Brand-system + komplet webdesign</span><span data-lang="es">Sistema de marca + diseño web completo</span></li>
+            <li><span data-lang="da">Build med animationer og interaktioner</span><span data-lang="es">Build con animaciones e interacciones</span></li>
+            <li><span data-lang="da">SEO, A11Y, performance og tracking-setup</span><span data-lang="es">SEO, accesibilidad, performance y tracking</span></li>
           </ul>
           <div class="service__pricing">
             <div class="service__price">
-              <span class="service__price-label">Fra</span>
+              <span class="service__price-label"><span data-lang="da">Fra</span><span data-lang="es">Desde</span></span>
               <span class="service__price-value">35.000 DKK</span>
             </div>
             <div class="service__time">
-              <span class="service__time-label">Tidsramme</span>
+              <span class="service__time-label"><span data-lang="da">Tidsramme</span><span data-lang="es">Tiempo</span></span>
               <span class="service__time-value">5-6 uger</span>
             </div>
           </div>
           <div class="service__foot">
-            <span class="service__foot-label">Ideal for</span>
-            <span class="service__foot-text">Brands, der ikke vil ligne en standard template.</span>
+            <span class="service__foot-label"><span data-lang="da">Ideal for</span><span data-lang="es">Ideal para</span></span>
+            <span class="service__foot-text">
+              <span data-lang="da">Brands, der ikke vil ligne en standard template.</span>
+              <span data-lang="es">Marcas que no quieren verse como otra plantilla más.</span>
+            </span>
           </div>
           <div class="service__demo">
             <a href="/demo-lospichyboys" target="_blank" rel="noopener">
-              <span>Se live demo</span>
+              <span data-lang="da">Se live demo</span>
+              <span data-lang="es">Ver demo en vivo</span>
               <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
           </div>
@@ -465,26 +552,32 @@
             <span class="service__num">05</span>
             <span class="service__tag">Vækst</span>
           </div>
-          <h3 class="service__title">Vækst-fundament</h3>
-          <p class="service__desc">En konverteringsklar digital base med landing page, messaging, CTA-flow, tracking og kampagneklar struktur.</p>
+          <h3 class="service__title"><span data-lang="da">Vækst-fundament</span><span data-lang="es">Growth Foundation</span></h3>
+          <p class="service__desc">
+            <span data-lang="da">En konverteringsklar digital base med landing page, messaging, CTA-flow, tracking og kampagneklar struktur.</span>
+            <span data-lang="es">Una base digital lista para convertir: landing, mensajería, flujo de CTAs, tracking y estructura preparada para campañas.</span>
+          </p>
           <ul class="service__deliverables">
-            <li>Komplet brand- og web-system</li>
-            <li>Konvertering, CTA-arkitektur og lead-flow</li>
-            <li>Tracking, AI-lag og kampagne-klar setup</li>
+            <li><span data-lang="da">Komplet brand- og web-system</span><span data-lang="es">Sistema de marca y web completo</span></li>
+            <li><span data-lang="da">Konvertering, CTA-arkitektur og lead-flow</span><span data-lang="es">Conversión, arquitectura de CTAs y flujo de leads</span></li>
+            <li><span data-lang="da">Tracking, AI-lag og kampagne-klar setup</span><span data-lang="es">Tracking, capa de IA y setup listo para campañas</span></li>
           </ul>
           <div class="service__pricing">
             <div class="service__price">
-              <span class="service__price-label">Fra</span>
+              <span class="service__price-label"><span data-lang="da">Fra</span><span data-lang="es">Desde</span></span>
               <span class="service__price-value">50.000 DKK</span>
             </div>
             <div class="service__time">
-              <span class="service__time-label">Tidsramme</span>
+              <span class="service__time-label"><span data-lang="da">Tidsramme</span><span data-lang="es">Tiempo</span></span>
               <span class="service__time-value">6-8 uger</span>
             </div>
           </div>
           <div class="service__foot">
-            <span class="service__foot-label">Ideal for</span>
-            <span class="service__foot-text">Virksomheder, der vil køre annoncer, kampagner eller skabe målbar vækst.</span>
+            <span class="service__foot-label"><span data-lang="da">Ideal for</span><span data-lang="es">Ideal para</span></span>
+            <span class="service__foot-text">
+              <span data-lang="da">Virksomheder, der vil køre annoncer, kampagner eller skabe målbar vækst.</span>
+              <span data-lang="es">Empresas que van a invertir en ads, campañas o crecimiento medible.</span>
+            </span>
           </div>
         </article>
 
@@ -496,10 +589,10 @@
   <section class="process" id="process">
     <div class="process__inner">
       <div class="process__head">
-        <span class="kicker">04 · Process</span>
+        <span class="kicker"><span data-lang="da">04 · Process</span><span data-lang="es">04 · Proceso</span></span>
         <h2 class="h2">
-          Sådan bygger vi<br>
-          <span class="dim">dit system.</span>
+          <span data-lang="da">Sådan bygger vi<br><span class="dim">dit system.</span></span>
+          <span data-lang="es">Así construimos<br><span class="dim">tu sistema.</span></span>
         </h2>
       </div>
 
@@ -508,46 +601,61 @@
         <li class="step">
           <span class="step__num">01</span>
           <div class="step__body">
-            <h3 class="step__title">Visuel vurdering</h3>
-            <p class="step__desc">Vi analyserer dit nuværende website, Instagram eller brandudtryk og finder de steder, hvor du mister klarhed, tillid eller konvertering.</p>
+            <h3 class="step__title"><span data-lang="da">Visuel vurdering</span><span data-lang="es">Auditoría visual</span></h3>
+            <p class="step__desc">
+              <span data-lang="da">Vi analyserer dit nuværende website, Instagram eller brandudtryk og finder de steder, hvor du mister klarhed, tillid eller konvertering.</span>
+              <span data-lang="es">Analizamos tu web actual, tu Instagram o tu marca y encontramos los puntos donde pierdes claridad, confianza o conversión.</span>
+            </p>
           </div>
-          <span class="step__duration">1 uge</span>
+          <span class="step__duration"><span data-lang="da">1 uge</span><span data-lang="es">1 semana</span></span>
         </li>
 
         <li class="step">
           <span class="step__num">02</span>
           <div class="step__body">
-            <h3 class="step__title">Retning</h3>
-            <p class="step__desc">Vi definerer den visuelle og strategiske retning: hvad dit brand skal sige, hvordan det skal føles, og hvad kunden skal gøre.</p>
+            <h3 class="step__title"><span data-lang="da">Retning</span><span data-lang="es">Dirección</span></h3>
+            <p class="step__desc">
+              <span data-lang="da">Vi definerer den visuelle og strategiske retning: hvad dit brand skal sige, hvordan det skal føles, og hvad kunden skal gøre.</span>
+              <span data-lang="es">Definimos la dirección visual y estratégica: qué dice tu marca, cómo se siente y qué tiene que hacer el cliente.</span>
+            </p>
           </div>
-          <span class="step__duration">1 uge</span>
+          <span class="step__duration"><span data-lang="da">1 uge</span><span data-lang="es">1 semana</span></span>
         </li>
 
         <li class="step">
           <span class="step__num">03</span>
           <div class="step__body">
-            <h3 class="step__title">Design system</h3>
-            <p class="step__desc">Vi skaber layout, typografi, farver, sektioner, CTA'er og visuelle elementer, der arbejder sammen som ét sammenhængende sprog.</p>
+            <h3 class="step__title"><span data-lang="da">Design system</span><span data-lang="es">Design system</span></h3>
+            <p class="step__desc">
+              <span data-lang="da">Vi skaber layout, typografi, farver, sektioner, CTA'er og visuelle elementer, der arbejder sammen som ét sammenhængende sprog.</span>
+              <span data-lang="es">Construimos layout, tipografía, color, secciones, CTAs y elementos visuales que hablan un solo idioma.</span>
+            </p>
           </div>
-          <span class="step__duration">1-2 uger</span>
+          <span class="step__duration"><span data-lang="da">1-2 uger</span><span data-lang="es">1-2 semanas</span></span>
         </li>
 
         <li class="step">
           <span class="step__num">04</span>
           <div class="step__body">
-            <h3 class="step__title">Web experience</h3>
-            <p class="step__desc">Vi bygger oplevelsen med animationer, interaktioner og responsivt design, så siden føles levende uden at blive tung eller forvirrende.</p>
+            <h3 class="step__title"><span data-lang="da">Web experience</span><span data-lang="es">Web experience</span></h3>
+            <p class="step__desc">
+              <span data-lang="da">Vi bygger oplevelsen med animationer, interaktioner og responsivt design, så siden føles levende uden at blive tung eller forvirrende.</span>
+              <span data-lang="es">Construimos la experiencia con animaciones, interacciones y diseño responsive. La web se siente viva sin volverse pesada ni confusa.</span>
+            </p>
           </div>
-          <span class="step__duration">2 uger</span>
+          <span class="step__duration"><span data-lang="da">2 uger</span><span data-lang="es">2 semanas</span></span>
         </li>
 
         <li class="step">
           <span class="step__num">05</span>
           <div class="step__body">
-            <h3 class="step__title">Launch &amp; tracking</h3>
-            <p class="step__desc">Vi gør siden klar til rigtige besøgende med mobiloptimering, hastighed, kontaktflow, tracking og kampagneklar struktur.</p>
+            <h3 class="step__title"><span data-lang="da">Launch &amp; tracking</span><span data-lang="es">Launch y tracking</span></h3>
+            <p class="step__desc">
+              <span data-lang="da">Vi gør siden klar til rigtige besøgende med mobiloptimering, hastighed, kontaktflow, tracking og kampagneklar struktur.</span>
+              <span data-lang="es">Dejamos la web lista para visitantes reales: optimización mobile, velocidad, flujo de contacto, tracking y estructura preparada para campañas.</span>
+            </p>
           </div>
-          <span class="step__duration">3 dage</span>
+          <span class="step__duration"><span data-lang="da">3 dage</span><span data-lang="es">3 días</span></span>
         </li>
 
       </ol>
@@ -558,13 +666,14 @@
   <section class="bygget" id="bygget">
     <div class="bygget__inner">
       <div class="bygget__head">
-        <span class="kicker">05 · Bygget af os</span>
+        <span class="kicker"><span data-lang="da">05 · Bygget af os</span><span data-lang="es">05 · Hecho por nosotros</span></span>
         <h2 class="h2">
-          Vi er nye.<br>
-          <span class="dim">Men ikke som designere.</span>
+          <span data-lang="da">Vi er nye.<br><span class="dim">Men ikke som designere.</span></span>
+          <span data-lang="es">Somos nuevos.<br><span class="dim">No como diseñadores.</span></span>
         </h2>
         <p class="bygget__lead">
-          Di Barret startede i 2026 som et samarbejde mellem Orestes og Karo, to designere fra København. Vi har bygget brand-systemer, landings og digital identitet i mange år før vi startede her. Vil du se konkrete cases fra vores tidligere arbejde? Skriv direkte til os.
+          <span data-lang="da">Di Barret startede i 2026 som et samarbejde mellem Orestes og Karo, to designere fra København. Vi har bygget brand-systemer, landings og digital identitet i mange år før vi startede her.</span>
+          <span data-lang="es">Di Barret nació en 2026 como colaboración entre Orestes y Karo, dos diseñadores de Copenhague. Llevamos años construyendo sistemas de marca, landings e identidad digital antes de empezar aquí.</span>
         </p>
       </div>
 
@@ -575,17 +684,16 @@
             <span class="case__num">01</span>
             <span class="case__tag">Meta-case</span>
           </div>
-          <h3 class="case__title">Dette website</h3>
+          <h3 class="case__title"><span data-lang="da">Dette website</span><span data-lang="es">Esta misma web</span></h3>
           <p class="case__desc">
-            Den her side er bygget med præcis det system vi sælger til dig.
-            Designet og udviklet på 8 dage. Performance, SEO og tilgængelighed
-            testet end-to-end. Hver detalje er et bevis på hvad du får.
+            <span data-lang="da">Den her side er bygget med præcis det system vi sælger til dig. Designet og udviklet på 8 dage. Performance, SEO og tilgængelighed testet end-to-end. Hver detalje er et bevis på hvad du får.</span>
+            <span data-lang="es">Esta misma web está construida con el sistema que te vendemos. Diseñada y desarrollada en 8 días. Performance, SEO y accesibilidad testeados de punta a punta. Cada detalle es prueba de lo que recibes.</span>
           </p>
           <ul class="case__stack">
             <li><span class="case__stack-label">Performance</span><span class="case__stack-value">Lighthouse 97 / 88</span></li>
-            <li><span class="case__stack-label">Tilgængelighed</span><span class="case__stack-value">WCAG 2.2 AA</span></li>
+            <li><span class="case__stack-label"><span data-lang="da">Tilgængelighed</span><span data-lang="es">Accesibilidad</span></span><span class="case__stack-value">WCAG 2.2 AA</span></li>
             <li><span class="case__stack-label">SEO</span><span class="case__stack-value">JSON-LD @graph · 6 entities</span></li>
-            <li><span class="case__stack-label">Tidsramme</span><span class="case__stack-value">8 dage · launch til live form</span></li>
+            <li><span class="case__stack-label"><span data-lang="da">Tidsramme</span><span data-lang="es">Tiempo</span></span><span class="case__stack-value"><span data-lang="da">8 dage · launch til live form</span><span data-lang="es">8 días · del launch al form en vivo</span></span></li>
           </ul>
         </article>
 
@@ -595,9 +703,12 @@
             <span class="case__tag">Audit · Podcast</span>
           </div>
           <h3 class="case__title">Los Pichy Boys</h3>
-          <p class="case__desc">974 episodios cubano-americanos. Business audit + SEO audit + propuesta web + demo en vivo. Score 40/100, plan A/B/C, customer journey dual.</p>
+          <p class="case__desc">
+            <span data-lang="da">974 cubansk-amerikanske episoder. Business audit + SEO audit + web-proposal + live demo. Score 40/100, plan A/B/C, dobbelt customer journey.</span>
+            <span data-lang="es">974 episodios cubano-americanos. Business audit + SEO audit + propuesta web + demo en vivo. Score 40/100, plan A/B/C, customer journey dual.</span>
+          </p>
           <div class="case__cta-row">
-            <span class="case__cta-text">Se case</span>
+            <span class="case__cta-text"><span data-lang="da">Se case</span><span data-lang="es">Ver caso</span></span>
             <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
         </a>
@@ -608,7 +719,10 @@
             <span class="case__tag">Demo · Live</span>
           </div>
           <h3 class="case__title">Pichy Boys · Web demo</h3>
-          <p class="case__desc">Single-page GSAP demo del Tier 2-3. Pin scrollytelling, horizontal scroll, magnetic CTA, halftone duotone. Cómo se sentiría la web final.</p>
+          <p class="case__desc">
+            <span data-lang="da">Single-page GSAP demo af Tier 2-3. Pin scrollytelling, horisontal scroll, magnetic CTA, halftone duotone. Sådan ville den endelige web føles.</span>
+            <span data-lang="es">Demo single-page con GSAP del Tier 2-3. Pin scrollytelling, horizontal scroll, magnetic CTA, halftone duotone. Cómo se sentiría la web final.</span>
+          </p>
           <div class="case__cta-row">
             <span class="case__cta-text">Se demo</span>
             <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -621,9 +735,12 @@
             <span class="case__tag">Audit · Health</span>
           </div>
           <h3 class="case__title">Clínica Bioever</h3>
-          <p class="case__desc">Primera clínica de Age Management en Canarias, aliada con Dr. Oliver Zolman (London). 16 hallazgos, schema markup, NAP consistency, Laravel stack.</p>
+          <p class="case__desc">
+            <span data-lang="da">Første Age Management-klinik på De Kanariske Øer, allieret med Dr. Oliver Zolman (London). 16 findings, schema markup, NAP-konsistens, Laravel-stack.</span>
+            <span data-lang="es">Primera clínica de Age Management en Canarias, aliada con Dr. Oliver Zolman (London). 16 hallazgos, schema markup, NAP consistency, stack Laravel.</span>
+          </p>
           <div class="case__cta-row">
-            <span class="case__cta-text">Se case</span>
+            <span class="case__cta-text"><span data-lang="da">Se case</span><span data-lang="es">Ver caso</span></span>
             <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
         </a>
@@ -634,9 +751,12 @@
             <span class="case__tag">Audit · Brand studio</span>
           </div>
           <h3 class="case__title">Efecto Ñoh</h3>
-          <p class="case__desc">Cuban boutique brand studio, dos cofounders remote US/España. 15 hallazgos: invisible on Google, duplicate H1, Hostinger Builder limits.</p>
+          <p class="case__desc">
+            <span data-lang="da">Cubansk boutique brand studio, to medstiftere remote fra USA/Spanien. 15 findings: usynlig på Google, dublerede H1, Hostinger Builder-limits.</span>
+            <span data-lang="es">Brand studio boutique cubano con dos cofundadores remoto en US/España. 15 hallazgos: invisible en Google, H1 duplicado, límites de Hostinger Builder.</span>
+          </p>
           <div class="case__cta-row">
-            <span class="case__cta-text">Se case</span>
+            <span class="case__cta-text"><span data-lang="da">Se case</span><span data-lang="es">Ver caso</span></span>
             <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
         </a>
@@ -647,9 +767,12 @@
             <span class="case__tag">Audit · Agency</span>
           </div>
           <h3 class="case__title">1NationUp</h3>
-          <p class="case__desc">Miami brand-system + production agency. 360° audit con scorecard 12 dimensiones, hallazgos prioritizados y 30-dages plan.</p>
+          <p class="case__desc">
+            <span data-lang="da">Miami brand-system og produktionsbureau. 360° audit med 12-dimensions scorecard, prioriterede findings og 30-dages plan.</span>
+            <span data-lang="es">Agencia de brand-system y producción en Miami. Auditoría 360° con scorecard de 12 dimensiones, hallazgos priorizados y plan de 30 días.</span>
+          </p>
           <div class="case__cta-row">
-            <span class="case__cta-text">Se case</span>
+            <span class="case__cta-text"><span data-lang="da">Se case</span><span data-lang="es">Ver caso</span></span>
             <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
         </a>
@@ -658,7 +781,8 @@
 
       <div class="bygget__see-all">
         <a href="/cases/" class="btn btn--ghost">
-          <span>Se alle 7 cases</span>
+          <span data-lang="da">Se alle 7 cases</span>
+          <span data-lang="es">Ver los 7 casos</span>
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
       </div>
@@ -669,18 +793,19 @@
   <section class="team" id="team">
     <div class="team__inner">
       <div class="team__head">
-        <span class="kicker">06 · People</span>
+        <span class="kicker"><span data-lang="da">06 · People</span><span data-lang="es">06 · Equipo</span></span>
         <h2 class="h2">
-          Mød holdet<br>
-          <span class="dim">bag systemet.</span>
+          <span data-lang="da">Mød holdet<br><span class="dim">bag systemet.</span></span>
+          <span data-lang="es">Conoce al equipo<br><span class="dim">detrás del sistema.</span></span>
         </h2>
         <p class="team__lead">
-          Vi er et lille studie med stort fokus: at bygge digitale brand-systemer, der får virksomheder til at føles stærkere, tydeligere og lettere at vælge.
+          <span data-lang="da">Vi er et lille studie med stort fokus: at bygge digitale brand-systemer, der får virksomheder til at føles stærkere, tydeligere og lettere at vælge.</span>
+          <span data-lang="es">Estudio pequeño con foco grande: construir sistemas de marca digitales que hacen que las empresas se sientan más fuertes, más claras y más fáciles de elegir.</span>
         </p>
       </div>
 
       <div class="team__group">
-        <span class="kicker team__group-label">Founders / 02</span>
+        <span class="kicker team__group-label">Founders · 02</span>
       </div>
 
       <div class="team__grid">
@@ -691,10 +816,13 @@
           </div>
           <div class="founder__body">
             <h3 class="founder__name">Orestes Barret</h3>
-            <span class="founder__role">Creative Director</span>
-            <p class="founder__bio">Bygger den visuelle retning, brand-identiteten og web-oplevelsen, der gør hver Di Barret-side mindeværdig fra første sekund.</p>
+            <span class="founder__role"><span data-lang="da">Creative Director</span><span data-lang="es">Director creativo</span></span>
+            <p class="founder__bio">
+              <span data-lang="da">Bygger den visuelle retning, brand-identiteten og web-oplevelsen, der gør hver Di Barret-side mindeværdig fra første sekund.</span>
+              <span data-lang="es">Construye la dirección visual, la identidad de marca y la experiencia web que hacen cada página Di Barret memorable desde el primer segundo.</span>
+            </p>
             <div class="founder__meta">
-              <span class="founder__meta-label">Based in</span>
+              <span class="founder__meta-label"><span data-lang="da">Based in</span><span data-lang="es">Basado en</span></span>
               <span class="founder__meta-value">København, DK</span>
             </div>
           </div>
@@ -706,10 +834,13 @@
           </div>
           <div class="founder__body">
             <h3 class="founder__name">Karo Lushi</h3>
-            <span class="founder__role">Strategy &amp; Build</span>
-            <p class="founder__bio">Forbinder strategi, konvertering og teknisk udførelse, så hver landing page bliver et reelt vækstaktiv, ikke bare et flot udtryk.</p>
+            <span class="founder__role"><span data-lang="da">Strategy &amp; Build</span><span data-lang="es">Estrategia y build</span></span>
+            <p class="founder__bio">
+              <span data-lang="da">Forbinder strategi, konvertering og teknisk udførelse, så hver landing page bliver et reelt vækstaktiv, ikke bare et flot udtryk.</span>
+              <span data-lang="es">Conecta estrategia, conversión y ejecución técnica. Cada landing se convierte en activo de crecimiento real, no solo en una página bonita.</span>
+            </p>
             <div class="founder__meta">
-              <span class="founder__meta-label">Based in</span>
+              <span class="founder__meta-label"><span data-lang="da">Based in</span><span data-lang="es">Basado en</span></span>
               <span class="founder__meta-value">København, DK</span>
             </div>
           </div>
@@ -723,13 +854,14 @@
   <section class="hvorfor" id="hvorfor">
     <div class="hvorfor__inner">
       <div class="hvorfor__head">
-        <span class="kicker">07 · Hvorfor os</span>
+        <span class="kicker"><span data-lang="da">07 · Hvorfor os</span><span data-lang="es">07 · Por qué nosotros</span></span>
         <h2 class="h2">
-          Vi er ikke et bureau<br>
-          <span class="dim">med 50 ansatte.</span>
+          <span data-lang="da">Vi er ikke et bureau<br><span class="dim">med 50 ansatte.</span></span>
+          <span data-lang="es">No somos una agencia<br><span class="dim">de 50 empleados.</span></span>
         </h2>
         <p class="hvorfor__lead">
-          Vi er to designere. Du arbejder direkte med os, fra første samtale til sidste revision. Ingen account manager. Ingen junior. Ingen overhead du betaler ekstra for.
+          <span data-lang="da">Vi er to designere. Du arbejder direkte med os, fra første samtale til sidste revision. Ingen account manager. Ingen junior. Ingen overhead du betaler ekstra for.</span>
+          <span data-lang="es">Somos dos diseñadores. Hablas directo con nosotros desde la primera conversación hasta la última revisión. Cero account manager, cero junior, cero overhead que tengas que pagar de más.</span>
         </p>
       </div>
 
@@ -737,32 +869,47 @@
 
         <article class="reason">
           <span class="reason__num">01</span>
-          <h3 class="reason__title">Direkte med founders</h3>
-          <p class="reason__desc">Du taler med Orestes og Karo. Ingen mellemmænd, ingen oversættelser, ingen tabt kontekst mellem afdelinger.</p>
+          <h3 class="reason__title"><span data-lang="da">Direkte med founders</span><span data-lang="es">Directo con los fundadores</span></h3>
+          <p class="reason__desc">
+            <span data-lang="da">Du taler med Orestes og Karo. Ingen mellemmænd, ingen oversættelser, ingen tabt kontekst mellem afdelinger.</span>
+            <span data-lang="es">Hablas con Orestes y Karo. Sin intermediarios, sin traducciones, sin contexto perdido entre departamentos.</span>
+          </p>
         </article>
 
         <article class="reason">
           <span class="reason__num">02</span>
-          <h3 class="reason__title">Ét sammenhængende system</h3>
-          <p class="reason__desc">Strategi, identitet, web og konvertering bygget af samme to designere, ikke fire forskellige bureauer der ikke taler sammen.</p>
+          <h3 class="reason__title"><span data-lang="da">Ét sammenhængende system</span><span data-lang="es">Un sistema único</span></h3>
+          <p class="reason__desc">
+            <span data-lang="da">Strategi, identitet, web og konvertering bygget af samme to designere, ikke fire forskellige bureauer der ikke taler sammen.</span>
+            <span data-lang="es">Estrategia, identidad, web y conversión construidas por los mismos dos diseñadores. No cuatro agencias distintas que no hablan entre sí.</span>
+          </p>
         </article>
 
         <article class="reason">
           <span class="reason__num">03</span>
-          <h3 class="reason__title">Ingen revisions-faktura</h3>
-          <p class="reason__desc">Iterationer er en del af prisen. Du betaler ikke ekstra hver gang vi finjusterer, det er sådan god design bliver til.</p>
+          <h3 class="reason__title"><span data-lang="da">Ingen revisions-faktura</span><span data-lang="es">Sin factura por revisiones</span></h3>
+          <p class="reason__desc">
+            <span data-lang="da">Iterationer er en del af prisen. Du betaler ikke ekstra hver gang vi finjusterer, det er sådan god design bliver til.</span>
+            <span data-lang="es">Las iteraciones entran en el precio. No pagas extra cada vez que ajustamos. Así se hace buen diseño.</span>
+          </p>
         </article>
 
         <article class="reason">
           <span class="reason__num">04</span>
-          <h3 class="reason__title">Bygget på 4-8 uger</h3>
-          <p class="reason__desc">Ikke 6 måneder. Vi designer og bygger parallelt, ikke sekventielt, du har et levende system i hånden hurtigt.</p>
+          <h3 class="reason__title"><span data-lang="da">Bygget på 4-8 uger</span><span data-lang="es">Construido en 4-8 semanas</span></h3>
+          <p class="reason__desc">
+            <span data-lang="da">Ikke 6 måneder. Vi designer og bygger parallelt, ikke sekventielt, du har et levende system i hånden hurtigt.</span>
+            <span data-lang="es">No seis meses. Diseñamos y construimos en paralelo, no en serie. Tienes el sistema en marcha rápido.</span>
+          </p>
         </article>
 
         <article class="reason">
           <span class="reason__num">05</span>
-          <h3 class="reason__title">7 dages moodboard-garanti</h3>
-          <p class="reason__desc">Hvis det første moodboard ikke rammer den retning du forventede, refunderer vi første betaling. Du tager risikoen ud af samtalen.</p>
+          <h3 class="reason__title"><span data-lang="da">7 dages moodboard-garanti</span><span data-lang="es">Garantía de moodboard 7 días</span></h3>
+          <p class="reason__desc">
+            <span data-lang="da">Hvis det første moodboard ikke rammer den retning du forventede, refunderer vi første betaling. Du tager risikoen ud af samtalen.</span>
+            <span data-lang="es">Si el primer moodboard no acierta la dirección que esperabas, te devolvemos el primer pago. El riesgo sale de la conversación.</span>
+          </p>
         </article>
 
       </div>
@@ -773,18 +920,28 @@
   <section class="lead" id="lead">
     <div class="lead__inner">
       <div class="lead__left">
-        <span class="kicker">08 · Gratis vurdering</span>
+        <span class="kicker"><span data-lang="da">08 · Gratis vurdering</span><span data-lang="es">08 · Auditoría gratuita</span></span>
         <h2 class="h2">
-          Få 3 konkrete idéer<br>
-          <span class="dim">til at løfte dit brand digitalt.</span>
+          <span data-lang="da">Få 3 konkrete idéer<br><span class="dim">til at løfte dit brand digitalt.</span></span>
+          <span data-lang="es">Recibe 3 ideas concretas<br><span class="dim">para subir tu marca digital.</span></span>
         </h2>
         <p class="lead__lead">
-          Send os dit website, din Instagram eller bare din idé. Vi gennemgår det og sender dig 3 konkrete forslag til, hvordan du kan skabe et stærkere førstehåndsindtryk.
+          <span data-lang="da">Send os dit website, din Instagram eller bare din idé. Vi gennemgår det og sender dig 3 konkrete forslag til, hvordan du kan skabe et stærkere førstehåndsindtryk.</span>
+          <span data-lang="es">Mándanos tu web, tu Instagram o tu idea. Lo revisamos y te enviamos 3 propuestas concretas para que tu primera impresión vuelva más fuerte.</span>
         </p>
         <ul class="lead__bullets">
-          <li><span class="lead__bullet-dot"></span>Personlig gennemgang, ikke en automatisk rapport.</li>
-          <li><span class="lead__bullet-dot"></span>Konkrete forslag du selv kan handle på.</li>
-          <li><span class="lead__bullet-dot"></span>Helt gratis. Helt uforpligtende.</li>
+          <li><span class="lead__bullet-dot"></span>
+            <span data-lang="da">Personlig gennemgang, ikke en automatisk rapport.</span>
+            <span data-lang="es">Revisión personal, no un informe automático.</span>
+          </li>
+          <li><span class="lead__bullet-dot"></span>
+            <span data-lang="da">Konkrete forslag du selv kan handle på.</span>
+            <span data-lang="es">Propuestas concretas sobre las que puedes actuar tú mismo.</span>
+          </li>
+          <li><span class="lead__bullet-dot"></span>
+            <span data-lang="da">Helt gratis. Helt uforpligtende.</span>
+            <span data-lang="es">100% gratis. Cero compromiso.</span>
+          </li>
         </ul>
       </div>
 
@@ -811,24 +968,30 @@
 
         <div class="field-row">
           <div class="field">
-            <label class="field__label" for="lead-name">Navn <span class="field__req" aria-hidden="true">*</span></label>
-            <input class="field__input" id="lead-name" name="name" type="text" placeholder="Dit fulde navn" autocomplete="name" required aria-required="true" aria-describedby="lead-status" />
+            <label class="field__label" for="lead-name"><span data-lang="da">Navn</span><span data-lang="es">Nombre</span> <span class="field__req" aria-hidden="true">*</span></label>
+            <input class="field__input" id="lead-name" name="name" type="text" placeholder="Dit fulde navn · Tu nombre completo" autocomplete="name" required aria-required="true" aria-describedby="lead-status" />
           </div>
           <div class="field">
             <label class="field__label" for="lead-email">Email <span class="field__req" aria-hidden="true">*</span></label>
-            <input class="field__input" id="lead-email" name="email" type="email" placeholder="din@email.dk" autocomplete="email" required aria-required="true" aria-describedby="lead-status" />
+            <input class="field__input" id="lead-email" name="email" type="email" placeholder="din@email.dk · tu@email.com" autocomplete="email" required aria-required="true" aria-describedby="lead-status" />
           </div>
         </div>
 
         <div class="field">
           <label class="field__label" for="lead-site">Website / Instagram</label>
-          <input class="field__input" id="lead-site" name="site" type="text" placeholder="dinside.dk eller @dithandle" autocomplete="url" />
+          <input class="field__input" id="lead-site" name="site" type="text" placeholder="dinside.dk · tusitio.com · @tuhandle" autocomplete="url" />
         </div>
 
-        <p class="lead__form-note">Budget og tidsplan tager vi i den første samtale. 20 minutter på Zoom eller WhatsApp.</p>
+        <p class="lead__form-note">
+          <span data-lang="da">Budget og tidsplan tager vi i den første samtale. 20 minutter på Zoom eller WhatsApp.</span>
+          <span data-lang="es">El presupuesto y el calendario los vemos en la primera llamada. 20 minutos en Zoom o WhatsApp.</span>
+        </p>
 
         <button type="submit" class="btn btn--primary lead__submit">
-          <span class="lead__submit-label">Få min gratis vurdering</span>
+          <span class="lead__submit-label">
+            <span data-lang="da">Få min gratis vurdering</span>
+            <span data-lang="es">Pedir mi auditoría gratuita</span>
+          </span>
           <svg class="lead__submit-icon" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
             <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
@@ -836,7 +999,10 @@
 
         <p class="lead__status" id="lead-status" role="status" aria-live="polite" aria-atomic="true"></p>
 
-        <p class="lead__fineprint">Ingen spam. Ingen hårdt salg. Kun konkrete idéer.</p>
+        <p class="lead__fineprint">
+          <span data-lang="da">Ingen spam. Ingen hårdt salg. Kun konkrete idéer.</span>
+          <span data-lang="es">Cero spam. Cero presión. Solo ideas concretas.</span>
+        </p>
 
         <!-- Success state, pre-rendered hidden so SR users consistently get the live region announcement. main.js reveals on 200 OK. -->
         <div class="lead__success" id="lead-success" hidden role="status">
@@ -845,8 +1011,14 @@
               <path d="M3 7.5L6 10L11 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
-          <div class="lead__success-text">Tak. Vi har modtaget din forespørgsel og vender tilbage med næste skridt.</div>
-          <div class="lead__success-sub">Svar inden for 2 hverdage</div>
+          <div class="lead__success-text">
+            <span data-lang="da">Tak. Vi har modtaget din forespørgsel og vender tilbage med næste skridt.</span>
+            <span data-lang="es">Gracias. Recibimos tu mensaje y volvemos con el siguiente paso.</span>
+          </div>
+          <div class="lead__success-sub">
+            <span data-lang="da">Svar inden for 2 hverdage</span>
+            <span data-lang="es">Respuesta en menos de 2 días laborales</span>
+          </div>
         </div>
       </form>
     </div>
@@ -855,33 +1027,35 @@
   <!-- ===================== FINAL CTA ===================== -->
   <section class="final-cta" id="booking">
     <div class="final-cta__inner">
-      <span class="kicker">09 · Næste skridt</span>
+      <span class="kicker"><span data-lang="da">09 · Næste skridt</span><span data-lang="es">09 · Siguiente paso</span></span>
       <h2 class="final-cta__h">
-        Du har ikke brug for<br>
-        mere marketing.<br>
-        <span class="dim">Du har brug for et</span> <em>system</em>.
+        <span data-lang="da">Du har ikke brug for<br>mere marketing.<br><span class="dim">Du har brug for et</span> <em>system</em>.</span>
+        <span data-lang="es">No necesitas<br>más marketing.<br><span class="dim">Necesitas un</span> <em>sistema</em>.</span>
       </h2>
       <p class="final-cta__sub">
-        Hvis dit brand skal føles stærkere, mere professionelt og lettere at vælge, starter det ikke med mere støj. Det starter med et system.
+        <span data-lang="da">Hvis dit brand skal føles stærkere, mere professionelt og lettere at vælge, starter det ikke med mere støj. Det starter med et system.</span>
+        <span data-lang="es">Si tu marca tiene que sentirse más fuerte, más profesional y más fácil de elegir, no empieza con más ruido. Empieza con un sistema.</span>
       </p>
       <div class="final-cta__ctas">
         <a class="btn btn--primary" href="#lead">
-          <span>Få en gratis vurdering</span>
+          <span data-lang="da">Få en gratis vurdering</span>
+          <span data-lang="es">Pedir auditoría gratuita</span>
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
             <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </a>
-        <a class="btn btn--ghost" href="https://wa.me/4528898373" target="_blank" rel="noopener" aria-label="Skriv på WhatsApp (åbnes i nyt vindue)">
+        <a class="btn btn--ghost" href="https://wa.me/4528898373" target="_blank" rel="noopener" aria-label="WhatsApp">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
             <path d="M2 12L2.95 9.25C2.34 8.34 2 7.21 2 6C2 3.24 4.24 1 7 1C9.76 1 12 3.24 12 6C12 8.76 9.76 11 7 11C5.95 11 4.97 10.68 4.17 10.14L2 12Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
           </svg>
-          <span>Skriv på WhatsApp</span>
+          <span data-lang="da">Skriv på WhatsApp</span>
+          <span data-lang="es">WhatsApp directo</span>
         </a>
       </div>
       <div class="final-cta__meta">
         <span class="final-cta__meta-item"><span class="final-cta__dot"></span>30 min</span>
         <span class="final-cta__meta-item"><span class="final-cta__dot"></span>Online</span>
-        <span class="final-cta__meta-item"><span class="final-cta__dot"></span>Uforpligtende</span>
+        <span class="final-cta__meta-item"><span class="final-cta__dot"></span><span data-lang="da">Uforpligtende</span><span data-lang="es">Sin compromiso</span></span>
       </div>
     </div>
   </section>
@@ -896,20 +1070,21 @@
         <div class="footer__col footer__col--brand">
           <a class="footer__logo" href="#top">/Di Barret</a>
           <p class="footer__desc">
-            Digitale brand-systemer, landing pages og weboplevelser for brands, der vil føles stærkere.
+            <span data-lang="da">Digitale brand-systemer, landing pages og weboplevelser for brands, der vil føles stærkere.</span>
+            <span data-lang="es">Sistemas de marca digitales, landings y experiencias web para marcas que quieren sentirse más fuertes.</span>
           </p>
         </div>
 
         <div class="footer__col">
-          <span class="footer__heading">Discover</span>
+          <span class="footer__heading"><span data-lang="da">Discover</span><span data-lang="es">Explora</span></span>
           <ul class="footer__list">
-            <li><a href="#top">Hjem</a></li>
-            <li><a href="#system">System</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#process">Process</a></li>
-            <li><a href="#bygget">Bygget af os</a></li>
-            <li><a href="#team">People</a></li>
-            <li><a href="#hvorfor">Hvorfor os</a></li>
+            <li><a href="#top"><span data-lang="da">Hjem</span><span data-lang="es">Inicio</span></a></li>
+            <li><a href="#system"><span data-lang="da">System</span><span data-lang="es">Sistema</span></a></li>
+            <li><a href="#services"><span data-lang="da">Services</span><span data-lang="es">Servicios</span></a></li>
+            <li><a href="#process"><span data-lang="da">Process</span><span data-lang="es">Proceso</span></a></li>
+            <li><a href="#bygget"><span data-lang="da">Bygget af os</span><span data-lang="es">Hecho por nosotros</span></a></li>
+            <li><a href="#team"><span data-lang="da">People</span><span data-lang="es">Equipo</span></a></li>
+            <li><a href="#hvorfor"><span data-lang="da">Hvorfor os</span><span data-lang="es">Por qué nosotros</span></a></li>
             <li><a href="/cases/">Cases</a></li>
           </ul>
         </div>
@@ -917,7 +1092,7 @@
         <div class="footer__col">
           <span class="footer__heading">Socials</span>
           <ul class="footer__list">
-            <li><a href="https://instagram.com/di_barret.dk" target="_blank" rel="noopener" aria-label="Instagram @di_barret.dk (åbnes i nyt vindue)">Instagram <span aria-hidden="true">↗</span></a></li>
+            <li><a href="https://instagram.com/di_barret.dk" target="_blank" rel="noopener" aria-label="Instagram @di_barret.dk">Instagram <span aria-hidden="true">↗</span></a></li>
           </ul>
         </div>
 
@@ -925,9 +1100,10 @@
           <span class="footer__heading">Contact</span>
           <a class="footer__email" href="mailto:kontakte@dibarret.dk">kontakte@dibarret.dk</a>
           <a class="footer__email" href="mailto:orestes@dibarret.dk">orestes@dibarret.dk</a>
-          <a class="footer__email" href="https://wa.me/4528898373" target="_blank" rel="noopener" aria-label="WhatsApp +45 28 89 83 73 (åbnes i nyt vindue)">WhatsApp · +45 28 89 83 73</a>
+          <a class="footer__email" href="https://wa.me/4528898373" target="_blank" rel="noopener" aria-label="WhatsApp +45 28 89 83 73">WhatsApp · +45 28 89 83 73</a>
           <a class="footer__cta" href="#lead">
-            <span>Få en gratis vurdering</span>
+            <span data-lang="da">Få en gratis vurdering</span>
+            <span data-lang="es">Pedir auditoría gratuita</span>
             <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
               <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -938,11 +1114,39 @@
 
       <div class="footer__bottom">
         <span>© 2026 Di Barret · CVR: <!-- TODO: indsæt rigtig CVR-nummer her -->XXXXXXXX</span>
-        <span>Made with intent · København</span>
+        <span><span data-lang="da">Made with intent · København</span><span data-lang="es">Hecho con intención · København</span></span>
       </div>
     </div>
   </footer>
 
   <script defer src="main.js"></script>
+
+  <script>
+    // Minimal bilingual toggle: persists choice in localStorage
+    (function () {
+      "use strict";
+      const KEY = "dibarret_lang";
+      const supported = ["da", "es"];
+      const body = document.body;
+      const buttons = document.querySelectorAll("[data-set-lang]");
+      const initial = (() => {
+        const saved = localStorage.getItem(KEY);
+        if (supported.includes(saved)) return saved;
+        const browser = (navigator.language || "da").slice(0, 2).toLowerCase();
+        return supported.includes(browser) ? browser : "da";
+      })();
+      function setLang(lang) {
+        if (!supported.includes(lang)) return;
+        body.dataset.activeLang = lang;
+        document.documentElement.lang = lang === "es" ? "es" : "da";
+        buttons.forEach((b) => {
+          b.setAttribute("aria-pressed", b.dataset.setLang === lang ? "true" : "false");
+        });
+        localStorage.setItem(KEY, lang);
+      }
+      buttons.forEach((b) => b.addEventListener("click", () => setLang(b.dataset.setLang)));
+      setLang(initial);
+    })();
+  </script>
 </body>
 </html>
