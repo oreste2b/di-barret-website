@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<title>KAYs Audit · Slide 3 · Finding H1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Geist+Mono:wght@400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../social.css">
+<style>
+  .evidence {
+    margin-top: 40px;
+    padding: 32px 36px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--line-mid);
+    border-radius: 8px;
+    font-family: var(--mono);
+    font-size: 22px;
+    line-height: 1.7;
+    color: var(--ink);
+  }
+  .evidence .prompt { color: var(--ink-faint); }
+  .evidence .bad { color: var(--accent-red); font-weight: 500; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="slide__header">
+    <div class="slide__brand"><span class="slash">/</span>Di Barret</div>
+    <div class="slide__kicker">Finding · 01</div>
+  </div>
+
+  <div class="slide__main">
+    <div class="slide__stat-label">H1-tags på forsiden</div>
+    <div class="slide__stat-value red">0</div>
+    <div class="slide__stat-sub">
+      Google ser intet hierarki. Bot'en læser et hav af div'er.
+    </div>
+    <div class="evidence">
+      <div><span class="prompt">$</span> curl -s kayscph.dk | grep -oE "&lt;h1" | wc -l</div>
+      <div class="bad">0</div>
+    </div>
+  </div>
+
+  <div class="slide__footer">
+    <div class="slide__meta">Verificeret · curl + grep</div>
+    <div class="slide__counter"><strong>03</strong> / 06</div>
+  </div>
+</div>
+</body>
+</html>
