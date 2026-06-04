@@ -1,0 +1,582 @@
+<!doctype html>
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Audit · CarRelease · Di Barret</title>
+<meta name="description" content="360° audit af carrelease.dk. Flexleasing-virksomhed i Hvidovre, SvelteKit på Vercel. 14 verificerbare findings, A/B/C-plan, quick wins. Score 40/100.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://www.dibarret.dk/audit-carrelease">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Audit · CarRelease">
+<meta property="og:description" content="Verdensklasse kundeservice som hjemmesiden ikke fortæller om. 14 verificerbare findings. Af Di Barret.">
+<meta property="og:url" content="https://www.dibarret.dk/audit-carrelease">
+<meta property="og:image" content="https://www.dibarret.dk/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Di Barret">
+<meta property="og:locale" content="da_DK">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Audit · CarRelease">
+<meta name="twitter:description" content="14 findings, prioriteret plan, quick wins. Af Di Barret.">
+<meta name="twitter:image" content="https://www.dibarret.dk/og.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Geist+Mono:wght@400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css?v=5">
+<style>
+:root{
+  --bg:#000000; --ink:#ffffff; --ink-mid:rgba(255,255,255,0.72); --ink-faint:rgba(255,255,255,0.60);
+  --line:rgba(255,255,255,0.08); --line-mid:rgba(255,255,255,0.14);
+  --accent:#ffffff; --accent-soft:rgba(255,255,255,0.06);
+  --good:#34d399; --warn:#fbbf24; --bad:#ef4444;
+  --serif:'Geist','Inter',sans-serif; --sans:'Inter',system-ui,sans-serif; --mono:'Geist Mono','JetBrains Mono',ui-monospace,monospace;
+  --max:1320px; --pad:32px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+.kicker{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:12px}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:500;letter-spacing:-.025em;line-height:1.02;color:var(--ink)}
+h1{font-size:clamp(48px,7.6vw,124px);font-weight:400;line-height:.96}
+h2{font-size:clamp(32px,4.2vw,56px);margin-bottom:24px;font-weight:500}
+h3{font-size:22px;margin-bottom:10px;font-weight:500}
+p{color:var(--ink-mid);margin-bottom:14px}
+p.lead{color:var(--ink);font-size:18px;line-height:1.55;max-width:64ch}
+strong{color:var(--ink);font-weight:600}
+code{font-family:var(--mono);font-size:.88em;background:rgba(255,255,255,.06);padding:1px 6px;border-radius:4px;color:var(--ink)}
+em{font-style:normal;background:linear-gradient(120deg,var(--ink) 0%,var(--ink) 50%,var(--ink-faint) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+section{padding:120px 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:0}
+
+.hero__title em{font-style:normal;background:linear-gradient(120deg,var(--ink) 0%,var(--ink) 50%,var(--ink-faint) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.audit-meta-value{font-size:clamp(20px,2.2vw,28px)!important;line-height:1.15!important;letter-spacing:-.02em}
+
+.exec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+@media (max-width:780px){.exec-grid{grid-template-columns:1fr}}
+.exec-card{padding:28px;border:1px solid var(--line);border-radius:6px}
+.exec-card .kicker{margin-bottom:14px}
+.exec-card h3{font-size:20px;margin-bottom:10px}
+
+.find-row{display:grid;grid-template-columns:60px 1fr 120px;gap:32px;padding:48px 0;border-bottom:1px solid var(--line);align-items:start}
+.find-row:last-child{border-bottom:0}
+.find-num{font-family:var(--mono);font-size:11px;color:var(--ink-faint);letter-spacing:.14em;padding-top:5px}
+.find-body h4{font-family:var(--serif);font-weight:500;font-size:20px;margin-bottom:14px;line-height:1.25}
+.find-body p{font-size:14px;margin-bottom:14px;line-height:1.65}
+.find-body p:last-child{margin-bottom:0}
+.find-body p.why{color:var(--ink);font-size:14px;margin-top:18px}
+.find-body p.fix{color:var(--good);font-size:14px;margin-top:18px}
+.find-body p.fix::before{content:"→ ";color:var(--good);font-weight:600}
+.badge{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:5px 10px;border-radius:99px;border:1px solid currentColor;justify-self:end;line-height:1}
+.badge::before{content:"";width:5px;height:5px;border-radius:50%;background:currentColor}
+.badge.crit{color:var(--bad)}.badge.med{color:var(--warn)}.badge.low{color:var(--good)}
+@media (max-width:680px){.find-row{grid-template-columns:40px 1fr;gap:16px}.badge{grid-column:2;justify-self:start;margin-top:6px}}
+
+.evidence{margin:28px 0 32px;padding:28px 32px;background:rgba(0,0,0,.30);border:1px solid var(--line-mid);border-radius:6px;font-family:var(--mono);font-size:13px;line-height:1.7;color:var(--ink)}
+.evidence .key{color:var(--ink-faint)}
+.evidence .bad{color:var(--bad)}
+.evidence .ok{color:var(--good)}
+
+.journey{margin-top:32px;display:grid;grid-template-columns:repeat(6,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+@media (max-width:900px){.journey{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:560px){.journey{grid-template-columns:repeat(2,1fr)}}
+.stage{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:24px 20px}
+.stage .step{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--ink-faint);margin-bottom:8px;text-transform:uppercase}
+.stage h4{font-family:var(--serif);font-weight:500;font-size:17px;margin-bottom:8px;letter-spacing:-.015em}
+.stage p{font-size:12.5px;line-height:1.5;margin:0;color:var(--ink-mid)}
+.stage.broken{background:rgba(239,68,68,0.06)}
+.stage.broken h4::after{content:" ⚠";color:var(--bad)}
+.stage.missing{background:rgba(255,255,255,.02)}
+.stage.missing h4{color:var(--ink-faint)}
+
+.pillars{display:grid;gap:0;margin-top:32px;border-top:1px solid var(--line)}
+.pillar{display:grid;grid-template-columns:260px 1fr 56px;gap:24px;align-items:center;padding:22px 0;border-bottom:1px solid var(--line)}
+.pillar:last-child{border-bottom:0}
+.pillar-name{font-weight:500;font-size:14px;color:var(--ink)}
+.pillar-name small{display:block;color:var(--ink-faint);font-weight:400;font-size:12px;margin-top:2px}
+.pillar-bar{height:4px;background:var(--line-mid);border-radius:99px;overflow:hidden}
+.pillar-bar i{display:block;height:100%;border-radius:99px}
+.pillar-bar i.good{background:var(--good)}
+.pillar-bar i.warn{background:var(--warn)}
+.pillar-bar i.bad{background:var(--bad)}
+.pillar-score{font-family:var(--mono);font-size:14px;text-align:right;font-weight:500;color:var(--ink)}
+@media (max-width:680px){.pillar{grid-template-columns:1fr 56px}.pillar-bar{grid-column:1/-1;grid-row:2}}
+
+.plan{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:32px;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+@media (max-width:900px){.plan{grid-template-columns:1fr}}
+.plan-col{padding:36px 30px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.plan-col h4{font-family:var(--serif);font-size:24px;font-weight:500;margin-bottom:8px;letter-spacing:-.02em}
+.plan-col .plan-meta{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:24px}
+.plan-col ul{list-style:none;display:grid;gap:14px}
+.plan-col li{font-size:14px;color:var(--ink);padding-left:18px;position:relative;line-height:1.5}
+.plan-col li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--ink);position:absolute;left:0;top:8px}
+
+.qw{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:32px;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+@media (max-width:780px){.qw{grid-template-columns:1fr}}
+.qw-card{padding:28px 24px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(52,211,153,0.04);position:relative}
+.qw-card::before{content:"";position:absolute;top:0;left:0;width:2px;height:100%;background:var(--good)}
+.qw-card .kicker{color:var(--good);margin-bottom:12px;display:block}
+.qw-card h4{font-family:var(--serif);font-size:18px;font-weight:500;margin-bottom:10px;letter-spacing:-.02em}
+.qw-card p{font-size:13.5px;margin-bottom:8px;color:var(--ink-mid)}
+.qw-card small{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--ink-faint);text-transform:uppercase}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Primær navigation">
+  <a class="nav__logo" href="/" aria-label="Di Barret"><span aria-hidden="true">/</span>Di Barret</a>
+  <a class="nav__cta" href="#resume">
+    <span>Audit · CarRelease</span>
+    <svg class="nav__cta-icon" width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true">
+      <path d="M2 9L9 2M9 2H4M9 2V7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
+</nav>
+
+<main id="main">
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero__inner">
+    <div class="hero__eyebrow">
+      <span class="hero__dot"></span>
+      <span>Audit · 4. juni 2026 · Uafhængig</span>
+    </div>
+    <h1 class="hero__title">Verdensklasse kundeservice.<br><em>Hjemmeside der ikke fortæller om det.</em></h1>
+    <p class="hero__sub">CarRelease tilbyder flexleasing, bilimport og brugtbiler i Hvidovre. Hjemmesiden lover "verdensklasse kundeservice til lave priser". Den serverede HTML har ingen meta description, ingen Open Graph, intet Trustpilot-widget, ingen synlige priser, tre H1-tags på samme side og kun ét H2. Title-elementet siger ét ord: "CarRelease". For en branche hvor kunden bruger flere timer på sammenligning, før hun ringer, gør det jer usynlige hver gang en konkurrent har styr på det basale.</p>
+    <div class="hero__ctas">
+      <a class="btn btn--primary" href="#resume">
+        <span>Se resumé</span>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a class="btn btn--ghost" href="#plan">
+        <span>Se handlingsplan</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- METRICS -->
+<section class="metrics" aria-label="Score og kontekst">
+  <div class="metrics__inner">
+    <div class="metric">
+      <div class="metric__value">40<span class="metric__suffix">/100</span></div>
+      <div class="metric__label">Samlet score</div>
+    </div>
+    <div class="metric">
+      <div class="metric__value audit-meta-value">Flexleasing<br>· Import</div>
+      <div class="metric__label">Sektor</div>
+    </div>
+    <div class="metric">
+      <div class="metric__value audit-meta-value">Hvidovre<br>· DK</div>
+      <div class="metric__label">Lokation</div>
+    </div>
+    <div class="metric">
+      <div class="metric__value audit-meta-value">SvelteKit<br>+ Vercel</div>
+      <div class="metric__label">Stack</div>
+    </div>
+  </div>
+</section>
+
+<!-- RESUME -->
+<section id="resume">
+  <div class="wrap">
+    <div class="kicker">01 · Resumé</div>
+    <h2>Moderne stack, gammel SEO-disciplin.</h2>
+
+    <div class="exec-grid">
+      <div class="exec-card">
+        <div class="kicker">Aktuel status</div>
+        <h3>SvelteKit på Vercel uden basisarbejde</h3>
+        <p>Sitet kører SvelteKit på Vercel med HSTS og 42 modulepreload-chunks. Stack'et er moderne. SEO-arbejdet er ikke gjort. Ingen meta description, ingen Open Graph, intet schema markup, intet hreflang, ingen canonical. Title er ét ord. For en virksomhed der konkurrerer mod privatleasing.dk og leasingcar.dk, hvor begge har Trustpilot-widget og struktureret content, er fundamentet svagere end konkurrencen.</p>
+      </div>
+      <div class="exec-card">
+        <div class="kicker">Problemet</div>
+        <h3>Løftet om kundeservice er ikke synligt nogen steder</h3>
+        <p>Hero-overskriften lover "verdensklasse kundeservice". Sektionen "Det siger vores kunder" findes, men uden integrerede Trustpilot-anmeldelser eller udtalelser med navn og foto. Konkurrenterne har Trustpilot 4.8 og fem hundrede plus anmeldelser synlige på forsiden. Når kunden sammenligner, vinder den der kan dokumentere løftet.</p>
+      </div>
+      <div class="exec-card">
+        <div class="kicker">Muligheden</div>
+        <h3>De fleste fixes er metadata, ikke kode</h3>
+        <p>Tre H1 til ét, title til noget beskrivende, meta description, Open Graph, JSON-LD Organization og AutoDealer, Trustpilot TrustBox-widget. Alt sammen kan gøres i +page.svelte og +layout.svelte uden at røre forretningslogik. To uger med en SvelteKit-udvikler og en SEO-engineer.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINDINGS -->
+<section id="findings">
+  <div class="wrap">
+    <div class="kicker">02 · Verificerbare findings · 14 punkter</div>
+    <h2>Hvad er gået i stykker, mangler eller modarbejder konverteringen.</h2>
+
+    <div class="find-row">
+      <div class="find-num">01</div>
+      <div class="find-body">
+        <h4>Title siger bare "CarRelease"</h4>
+        <p>Title-elementet er ét ord. Ingen kategori, ingen geografi, ingen value proposition. For en flexleasing-virksomhed der konkurrerer på lokale søgninger som "flexleasing", "bilimport danmark", "leasing brugte biler" er det at give snippet-pladsen væk.</p>
+        <div class="evidence">
+          <div><span class="key">&lt;title&gt;</span>CarRelease&lt;/title&gt;</div>
+        </div>
+        <p class="why">Den danske kunde der sammenligner leasing-tilbud klikker på det resultat, der lover noget specifikt. Et tomt brand-navn taber til konkurrenten der siger "Flexleasing fra X kr/md, danske plader på en uge".</p>
+        <p class="fix">Sæt title i <code>+page.svelte</code> via <code>&lt;svelte:head&gt;</code>: <code>"CarRelease · Flexleasing, import og brugte biler i Hvidovre"</code>. Halv time arbejde, sæt pattern pr. rute.</p>
+      </div>
+      <span class="badge crit">Kritisk</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">02</div>
+      <div class="find-body">
+        <h4>Ingen meta description</h4>
+        <p>Verificeret: <code>grep "name=\"description\""</code> returnerer nul resultater. Google bygger sit eget snippet fra sidens indhold, men det er sjældent det man selv ville have valgt. For en virksomhed der allerede har et hero-budskab er det gratis at sætte description.</p>
+        <div class="evidence">
+          <div><span class="key">$</span> curl -s carrelease.dk | grep 'name="description"'</div>
+          <div class="bad">(intet output)</div>
+        </div>
+        <p class="fix">Tilføj meta description pr. rute via <code>&lt;svelte:head&gt;</code>. Forsiden: <code>"CarRelease tilbyder flexleasing, bilimport og brugte biler. Verdensklasse kundeservice fra Hvidovre. Ring 7070 7255 eller send forespørgsel."</code>. Maks 160 tegn pr. side.</p>
+      </div>
+      <span class="badge crit">Kritisk</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">03</div>
+      <div class="find-body">
+        <h4>Open Graph helt fraværende</h4>
+        <p>Ingen <code>og:title</code>, ingen <code>og:description</code>, ingen <code>og:image</code>, ingen <code>og:locale</code>. Når en bilforhandler deler et link til CarRelease på LinkedIn, eller en privat kunde sender det på WhatsApp eller Facebook Messenger, vises der ikke et preview-kort. Det er bare en grå tekst-streng.</p>
+        <p class="why">For en B2B-salgsbranche hvor mund-til-mund er kanalen, koster fraværet af OG-cards delinger. En kollega der sender CarRelease videre til sin chef får et link der ser ud som spam frem for som en virksomhed.</p>
+        <p class="fix">OG-tags pr. side via <code>&lt;svelte:head&gt;</code>: <code>og:type</code>, <code>og:title</code>, <code>og:description</code>, <code>og:url</code>, <code>og:image</code> (1200×630px), <code>og:locale: da_DK</code>. Twitter Card med <code>summary_large_image</code>. En times arbejde.</p>
+      </div>
+      <span class="badge crit">Kritisk</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">04</div>
+      <div class="find-body">
+        <h4>Tre H1 og kun ét H2</h4>
+        <p>Forsidens HTML har tre <code>&lt;h1&gt;</code>-tags: "Hvad er Flexleasing?", "Garantiforsikring", "Hvorfor vælge CarRelease?". Og kun ét H2. Det er semantisk omvendt: et site burde have ét H1 (det vigtigste budskab) og flere H2 (sektioner).</p>
+        <div class="evidence">
+          <div><span class="key">H1 tags:</span> <span class="bad">3</span></div>
+          <div><span class="key">H2 tags:</span> 1</div>
+        </div>
+        <p class="why">Google og skærmlæsere bruger heading-strukturen til at forstå hierarkiet. Tre H1 betyder "tre uafhængige top-budskaber på samme side". Det er forvirring.</p>
+        <p class="fix">Vælg ét primært H1 til hero ("CarRelease · Flexleasing, import og brugte biler"). Konverter de tre nuværende H1 til H2 eller H3 afhængigt af hvor de står. SvelteKit-template fix: en time.</p>
+      </div>
+      <span class="badge crit">Kritisk</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">05</div>
+      <div class="find-body">
+        <h4>Intet Trustpilot widget pkt løftet om "verdensklasse kundeservice"</h4>
+        <p>Søger man "trustpilot" i HTML: nul. Hero lover "verdensklasse kundeservice til lave priser". Sektionen "Det siger vores kunder" eksisterer som overskrift, men der vises ikke konkrete anmeldelser med navn og foto. Konkurrenterne (privatleasing.dk, leasingcar.dk) har Trustpilot-widget med 4.7-4.8 stjerner og 200-500 anmeldelser på forsiden.</p>
+        <p class="why">Når en kunde skal binde sig til en leasing-aftale til et beløb af flere hundrede tusinde kroner, er sociale bevis det første og det sidste hun tjekker. Et tomt løfte uden bevis taber til konkurrenten med tre cifrede Trustpilot-anmeldelser.</p>
+        <p class="fix">Aktiver Trustpilot Business Account (krav: invitér eksisterende kunder de seneste 12 måneder), embed TrustBox Mini eller Carousel widget i hero-området. Sigt efter 50-100 anmeldelser inden for to måneder via automatiseret invitation efter levering.</p>
+      </div>
+      <span class="badge crit">Kritisk</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">06</div>
+      <div class="find-body">
+        <h4>Ingen synlige priser på forsiden</h4>
+        <p>Søger man efter "kr.", "/md" eller "måneden" på forsiden: nul resultater. For flexleasing-tilbud er pris-anker afgørende. Konkurrenterne viser "Fra 3.495 kr/md" eller "Beregn dit månedlige beløb". Uden et tal ved kunden ikke om hun er i den rigtige prisklasse.</p>
+        <p class="why">Selv hvis prisen varierer pr. bil og pr. kontrakt-længde, er et "fra"-tal nødvendigt. Hvis sitet ikke giver et tal, antager kunden at det er dyrere end de tre andre sites hun lige har tjekket.</p>
+        <p class="fix">Vis "Fra X kr/md" på forsiden, knyttet til den billigste bil i nuværende beholdning. Plus en simpel beregner: vælg bil, vælg løbetid (12/24/36 måneder), vis månedlig pris. Halv dag at bygge med SvelteKit's reactive bindings.</p>
+      </div>
+      <span class="badge crit">Kritisk</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">07</div>
+      <div class="find-body">
+        <h4>Ingen canonical URL deklareret</h4>
+        <p>Søger man efter <code>rel="canonical"</code> i HTML: ikke fundet. SvelteKit + Vercel kan serveres på flere domæne-varianter (med/uden www, med/uden trailing slash). Uden canonical risikerer Google at se duplicate content.</p>
+        <p class="fix">Sæt canonical i <code>+layout.svelte</code> baseret på <code>$page.url</code>. En linje SvelteKit-kode.</p>
+      </div>
+      <span class="badge med">Vigtigt</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">08</div>
+      <div class="find-body">
+        <h4>Intet JSON-LD strukturerede data</h4>
+        <p>For en bilforhandler i Danmark bør sitet have schema markup som <code>AutoDealer</code> (med name, address, geo, telephone, openingHours), <code>Service</code> (flexleasing, import, biludlejning) og <code>Car</code> på hvert listet køretøj. Sitet har nul.</p>
+        <p class="why">Schema AutoDealer giver Google et signal til at vise virksomheden i lokale søgninger med rich snippet: åbningstider, telefonnummer, vej-link. Schema Car på hvert tilbudt bil giver mulighed for at vises i Google Vehicle search.</p>
+        <p class="fix">JSON-LD AutoDealer site-wide via <code>+layout.svelte</code>. Schema Car på hvert produktblad. To dages arbejde.</p>
+      </div>
+      <span class="badge med">Vigtigt</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">09</div>
+      <div class="find-body">
+        <h4>Heavy preload-waterfall ved load</h4>
+        <p>Sitet sender 42 <code>modulepreload</code>-links i Link-headeren ved første request. Det er en SvelteKit-default der prøver at preloade alle ruters chunks. For en bruger på 4G eller på mobil koster det båndbredde og forsinker First Contentful Paint.</p>
+        <div class="evidence">
+          <div><span class="key">modulepreload chunks:</span> <span class="bad">42</span></div>
+        </div>
+        <p class="fix">Konfigurer SvelteKit's prerender og preloadStrategy. Brug <code>vite-plugin-pwa</code> eller en custom loader til at preloade kun de chunks der bruges på den aktuelle rute. Mål med Lighthouse før og efter.</p>
+      </div>
+      <span class="badge med">Vigtigt</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">10</div>
+      <div class="find-body">
+        <h4>"SKIFT TIL US" link findes, men engelsk version er ufærdig</h4>
+        <p>Topnavigationen har et "SKIFT TIL US" link der antyder en engelsk version af sitet. Hvis den engelske version eksisterer, mangler den hreflang. Hvis den ikke eksisterer, fjern linket.</p>
+        <p class="fix">Beslut: er der en engelsk version eller ej? Hvis ja, byg den ordentligt med <code>/en/</code>-præfix, hreflang-tags i layout og oversat content. Hvis nej, fjern linket fra navigationen. En halv dag enten vej.</p>
+      </div>
+      <span class="badge med">Vigtigt</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">11</div>
+      <div class="find-body">
+        <h4>Ingen Content-Security-Policy eller Referrer-Policy</h4>
+        <p>HTTP-headerne har HSTS (godt) men ikke CSP eller Referrer-Policy. For en virksomhed der håndterer kundedata (lead forms, kontaktinformation, potentielt CPR-nummer i flexleasing-ansøgninger) er det en sikkerhedsmangel.</p>
+        <p class="fix">Konfigurer security headers i <code>svelte.config.js</code> via Vercel's <code>vercel.json</code>: <code>Content-Security-Policy</code>, <code>Referrer-Policy: strict-origin-when-cross-origin</code>, <code>Permissions-Policy</code>. To timer setup.</p>
+      </div>
+      <span class="badge med">Vigtigt</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">12</div>
+      <div class="find-body">
+        <h4>Ingen lead-form med begrundelses-felt eller bilværdi</h4>
+        <p>For flexleasing, der kun er økonomisk fornuftig for biler over 350.000 kr, ville et kort kvalifikations-form spare mange uinteresserede henvendelser. I dag er kontaktformen generisk.</p>
+        <p class="fix">Lead-form: navn, telefon, e-mail, "Hvilken bil interesserer dig?" (autocompleted fra inventar), "Bilens omtrentlige værdi?" (dropdown med ranges), "Privat eller erhverv?". Conditional logic der viser flexleasing-pakker hvis værdien er over 350.000. SvelteKit reactive form: en dag.</p>
+      </div>
+      <span class="badge low">Mulighed</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">13</div>
+      <div class="find-body">
+        <h4>Intet nyhedsbrev eller email capture</h4>
+        <p>Ingen newsletter-form synlig. For en virksomhed med skiftende bil-inventar og periodiske flexleasing-tilbud er email den direkte kanal til kunder, der har vist interesse, men endnu ikke har bundet sig.</p>
+        <p class="fix">Footer-form: "Få nyt om biler i din prisklasse hver torsdag". Mailerlite eller Klaviyo (gratis op til 500 kontakter). Segmenter listen efter bilværdi-interval. Et halvt dag setup.</p>
+      </div>
+      <span class="badge low">Mulighed</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">14</div>
+      <div class="find-body">
+        <h4>Ingen WhatsApp eller direkte messenger-knap</h4>
+        <p>Sitet har telefon (7070 7255) og kontaktform. I 2026 forventer mange danske kunder også WhatsApp eller Messenger som direkte kanal, især for hurtige spørgsmål om en specifik bil. Konkurrenter i auto-branchen har det integreret.</p>
+        <p class="fix">Floating WhatsApp-knap nederst til højre med <code>wa.me/4570707255</code> link. Pre-udfyldt besked: "Hej, jeg har spørgsmål til bilen [X]". Plug-and-play med en SvelteKit-komponent. Tyve minutter.</p>
+      </div>
+      <span class="badge low">Mulighed</span>
+    </div>
+  </div>
+</section>
+
+<!-- CUSTOMER JOURNEY -->
+<section id="journey">
+  <div class="wrap">
+    <div class="kicker">03 · Brugerrejser</div>
+    <h2>Hvor leasing-kundens vej brister.</h2>
+    <p class="lead">Den danske flexleasing-kunde sammenligner flere udbydere før hun ringer. Stadierne med ⚠ er der, hvor CarRelease taber til en konkurrent med bedre basisarbejde.</p>
+
+    <div class="journey">
+      <div class="stage broken">
+        <div class="step">01 · Søgning</div>
+        <h4>Google-snippet svagt</h4>
+        <p>Title siger "CarRelease". Konkurrenter siger "Flexleasing fra X kr/md". Kunden klikker først på konkurrenten.</p>
+      </div>
+      <div class="stage broken">
+        <div class="step">02 · Forside</div>
+        <h4>Ingen pris-anker</h4>
+        <p>Hero lover service uden at vise pris. Kunden går videre uden at gå dybt ind i sitet.</p>
+      </div>
+      <div class="stage broken">
+        <div class="step">03 · Trustpilot-tjek</div>
+        <h4>Intet socialt bevis</h4>
+        <p>Kunden åbner en ny fane og søger "CarRelease anmeldelser". Finder ingen integreret Trustpilot. Tjekker konkurrenten med 4.8 stjerner.</p>
+      </div>
+      <div class="stage">
+        <div class="step">04 · Sammenligning</div>
+        <h4>Bil-listen</h4>
+        <p>"Udvalgte Biler" sektionen findes. Hvis kunden når hertil, er præsentationen rimelig.</p>
+      </div>
+      <div class="stage broken">
+        <div class="step">05 · Kontakt</div>
+        <h4>Generisk form</h4>
+        <p>Kontaktform er åben men uden kvalifikations-felter. Kunden er usikker på om bilen kvalificerer til flexleasing.</p>
+      </div>
+      <div class="stage missing">
+        <div class="step">06 · Efter besøg</div>
+        <h4>Intet nyhedsbrev</h4>
+        <p>Hvis hun ikke ringer i dag, glemmer hun CarRelease. Ingen direkte kanal til at holde forbindelsen.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section id="pillars">
+  <div class="wrap">
+    <div class="kicker">04 · Score pr. område</div>
+    <h2>Tolv søjler, vurderet.</h2>
+
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-name">Teknisk SEO <small>Title, meta, OG, canonical</small></div>
+        <div class="pillar-bar"><i class="bad" style="width:18%"></i></div>
+        <div class="pillar-score">18</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Performance <small>SvelteKit + Vercel, men 42 preloads</small></div>
+        <div class="pillar-bar"><i class="warn" style="width:58%"></i></div>
+        <div class="pillar-score">58</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Strukturerede data <small>Nul JSON-LD</small></div>
+        <div class="pillar-bar"><i class="bad" style="width:5%"></i></div>
+        <div class="pillar-score">5</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Heading-struktur <small>3 H1 + 1 H2 omvendt</small></div>
+        <div class="pillar-bar"><i class="bad" style="width:30%"></i></div>
+        <div class="pillar-score">30</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Social proof <small>Intet Trustpilot, ingen anmeldelser</small></div>
+        <div class="pillar-bar"><i class="bad" style="width:15%"></i></div>
+        <div class="pillar-score">15</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Pris-transparens <small>Ingen "fra X kr/md" synligt</small></div>
+        <div class="pillar-bar"><i class="bad" style="width:20%"></i></div>
+        <div class="pillar-score">20</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Konvertering <small>Kontaktform uden kvalifikation</small></div>
+        <div class="pillar-bar"><i class="warn" style="width:45%"></i></div>
+        <div class="pillar-score">45</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Sikkerhed <small>HSTS godt, mangler CSP og Referrer-Policy</small></div>
+        <div class="pillar-bar"><i class="warn" style="width:50%"></i></div>
+        <div class="pillar-score">50</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Flersproget <small>"SKIFT TIL US" linket, ufærdig EN version</small></div>
+        <div class="pillar-bar"><i class="warn" style="width:40%"></i></div>
+        <div class="pillar-score">40</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Kontakt-kanaler <small>Telefon + form, ingen WhatsApp</small></div>
+        <div class="pillar-bar"><i class="warn" style="width:55%"></i></div>
+        <div class="pillar-score">55</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Trust signaler <small>CVR + adresse synligt, mangler reviews</small></div>
+        <div class="pillar-bar"><i class="warn" style="width:60%"></i></div>
+        <div class="pillar-score">60</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Brand-budskab <small>Hero lover, sitet beviser ikke</small></div>
+        <div class="pillar-bar"><i class="warn" style="width:50%"></i></div>
+        <div class="pillar-score">50</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLAN -->
+<section id="plan">
+  <div class="wrap">
+    <div class="kicker">05 · Plan A / B / C</div>
+    <h2>Fjorten handlinger sorteret efter hastighed.</h2>
+
+    <div class="plan">
+      <div class="plan-col">
+        <h4>Plan A · Denne uge</h4>
+        <div class="plan-meta">4-6 timer · gratis · SvelteKit-template fix</div>
+        <ul>
+          <li>Title pr. rute via &lt;svelte:head&gt; med keyword og geografi</li>
+          <li>Meta description pr. rute (maks 160 tegn)</li>
+          <li>Open Graph tags + Twitter Card site-wide</li>
+          <li>Tre H1 reduceret til ét H1 + to H2</li>
+          <li>Canonical URL i +layout.svelte</li>
+          <li>Beslut og fjern eller byg "SKIFT TIL US"-linket ordentligt</li>
+        </ul>
+      </div>
+      <div class="plan-col">
+        <h4>Plan B · De næste 2 uger</h4>
+        <div class="plan-meta">15-20 timer · 0-500 kr · SvelteKit-udvikler</div>
+        <ul>
+          <li>Trustpilot Business Account + invitation flow til eksisterende kunder</li>
+          <li>Trustpilot TrustBox widget i hero</li>
+          <li>JSON-LD AutoDealer site-wide + Car på hvert produkt</li>
+          <li>"Fra X kr/md" anker i hero + simpel beregner</li>
+          <li>Lead-form med kvalifikations-felter (bilværdi, brug)</li>
+          <li>Floating WhatsApp-knap med wa.me/4570707255</li>
+          <li>Content-Security-Policy og Referrer-Policy headers</li>
+        </ul>
+      </div>
+      <div class="plan-col">
+        <h4>Plan C · De næste 3 måneder</h4>
+        <div class="plan-meta">Strategisk · positionering · fundament</div>
+        <ul>
+          <li>Newsletter med segmentering efter bilværdi-interval</li>
+          <li>Performance optimering: preload-strategi tilpasset pr. rute</li>
+          <li>Engelsk version med ordentligt hreflang for expat-segmentet</li>
+          <li>Schema Service på Flexleasing, Import, Biludlejning sider</li>
+          <li>Case studies med konkrete kunder (luxury bilimport historier)</li>
+          <li>Lokal SEO push: Google Business Profile + tilstedeværelse i bilbasen.dk</li>
+          <li>Lighthouse CI i deployment pipeline</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUICK WINS -->
+<section id="qw">
+  <div class="wrap">
+    <div class="kicker">06 · Quick wins</div>
+    <h2>Tre ting til i eftermiddag.</h2>
+    <p class="lead">Hvis kun disse tre udføres inden fyraften, stiger scoren fra 40 til omkring 55, og forskellen er synlig i Google snippet inden for en uge.</p>
+
+    <div class="qw">
+      <div class="qw-card">
+        <span class="kicker">30 minutter</span>
+        <h4>Title, meta og OG-tags</h4>
+        <p>I +page.svelte: title "CarRelease · Flexleasing, import og brugte biler i Hvidovre", meta description, og:title, og:description, og:image, og:locale: da_DK. En commit.</p>
+        <small>Effekt: høj · indsats: trivial</small>
+      </div>
+      <div class="qw-card">
+        <span class="kicker">45 minutter</span>
+        <h4>Tre H1 til ét</h4>
+        <p>Vælg det primære budskab som H1. Konverter "Hvad er Flexleasing?", "Garantiforsikring" og "Hvorfor vælge CarRelease?" til H2. Skal lige tjekke at heading-stilen ikke ændrer sig visuelt.</p>
+        <small>Effekt: medium · indsats: lav</small>
+      </div>
+      <div class="qw-card">
+        <span class="kicker">90 minutter</span>
+        <h4>JSON-LD AutoDealer i layout</h4>
+        <p>I +layout.svelte: JSON-LD AutoDealer med name, address (Stamholmen 111F, 2650 Hvidovre), telephone (+45 70 70 72 55), openingHours, sameAs (Facebook, Instagram). Google viser lokal kort i søgeresultatet inden for en uge.</p>
+        <small>Effekt: høj · indsats: lav</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="mark" style="font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mid);margin-bottom:8px;text-align:center">Uafhængig audit · Di Barret · 4. juni 2026</div>
+    <p style="color:var(--ink-faint);font-size:12px;max-width:60ch;margin:0 auto;text-align:center">Data hentet fra offentligt observerbare kilder: <code>carrelease.dk</code> (HTML serveret af Vercel, HTTP response headers, SvelteKit-stack signals), Lasso-virksomhedsdata, BilBasen-forhandlerprofil og søgeresultater for konkurrenter (privatleasing.dk, leasingcar.dk). Det der ikke kan verificeres er markeret som sådan. Ingen data er opfundet.</p>
+  </div>
+</footer>
+
+</body>
+</html>
