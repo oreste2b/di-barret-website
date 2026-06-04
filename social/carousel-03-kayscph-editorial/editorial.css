@@ -1,0 +1,208 @@
+/* ==========================================================
+   Di Barret · Editorial carousel · KAYs audit v2
+   1080 × 1350 · vertical IG/LinkedIn
+   Inspirado en hook-bait editorial style: serif + bold bg.
+   ========================================================== */
+
+:root {
+  --orange:   #FF5C33;
+  --cream:    #F5EFE0;
+  --red:      #D9381C;
+  --olive:    #7A9B5C;
+  --black:    #0A0A0A;
+  --ink:      #0A0A0A;
+
+  --serif: "Fraunces", Georgia, "Times New Roman", serif;
+  --mono:  "Geist Mono", "SF Mono", Menlo, monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  width: 1080px;
+  height: 1350px;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  font-family: var(--serif);
+  background: #000;
+}
+
+.slide {
+  width: 1080px;
+  height: 1350px;
+  padding: 60px 60px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Frame interno (estilo tablet/screen) */
+.slide__frame {
+  flex: 1;
+  border-radius: 32px;
+  padding: 96px 88px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ----- Color variants ----- */
+.slide.orange     .slide__frame { background: var(--orange); color: var(--black); }
+.slide.black      .slide__frame { background: var(--black);  color: var(--orange); }
+.slide.cream      .slide__frame { background: var(--cream);  color: var(--black); }
+.slide.red        .slide__frame { background: var(--red);    color: var(--cream); }
+.slide.olive      .slide__frame { background: var(--olive);  color: #1a1f0a; }
+.slide.orange-alt .slide__frame { background: var(--orange); color: var(--black); }
+
+/* ----- Top mark (logo stacked) ----- */
+.slide__topmark {
+  font-family: var(--mono);
+  font-size: 14px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  line-height: 1.1;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.slide__topmark .stamp {
+  text-align: right;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  opacity: 0.85;
+  line-height: 1.0;
+}
+.slide__topmark .stamp span {
+  display: block;
+}
+
+/* ----- Main headline ----- */
+.slide__main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.slide__headline {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 96px;
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  color: currentColor;
+}
+
+.slide__headline.compact { font-size: 88px; line-height: 1.02; }
+.slide__headline.tight   { font-size: 76px; line-height: 1.05; }
+
+.slide__headline .arrow {
+  display: inline-block;
+  font-style: normal;
+  margin-left: 8px;
+}
+
+/* Mega stat (for score slide) */
+.slide__megastat {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 360px;
+  line-height: 0.85;
+  letter-spacing: -0.045em;
+  margin-bottom: 32px;
+}
+.slide__megastat .frac {
+  font-size: 0.32em;
+  opacity: 0.75;
+  letter-spacing: -0.02em;
+}
+
+.slide__caption {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 38px;
+  line-height: 1.2;
+  letter-spacing: -0.018em;
+  max-width: 16ch;
+}
+
+/* Code-like inline tag */
+.slide__code {
+  font-family: var(--mono);
+  font-size: 30px;
+  letter-spacing: 0;
+  padding: 6px 16px;
+  border-radius: 6px;
+  background: rgba(10,10,10,0.10);
+  display: inline-block;
+}
+.slide.black .slide__code,
+.slide.red   .slide__code { background: rgba(245,239,224,0.12); }
+
+/* Quote / kicker bar above headline */
+.slide__kicker-line {
+  font-family: var(--mono);
+  font-size: 14px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+  opacity: 0.65;
+}
+
+/* ----- Footer ----- */
+.slide__footer {
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  opacity: 0.85;
+}
+.slide__footer .credit {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 18px;
+  letter-spacing: -0.005em;
+  text-transform: none;
+  opacity: 0.95;
+}
+.slide__footer .counter {
+  font-family: var(--mono);
+  letter-spacing: 0.18em;
+}
+
+/* ----- URL block (for CTA slide) ----- */
+.slide__url {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 76px;
+  letter-spacing: -0.025em;
+  line-height: 1.0;
+  border-top: 2px solid currentColor;
+  padding-top: 36px;
+  margin-top: 40px;
+}
+.slide__url .slash {
+  opacity: 0.5;
+  margin: 0 4px;
+}
+
+/* Subtle inner ring on the frame for that "screen" feel */
+.slide__frame::before {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border-radius: 28px;
+  border: 1px solid currentColor;
+  opacity: 0.10;
+  pointer-events: none;
+}
