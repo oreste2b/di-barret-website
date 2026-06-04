@@ -1,0 +1,568 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Audit · BBVA.com · Di Barret</title>
+<meta name="description" content="360° audit técnico del site corporativo BBVA.com/en. Stack enterprise, hreflang parcial, CORS wildcard, H1 oculto. 15 hallazgos verificables. Score 58/100.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://www.dibarret.dk/audit-bbva-com">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Audit · BBVA.com">
+<meta property="og:description" content="Site corporativo con buenos fundamentos enterprise, agujeros sorprendentes en multi-mercado. Por Di Barret.">
+<meta property="og:url" content="https://www.dibarret.dk/audit-bbva-com">
+<meta property="og:image" content="https://www.dibarret.dk/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Di Barret">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Audit · BBVA.com">
+<meta name="twitter:description" content="15 hallazgos, plan A/B/C, quick wins. Por Di Barret.">
+<meta name="twitter:image" content="https://www.dibarret.dk/og.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Geist+Mono:wght@400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css?v=5">
+<style>
+:root{
+  --bg:#000000; --ink:#ffffff; --ink-mid:rgba(255,255,255,0.72); --ink-faint:rgba(255,255,255,0.60);
+  --line:rgba(255,255,255,0.08); --line-mid:rgba(255,255,255,0.14);
+  --accent:#ffffff; --accent-soft:rgba(255,255,255,0.06);
+  --good:#34d399; --warn:#fbbf24; --bad:#ef4444;
+  --serif:'Geist','Inter',sans-serif; --sans:'Inter',system-ui,sans-serif; --mono:'Geist Mono','JetBrains Mono',ui-monospace,monospace;
+  --max:1320px; --pad:32px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+.kicker{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:12px}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:500;letter-spacing:-.025em;line-height:1.02;color:var(--ink)}
+h1{font-size:clamp(48px,7.6vw,124px);font-weight:400;line-height:.96}
+h2{font-size:clamp(32px,4.2vw,56px);margin-bottom:24px;font-weight:500}
+h3{font-size:22px;margin-bottom:10px;font-weight:500}
+p{color:var(--ink-mid);margin-bottom:14px}
+p.lead{color:var(--ink);font-size:18px;line-height:1.55;max-width:64ch}
+strong{color:var(--ink);font-weight:600}
+code{font-family:var(--mono);font-size:.88em;background:rgba(255,255,255,.06);padding:1px 6px;border-radius:4px;color:var(--ink)}
+em{font-style:normal;background:linear-gradient(120deg,var(--ink) 0%,var(--ink) 50%,var(--ink-faint) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+section{padding:120px 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:0}
+
+.hero__title em{font-style:normal;background:linear-gradient(120deg,var(--ink) 0%,var(--ink) 50%,var(--ink-faint) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.audit-meta-value{font-size:clamp(20px,2.2vw,28px)!important;line-height:1.15!important;letter-spacing:-.02em}
+
+.companion-bar{padding:20px 24px;background:rgba(255,255,255,.04);border:1px solid var(--line-mid);border-radius:6px;display:flex;gap:14px;align-items:center;margin-top:32px;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-mid);flex-wrap:wrap}
+.companion-bar a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--line-mid);text-underline-offset:3px}
+.companion-bar a:hover{text-decoration-color:var(--ink)}
+
+.exec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+@media (max-width:780px){.exec-grid{grid-template-columns:1fr}}
+.exec-card{padding:28px;border:1px solid var(--line);border-radius:6px}
+.exec-card .kicker{margin-bottom:14px}
+.exec-card h3{font-size:20px;margin-bottom:10px}
+
+.find-row{display:grid;grid-template-columns:60px 1fr 120px;gap:32px;padding:48px 0;border-bottom:1px solid var(--line);align-items:start}
+.find-row:last-child{border-bottom:0}
+.find-num{font-family:var(--mono);font-size:11px;color:var(--ink-faint);letter-spacing:.14em;padding-top:5px}
+.find-body h4{font-family:var(--serif);font-weight:500;font-size:20px;margin-bottom:14px;line-height:1.25}
+.find-body p{font-size:14px;margin-bottom:14px;line-height:1.65}
+.find-body p:last-child{margin-bottom:0}
+.find-body p.why{color:var(--ink);font-size:14px;margin-top:18px}
+.find-body p.fix{color:var(--good);font-size:14px;margin-top:18px}
+.find-body p.fix::before{content:"→ ";color:var(--good);font-weight:600}
+.badge{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:5px 10px;border-radius:99px;border:1px solid currentColor;justify-self:end;line-height:1}
+.badge::before{content:"";width:5px;height:5px;border-radius:50%;background:currentColor}
+.badge.crit{color:var(--bad)}.badge.med{color:var(--warn)}.badge.low{color:var(--good)}
+@media (max-width:680px){.find-row{grid-template-columns:40px 1fr;gap:16px}.badge{grid-column:2;justify-self:start;margin-top:6px}}
+
+.evidence{margin:28px 0 32px;padding:28px 32px;background:rgba(0,0,0,.30);border:1px solid var(--line-mid);border-radius:6px;font-family:var(--mono);font-size:13px;line-height:1.7;color:var(--ink)}
+.evidence .key{color:var(--ink-faint)}
+.evidence .bad{color:var(--bad)}
+.evidence .ok{color:var(--good)}
+.evidence .warn{color:var(--warn)}
+
+.hreflang-grid{margin:28px 0 32px;display:grid;grid-template-columns:repeat(6,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+@media (max-width:780px){.hreflang-grid{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:480px){.hreflang-grid{grid-template-columns:repeat(2,1fr)}}
+.hreflang-cell{padding:18px 16px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);font-family:var(--mono);font-size:13px;text-align:center}
+.hreflang-cell .code{display:block;color:var(--ink);margin-bottom:6px;font-weight:500;font-size:14px}
+.hreflang-cell .status{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--good)}
+.hreflang-cell.missing{background:rgba(239,68,68,0.05)}
+.hreflang-cell.missing .code{color:var(--bad)}
+.hreflang-cell.missing .status{color:var(--bad)}
+
+.pillars{display:grid;gap:0;margin-top:32px;border-top:1px solid var(--line)}
+.pillar{display:grid;grid-template-columns:260px 1fr 56px;gap:24px;align-items:center;padding:22px 0;border-bottom:1px solid var(--line)}
+.pillar:last-child{border-bottom:0}
+.pillar-name{font-weight:500;font-size:14px;color:var(--ink)}
+.pillar-name small{display:block;color:var(--ink-faint);font-weight:400;font-size:12px;margin-top:2px}
+.pillar-bar{height:4px;background:var(--line-mid);border-radius:99px;overflow:hidden}
+.pillar-bar i{display:block;height:100%;border-radius:99px}
+.pillar-bar i.good{background:var(--good)}
+.pillar-bar i.warn{background:var(--warn)}
+.pillar-bar i.bad{background:var(--bad)}
+.pillar-score{font-family:var(--mono);font-size:14px;text-align:right;font-weight:500;color:var(--ink)}
+@media (max-width:680px){.pillar{grid-template-columns:1fr 56px}.pillar-bar{grid-column:1/-1;grid-row:2}}
+
+.plan{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:32px;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+@media (max-width:900px){.plan{grid-template-columns:1fr}}
+.plan-col{padding:36px 30px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.plan-col h4{font-family:var(--serif);font-size:24px;font-weight:500;margin-bottom:8px;letter-spacing:-.02em}
+.plan-col .plan-meta{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:24px}
+.plan-col ul{list-style:none;display:grid;gap:14px}
+.plan-col li{font-size:14px;color:var(--ink);padding-left:18px;position:relative;line-height:1.5}
+.plan-col li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--ink);position:absolute;left:0;top:8px}
+
+.qw{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:32px;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+@media (max-width:780px){.qw{grid-template-columns:1fr}}
+.qw-card{padding:28px 24px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(52,211,153,0.04);position:relative}
+.qw-card::before{content:"";position:absolute;top:0;left:0;width:2px;height:100%;background:var(--good)}
+.qw-card .kicker{color:var(--good);margin-bottom:12px;display:block}
+.qw-card h4{font-family:var(--serif);font-size:18px;font-weight:500;margin-bottom:10px;letter-spacing:-.02em}
+.qw-card p{font-size:13.5px;margin-bottom:8px;color:var(--ink-mid)}
+.qw-card small{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--ink-faint);text-transform:uppercase}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Navegación principal">
+  <a class="nav__logo" href="/" aria-label="Di Barret"><span aria-hidden="true">/</span>Di Barret</a>
+  <a class="nav__cta" href="#resumen">
+    <span>Audit · BBVA.com</span>
+    <svg class="nav__cta-icon" width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true">
+      <path d="M2 9L9 2M9 2H4M9 2V7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
+</nav>
+
+<main id="main">
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero__inner">
+    <div class="hero__eyebrow">
+      <span class="hero__dot"></span>
+      <span>Audit web · 4 jun 2026 · Independiente</span>
+    </div>
+    <h1 class="hero__title">Multinacional financiera.<br><em>SEO global incompleto.</em></h1>
+    <p class="hero__sub">BBVA.com es el site corporativo de un banco con presencia en España, México, Colombia, Perú, Argentina, Uruguay, Venezuela y Turquía (Garanti BBVA). El stack enterprise está sólido: Akamai-equivalente CloudFront, HSTS con preload, JSON-LD, 9 hreflang declarados. Lo que sorprende es lo que falta: el H1 visible es <code>"NEWS BBVA.COM"</code> oculto con <code>visually-hidden</code>. La meta description empieza con "The latest banks and financial services". Los hreflang cubren español y un inglés genérico pero no Turquía (35 millones de clientes). El CORS está abierto con wildcard. Y todavía se sirven cabeceras deprecadas desde 2018.</p>
+    <div class="hero__ctas">
+      <a class="btn btn--primary" href="#resumen">
+        <span>Ver resumen</span>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a class="btn btn--ghost" href="#plan">
+        <span>Ver plan de acción</span>
+      </a>
+    </div>
+    <div class="companion-bar">
+      <span>Companion a</span>
+      <a href="/audit-bbva-incidents">Informe de incidentes · BBVA</a>
+      <span>·</span>
+      <span>Mismo grupo, otro foco</span>
+    </div>
+  </div>
+</section>
+
+<!-- METRICS -->
+<section class="metrics" aria-label="Score y contexto">
+  <div class="metrics__inner">
+    <div class="metric">
+      <div class="metric__value">58<span class="metric__suffix">/100</span></div>
+      <div class="metric__label">Score global</div>
+    </div>
+    <div class="metric">
+      <div class="metric__value audit-meta-value">Banca<br>multinacional</div>
+      <div class="metric__label">Sector</div>
+    </div>
+    <div class="metric">
+      <div class="metric__value audit-meta-value">Bilbao<br>· España</div>
+      <div class="metric__label">HQ</div>
+    </div>
+    <div class="metric">
+      <div class="metric__value audit-meta-value">CloudFront<br>· enterprise CMS</div>
+      <div class="metric__label">Stack</div>
+    </div>
+  </div>
+</section>
+
+<!-- RESUMEN -->
+<section id="resumen">
+  <div class="wrap">
+    <div class="kicker">01 · Resumen ejecutivo</div>
+    <h2>Lo enterprise está hecho. Lo multi-mercado falta.</h2>
+
+    <div class="exec-grid">
+      <div class="exec-card">
+        <div class="kicker">Estado actual</div>
+        <h3>Base técnica sólida</h3>
+        <p>HSTS con <code>max-age=31536000; includeSubDomains; preload</code> completo. Dos bloques JSON-LD. Nueve hreflang declarados. Title con propuesta de valor ("The digital bank of the 21st century"). Programa de divulgación de vulnerabilidades en <code>vdp.bbva.com</code>. Headers de hardening en su mayoría presentes. Mejor que Novo Nordisk en casi todos los puntos básicos.</p>
+      </div>
+      <div class="exec-card">
+        <div class="kicker">El problema</div>
+        <h3>Decisiones extrañas para una multinacional</h3>
+        <p>El H1 visible es <code>"NEWS BBVA.COM"</code> con clase <code>visually-hidden</code>: oculto al usuario, genérico para el bot. Meta description arranca con "The latest banks and financial services" sin diferenciar a BBVA. Hreflang cubre seis variantes hispanas y un inglés global pero ignora Turquía, donde Garanti BBVA tiene treinta y cinco millones de clientes. CORS sirve <code>Access-Control-Allow-Origin: *</code> sin necesidad aparente. Cabeceras deprecadas como <code>X-XSS-Protection</code> siguen activas.</p>
+      </div>
+      <div class="exec-card">
+        <div class="kicker">La oportunidad</div>
+        <h3>Quince fixes que un equipo enterprise puede atacar en un trimestre</h3>
+        <p>Ninguno requiere re-platforming. La mayoría son edits en plantillas del CMS, configuración de cabeceras en CloudFront, y ampliación de hreflang. Los más altos de prioridad cierran agujeros de visibilidad en Google (H1 oculto, meta description genérica) y de superficie multinacional (Turquía sin hreflang). El SEO global ganaría volumen orgánico inmediato.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINDINGS -->
+<section id="findings">
+  <div class="wrap">
+    <div class="kicker">02 · Verificables · 15 puntos</div>
+    <h2>Qué falta, qué está mal y qué sigue activado sin necesidad.</h2>
+
+    <div class="find-row">
+      <div class="find-num">01</div>
+      <div class="find-body">
+        <h4>El H1 visible es "NEWS BBVA.COM" oculto con visually-hidden</h4>
+        <p>El único <code>&lt;h1&gt;</code> del HTML servido tiene clase <code>visually-hidden page-title</code> y dice <code>NEWS BBVA.COM</code>. Es invisible al usuario y solo existe para el bot. El contenido textual es genérico: no contiene la propuesta de valor de BBVA, ni el sector, ni la geografía. Es texto técnico filtrado, no contenido editorial.</p>
+        <div class="evidence">
+          <div><span class="key">&lt;h1 class="visually-hidden page-title"&gt;</span></div>
+          <div class="bad">NEWS BBVA.COM</div>
+          <div><span class="key">&lt;/h1&gt;</span></div>
+        </div>
+        <p class="why">El H1 es la señal más fuerte de tema para Google. Decir "NEWS BBVA.COM" en un site corporativo es desperdiciar la jugada principal. Un competidor con H1 claro ("BBVA · Banco digital global de México, España y Turquía") gana ranking en búsquedas corporativas.</p>
+        <p class="fix">Reescribir el H1 con propuesta de valor real, visible o no: <code>"BBVA · The digital bank of Spain, Mexico, Turkey and Latin America"</code>. Si se quiere mantener oculto para no romper el diseño, mantener <code>visually-hidden</code>, pero el contenido textual debe ser editorial.</p>
+      </div>
+      <span class="badge crit">Crítico</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">02</div>
+      <div class="find-body">
+        <h4>Hreflang ignora Turquía (Garanti BBVA, 35 millones de clientes)</h4>
+        <p>Los nueve hreflang declarados cubren <code>en</code>, <code>es</code>, <code>es-ar</code>, <code>es-co</code>, <code>es-mx</code>, <code>es-pe</code>, <code>es-uy</code>, <code>es-ve</code> y <code>x-default</code>. Garanti BBVA, la marca turca con más de 35 millones de clientes, no tiene <code>tr-TR</code> declarado. Los mercados Francia, Italia, Portugal y Alemania, relevantes para banca corporativa, tampoco.</p>
+
+        <div class="hreflang-grid">
+          <div class="hreflang-cell"><span class="code">en</span><span class="status">✓ ok</span></div>
+          <div class="hreflang-cell"><span class="code">es</span><span class="status">✓ ok</span></div>
+          <div class="hreflang-cell"><span class="code">es-mx</span><span class="status">✓ ok</span></div>
+          <div class="hreflang-cell"><span class="code">es-co</span><span class="status">✓ ok</span></div>
+          <div class="hreflang-cell"><span class="code">es-ar</span><span class="status">✓ ok</span></div>
+          <div class="hreflang-cell"><span class="code">es-pe</span><span class="status">✓ ok</span></div>
+          <div class="hreflang-cell"><span class="code">es-uy</span><span class="status">✓ ok</span></div>
+          <div class="hreflang-cell"><span class="code">es-ve</span><span class="status">✓ ok</span></div>
+          <div class="hreflang-cell"><span class="code">x-default</span><span class="status">✓ ok</span></div>
+          <div class="hreflang-cell missing"><span class="code">tr-TR</span><span class="status">falta</span></div>
+          <div class="hreflang-cell missing"><span class="code">en-US</span><span class="status">no diferenciado</span></div>
+          <div class="hreflang-cell missing"><span class="code">en-GB</span><span class="status">no diferenciado</span></div>
+        </div>
+
+        <p class="why">Garanti BBVA tiene su propio site en <code>garantibbva.com.tr</code>, pero no está conectado al árbol de hreflang del corporativo. Para un usuario turco buscando información sobre el grupo BBVA, Google decide entre dos sitios sin señal clara. Lo mismo aplica para inversores institucionales en US o UK que ven solo <code>en</code> sin variante.</p>
+        <p class="fix">Ampliar hreflang con <code>tr-TR</code> (Garanti), <code>en-US</code> (inversores institucionales), <code>en-GB</code> (Reino Unido). Si los sites turco e inglés institucional no tienen homepage equivalente, crear stub pages oficiales del grupo en cada idioma con redirect al site local.</p>
+      </div>
+      <span class="badge crit">Crítico</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">03</div>
+      <div class="find-body">
+        <h4>Meta description empieza con "The latest banks and financial services"</h4>
+        <p>El meta description sirve: <code>"The latest banks and financial services company and industry news with expert analysis from the BBVA, Banco Bilbao Vizcaya Argentaria."</code>. Empieza con genérico ("The latest banks and financial services") antes de mencionar BBVA. Para el snippet de Google, los primeros caracteres son los que decide el clic.</p>
+        <p class="why">Cuando Google muestra el snippet de bbva.com en SERP, los primeros 120 caracteres son los visibles. "The latest banks and financial services company and industry news" no diferencia. Compara con otra opción: "BBVA, the global digital bank serving Spain, Mexico, Turkey and Latin America. Earnings, sustainability, and innovation news from group operations."</p>
+        <p class="fix">Reescribir meta description colocando BBVA al inicio, con sectores y geografía, y dejando la naturaleza editorial al final. Máximo 160 caracteres. Sustituir por mercado mediante template del CMS.</p>
+      </div>
+      <span class="badge crit">Crítico</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">04</div>
+      <div class="find-body">
+        <h4>0 imágenes en HTML inicial (todo hidratado por JS)</h4>
+        <p>Verificado: <code>grep -c "&lt;img"</code> en la HTML servida devuelve cero. Los hero, las cards de noticias y los logos no están en el HTML inicial. Se cargan tras hidratar el framework. Para Google esto significa que las imágenes de hero no se asocian al contenido textual durante el primer crawl, y LCP (Largest Contentful Paint) depende del bundle de JavaScript.</p>
+        <div class="evidence">
+          <div><span class="key">$</span> curl -s bbva.com/en/ | grep -c "&lt;img"</div>
+          <div class="bad">0</div>
+        </div>
+        <p class="why">Para una empresa con presencia mediática constante (pressroom, anual reports, sustainability), Google Images es tráfico relevante. Sin imágenes en HTML inicial, las páginas pierden esa vía. Y el Core Web Vitals score se deteriora.</p>
+        <p class="fix">Server-side rendering del hero y de las primeras dos secciones. Mantener lazy loading para el resto. Usar <code>fetchpriority="high"</code> en el hero. Auditoría de bundle JS para reducir tiempo a hidratación.</p>
+      </div>
+      <span class="badge med">Importante</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">05</div>
+      <div class="find-body">
+        <h4>Access-Control-Allow-Origin abierto a wildcard</h4>
+        <p>La cabecera CORS dice <code>Access-Control-Allow-Origin: *</code>. Para un site corporativo, eso significa que cualquier dominio puede hacer requests cross-origin sin restricciones. Combinado con <code>x-permitted-cross-domain-policies: master-only</code> es contradictorio: por un lado se restringe Flash legacy, por otro se abre CORS completo.</p>
+        <div class="evidence">
+          <div><span class="key">access-control-allow-origin:</span> <span class="bad">*</span></div>
+          <div><span class="key">x-permitted-cross-domain-policies:</span> master-only</div>
+        </div>
+        <p class="why">CORS wildcard no es vulnerabilidad por sí solo en endpoints que no sirven datos sensibles, pero es una mala práctica para superficie corporativa. Si en el futuro algún endpoint se autentica con cookies o tokens, el wildcard puede convertirse en agujero.</p>
+        <p class="fix">Restringir CORS a la lista explícita de dominios BBVA y partners conocidos: <code>bbvaresearch.com</code>, <code>garantibbva.com.tr</code>, <code>vdp.bbva.com</code>, etc. Si hay endpoints públicos JSON que requieren wildcard, separarlos a un subdominio con política diferenciada.</p>
+      </div>
+      <span class="badge med">Importante</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">06</div>
+      <div class="find-body">
+        <h4>X-XSS-Protection deprecada sigue activa</h4>
+        <p>La cabecera <code>X-XSS-Protection: 1; mode=block</code> está deprecada desde 2018. Chrome eliminó el soporte. Firefox nunca lo tuvo. Es una cabecera fantasma: envía bytes sin efecto en navegadores modernos.</p>
+        <p class="fix">Eliminar X-XSS-Protection de la configuración de CloudFront o origin. Sustituir el rol con CSP estricto (siguiente finding).</p>
+      </div>
+      <span class="badge med">Importante</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">07</div>
+      <div class="find-body">
+        <h4>Content-Security-Policy no observable en cabeceras</h4>
+        <p>El HTTP response no incluye <code>Content-Security-Policy</code>. Para un site corporativo con widgets de inversor, scripts de analytics, embeds de redes sociales (Facebook, Twitter, LinkedIn, YouTube, Instagram, Snapchat según footer), la ausencia de CSP es un agujero de defensa en profundidad. Un XSS en cualquier subcomponente exporta datos sin restricción.</p>
+        <p class="fix">CSP en modo Report-Only durante dos semanas para mapear todos los third-party scripts en uso. Después enforce con allowlist explícita. Para una multinacional el catálogo de scripts es largo pero finito.</p>
+      </div>
+      <span class="badge med">Importante</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">08</div>
+      <div class="find-body">
+        <h4>x-openweb-version: 8 expone framework hint</h4>
+        <p>Cabecera personalizada <code>x-openweb-version: 8</code> en cada response. OpenWeb es el framework editorial de Marfeel (o similar) usado por algunos medios. Para un atacante es un hint sobre qué CMS auditar para vulnerabilidades conocidas.</p>
+        <p class="fix">Eliminar la cabecera del response. CloudFront o Origin pueden filtrar cabeceras antes de servir. No afecta funcionalidad.</p>
+      </div>
+      <span class="badge low">Oportunidad</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">09</div>
+      <div class="find-body">
+        <h4>og:locale solo en_US sin og:locale:alternate</h4>
+        <p>Open Graph declara <code>og:locale: en_US</code>. No hay <code>og:locale:alternate</code> para los otros nueve mercados de hreflang. Cuando alguien comparte una URL de bbva.com en LinkedIn desde España, México o Argentina, Facebook y LinkedIn sirven el preview con locale americano en lugar de localizado.</p>
+        <p class="fix">Generar <code>og:locale:alternate</code> dinámicamente desde la misma config de hreflang. Un tag por idioma. Sobreescribir <code>og:locale</code> según la URL servida (en_GB para /en/ si la audiencia principal es UK, o es_ES para /es/).</p>
+      </div>
+      <span class="badge low">Oportunidad</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">10</div>
+      <div class="find-body">
+        <h4>17 H2 en una sola página (densidad semántica alta)</h4>
+        <p>La página tiene 17 etiquetas H2 visibles. Es típico de sites news/blog donde cada artículo destacado tiene su H2. Para el bot no es un problema técnico, pero diluye la prioridad. Es una decisión de información architecture, no de SEO técnico.</p>
+        <p class="fix">Considerar agrupar artículos en sections con un H2 por sección y H3 por tarjeta. Revisión de diseño con product design, no solo SEO.</p>
+      </div>
+      <span class="badge low">Oportunidad</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">11</div>
+      <div class="find-body">
+        <h4>Snapchat sigue en el footer junto a Facebook y LinkedIn</h4>
+        <p>El footer enlaza a Facebook, Twitter (X), LinkedIn, YouTube, Instagram y Snapchat. Snapchat para una banca corporativa es atípico en 2026. Probable: cuenta abandonada o de marketing target juvenil que ya no existe.</p>
+        <p class="fix">Auditar cada red social: ¿está activa? ¿tiene actividad reciente? Si Snapchat o Twitter llevan más de seis meses sin posts, retirar del footer. Mantener un footer corporativo limpio mejora la percepción de profesionalidad.</p>
+      </div>
+      <span class="badge low">Oportunidad</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">12</div>
+      <div class="find-body">
+        <h4>Cotización de acción está a dos clicks del hero</h4>
+        <p>Para un site corporativo donde una de las audiencias clave es inversor (IR), la cotización de la acción debería ser visible en home con un widget. Actualmente requiere navegar al hub de shareholders + click adicional.</p>
+        <p class="fix">Widget de cotización en el footer o en una franja IR del header. Idealmente con schema Corporation + tickerSymbol para que Google muestre rich snippet en SERP de "BBVA stock price".</p>
+      </div>
+      <span class="badge low">Oportunidad</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">13</div>
+      <div class="find-body">
+        <h4>Solo dos bloques JSON-LD para una multinacional</h4>
+        <p>El HTML inicial contiene dos bloques <code>application/ld+json</code>. Para una empresa con headquarters, subOrganizations (Garanti, BBVA Mexico, etc.), executives, press releases y annual reports, podría tener mucho más: <code>Organization</code> con <code>subOrganization</code> por mercado, <code>Person</code> por ejecutivo de C-suite, <code>NewsArticle</code> por pressroom item, <code>Corporation</code> con datos bursátiles.</p>
+        <p class="fix">JSON-LD templates por content-type en el CMS. Organization site-wide. NewsArticle automatizado por cada pressroom post. Corporation con ticker + exchange. Una iteración por trimestre dentro del SEO team.</p>
+      </div>
+      <span class="badge low">Oportunidad</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">14</div>
+      <div class="find-body">
+        <h4>vdp.bbva.com existe pero sin /.well-known/security.txt en el corporativo</h4>
+        <p>BBVA tiene programa de vulnerability disclosure en <code>vdp.bbva.com</code>. Es un punto positivo: muestra postura proactiva. Sin embargo el corporate site <code>bbva.com/en/</code> no expone un <code>/.well-known/security.txt</code> que apunte a ese programa según RFC 9116. Un investigador de seguridad que descubre algo en bbva.com tiene que buscarlo.</p>
+        <p class="fix">Colocar <code>/.well-known/security.txt</code> en bbva.com con: <code>Contact: https://vdp.bbva.com</code>, <code>Expires: 2027-06-04T00:00:00Z</code>, <code>Preferred-Languages: en, es</code>, <code>Policy: https://vdp.bbva.com/policy</code>. Veinte minutos.</p>
+      </div>
+      <span class="badge low">Oportunidad</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">15</div>
+      <div class="find-body">
+        <h4>Cache-Control: max-age=0 en homepage (no se cachea en navegador)</h4>
+        <p>La cabecera sirve <code>cache-control: public, must-revalidate, proxy-revalidate, max-age=0</code>. Para una home con contenido editorial que cambia diariamente es defensivo, pero <code>max-age=0</code> obliga a revalidación en cada visita. Combinado con <code>etag</code> permite respuestas 304 rápidas, pero deja en la mesa la posibilidad de servir con un max-age corto (60-300s) que permite caché en navegador.</p>
+        <p class="fix">Subir <code>max-age</code> a 60 segundos con <code>stale-while-revalidate=300</code>. Mantiene actualización frecuente, da caché en navegador para visitas repetidas, y reduce carga origin. CloudFront-friendly.</p>
+      </div>
+      <span class="badge low">Oportunidad</span>
+    </div>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section id="pillars">
+  <div class="wrap">
+    <div class="kicker">03 · Score por área</div>
+    <h2>Once pilares valorados.</h2>
+
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-name">SEO técnico básico <small>Title, meta, canonical, JSON-LD</small></div>
+        <div class="pillar-bar"><i class="warn" style="width:55%"></i></div>
+        <div class="pillar-score">55</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Hreflang y multi-mercado <small>9 idiomas declarados, falta Turquía</small></div>
+        <div class="pillar-bar"><i class="warn" style="width:60%"></i></div>
+        <div class="pillar-score">60</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Datos estructurados <small>2 JSON-LD, sin NewsArticle ni Corporation</small></div>
+        <div class="pillar-bar"><i class="warn" style="width:40%"></i></div>
+        <div class="pillar-score">40</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Heading-struktur <small>1 H1 oculto + 17 H2</small></div>
+        <div class="pillar-bar"><i class="warn" style="width:45%"></i></div>
+        <div class="pillar-score">45</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Performance y CDN <small>CloudFront, HSTS preload, etag</small></div>
+        <div class="pillar-bar"><i class="good" style="width:80%"></i></div>
+        <div class="pillar-score">80</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Cabeceras de seguridad <small>HSTS bien, CSP falta, X-XSS deprecado</small></div>
+        <div class="pillar-bar"><i class="warn" style="width:60%"></i></div>
+        <div class="pillar-score">60</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">CORS y same-origin <small>Wildcard innecesario en site corporativo</small></div>
+        <div class="pillar-bar"><i class="warn" style="width:50%"></i></div>
+        <div class="pillar-score">50</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Open Graph y sociales <small>og:locale solo en_US sin alternates</small></div>
+        <div class="pillar-bar"><i class="warn" style="width:55%"></i></div>
+        <div class="pillar-score">55</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Rendering strategy <small>0 img en SSR, todo hidratado</small></div>
+        <div class="pillar-bar"><i class="warn" style="width:50%"></i></div>
+        <div class="pillar-score">50</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Responsible disclosure <small>vdp.bbva.com bien, sin security.txt</small></div>
+        <div class="pillar-bar"><i class="good" style="width:75%"></i></div>
+        <div class="pillar-score">75</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">IR y stock visibility <small>Cotización a 2 clicks, sin schema Corporation</small></div>
+        <div class="pillar-bar"><i class="warn" style="width:55%"></i></div>
+        <div class="pillar-score">55</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLAN -->
+<section id="plan">
+  <div class="wrap">
+    <div class="kicker">04 · Plan A / B / C</div>
+    <h2>Quince fixes priorizados.</h2>
+
+    <div class="plan">
+      <div class="plan-col">
+        <h4>Plan A · Esta semana</h4>
+        <div class="plan-meta">6-10 horas · CMS author + CloudFront config</div>
+        <ul>
+          <li>Reescribir H1 con propuesta de valor visible o oculta pero editorial</li>
+          <li>Reescribir meta description con BBVA al inicio</li>
+          <li>Eliminar X-XSS-Protection deprecada</li>
+          <li>Eliminar x-openweb-version: 8 del response</li>
+          <li>Restringir Access-Control-Allow-Origin a lista de dominios BBVA</li>
+          <li>Colocar /.well-known/security.txt apuntando a vdp.bbva.com</li>
+        </ul>
+      </div>
+      <div class="plan-col">
+        <h4>Plan B · Próximas 4 semanas</h4>
+        <div class="plan-meta">3-5 semanas · 1 SEO engineer + 1 Adobe AEM o Sitecore consultor</div>
+        <ul>
+          <li>Ampliar hreflang con tr-TR (Garanti), en-US, en-GB</li>
+          <li>Generar og:locale:alternate dinámicamente</li>
+          <li>JSON-LD Organization site-wide con subOrganization por mercado</li>
+          <li>JSON-LD NewsArticle automatizado para pressroom</li>
+          <li>Content-Security-Policy en Report-Only mode</li>
+          <li>SSR del hero + primeras secciones</li>
+          <li>Cache-Control max-age=60 con stale-while-revalidate</li>
+        </ul>
+      </div>
+      <div class="plan-col">
+        <h4>Plan C · Próximos 6 meses</h4>
+        <div class="plan-meta">Estratégico · governance · gobierno SEO</div>
+        <ul>
+          <li>JSON-LD Corporation con tickerSymbol + exchange para SERP enriquecido</li>
+          <li>CSP enforcement tras Report-Only</li>
+          <li>Widget de cotización en home o footer</li>
+          <li>Auditoría de redes sociales: retirar Snapchat si inactivo</li>
+          <li>Information architecture review: agrupar H2 en sections</li>
+          <li>SEO governance por mercado con review de hreflang en cada despliegue</li>
+          <li>Performance budget con Lighthouse CI en deployment pipeline</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUICK WINS -->
+<section id="qw">
+  <div class="wrap">
+    <div class="kicker">05 · Quick wins</div>
+    <h2>Tres cosas para esta tarde.</h2>
+    <p class="lead">Si solo se ejecutan estas tres antes del cierre del día, se cierran tres tells embarazosos para una Fortune 500 financiera, y el score pasa de 58 a aproximadamente 68.</p>
+
+    <div class="qw">
+      <div class="qw-card">
+        <span class="kicker">15 minutos</span>
+        <h4>Eliminar cabeceras deprecadas</h4>
+        <p>X-XSS-Protection y x-openweb-version retiradas desde CloudFront. Una regla de transformación, dos minutos para deploy. Bytes ahorrados por request y framework hint eliminado.</p>
+        <small>Efecto: medio · esfuerzo: trivial</small>
+      </div>
+      <div class="qw-card">
+        <span class="kicker">30 minutos</span>
+        <h4>Reescribir H1 + meta description</h4>
+        <p>H1 a "BBVA · The digital bank of Spain, Mexico, Turkey and Latin America". Meta description colocando BBVA primero. Edit en page template del CMS.</p>
+        <small>Efecto: alto · esfuerzo: bajo</small>
+      </div>
+      <div class="qw-card">
+        <span class="kicker">2 horas</span>
+        <h4>Ampliar hreflang a Turquía</h4>
+        <p>Coordinación con el equipo de Garanti BBVA para alinear el hreflang del site corporativo y los sites locales. Si garantibbva.com.tr puede declarar hreflang recíproco, ambos se benefician en SEO de marca.</p>
+        <small>Efecto: alto · esfuerzo: medio</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="mark" style="font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mid);margin-bottom:8px;text-align:center">Audit independiente · Di Barret · 4 jun 2026</div>
+    <p style="color:var(--ink-faint);font-size:12px;max-width:60ch;margin:0 auto;text-align:center">Datos extraídos de fuentes públicamente observables: <code>bbva.com/en/</code> (HTML servido por CloudFront, HTTP response headers, hreflang declarations), página de vulnerability disclosure en <code>vdp.bbva.com</code>, y comparación con auditorías previas de novonordisk.com. Ningún test intrusivo se ha realizado. Companion al <a href="/audit-bbva-incidents" style="color:var(--ink-mid);border-bottom:1px solid var(--line-mid)">informe de incidentes</a> para el mismo grupo financiero.</p>
+  </div>
+</footer>
+
+</body>
+</html>
