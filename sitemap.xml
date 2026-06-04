@@ -123,4 +123,12 @@
     <xhtml:link xmlns:xhtml="http://www.w3.org/1999/xhtml" rel="alternate" hreflang="da" href="https://www.dibarret.dk/audit-security-carrelease"/>
     <xhtml:link xmlns:xhtml="http://www.w3.org/1999/xhtml" rel="alternate" hreflang="x-default" href="https://www.dibarret.dk/audit-security-carrelease"/>
   </url>
+  <url>
+    <loc>https://www.dibarret.dk/audit-bbva-incidents</loc>
+    <lastmod>2026-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link xmlns:xhtml="http://www.w3.org/1999/xhtml" rel="alternate" hreflang="es" href="https://www.dibarret.dk/audit-bbva-incidents"/>
+    <xhtml:link xmlns:xhtml="http://www.w3.org/1999/xhtml" rel="alternate" hreflang="x-default" href="https://www.dibarret.dk/audit-bbva-incidents"/>
+  </url>
 </urlset>

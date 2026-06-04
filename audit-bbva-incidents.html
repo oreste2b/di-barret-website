@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Informe de incidentes · BBVA · Di Barret</title>
+<meta name="description" content="Informe OSINT de incidentes de seguridad publicados sobre BBVA entre 2024 y 2026. Filtraciones en España, México, Colombia, InfoStealers, troyano Revive y multa de la AEPD. Por Di Barret.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://www.dibarret.dk/audit-bbva-incidents">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Informe de incidentes · BBVA 2024-2026">
+<meta property="og:description" content="Cronología verificada de filtraciones, troyano Revive, phishing y multas. Fuentes públicas citadas. Por Di Barret.">
+<meta property="og:url" content="https://www.dibarret.dk/audit-bbva-incidents">
+<meta property="og:image" content="https://www.dibarret.dk/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Di Barret">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Informe de incidentes · BBVA">
+<meta name="twitter:description" content="Cronología 2024-2026 de incidentes públicos. Fuentes citadas. Por Di Barret.">
+<meta name="twitter:image" content="https://www.dibarret.dk/og.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Geist+Mono:wght@400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css?v=5">
+<style>
+:root{
+  --bg:#000000; --ink:#ffffff; --ink-mid:rgba(255,255,255,0.72); --ink-faint:rgba(255,255,255,0.60);
+  --line:rgba(255,255,255,0.08); --line-mid:rgba(255,255,255,0.14);
+  --accent:#ffffff; --accent-soft:rgba(255,255,255,0.06);
+  --good:#34d399; --warn:#fbbf24; --bad:#ef4444;
+  --serif:'Geist','Inter',sans-serif; --sans:'Inter',system-ui,sans-serif; --mono:'Geist Mono','JetBrains Mono',ui-monospace,monospace;
+  --max:1320px; --pad:32px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+.kicker{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:12px}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:500;letter-spacing:-.025em;line-height:1.02;color:var(--ink)}
+h1{font-size:clamp(48px,7.6vw,124px);font-weight:400;line-height:.96}
+h2{font-size:clamp(32px,4.2vw,56px);margin-bottom:24px;font-weight:500}
+h3{font-size:22px;margin-bottom:10px;font-weight:500}
+p{color:var(--ink-mid);margin-bottom:14px}
+p.lead{color:var(--ink);font-size:18px;line-height:1.55;max-width:64ch}
+strong{color:var(--ink);font-weight:600}
+code{font-family:var(--mono);font-size:.88em;background:rgba(255,255,255,.06);padding:1px 6px;border-radius:4px;color:var(--ink)}
+em{font-style:normal;background:linear-gradient(120deg,var(--ink) 0%,var(--ink) 50%,var(--ink-faint) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+section{padding:120px 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:0}
+
+.hero__title em{font-style:normal;background:linear-gradient(120deg,var(--ink) 0%,var(--ink) 50%,var(--ink-faint) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.audit-meta-value{font-size:clamp(20px,2.2vw,28px)!important;line-height:1.15!important;letter-spacing:-.02em}
+
+.exec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+@media (max-width:780px){.exec-grid{grid-template-columns:1fr}}
+.exec-card{padding:28px;border:1px solid var(--line);border-radius:6px}
+.exec-card .kicker{margin-bottom:14px}
+.exec-card h3{font-size:20px;margin-bottom:10px}
+
+.timeline{margin-top:48px;border-left:2px solid var(--line-mid);padding-left:48px;display:grid;gap:0}
+.timeline-event{position:relative;padding:32px 0;border-bottom:1px solid var(--line)}
+.timeline-event:last-child{border-bottom:0}
+.timeline-event::before{content:"";position:absolute;left:-58px;top:42px;width:18px;height:18px;border-radius:50%;background:var(--bg);border:2px solid var(--line-mid)}
+.timeline-event.crit::before{border-color:var(--bad);background:rgba(239,68,68,0.15)}
+.timeline-event.med::before{border-color:var(--warn);background:rgba(251,191,36,0.15)}
+.timeline-event.low::before{border-color:var(--good);background:rgba(52,211,153,0.15)}
+.timeline-date{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:10px;display:flex;gap:14px;align-items:center}
+.timeline-date .badge{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;padding:3px 8px;border-radius:99px;border:1px solid currentColor;line-height:1}
+.timeline-date .badge::before{content:"";width:5px;height:5px;border-radius:50%;background:currentColor}
+.timeline-date .badge.crit{color:var(--bad)}
+.timeline-date .badge.med{color:var(--warn)}
+.timeline-date .badge.low{color:var(--good)}
+.timeline-event h4{font-family:var(--serif);font-weight:500;font-size:22px;margin-bottom:12px;line-height:1.25;letter-spacing:-.015em}
+.timeline-event p{font-size:14px;line-height:1.65;margin-bottom:10px}
+.timeline-event p.attrib{color:var(--ink);font-size:13px;margin-top:14px}
+.timeline-event p.source{color:var(--ink-faint);font-size:12px;font-family:var(--mono);letter-spacing:.06em;margin-top:14px}
+.timeline-event p.source a{color:var(--ink-mid);text-decoration:underline;text-decoration-color:var(--line-mid);text-underline-offset:3px}
+
+.vectors{margin-top:32px;display:grid;grid-template-columns:repeat(2,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+@media (max-width:780px){.vectors{grid-template-columns:1fr}}
+.vector{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:36px 32px}
+.vector .label{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:14px}
+.vector h4{font-family:var(--serif);font-weight:500;font-size:22px;margin-bottom:12px;letter-spacing:-.02em}
+.vector p{font-size:14px;line-height:1.6;color:var(--ink-mid);margin:0}
+
+.pillars{display:grid;gap:0;margin-top:32px;border-top:1px solid var(--line)}
+.pillar{display:grid;grid-template-columns:260px 1fr 56px;gap:24px;align-items:center;padding:22px 0;border-bottom:1px solid var(--line)}
+.pillar:last-child{border-bottom:0}
+.pillar-name{font-weight:500;font-size:14px;color:var(--ink)}
+.pillar-name small{display:block;color:var(--ink-faint);font-weight:400;font-size:12px;margin-top:2px}
+.pillar-bar{height:4px;background:var(--line-mid);border-radius:99px;overflow:hidden}
+.pillar-bar i{display:block;height:100%;border-radius:99px}
+.pillar-bar i.good{background:var(--good)}
+.pillar-bar i.warn{background:var(--warn)}
+.pillar-bar i.bad{background:var(--bad)}
+.pillar-score{font-family:var(--mono);font-size:14px;text-align:right;font-weight:500;color:var(--ink)}
+@media (max-width:680px){.pillar{grid-template-columns:1fr 56px}.pillar-bar{grid-column:1/-1;grid-row:2}}
+
+.plan{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:32px;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+@media (max-width:900px){.plan{grid-template-columns:1fr}}
+.plan-col{padding:36px 30px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.plan-col h4{font-family:var(--serif);font-size:24px;font-weight:500;margin-bottom:8px;letter-spacing:-.02em}
+.plan-col .plan-meta{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:24px}
+.plan-col ul{list-style:none;display:grid;gap:14px}
+.plan-col li{font-size:14px;color:var(--ink);padding-left:18px;position:relative;line-height:1.5}
+.plan-col li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--ink);position:absolute;left:0;top:8px}
+
+.evidence{margin:28px 0 32px;padding:28px 32px;background:rgba(0,0,0,.30);border:1px solid var(--line-mid);border-radius:6px;font-family:var(--mono);font-size:13px;line-height:1.7;color:var(--ink)}
+.evidence .key{color:var(--ink-faint)}
+.evidence .bad{color:var(--bad)}
+.evidence .ok{color:var(--good)}
+
+.disclaimer{margin-top:48px;padding:32px;border:1px solid var(--line-mid);border-radius:6px;background:rgba(251,191,36,0.04);font-size:14px;line-height:1.65;color:var(--ink)}
+.disclaimer h4{font-family:var(--serif);font-size:18px;font-weight:500;margin-bottom:14px;letter-spacing:-.02em;color:var(--warn)}
+.disclaimer p{color:var(--ink-mid);margin-bottom:8px}
+
+.ai-context{margin-top:32px;padding:36px 40px;background:rgba(255,255,255,0.03);border-left:3px solid var(--warn);border-radius:0 6px 6px 0}
+.ai-context h4{font-family:var(--serif);font-size:22px;font-weight:500;margin-bottom:16px;letter-spacing:-.02em}
+.ai-context p{font-size:15px;line-height:1.65;color:var(--ink-mid);margin-bottom:12px}
+.ai-context strong{color:var(--ink)}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Navegación principal">
+  <a class="nav__logo" href="/" aria-label="Di Barret"><span aria-hidden="true">/</span>Di Barret</a>
+  <a class="nav__cta" href="#resumen">
+    <span>Incidentes · BBVA</span>
+    <svg class="nav__cta-icon" width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true">
+      <path d="M2 9L9 2M9 2H4M9 2V7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
+</nav>
+
+<main id="main">
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero__inner">
+    <div class="hero__eyebrow">
+      <span class="hero__dot"></span>
+      <span>Informe OSINT · 4 jun 2026 · Independiente</span>
+    </div>
+    <h1 class="hero__title">Banca grande.<br><em>Cadena de suministro vulnerable.</em></h1>
+    <p class="hero__sub">BBVA es la segunda mayor entidad financiera de España y un actor global en México, Colombia, Turquía y otros mercados. Entre 2024 y junio de 2026 han salido a la luz al menos siete incidentes documentados con impacto directo sobre clientes: filtraciones en foros criminales, un proveedor externo en Colombia comprometido, el troyano bancario Revive en Android, decenas de miles de credenciales en logs de InfoStealer, campañas de phishing en SMS y correo, y una multa de cinco millones de euros de la Agencia Española de Protección de Datos. El patrón es nítido: la infraestructura del banco aguanta, los flancos están en terceros y en el lado del cliente.</p>
+    <div class="hero__ctas">
+      <a class="btn btn--primary" href="#resumen">
+        <span>Ver resumen</span>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a class="btn btn--ghost" href="#timeline">
+        <span>Ver cronología</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- METRICS -->
+<section class="metrics" aria-label="Indicadores clave">
+  <div class="metrics__inner">
+    <div class="metric">
+      <div class="metric__value">7<span class="metric__suffix">+</span></div>
+      <div class="metric__label">Incidentes públicos</div>
+    </div>
+    <div class="metric">
+      <div class="metric__value audit-meta-value">172.640<br>credenciales</div>
+      <div class="metric__label">InfoStealer logs</div>
+    </div>
+    <div class="metric">
+      <div class="metric__value audit-meta-value">5M €<br>AEPD 2024</div>
+      <div class="metric__label">Multa regulatoria</div>
+    </div>
+    <div class="metric">
+      <div class="metric__value audit-meta-value">3 países<br>afectados</div>
+      <div class="metric__label">ES · MX · CO</div>
+    </div>
+  </div>
+</section>
+
+<!-- RESUMEN -->
+<section id="resumen">
+  <div class="wrap">
+    <div class="kicker">01 · Resumen ejecutivo</div>
+    <h2>Patrón claro: el banco aguanta, los terceros y el cliente no.</h2>
+
+    <div class="exec-grid">
+      <div class="exec-card">
+        <div class="kicker">Estado observable</div>
+        <h3>Infraestructura primaria sin brechas confirmadas</h3>
+        <p>Ninguno de los incidentes publicados afirma haber comprometido los sistemas centrales de BBVA. El propio banco confirma en cada caso que la información expuesta no incluye contraseñas, claves de acceso ni datos de productos como depósitos. La capa de infraestructura crítica parece resistir.</p>
+      </div>
+      <div class="exec-card">
+        <div class="kicker">El problema</div>
+        <h3>Cadena de suministro y endpoint del cliente</h3>
+        <p>En marzo de 2026 un proveedor externo de gestión de cartera en Colombia filtró datos de BBVA y de Nu (nombres, cédulas, teléfonos). En 2025 y 2026 se publicaron bases con IBANs y fechas de nacimiento atribuidas a BBVA España y México. Los logs de InfoStealer en Telegram exponen 172.640 cuentas vinculadas a <code>bbva.es</code> capturadas por malware en dispositivos de usuarios.</p>
+      </div>
+      <div class="exec-card">
+        <div class="kicker">La oportunidad</div>
+        <h3>Foco en third-party governance y educación cliente</h3>
+        <p>El vector de ataque dominante no es técnico contra el banco. Es ingeniería social contra el cliente (phishing, troyano Revive) y compromiso de proveedores externos con acceso a datos sensibles. La inversión con mayor ROI está en governance de proveedores y educación del cliente final, no en hardening del core bancario.</p>
+      </div>
+    </div>
+
+    <div class="disclaimer">
+      <h4>Alcance y método</h4>
+      <p>Este informe está construido sobre fuentes públicas verificables: artículos de medios especializados (Cybernews, Portafolio Colombia, Infobae, La República), reportes de threat intelligence (Brinztech, SocRadar, LeakRadar), comunicados oficiales de BBVA y resoluciones de la AEPD. Cada incidente cita su fuente. Cuando BBVA no ha confirmado oficialmente una filtración, está marcado como tal.</p>
+      <p>No se ha realizado ninguna prueba intrusiva, scaneo de puertos, ni interacción no autorizada con sistemas de BBVA. Este es un informe de inteligencia abierta (OSINT), no un análisis interno ni una auditoría contratada. Si BBVA quisiera una auditoría formal, requeriría contrato y autorización explícita bajo el marco legal español (LOPDGDD y Ley 36/2014 sobre seguridad informática).</p>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section id="timeline">
+  <div class="wrap">
+    <div class="kicker">02 · Cronología verificada · 2024 hasta junio 2026</div>
+    <h2>Siete incidentes documentados, en orden.</h2>
+
+    <div class="timeline">
+
+      <div class="timeline-event crit">
+        <div class="timeline-date">
+          <span>2024</span>
+          <span class="badge crit">Regulatorio</span>
+        </div>
+        <h4>Multa de la AEPD de 5 millones de euros</h4>
+        <p>La Agencia Española de Protección de Datos sancionó a BBVA con 5 millones de euros por procesar datos personales sin mecanismos de consentimiento adecuados. La resolución concluyó que las bases legales sobre las que el banco trataba datos de clientes no cumplían los requisitos del artículo 6 del RGPD.</p>
+        <p class="attrib"><strong>Impacto:</strong> económico directo, daño reputacional, precedente regulatorio.</p>
+        <p class="source">Fuente: <a href="https://www.upguard.com/security-report/bbva" target="_blank" rel="noopener">UpGuard Security Report sobre BBVA</a>.</p>
+      </div>
+
+      <div class="timeline-event crit">
+        <div class="timeline-date">
+          <span>Abril 2025</span>
+          <span class="badge crit">Foro privado</span>
+        </div>
+        <h4>Datos de tarjetas mexicanas en el foro XSS</h4>
+        <p>Se publicó en XSS, un foro privado utilizado por ciberdelincuentes, una filtración relacionada con datos de tarjetas bancarias mexicanas que incluían registros atribuidos a BBVA México. El volumen exacto y los campos comprometidos no fueron desglosados en la publicación inicial.</p>
+        <p class="attrib"><strong>Impacto:</strong> exposición de datos de tarjeta para fraude downstream.</p>
+        <p class="source">Fuente: análisis publicado por <a href="https://blog.tecnetone.com/mercado-de-la-dark-web-filtra-datos-de-66-mil-tarjetas-bbva-y-hsbc" target="_blank" rel="noopener">TecnetOne sobre dark web</a>.</p>
+      </div>
+
+      <div class="timeline-event crit">
+        <div class="timeline-date">
+          <span>Septiembre 2025</span>
+          <span class="badge crit">Mercado criminal</span>
+        </div>
+        <h4>Base de BBVA España en venta · 10 millones de líneas</h4>
+        <p>Un threat actor afirmó vender en un foro de cibercrimen una base de datos atribuida a BBVA España, conteniendo datos personales identificables (PII) que incluían IBAN y fechas de nacimiento. El vendedor declaró 10 millones de líneas. Brinztech reportó la publicación, BBVA no confirmó oficialmente la autenticidad ni el origen de la base.</p>
+        <p class="attrib"><strong>Impacto declarado:</strong> 10 millones de registros. <strong>Confirmación oficial:</strong> no.</p>
+        <p class="source">Fuente: <a href="https://www.brinztech.com/breach-alerts/brinztech-alert-the-alleged-database-of-bbva-is-on-sale/" target="_blank" rel="noopener">Brinztech Alert · base de BBVA en venta</a>.</p>
+      </div>
+
+      <div class="timeline-event crit">
+        <div class="timeline-date">
+          <span>Marzo 2026</span>
+          <span class="badge crit">Cadena de suministro</span>
+        </div>
+        <h4>Bases de BBVA y Santander en venta por mismo actor</h4>
+        <p>Un actor en un foro criminal afirmó vender simultáneamente las bases de datos de BBVA España y Banco Santander. La coincidencia de ambas entidades comprometidas por el mismo vendedor sugiere fuertemente la posibilidad de un proveedor compartido vulnerado, no un ataque directo a la infraestructura de cada banco.</p>
+        <p class="attrib"><strong>Vector probable:</strong> tercero compartido. <strong>Confirmación oficial:</strong> ninguno de los dos bancos confirmó.</p>
+        <p class="source">Fuente: <a href="https://www.brinztech.com/breach-alerts/brinztech-alert-databases-of-bbva-spain-and-banco-santander-are-on-sale/" target="_blank" rel="noopener">Brinztech Alert · BBVA y Santander</a>.</p>
+      </div>
+
+      <div class="timeline-event crit">
+        <div class="timeline-date">
+          <span>Marzo 2026</span>
+          <span class="badge crit">Proveedor externo</span>
+        </div>
+        <h4>BBVA Colombia y Nu Colombia · proveedor de cobranza vulnerado</h4>
+        <p>Un ciberataque contra un proveedor externo de cobranza expuso datos de clientes de al menos dos entidades financieras en Colombia: BBVA Colombia y el neobanco Nu. La filtración expuso nombres, cédulas y números telefónicos de usuarios vinculados a procesos de gestión de cartera.</p>
+        <p class="attrib"><strong>Respuesta de BBVA:</strong> confirmó que la información filtrada no contiene claves, contraseñas, ni información relacionada con productos como depósitos. <strong>Vector:</strong> tercero confirmado.</p>
+        <p class="source">Fuente: <a href="https://www.portafolio.co/economia/ciberataque-a-proveedor-externo-habria-expuesto-datos-de-clientes-de-bbva-y-nu-colombia-490994" target="_blank" rel="noopener">Portafolio Colombia</a>, <a href="https://www.larepublica.co/finanzas/alertan-por-ciberataque-con-el-que-habrian-extraido-datos-de-usuarios-bancarios-4360016" target="_blank" rel="noopener">La República</a>.</p>
+      </div>
+
+      <div class="timeline-event crit">
+        <div class="timeline-date">
+          <span>Abril 2026</span>
+          <span class="badge crit">Foro hacker</span>
+        </div>
+        <h4>BBVA México · MAGO SPEAK publica base con RFCs</h4>
+        <p>Un threat actor bajo el alias "MAGO SPEAK" anunció la publicación de una base de datos extensa de clientes en foros de hackers de alto nivel. La inclusión de RFCs (Registro Federal de Contribuyentes mexicano) indica una compromiso profundo de la base mexicana del banco. El nivel de granularidad descrito sugiere extracción autorizada o semi-autorizada del sistema fuente.</p>
+        <p class="attrib"><strong>Campos clave:</strong> RFC mexicano, datos personales granulares. <strong>Confirmación oficial:</strong> no.</p>
+        <p class="source">Fuente: <a href="https://cybernews.com/security/bbva-mexico-data-leak-forum/" target="_blank" rel="noopener">Cybernews · BBVA Mexico</a>, <a href="https://www.brinztech.com/breach-alerts/brinztech-alert-data-of-bbva-are-on-sale/" target="_blank" rel="noopener">Brinztech Alert</a>.</p>
+      </div>
+
+      <div class="timeline-event med">
+        <div class="timeline-date">
+          <span>Continuo 2024-2026</span>
+          <span class="badge med">Endpoint cliente</span>
+        </div>
+        <h4>Troyano Revive en Android · suplanta 2FA de BBVA</h4>
+        <p>Revive es un troyano bancario para Android documentado por SocRadar y Cleafy, diseñado específicamente para suplantar la aplicación de doble factor (2FA) de BBVA. Una vez instalado, ejecuta ataques de phishing dentro del dispositivo y captura las credenciales del cliente. El vector de entrada es ingeniería social: SMS o email con enlace a APK fuera de Google Play.</p>
+        <p class="attrib"><strong>Vector:</strong> endpoint del cliente, ingeniería social. <strong>Mitigación responsabilidad:</strong> cliente educa, banco detecta uso anómalo.</p>
+        <p class="source">Fuente: <a href="https://socradar.io/blog/new-banking-trojan-revive-targets-bbva-customers/" target="_blank" rel="noopener">SocRadar · troyano Revive</a>.</p>
+      </div>
+
+      <div class="timeline-event med">
+        <div class="timeline-date">
+          <span>Continuo 2024-2026</span>
+          <span class="badge med">InfoStealer</span>
+        </div>
+        <h4>172.640 credenciales de bbva.es en logs de Telegram</h4>
+        <p>LeakRadar indexa 172.640 cuentas de usuario comprometidas vinculadas al dominio <code>bbva.es</code>. La fuente declarada son canales de Telegram donde threat actors publican logs de InfoStealer (malware que extrae credenciales guardadas, cookies y tokens de sesión del navegador del usuario). El 100% de las cuentas se categorizan como cliente, no como empleado o tercero.</p>
+        <div class="evidence">
+          <div><span class="key">Dominio:</span> bbva.es</div>
+          <div><span class="key">Credenciales:</span> <span class="bad">172.640</span></div>
+          <div><span class="key">Fuente:</span> InfoStealer logs en Telegram</div>
+          <div><span class="key">Composición:</span> 100% cliente, 0% empleado</div>
+        </div>
+        <p class="attrib"><strong>Significado:</strong> el banco no fue vulnerado. Cada víctima tuvo malware en su dispositivo y entregó sus propias credenciales. Pero el banco hereda el riesgo: cualquiera puede comprar el log y entrar como cliente legítimo.</p>
+        <p class="source">Fuente: <a href="https://leakradar.io/en/report/bbva.es" target="_blank" rel="noopener">LeakRadar · informe bbva.es</a>.</p>
+      </div>
+
+      <div class="timeline-event med">
+        <div class="timeline-date">
+          <span>Continuo 2024-2026</span>
+          <span class="badge med">Phishing</span>
+        </div>
+        <h4>Campañas de SMS y email suplantando a BBVA</h4>
+        <p>Una ola sostenida de fraudes utiliza SMS y emails fraudulentos que simulan comunicaciones oficiales del banco. El propio BBVA publicó en marzo de 2025 una alerta confirmando la existencia de la campaña y publicó una guía de identificación en su web. La modalidad típica solicita "verificación" de credenciales o "confirmación" de movimientos para capturar datos en formularios falsos.</p>
+        <p class="attrib"><strong>Respuesta del banco:</strong> alerta pública publicada en bbva.es, guía educativa para clientes, recordatorio de canales oficiales.</p>
+        <p class="source">Fuente: <a href="https://www.bbva.es/finanzas-vistazo/ciberseguridad/ultima-hora/mensajes-de-texto-fraudulentos-suplantando-bbva.html" target="_blank" rel="noopener">Alerta oficial BBVA · SMS fraudulentos</a>, <a href="https://www.infobae.com/tecno/2025/03/16/cuidado-con-la-nueva-estafa-que-suplanta-a-bbva-para-robar-datos-asi-se-puede-evitar/" target="_blank" rel="noopener">Infobae · estafa marzo 2025</a>.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- AI CONTEXT -->
+<section id="ai-context">
+  <div class="wrap">
+    <div class="kicker">03 · El ángulo IA</div>
+    <h2>¿Hay un incidente IA específico de BBVA? La respuesta corta: no público.</h2>
+
+    <p class="lead">Búsquedas amplias en fuentes públicas (febrero a junio 2026) no devuelven ningún incidente verificado donde empleados de BBVA hayan filtrado información confidencial a ChatGPT, Claude, Gemini o similares. Eso no significa que no haya ocurrido. Significa que no se ha hecho público.</p>
+
+    <div class="ai-context">
+      <h4>Contexto industria · por qué este vector preocupa en banca</h4>
+      <p>El caso Samsung (2023) marcó el patrón: empleados pegaron código fuente, notas de reuniones internas y datos de hardware en ChatGPT en tres ocasiones dentro del mismo mes. La compañía prohibió su uso de forma inmediata. Desde entonces, estudios independientes estiman que <strong>el 77% de empleados comparte datos sensibles con herramientas de IA generativa</strong>, y aproximadamente el <strong>11-12% del contenido que un empleado pega en ChatGPT es confidencial</strong>.</p>
+      <p>Para un banco con operaciones en España, México, Colombia, Turquía y otros mercados, el riesgo de un incidente similar no es hipotético: depende de si la política interna de IA está implementada, supervisada y aplicada en cada subsidiaria. Sin una solución DLP (Data Loss Prevention) específica para tráfico hacia LLMs públicos, el banco vuela ciego en este vector.</p>
+      <p>BBVA ha publicado posicionamiento sobre IA responsable y tiene su propio ChatGPT Enterprise corporativo según comunicados de 2023-2024. Esa decisión reduce la superficie pero no la elimina: empleados pueden seguir usando herramientas personales fuera del perímetro corporativo.</p>
+    </div>
+
+    <p style="margin-top:32px;color:var(--ink-mid)">Lo que sí está documentado a nivel industria, y aplica conceptualmente: empleados pegan contratos, fragmentos de código de aplicaciones core, métricas de riesgo, datos de clientes anonimizados de forma insuficiente, o documentos de auditoría interna. Cualquier banco que no tenga gateway DLP para tráfico hacia <code>chatgpt.com</code>, <code>claude.ai</code>, <code>gemini.google.com</code> y similares está, por defecto, en la categoría de riesgo media-alta. Sin una declaración pública de BBVA sobre la implementación de su gateway, no se puede confirmar el estado.</p>
+  </div>
+</section>
+
+<!-- THREAT VECTORS -->
+<section id="vectors">
+  <div class="wrap">
+    <div class="kicker">04 · Vectores predominantes</div>
+    <h2>Cuatro vías por donde se está rompiendo el perímetro.</h2>
+
+    <div class="vectors">
+      <div class="vector">
+        <div class="label">Vector · 01 · alta probabilidad</div>
+        <h4>Cadena de suministro</h4>
+        <p>Tercero con acceso a datos de clientes es vulnerado. El banco no es atacado directamente, pero el blast radius alcanza igual a sus clientes. Confirmado: proveedor de cobranza en Colombia (marzo 2026). Probable: el actor que ofreció bases de BBVA y Santander simultáneamente sugiere otro tercero compartido del sector.</p>
+      </div>
+
+      <div class="vector">
+        <div class="label">Vector · 02 · volumen alto</div>
+        <h4>Endpoint del cliente comprometido</h4>
+        <p>InfoStealer instalado en el dispositivo del cliente (vía instalación insegura, extensión maliciosa, crack pirata) extrae credenciales guardadas en navegador. 172.640 cuentas de bbva.es publicadas. Vector continuo, no puntual.</p>
+      </div>
+
+      <div class="vector">
+        <div class="label">Vector · 03 · ingeniería social</div>
+        <h4>Phishing y troyanos móviles</h4>
+        <p>SMS y emails fraudulentos suplantando al banco. Troyano Revive en Android suplantando la app de 2FA. El cliente entrega sus credenciales creyendo interactuar con BBVA. Mitigación requiere educación masiva, no parche técnico.</p>
+      </div>
+
+      <div class="vector">
+        <div class="label">Vector · 04 · regulatorio</div>
+        <h4>Compliance y consentimiento</h4>
+        <p>La multa de 5 millones de la AEPD en 2024 no fue por una brecha técnica. Fue por procesar datos personales sin base legal adecuada. El riesgo regulatorio es continuo y se incrementa con cada nuevo producto digital lanzado en cada mercado regulado.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section id="pillars">
+  <div class="wrap">
+    <div class="kicker">05 · Postura por área</div>
+    <h2>Diez dimensiones, valoradas desde fuera.</h2>
+
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-name">Infraestructura core <small>Sin brechas directas confirmadas</small></div>
+        <div class="pillar-bar"><i class="good" style="width:78%"></i></div>
+        <div class="pillar-score">78</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Gestión de terceros <small>Proveedor en Colombia comprometido</small></div>
+        <div class="pillar-bar"><i class="bad" style="width:30%"></i></div>
+        <div class="pillar-score">30</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Endpoint del cliente <small>172.640 credenciales en InfoStealer logs</small></div>
+        <div class="pillar-bar"><i class="bad" style="width:25%"></i></div>
+        <div class="pillar-score">25</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Anti-phishing <small>Troyano Revive activo, alertas oficiales publicadas</small></div>
+        <div class="pillar-bar"><i class="warn" style="width:55%"></i></div>
+        <div class="pillar-score">55</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Comunicación de incidentes <small>Confirmación en Colombia, no en España ni México</small></div>
+        <div class="pillar-bar"><i class="warn" style="width:50%"></i></div>
+        <div class="pillar-score">50</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Compliance RGPD <small>Multa AEPD 5M EUR en 2024</small></div>
+        <div class="pillar-bar"><i class="bad" style="width:40%"></i></div>
+        <div class="pillar-score">40</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Educación del cliente <small>Guías en bbva.es, alertas SMS publicadas</small></div>
+        <div class="pillar-bar"><i class="warn" style="width:60%"></i></div>
+        <div class="pillar-score">60</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Governance IA <small>ChatGPT corporativo, DLP gateway sin confirmación pública</small></div>
+        <div class="pillar-bar"><i class="warn" style="width:55%"></i></div>
+        <div class="pillar-score">55</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Postura multi-mercado <small>Incidentes en ES, MX, CO; cada mercado regula distinto</small></div>
+        <div class="pillar-bar"><i class="warn" style="width:45%"></i></div>
+        <div class="pillar-score">45</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Transparencia pública <small>Bases declaradas sin confirmación oficial</small></div>
+        <div class="pillar-bar"><i class="warn" style="width:50%"></i></div>
+        <div class="pillar-score">50</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLAN -->
+<section id="plan">
+  <div class="wrap">
+    <div class="kicker">06 · Recomendaciones analíticas</div>
+    <h2>Plan A / B / C desde la perspectiva externa.</h2>
+    <p class="lead">Estas recomendaciones son analíticas, no prescriptivas. Un equipo de seguridad de BBVA tendrá contexto interno que justifica priorizaciones distintas. Aun así, los vectores observables sugieren las siguientes inversiones desde fuera.</p>
+
+    <div class="plan">
+      <div class="plan-col">
+        <h4>Plan A · Próximos 90 días</h4>
+        <div class="plan-meta">Reducción rápida de exposición conocida</div>
+        <ul>
+          <li>Audit completo de proveedores de cobranza y gestión de cartera en LATAM</li>
+          <li>Forzar rotación de credenciales para cuentas detectadas en LeakRadar como expuestas</li>
+          <li>Monitorización proactiva de Telegram y foros XSS, RaidForums sucesor, Breach Forums</li>
+          <li>Refuerzo de comunicación pública sobre el troyano Revive específicamente</li>
+          <li>Confirmación o desmentido oficial de las bases en venta de septiembre 2025 y marzo 2026</li>
+          <li>Auditoría de implementación del DLP gateway hacia LLMs públicos por subsidiaria</li>
+        </ul>
+      </div>
+      <div class="plan-col">
+        <h4>Plan B · 6-12 meses</h4>
+        <div class="plan-meta">Arquitectura y governance</div>
+        <ul>
+          <li>Inventario completo de terceros con acceso a PII de clientes, clasificado por nivel de exposición</li>
+          <li>Contratos con cláusulas de notificación de brecha en menos de 24h</li>
+          <li>Token binding o Passkeys que invalidan el robo de cookies (mitiga InfoStealer)</li>
+          <li>Detección comportamental de logins desde nuevos dispositivos con cookies pre-existentes</li>
+          <li>Programa de bug bounty público en todas las geografías</li>
+          <li>SOC unificado con visibilidad sobre subsidiarias</li>
+        </ul>
+      </div>
+      <div class="plan-col">
+        <h4>Plan C · 12-24 meses</h4>
+        <div class="plan-meta">Estructural · cultura · cumplimiento</div>
+        <ul>
+          <li>Adopción de Zero Trust en accesos a sistemas de cliente</li>
+          <li>Programa de educación masiva con simulacros de phishing trimestrales</li>
+          <li>Revisión completa de bases legales de tratamiento de datos para evitar la próxima sanción AEPD</li>
+          <li>Política IA corporativa unificada con DLP gateway en todas las subsidiarias</li>
+          <li>Asociación con bancos peers para detección colaborativa de actores comunes</li>
+          <li>Publicación anual de reporte de transparencia con incidentes y respuesta</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="mark" style="font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mid);margin-bottom:8px;text-align:center">Informe OSINT independiente · Di Barret · 4 jun 2026</div>
+    <p style="color:var(--ink-faint);font-size:12px;max-width:60ch;margin:0 auto;text-align:center">Construido sobre fuentes públicas verificables. Cada incidente cita su fuente. Cuando BBVA no ha confirmado oficialmente un incidente, está marcado como tal en el texto. Ningún test intrusivo se ha realizado. Este es un análisis de inteligencia abierta, no una auditoría contratada. Para una auditoría formal de BBVA bajo el marco legal español (LOPDGDD y Ley 36/2014) se requiere contrato explícito con el banco.</p>
+  </div>
+</footer>
+
+</body>
+</html>
