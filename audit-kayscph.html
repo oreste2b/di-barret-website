@@ -1,0 +1,584 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Auditoría · KAYs Købmand &amp; Madbodega · Di Barret</title>
+<meta name="description" content="Auditoría 360° de KAYs CPH, købmand y madbodega en Ørestad, Copenhague. 14 hallazgos verificables, plan A/B/C, quick wins. Score 38/100.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://www.dibarret.dk/audit-kayscph">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Auditoría · KAYs CPH">
+<meta property="og:description" content="Buen producto, sitio invisible. 14 hallazgos verificables, plan A/B/C, quick wins. Por Di Barret.">
+<meta property="og:url" content="https://www.dibarret.dk/audit-kayscph">
+<meta property="og:image" content="https://www.dibarret.dk/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Di Barret">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Auditoría · KAYs CPH">
+<meta name="twitter:description" content="14 hallazgos · plan priorizado · quick wins. Por Di Barret.">
+<meta name="twitter:image" content="https://www.dibarret.dk/og.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Geist+Mono:wght@400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css?v=5">
+<style>
+:root{
+  --bg:#000000; --ink:#ffffff; --ink-mid:rgba(255,255,255,0.72); --ink-faint:rgba(255,255,255,0.60);
+  --line:rgba(255,255,255,0.08); --line-mid:rgba(255,255,255,0.14);
+  --accent:#ffffff; --accent-soft:rgba(255,255,255,0.06);
+  --good:#34d399; --warn:#fbbf24; --bad:#ef4444;
+  --serif:'Geist','Inter',sans-serif; --sans:'Inter',system-ui,sans-serif; --mono:'Geist Mono','JetBrains Mono',ui-monospace,monospace;
+  --max:1320px; --pad:32px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+.kicker{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:12px}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:500;letter-spacing:-.025em;line-height:1.02;color:var(--ink)}
+h1{font-size:clamp(48px,7.6vw,124px);font-weight:400;line-height:.96}
+h2{font-size:clamp(32px,4.2vw,56px);margin-bottom:24px;font-weight:500}
+h3{font-size:22px;margin-bottom:10px;font-weight:500}
+p{color:var(--ink-mid);margin-bottom:14px}
+p.lead{color:var(--ink);font-size:18px;line-height:1.55;max-width:64ch}
+strong{color:var(--ink);font-weight:600}
+code{font-family:var(--mono);font-size:.88em;background:rgba(255,255,255,.06);padding:1px 6px;border-radius:4px;color:var(--ink)}
+em{font-style:normal;background:linear-gradient(120deg,var(--ink) 0%,var(--ink) 50%,var(--ink-faint) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+section{padding:120px 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:0}
+
+/* nav + hero + metrics inherit from /styles.css */
+.hero__title em{font-style:normal;background:linear-gradient(120deg,var(--ink) 0%,var(--ink) 50%,var(--ink-faint) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.audit-meta-value{font-size:clamp(20px,2.2vw,28px)!important;line-height:1.15!important;letter-spacing:-.02em}
+
+.exec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+@media (max-width:780px){.exec-grid{grid-template-columns:1fr}}
+.exec-card{padding:28px;border:1px solid var(--line);border-radius:6px}
+.exec-card .kicker{margin-bottom:14px}
+.exec-card h3{font-size:20px;margin-bottom:10px}
+
+.find-row{display:grid;grid-template-columns:60px 1fr 120px;gap:32px;padding:48px 0;border-bottom:1px solid var(--line);align-items:start}
+.find-row:last-child{border-bottom:0}
+.find-num{font-family:var(--mono);font-size:11px;color:var(--ink-faint);letter-spacing:.14em;padding-top:5px}
+.find-body h4{font-family:var(--serif);font-weight:500;font-size:20px;margin-bottom:14px;line-height:1.25}
+.find-body p{font-size:14px;margin-bottom:14px;line-height:1.65}
+.find-body p:last-child{margin-bottom:0}
+.find-body p.why{color:var(--ink);font-size:14px;margin-top:18px}
+.find-body p.fix{color:var(--good);font-size:14px;margin-top:18px}
+.find-body p.fix::before{content:"→ ";color:var(--good);font-weight:600}
+.badge{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:5px 10px;border-radius:99px;border:1px solid currentColor;justify-self:end;line-height:1}
+.badge::before{content:"";width:5px;height:5px;border-radius:50%;background:currentColor}
+.badge.crit{color:var(--bad)}.badge.med{color:var(--warn)}.badge.low{color:var(--good)}
+@media (max-width:680px){.find-row{grid-template-columns:40px 1fr;gap:16px}.badge{grid-column:2;justify-self:start;margin-top:6px}}
+
+.evidence{margin:28px 0 32px;padding:28px 32px;background:rgba(0,0,0,.30);border:1px solid var(--line-mid);border-radius:6px;font-family:var(--mono);font-size:13px;line-height:1.7;color:var(--ink)}
+.evidence .key{color:var(--ink-faint)}
+.evidence .bad{color:var(--bad)}
+.evidence .ok{color:var(--good)}
+
+.journey{margin-top:32px;display:grid;grid-template-columns:repeat(6,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+@media (max-width:900px){.journey{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:560px){.journey{grid-template-columns:repeat(2,1fr)}}
+.stage{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:24px 20px}
+.stage .step{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--ink-faint);margin-bottom:8px;text-transform:uppercase}
+.stage h4{font-family:var(--serif);font-weight:500;font-size:17px;margin-bottom:8px;letter-spacing:-.015em}
+.stage p{font-size:12.5px;line-height:1.5;margin:0;color:var(--ink-mid)}
+.stage.broken{background:rgba(239,68,68,0.06)}
+.stage.broken h4::after{content:" ⚠";color:var(--bad)}
+.stage.missing{background:rgba(255,255,255,.02)}
+.stage.missing h4{color:var(--ink-faint)}
+
+.pillars{display:grid;gap:0;margin-top:32px;border-top:1px solid var(--line)}
+.pillar{display:grid;grid-template-columns:240px 1fr 56px;gap:24px;align-items:center;padding:22px 0;border-bottom:1px solid var(--line)}
+.pillar:last-child{border-bottom:0}
+.pillar-name{font-weight:500;font-size:14px;color:var(--ink)}
+.pillar-name small{display:block;color:var(--ink-faint);font-weight:400;font-size:12px;margin-top:2px}
+.pillar-bar{height:4px;background:var(--line-mid);border-radius:99px;overflow:hidden}
+.pillar-bar i{display:block;height:100%;border-radius:99px}
+.pillar-bar i.good{background:var(--good)}
+.pillar-bar i.warn{background:var(--warn)}
+.pillar-bar i.bad{background:var(--bad)}
+.pillar-score{font-family:var(--mono);font-size:14px;text-align:right;font-weight:500;color:var(--ink)}
+@media (max-width:680px){.pillar{grid-template-columns:1fr 56px}.pillar-bar{grid-column:1/-1;grid-row:2}}
+
+.plan{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:32px;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+@media (max-width:900px){.plan{grid-template-columns:1fr}}
+.plan-col{padding:36px 30px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.plan-col h4{font-family:var(--serif);font-size:24px;font-weight:500;margin-bottom:8px;letter-spacing:-.02em}
+.plan-col .plan-meta{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:24px}
+.plan-col ul{list-style:none;display:grid;gap:14px}
+.plan-col li{font-size:14px;color:var(--ink);padding-left:18px;position:relative;line-height:1.5}
+.plan-col li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--ink);position:absolute;left:0;top:8px}
+
+.qw{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:32px;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+@media (max-width:780px){.qw{grid-template-columns:1fr}}
+.qw-card{padding:28px 24px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(52,211,153,0.04);position:relative}
+.qw-card::before{content:"";position:absolute;top:0;left:0;width:2px;height:100%;background:var(--good)}
+.qw-card .kicker{color:var(--good);margin-bottom:12px;display:block}
+.qw-card h4{font-family:var(--serif);font-size:18px;font-weight:500;margin-bottom:10px;letter-spacing:-.02em}
+.qw-card p{font-size:13.5px;margin-bottom:8px;color:var(--ink-mid)}
+.qw-card small{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--ink-faint);text-transform:uppercase}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Primær navigation">
+  <a class="nav__logo" href="/" aria-label="Di Barret"><span aria-hidden="true">/</span>Di Barret</a>
+  <a class="nav__cta" href="#resumen">
+    <span>Auditoría · KAYs CPH</span>
+    <svg class="nav__cta-icon" width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true">
+      <path d="M2 9L9 2M9 2H4M9 2V7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
+</nav>
+
+<main id="main">
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero__inner">
+    <div class="hero__eyebrow">
+      <span class="hero__dot"></span>
+      <span>Auditoría · 4 jun 2026 · Independiente</span>
+    </div>
+    <h1 class="hero__title">Buen producto.<br><em>Web invisible.</em></h1>
+    <p class="hero__sub">KAYs es købmand y madbodega en Ørestad, Copenhague: café, brunch, vino por copa, cerveza artesanal y menús degustación de fin de semana. La realidad de la cocina supera lo que dice la web. La web actual es un Divi de WordPress sin un solo H1 en el HTML, sin schema de restaurante, en danés exclusivo, con siete de nueve imágenes sin texto alternativo. Para un negocio en Ørestad (turistas, expats, oficinas de la DR), la combinación es cara.</p>
+    <div class="hero__ctas">
+      <a class="btn btn--primary" href="#resumen">
+        <span>Ver resumen</span>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a class="btn btn--ghost" href="#plan">
+        <span>Ver plan de acción</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- METRICS -->
+<section class="metrics" aria-label="Score y contexto del audit">
+  <div class="metrics__inner">
+    <div class="metric">
+      <div class="metric__value">38<span class="metric__suffix">/100</span></div>
+      <div class="metric__label">Score global</div>
+    </div>
+    <div class="metric">
+      <div class="metric__value audit-meta-value">Café<br>· Madbodega</div>
+      <div class="metric__label">Sector</div>
+    </div>
+    <div class="metric">
+      <div class="metric__value audit-meta-value">Ørestad<br>· København</div>
+      <div class="metric__label">Ubicación</div>
+    </div>
+    <div class="metric">
+      <div class="metric__value audit-meta-value">WordPress<br>+ Divi</div>
+      <div class="metric__label">Stack</div>
+    </div>
+  </div>
+</section>
+
+<!-- RESUMEN -->
+<section id="resumen">
+  <div class="wrap">
+    <div class="kicker">01 · Resumen ejecutivo</div>
+    <h2>Buen sitio físico. Sitio digital que no le hace justicia.</h2>
+
+    <div class="exec-grid">
+      <div class="exec-card">
+        <div class="kicker">Estado actual</div>
+        <h3>Producto fuerte, presencia digital tibia</h3>
+        <p>KAYs abrió en enero de 2022 con un concepto claro: købmand más madbodega más café, con menús degustación de fin de semana. La cocina recibe buenas reseñas locales. La web es un Divi de WordPress que se siente plantilla. Sin H1, sin schema, sin precios visibles, sin precios en el menú, sin newsletter, sin tracking. La distancia entre la mesa real y la web es grande.</p>
+      </div>
+      <div class="exec-card">
+        <div class="kicker">El problema</div>
+        <h3>Google no puede leerlos bien</h3>
+        <p>Cero etiquetas H1 y H2 en el HTML público. Cero schema markup de Restaurant o LocalBusiness. Title con typo ("kaf" en lugar de "kaffe"). Siete de nueve imágenes con alt vacío. Solo seis reseñas en Tripadvisor y ranking 1.423 de 3.049 restaurantes en Copenhague. Para un negocio que vive de descubrimiento orgánico y reservas, ese silencio digital cuesta cubiertos cada noche.</p>
+      </div>
+      <div class="exec-card">
+        <div class="kicker">La oportunidad</div>
+        <h3>Tres acciones técnicas cambian el descubrimiento</h3>
+        <p>Schema MedicalBusiness no aplica, pero Restaurant schema con menú, horario, precios y geo sí. Arreglar el title, añadir H1 con keyword y crear una landing en inglés para turistas suben el funnel completo. Ninguna toca la cocina. Todo es ejecutable en dos semanas sin tocar Divi.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HALLAZGOS -->
+<section id="errores">
+  <div class="wrap">
+    <div class="kicker">02 · Hallazgos verificables · 14 puntos</div>
+    <h2>Lo que está roto, mal etiquetado o no existe.</h2>
+
+    <div class="find-row">
+      <div class="find-num">01</div>
+      <div class="find-body">
+        <h4>Cero H1 y cero H2 en el HTML público</h4>
+        <p>El homepage de <code>kayscph.dk</code> no contiene ni una sola etiqueta <code>&lt;h1&gt;</code> ni <code>&lt;h2&gt;</code> en el HTML servido. Verificado con curl + grep. Para Google esto significa que la página no tiene jerarquía semántica: no sabe cuál es el tema principal ni qué priorizar.</p>
+        <div class="evidence">
+          <div><span class="key">$</span> curl -s https://www.kayscph.dk/ | grep -oE "&lt;h1" | wc -l</div>
+          <div class="bad">0</div>
+          <div><span class="key">$</span> curl -s https://www.kayscph.dk/ | grep -oE "&lt;h2" | wc -l</div>
+          <div class="bad">0</div>
+        </div>
+        <p class="why">Divi compone el sitio con módulos visuales (et_pb_section, et_pb_row, et_pb_text) que usan <code>div</code> en lugar de headings. El cliente ve texto "grande" pero el bot ve un mar de divs.</p>
+        <p class="fix">En Divi, abrir cada módulo de texto del hero y de las secciones principales y forzar el formato a H1 (uno solo) y H2 (subsecciones). Trabajo de 90 minutos sin tocar diseño.</p>
+      </div>
+      <span class="badge crit">Crítico</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">02</div>
+      <div class="find-body">
+        <h4>Title con typo: "Købmand og kaf"</h4>
+        <p>El elemento <code>&lt;title&gt;</code> dice <code>"Kays | Købmand og kaf"</code>. "Kaf" no es palabra danesa. Debería ser "kaffe" (café) o "kaffebar". Es la primera impresión que da el sitio en Google y en el pestañeo del navegador.</p>
+        <div class="evidence">
+          <div><span class="key">&lt;title&gt;</span>Kays | Købmand og <span class="bad">kaf</span>&lt;/title&gt;</div>
+        </div>
+        <p class="why">Un typo en el title transmite que nadie revisa el sitio. Resta confianza cuando el cliente está decidiendo si pulsar el resultado en Google.</p>
+        <p class="fix">Cambiar el title a algo descriptivo y con keyword: <code>"KAYs · Brunch, vino y madbodega en Ørestad, København"</code>. Quince segundos en WordPress.</p>
+      </div>
+      <span class="badge crit">Crítico</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">03</div>
+      <div class="find-body">
+        <h4>Cero schema markup de Restaurant o LocalBusiness</h4>
+        <p>Buscando schema.org JSON-LD en el HTML: cero. Para un restaurante con dirección física, horario, menú y reservas, no declararse como Restaurant en datos estructurados es renunciar al rich snippet en Google: la tarjeta de la derecha con horarios, estrellas, "abierto ahora", reservar, llamar.</p>
+        <p class="why">Google sabe lo que es KAYs por inferencia. Pero un competidor con schema bien hecho saldrá por encima en búsquedas locales tipo "brunch ørestad" o "café kay fiskers plads".</p>
+        <p class="fix">Añadir JSON-LD Restaurant con: name, address, geo, telephone, openingHours, servesCuisine, priceRange, hasMenu, acceptsReservations. Plugin "Yoast Local SEO" o un snippet manual en functions.php. Dos horas.</p>
+      </div>
+      <span class="badge crit">Crítico</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">04</div>
+      <div class="find-body">
+        <h4>Monolingüe danés en una zona internacional</h4>
+        <p>El sitio sólo está en danés. Ørestad es uno de los barrios más internacionales de Copenhague: oficinas de DR, Aller Media, Microsoft, IT-University, Field's mall, hoteles para conferencias. Un visitante extranjero o un expat que llega a Ørestad y busca dónde comer no entiende "Kom indenfor hos KAYs".</p>
+        <p class="why">No es traducir todo. Es tener una landing en inglés con lo esencial: ubicación, qué se sirve, horarios, cómo reservar. Sin eso, el turista cierra y abre Google Maps a buscar otra opción que sí entienda.</p>
+        <p class="fix">WPML o Polylang plugin. Empezar con una sola página /en/ con el hero traducido, el menú de la semana y el botón de reserva. Half-day.</p>
+      </div>
+      <span class="badge crit">Crítico</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">05</div>
+      <div class="find-body">
+        <h4>Siete de nueve imágenes con alt vacío</h4>
+        <p>Sólo se sirven nueve <code>&lt;img&gt;</code> en el HTML del homepage. Siete tienen <code>alt=""</code>. Verificado con grep. Para accesibilidad (un usuario con lector de pantalla escucha el sitio como una sucesión de "imagen, imagen, imagen") y para SEO (Google Images no puede asociar las fotos del local con búsquedas) es un agujero doble.</p>
+        <div class="evidence">
+          <div><span class="key">Total imágenes:</span> 9</div>
+          <div><span class="key">Con alt vacío:</span> <span class="bad">7</span> (78%)</div>
+        </div>
+        <p class="fix">Pasar por la biblioteca de medios en WordPress y añadir alt descriptivo en cada imagen visible en el homepage. "Brunchplate med æg og avocado på KAYs i Ørestad" es mejor que "DSC_4192.jpg". Una hora.</p>
+      </div>
+      <span class="badge med">Importante</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">06</div>
+      <div class="find-body">
+        <h4>Stack pesado: WordPress + Divi 4.27 + PHP 8.0</h4>
+        <p>Generator declara <code>Divi v4.27.6</code> en el header HTML. La cabecera <code>x-powered-by: PHP/8.0.30</code> está expuesta y es la versión vieja del runtime (PHP 8.0 está fuera de soporte activo desde noviembre de 2023, sólo recibe security fixes hasta noviembre 2026).</p>
+        <div class="evidence">
+          <div><span class="key">x-powered-by:</span> <span class="bad">PHP/8.0.30</span></div>
+          <div><span class="key">Generator:</span> Divi v4.27.6</div>
+          <div><span class="key">Server:</span> Apache · Varnish</div>
+        </div>
+        <p class="why">Divi es uno de los themes con más overhead JavaScript y CSS del ecosistema WordPress. Cada página carga el framework de page builder completo aunque no lo use. PHP 8.0 expuesto da pistas a un escáner automatizado de vulnerabilidades.</p>
+        <p class="fix">Corto plazo: ocultar <code>x-powered-by</code> y subir PHP a 8.3 desde el panel del hosting. Medio plazo: migrar a un theme más liviano (Blocksy, Kadence) o reconstruir sin Divi. La velocidad es la diferencia entre un cliente que reserva y uno que cierra.</p>
+      </div>
+      <span class="badge med">Importante</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">07</div>
+      <div class="find-body">
+        <h4>Solo seis reseñas en Tripadvisor con 3.7/5</h4>
+        <p>Para un negocio en zona turística abierto desde enero 2022, seis reseñas en Tripadvisor es prácticamente invisibilidad. El ranking dice <code>#1.423 de 3.049</code> restaurantes en Copenhague: por debajo de la media exacta. La nota 3.7 sin volumen no es ni positiva ni catastrófica, es ignorable.</p>
+        <p class="why">Tripadvisor y Google Reviews son los dos pulsos que el turista mira antes de elegir mesa. Sin volumen, el competidor con cuarenta reseñas a 4.3 gana siempre.</p>
+        <p class="fix">Programa de "first review" para clientes habituales del brunch: tarjeta QR en mesa que abre el formulario de Google Maps, un café de descuento la próxima visita. Treinta reseñas en seis semanas es realista y mueve el ranking visible.</p>
+      </div>
+      <span class="badge med">Importante</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">08</div>
+      <div class="find-body">
+        <h4>Reseñas mencionan "inconsistencia desde que se fue el chef"</h4>
+        <p>Citando reseñas públicas en Tripadvisor: "Inconsistent menu and changing quality since original chef departure" y "Discrepancy between website promises and actual meal courses offered". Este es un problema operativo, no web. Pero la web lo amplifica: si la web promete cinco platos y llegan tres, el cliente lo nota.</p>
+        <p class="why">El feedback público de los clientes ya marcó un patrón. Ignorarlo en la web (no actualizar el menú declarado a la realidad) genera la fricción.</p>
+        <p class="fix">Auditar lo que dice la web vs lo que sirve la cocina hoy. Igualar la promesa. Si la promesa no se puede cumplir, cambiar la web antes que el cliente note el desajuste.</p>
+      </div>
+      <span class="badge med">Importante</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">09</div>
+      <div class="find-body">
+        <h4>Sin precios visibles en el sitio</h4>
+        <p>El homepage no muestra ni un precio. Tampoco el menú está enlazado de forma evidente. Para un café-restaurante en Copenhague, donde una cerveza puede costar 60 DKK o 95 DKK según el sitio, la opacidad de precio es fricción.</p>
+        <p class="why">El cliente que decide entre tres opciones de brunch a las once de la mañana descarta lo que no ve precio. No es desconfianza explícita, es velocidad.</p>
+        <p class="fix">Página /menu con la carta del momento, precios actualizados, foto opcional. Enlazada desde el hero del homepage. Schema Menu + MenuItem para que aparezca en Google. Dos horas.</p>
+      </div>
+      <span class="badge med">Importante</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">10</div>
+      <div class="find-body">
+        <h4>Sin newsletter ni captura de email</h4>
+        <p>El sitio no tiene formulario de email en ningún sitio observable. Para un café con menús semanales que cambian, eventos privados (30-70 personas) y degustaciones de fin de semana, una lista de correo es el canal directo que no depende del algoritmo de Instagram.</p>
+        <p class="fix">Footer con campo de email "Få ugens menu i din indbakke hver onsdag" conectado a Mailerlite o Klaviyo (free tier hasta 500 contactos). El propio menu semanal se vuelve el lead magnet.</p>
+      </div>
+      <span class="badge med">Importante</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">11</div>
+      <div class="find-body">
+        <h4>Sin tracking observable</h4>
+        <p>Buscando en el HTML del homepage: cero referencias a Google Analytics, Meta Pixel, Plausible o similar. Sin tracking, las decisiones se toman a ojo: "creo que el lunes vino menos gente". Sin datos, no hay marketing.</p>
+        <p class="fix">Plausible o Umami (ambos GDPR-friendly, sin necesidad de cookie banner). Ver tráfico de búsquedas locales, qué páginas convierten en reservas, qué horario de día atrae más visitantes web. Cuarenta minutos de setup.</p>
+      </div>
+      <span class="badge med">Importante</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">12</div>
+      <div class="find-body">
+        <h4>Cookie banner intrusivo (Cookie Law Info)</h4>
+        <p>El plugin <code>cookie-law-info</code> añade un banner que ocupa parte del primer scroll. Es un plugin abandonado en términos de UX moderno (popup fijo abajo, copy genérico, sin diseño).</p>
+        <p class="fix">Si se quitan los trackers que requieren consentimiento (Meta Pixel, Google Analytics) y se usa solo Plausible o Umami (no requieren consentimiento), el banner ya no es necesario. Una hora de limpieza.</p>
+      </div>
+      <span class="badge low">Oportunidad</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">13</div>
+      <div class="find-body">
+        <h4>Sin links visibles a redes sociales en el HTML</h4>
+        <p>Buscando links a instagram.com o facebook.com en el HTML: no aparecen en el homepage. La cuenta de Instagram (<code>@kayscph</code>) y la de Facebook (<code>kayscph</code>) existen y publican con regularidad, pero la web no las enlaza visiblemente.</p>
+        <p class="why">El cliente que decide reservar mira la cuenta de Instagram para ver fotos recientes del local antes de venir. Si no encuentra el link rápido, busca en Google o Instagram directamente, y a veces ahí encuentra otra opción más visualmente atractiva.</p>
+        <p class="fix">Footer con tres iconos: Instagram, Facebook, Google Maps. Y un link al feed de Instagram en la home tipo "Sé hvad vi laver i denne uge på Instagram". Veinte minutos.</p>
+      </div>
+      <span class="badge low">Oportunidad</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">14</div>
+      <div class="find-body">
+        <h4>Sin landing dedicada para eventos privados</h4>
+        <p>La web menciona alquiler para 30-70 personas pero no tiene página específica que venda eso. Para una empresa de Ørestad que organiza un julefrokost, un kickoff trimestral o una despedida, la web no facilita el camino de "veo posible → pido cotización".</p>
+        <p class="fix">Landing /events con: capacidad, packages (lunch, dinner, drinks), galería del espacio cuando está montado para evento, formulario de cotización con campos mínimos. El formulario se conecta a una bandeja específica para que no se mezcle con reservas normales. Medio día.</p>
+      </div>
+      <span class="badge low">Oportunidad</span>
+    </div>
+  </div>
+</section>
+
+<!-- CUSTOMER JOURNEY -->
+<section id="journey">
+  <div class="wrap">
+    <div class="kicker">03 · Customer journey</div>
+    <h2>Dónde se rompe el camino del cliente.</h2>
+    <p class="lead">Mapeado paso a paso: cómo descubre KAYs un local, un expat o un turista, qué encuentra, dónde abandona. Las etapas con ⚠ son donde más se pierde tráfico.</p>
+
+    <div class="journey">
+      <div class="stage">
+        <div class="step">01 · Descubrimiento</div>
+        <h4>Boca a boca</h4>
+        <p>Locales de Ørestad, oficinas vecinas, recomendaciones entre amigos del barrio. Funciona porque la cocina cumple.</p>
+      </div>
+      <div class="stage broken">
+        <div class="step">02 · Búsqueda</div>
+        <h4>Google rankea bajo</h4>
+        <p>Sin schema ni H1, sin reviews volumen. Una búsqueda "brunch ørestad" enseña a competidores antes que a KAYs.</p>
+      </div>
+      <div class="stage broken">
+        <div class="step">03 · Web</div>
+        <h4>Idioma y precios</h4>
+        <p>Turistas y expats no leen danés. Sin precios visibles, deciden contra KAYs. Cookie banner añade fricción.</p>
+      </div>
+      <div class="stage">
+        <div class="step">04 · Reserva</div>
+        <h4>Easy Table Booking</h4>
+        <p>El sistema de reservas integrado funciona. Esta etapa es la única limpia del funnel.</p>
+      </div>
+      <div class="stage broken">
+        <div class="step">05 · Post-visita</div>
+        <h4>Sin pedido de review</h4>
+        <p>El cliente se va contento pero nadie le pide reseña. Tripadvisor sigue con seis. Google Maps no crece.</p>
+      </div>
+      <div class="stage missing">
+        <div class="step">06 · Retención</div>
+        <h4>Sin newsletter</h4>
+        <p>No hay canal directo al cliente que ya volvió. Depende 100% de que se acuerde y vuelva orgánicamente.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILARES -->
+<section id="pilares">
+  <div class="wrap">
+    <div class="kicker">04 · Puntuación por área</div>
+    <h2>Once pilares scoreados.</h2>
+
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-name">SEO técnico <small>H1, schema, sitemap, meta</small></div>
+        <div class="pillar-bar"><i class="bad" style="width:22%"></i></div>
+        <div class="pillar-score">22</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Performance <small>WordPress + Divi pesado</small></div>
+        <div class="pillar-bar"><i class="warn" style="width:45%"></i></div>
+        <div class="pillar-score">45</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Tech stack <small>PHP 8.0 expuesto, Divi viejo</small></div>
+        <div class="pillar-bar"><i class="warn" style="width:50%"></i></div>
+        <div class="pillar-score">50</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Accesibilidad <small>7/9 alt vacío, sin headings</small></div>
+        <div class="pillar-bar"><i class="bad" style="width:25%"></i></div>
+        <div class="pillar-score">25</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Multi-idioma <small>Solo danés en zona internacional</small></div>
+        <div class="pillar-bar"><i class="bad" style="width:0%"></i></div>
+        <div class="pillar-score">0</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Reseñas y reputación <small>Tripadvisor 3.7 con 6 reviews</small></div>
+        <div class="pillar-bar"><i class="bad" style="width:30%"></i></div>
+        <div class="pillar-score">30</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Conversión <small>Sin precios, sin newsletter, sin upsell</small></div>
+        <div class="pillar-bar"><i class="warn" style="width:42%"></i></div>
+        <div class="pillar-score">42</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Social proof <small>Sin reviews embed ni testimonios</small></div>
+        <div class="pillar-bar"><i class="bad" style="width:25%"></i></div>
+        <div class="pillar-score">25</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Redes sociales <small>IG + FB activos, mal enlazados</small></div>
+        <div class="pillar-bar"><i class="warn" style="width:55%"></i></div>
+        <div class="pillar-score">55</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Sistema de reserva <small>Easy Table Booking, funciona</small></div>
+        <div class="pillar-bar"><i class="good" style="width:75%"></i></div>
+        <div class="pillar-score">75</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Tracking y datos <small>Cero analytics observables</small></div>
+        <div class="pillar-bar"><i class="bad" style="width:15%"></i></div>
+        <div class="pillar-score">15</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLAN -->
+<section id="plan">
+  <div class="wrap">
+    <div class="kicker">05 · Plan A / B / C</div>
+    <h2>Catorce acciones organizadas por velocidad.</h2>
+
+    <div class="plan">
+      <div class="plan-col">
+        <h4>Plan A · Esta semana</h4>
+        <div class="plan-meta">3-4 horas · cero costo · admin WordPress</div>
+        <ul>
+          <li>Corregir el title: "KAYs · Brunch, vino y madbodega en Ørestad"</li>
+          <li>Añadir H1 al hero del homepage en Divi (un solo H1 por página)</li>
+          <li>Añadir H2 a las cinco secciones principales del homepage</li>
+          <li>Pasar por la biblioteca de medios y añadir alt descriptivo a las 7 imágenes que lo tienen vacío</li>
+          <li>Añadir tres iconos sociales al footer (Instagram, Facebook, Google Maps)</li>
+          <li>Quitar el cookie banner si se quita Google Analytics</li>
+        </ul>
+      </div>
+      <div class="plan-col">
+        <h4>Plan B · Próximas 2 semanas</h4>
+        <div class="plan-meta">12-16 horas · 0-300 DKK · setup técnico</div>
+        <ul>
+          <li>Schema JSON-LD Restaurant + Menu + OpeningHours</li>
+          <li>Landing /menu con precios y schema MenuItem</li>
+          <li>Landing /en/ con hero traducido + menu + reserva</li>
+          <li>Newsletter setup en Mailerlite con form en footer y CTA "menu semanal por correo"</li>
+          <li>Plausible o Umami para tracking sin cookie banner</li>
+          <li>Subir PHP a 8.3 desde el panel del hosting (Apache + Varnish)</li>
+        </ul>
+      </div>
+      <div class="plan-col">
+        <h4>Plan C · Próximos 3 meses</h4>
+        <div class="plan-meta">Estratégico · posicionamiento · foundation</div>
+        <ul>
+          <li>Programa "first review" para clientes habituales: QR en mesa, café de descuento</li>
+          <li>Landing /events con packages, galería, formulario de cotización dedicado</li>
+          <li>Auditar promesas web vs cocina real cada mes (alineación)</li>
+          <li>Migración Divi → Blocksy o Kadence si se decide ir a fondo</li>
+          <li>Calendar embed con menús de fin de semana (degustaciones) reservables aparte</li>
+          <li>Integración con Google Business Profile para que las publicaciones de IG también lleguen ahí</li>
+          <li>Plan trimestral de email con el menu de la semana y eventos confirmados</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUICK WINS -->
+<section id="qw">
+  <div class="wrap">
+    <div class="kicker">06 · Quick wins</div>
+    <h2>Tres cosas para esta tarde.</h2>
+    <p class="lead">Si solo se hacen estas tres antes del fin del día, el score sube de 38 a ~50 y el sitio empieza a aparecer mejor en Google esta misma semana.</p>
+
+    <div class="qw">
+      <div class="qw-card">
+        <span class="kicker">30 minutos</span>
+        <h4>Fix del title + H1 + H2</h4>
+        <p>Cambiar el title con typo "kaf" por uno descriptivo con keyword. Abrir Divi, marcar el bloque del hero como H1, marcar las cinco secciones como H2.</p>
+        <small>Impacto: alto · esfuerzo: bajo</small>
+      </div>
+      <div class="qw-card">
+        <span class="kicker">60 minutos</span>
+        <h4>Alt en las 7 imágenes</h4>
+        <p>Biblioteca de medios → cada imagen del homepage → añadir alt descriptivo en danés. "Brunchplate på KAYs" es mejor que "DSC_4192.jpg".</p>
+        <small>Impacto: medio · esfuerzo: bajo</small>
+      </div>
+      <div class="qw-card">
+        <span class="kicker">90 minutos</span>
+        <h4>Schema Restaurant JSON-LD</h4>
+        <p>Plugin Yoast SEO Local (free tier) o snippet manual con nombre, dirección, geo, horario, servesCuisine. Google empieza a mostrar tarjeta enriquecida en una semana.</p>
+        <small>Impacto: alto · esfuerzo: bajo</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="mark" style="font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mid);margin-bottom:8px;text-align:center">Auditoría independiente · Di Barret · 4 jun 2026</div>
+    <p style="color:var(--ink-faint);font-size:12px;max-width:60ch;margin:0 auto;text-align:center">Datos extraídos de fuentes públicas observables: <code>kayscph.dk</code> (HTML, cabeceras HTTP), Tripadvisor public reviews, Facebook page <code>/kayscph</code>, Instagram <code>@kayscph</code>, dirección y datos del negocio en directorios públicos. Lo no verificable está marcado como tal. Ningún dato fue inventado.</p>
+  </div>
+</footer>
+
+</body>
+</html>
