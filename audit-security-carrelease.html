@@ -1,0 +1,617 @@
+<!doctype html>
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Security Audit · CarRelease · Di Barret</title>
+<meta name="description" content="360° security audit af carrelease.dk. SvelteKit + Vercel stack. 15 verificerbare findings fra eksternt observerbare signaler. Score 42/100.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://www.dibarret.dk/audit-security-carrelease">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Security Audit · CarRelease">
+<meta property="og:description" content="HSTS godt. Resten af security headers mangler. 15 verificerbare findings. Af Di Barret.">
+<meta property="og:url" content="https://www.dibarret.dk/audit-security-carrelease">
+<meta property="og:image" content="https://www.dibarret.dk/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Di Barret">
+<meta property="og:locale" content="da_DK">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Security Audit · CarRelease">
+<meta name="twitter:description" content="15 findings, prioriteret plan, quick wins. Af Di Barret.">
+<meta name="twitter:image" content="https://www.dibarret.dk/og.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Geist+Mono:wght@400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css?v=5">
+<style>
+:root{
+  --bg:#000000; --ink:#ffffff; --ink-mid:rgba(255,255,255,0.72); --ink-faint:rgba(255,255,255,0.60);
+  --line:rgba(255,255,255,0.08); --line-mid:rgba(255,255,255,0.14);
+  --accent:#ffffff; --accent-soft:rgba(255,255,255,0.06);
+  --good:#34d399; --warn:#fbbf24; --bad:#ef4444;
+  --serif:'Geist','Inter',sans-serif; --sans:'Inter',system-ui,sans-serif; --mono:'Geist Mono','JetBrains Mono',ui-monospace,monospace;
+  --max:1320px; --pad:32px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+.kicker{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:12px}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:500;letter-spacing:-.025em;line-height:1.02;color:var(--ink)}
+h1{font-size:clamp(48px,7.6vw,124px);font-weight:400;line-height:.96}
+h2{font-size:clamp(32px,4.2vw,56px);margin-bottom:24px;font-weight:500}
+h3{font-size:22px;margin-bottom:10px;font-weight:500}
+p{color:var(--ink-mid);margin-bottom:14px}
+p.lead{color:var(--ink);font-size:18px;line-height:1.55;max-width:64ch}
+strong{color:var(--ink);font-weight:600}
+code{font-family:var(--mono);font-size:.88em;background:rgba(255,255,255,.06);padding:1px 6px;border-radius:4px;color:var(--ink)}
+em{font-style:normal;background:linear-gradient(120deg,var(--ink) 0%,var(--ink) 50%,var(--ink-faint) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+section{padding:120px 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:0}
+
+.hero__title em{font-style:normal;background:linear-gradient(120deg,var(--ink) 0%,var(--ink) 50%,var(--ink-faint) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.audit-meta-value{font-size:clamp(20px,2.2vw,28px)!important;line-height:1.15!important;letter-spacing:-.02em}
+
+.companion-bar{padding:20px 24px;background:rgba(255,255,255,.04);border:1px solid var(--line-mid);border-radius:6px;display:flex;gap:14px;align-items:center;margin-top:32px;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-mid)}
+.companion-bar a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--line-mid);text-underline-offset:3px}
+.companion-bar a:hover{text-decoration-color:var(--ink)}
+
+.exec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+@media (max-width:780px){.exec-grid{grid-template-columns:1fr}}
+.exec-card{padding:28px;border:1px solid var(--line);border-radius:6px}
+.exec-card .kicker{margin-bottom:14px}
+.exec-card h3{font-size:20px;margin-bottom:10px}
+
+.find-row{display:grid;grid-template-columns:60px 1fr 120px;gap:32px;padding:48px 0;border-bottom:1px solid var(--line);align-items:start}
+.find-row:last-child{border-bottom:0}
+.find-num{font-family:var(--mono);font-size:11px;color:var(--ink-faint);letter-spacing:.14em;padding-top:5px}
+.find-body h4{font-family:var(--serif);font-weight:500;font-size:20px;margin-bottom:14px;line-height:1.25}
+.find-body p{font-size:14px;margin-bottom:14px;line-height:1.65}
+.find-body p:last-child{margin-bottom:0}
+.find-body p.why{color:var(--ink);font-size:14px;margin-top:18px}
+.find-body p.fix{color:var(--good);font-size:14px;margin-top:18px}
+.find-body p.fix::before{content:"→ ";color:var(--good);font-weight:600}
+.badge{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:5px 10px;border-radius:99px;border:1px solid currentColor;justify-self:end;line-height:1}
+.badge::before{content:"";width:5px;height:5px;border-radius:50%;background:currentColor}
+.badge.crit{color:var(--bad)}.badge.med{color:var(--warn)}.badge.low{color:var(--good)}
+@media (max-width:680px){.find-row{grid-template-columns:40px 1fr;gap:16px}.badge{grid-column:2;justify-self:start;margin-top:6px}}
+
+.evidence{margin:28px 0 32px;padding:28px 32px;background:rgba(0,0,0,.30);border:1px solid var(--line-mid);border-radius:6px;font-family:var(--mono);font-size:13px;line-height:1.7;color:var(--ink)}
+.evidence .key{color:var(--ink-faint)}
+.evidence .bad{color:var(--bad)}
+.evidence .ok{color:var(--good)}
+.evidence .warn{color:var(--warn)}
+
+.threats{margin-top:32px;display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+@media (max-width:900px){.threats{grid-template-columns:1fr}}
+.threat{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:32px 28px}
+.threat .step{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--ink-faint);margin-bottom:12px;text-transform:uppercase}
+.threat h4{font-family:var(--serif);font-weight:500;font-size:18px;margin-bottom:10px;letter-spacing:-.015em}
+.threat p{font-size:13px;line-height:1.6;margin:0;color:var(--ink-mid)}
+.threat.high{background:rgba(239,68,68,0.06)}
+.threat.high h4::after{content:" ⚠";color:var(--bad)}
+.threat.med{background:rgba(251,191,36,0.04)}
+
+.pillars{display:grid;gap:0;margin-top:32px;border-top:1px solid var(--line)}
+.pillar{display:grid;grid-template-columns:260px 1fr 56px;gap:24px;align-items:center;padding:22px 0;border-bottom:1px solid var(--line)}
+.pillar:last-child{border-bottom:0}
+.pillar-name{font-weight:500;font-size:14px;color:var(--ink)}
+.pillar-name small{display:block;color:var(--ink-faint);font-weight:400;font-size:12px;margin-top:2px}
+.pillar-bar{height:4px;background:var(--line-mid);border-radius:99px;overflow:hidden}
+.pillar-bar i{display:block;height:100%;border-radius:99px}
+.pillar-bar i.good{background:var(--good)}
+.pillar-bar i.warn{background:var(--warn)}
+.pillar-bar i.bad{background:var(--bad)}
+.pillar-score{font-family:var(--mono);font-size:14px;text-align:right;font-weight:500;color:var(--ink)}
+@media (max-width:680px){.pillar{grid-template-columns:1fr 56px}.pillar-bar{grid-column:1/-1;grid-row:2}}
+
+.plan{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:32px;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+@media (max-width:900px){.plan{grid-template-columns:1fr}}
+.plan-col{padding:36px 30px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.plan-col h4{font-family:var(--serif);font-size:24px;font-weight:500;margin-bottom:8px;letter-spacing:-.02em}
+.plan-col .plan-meta{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:24px}
+.plan-col ul{list-style:none;display:grid;gap:14px}
+.plan-col li{font-size:14px;color:var(--ink);padding-left:18px;position:relative;line-height:1.5}
+.plan-col li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--ink);position:absolute;left:0;top:8px}
+
+.qw{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:32px;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+@media (max-width:780px){.qw{grid-template-columns:1fr}}
+.qw-card{padding:28px 24px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(52,211,153,0.04);position:relative}
+.qw-card::before{content:"";position:absolute;top:0;left:0;width:2px;height:100%;background:var(--good)}
+.qw-card .kicker{color:var(--good);margin-bottom:12px;display:block}
+.qw-card h4{font-family:var(--serif);font-size:18px;font-weight:500;margin-bottom:10px;letter-spacing:-.02em}
+.qw-card p{font-size:13.5px;margin-bottom:8px;color:var(--ink-mid)}
+.qw-card small{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--ink-faint);text-transform:uppercase}
+
+.scope-note{margin-top:48px;padding:32px;border:1px solid var(--line-mid);border-radius:6px;background:rgba(251,191,36,0.04);font-size:14px;line-height:1.65;color:var(--ink)}
+.scope-note h4{font-family:var(--serif);font-size:18px;font-weight:500;margin-bottom:14px;letter-spacing:-.02em;color:var(--warn)}
+.scope-note p{color:var(--ink-mid);margin-bottom:8px}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Primær navigation">
+  <a class="nav__logo" href="/" aria-label="Di Barret"><span aria-hidden="true">/</span>Di Barret</a>
+  <a class="nav__cta" href="#resume">
+    <span>Security Audit · CarRelease</span>
+    <svg class="nav__cta-icon" width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true">
+      <path d="M2 9L9 2M9 2H4M9 2V7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
+</nav>
+
+<main id="main">
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero__inner">
+    <div class="hero__eyebrow">
+      <span class="hero__dot"></span>
+      <span>Security audit · 4. juni 2026 · Uafhængig</span>
+    </div>
+    <h1 class="hero__title">TLS 1.3 i orden.<br><em>Resten af headers mangler.</em></h1>
+    <p class="hero__sub">CarRelease håndterer kundedata fra lead forms, e-mail-korrespondance og potentielt CPR-nummer i flexleasing-ansøgninger. Den ydre overflade har TLS 1.3, HSTS 2 år, og ingen åbne stier som <code>/.env</code> eller <code>/.git/</code>. Den ydre overflade mangler også Content-Security-Policy, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy og DNSSEC. DMARC er sat, men kun i monitor mode. <code>robots.txt</code> nævner ni WordPress-stier på et site der kører SvelteKit.</p>
+    <div class="hero__ctas">
+      <a class="btn btn--primary" href="#resume">
+        <span>Se resumé</span>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a class="btn btn--ghost" href="/audit-carrelease">
+        <span>Se SEO audit</span>
+      </a>
+    </div>
+    <div class="companion-bar">
+      <span>Companion til</span>
+      <a href="/audit-carrelease">SEO audit · CarRelease</a>
+      <span>·</span>
+      <span>Samme klient, andet fokus</span>
+    </div>
+  </div>
+</section>
+
+<!-- METRICS -->
+<section class="metrics" aria-label="Score og kontekst">
+  <div class="metrics__inner">
+    <div class="metric">
+      <div class="metric__value">42<span class="metric__suffix">/100</span></div>
+      <div class="metric__label">Security score</div>
+    </div>
+    <div class="metric">
+      <div class="metric__value audit-meta-value">SvelteKit<br>+ Vercel</div>
+      <div class="metric__label">Stack</div>
+    </div>
+    <div class="metric">
+      <div class="metric__value audit-meta-value">TLSv1.3<br>· Let's Encrypt</div>
+      <div class="metric__label">TLS</div>
+    </div>
+    <div class="metric">
+      <div class="metric__value audit-meta-value">Outlook 365<br>· DMARC p=none</div>
+      <div class="metric__label">Email</div>
+    </div>
+  </div>
+</section>
+
+<!-- RESUME -->
+<section id="resume">
+  <div class="wrap">
+    <div class="kicker">01 · Resumé</div>
+    <h2>Stærke krypteringsfundamenter. Tomme HTTP-hardening-headers.</h2>
+
+    <div class="exec-grid">
+      <div class="exec-card">
+        <div class="kicker">Aktuel status</div>
+        <h3>Vercel-default sikkerhed plus HSTS</h3>
+        <p>Sitet kører på Vercel som håndterer TLS-terminering med TLS 1.3, deaktiverer TLS 1.0 og 1.1, og bruger Let's Encrypt-certifikater. HSTS er sat med to års max-age. Ingen åbne kendte stier (<code>/.env</code>, <code>/.git/</code>, <code>/admin</code>, <code>/api</code> returnerer alle 404). Ingen Set-Cookie ved første GET. Det er solidt baseline.</p>
+      </div>
+      <div class="exec-card">
+        <div class="kicker">Problemet</div>
+        <h3>Fem standard hardening-headers mangler helt</h3>
+        <p>Content-Security-Policy, X-Frame-Options, X-Content-Type-Options, Referrer-Policy og Permissions-Policy er ikke sat. Det er den manuelle bevidste konfiguration der adskiller en "Vercel default" deployment fra en finansiel-data-klar opsætning. Plus: DMARC står i <code>p=none</code> (monitor mode, ingen håndhævelse), DNSSEC er ikke aktiveret, og <code>robots.txt</code> oplyser ni WordPress-stier på et SvelteKit-site.</p>
+      </div>
+      <div class="exec-card">
+        <div class="kicker">Muligheden</div>
+        <h3>Alle fixes er konfiguration, ikke kode</h3>
+        <p>Alle de manglende headers kan tilføjes via <code>vercel.json</code> eller SvelteKit's <code>handle</code> hook. DMARC til <code>p=quarantine</code> kræver en redigering i DNS-zonen. DNSSEC kræver aktivering hos registrar. robots.txt skal regenereres. Den samlede indsats: et par timer i konfiguration plus en uges DMARC-observation før <code>p=reject</code>.</p>
+      </div>
+    </div>
+
+    <div class="scope-note">
+      <h4>Scope og lovgivning</h4>
+      <p>Audit'en er udført udelukkende på offentligt observerbare signaler: HTTP response headers, TLS-konfiguration via standard handshake, offentlige DNS-records og passive observation af serveret HTML. Ingen intrusive tests er udført. Ingen payloads er sendt. Ingen autentificering er forsøgt.</p>
+      <p>Penetrationstest, kodegennemgang, auth bypass-forsøg, brute force eller DoS-relaterede tests kræver skriftlig autorisation fra klienten og er ikke en del af denne rapport. Under dansk straffelov § 263 vedrørende misbrug af informationssystemer er sådanne tests ulovlige uden forudgående aftale.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FINDINGS -->
+<section id="findings">
+  <div class="wrap">
+    <div class="kicker">02 · Verificerbare findings · 15 punkter</div>
+    <h2>Hvad eksternt observerbare signaler afslører.</h2>
+
+    <div class="find-row">
+      <div class="find-num">01</div>
+      <div class="find-body">
+        <h4>Content-Security-Policy header mangler</h4>
+        <p>HTTP-svaret indeholder ingen <code>Content-Security-Policy</code>-header. For et site der serverer brugerformular og lead capture (med risiko for CPR-nummer i flexleasing-ansøgninger over 350.000 kr) er CSP det primære forsvar mod XSS-angreb der injicerer fjernscripts.</p>
+        <div class="evidence">
+          <div><span class="key">$</span> curl -sI carrelease.dk | grep -i content-security</div>
+          <div class="bad">(intet output)</div>
+        </div>
+        <p class="why">Hvis en angriber finder en XSS-sårbarhed i et SvelteKit-komponent (for eksempel i en kommentar fra bil-databasen der ikke escapes ordentligt), kan vedkommende uden CSP eksfiltrere kundedata til en kontrolleret server. Med en streng CSP der kun tillader self + Vercel CDN bliver det stoppet.</p>
+        <p class="fix">Tilføj CSP i <code>vercel.json</code> under <code>headers</code>. Start med Report-Only mode: <code>Content-Security-Policy-Report-Only: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' fonts.googleapis.com; img-src 'self' data: blob:; font-src 'self' fonts.gstatic.com; connect-src 'self'; report-to /api/csp</code>. Observer to uger, finjuster, derefter enforce.</p>
+      </div>
+      <span class="badge crit">Kritisk</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">02</div>
+      <div class="find-body">
+        <h4>X-Frame-Options mangler (clickjacking-risiko)</h4>
+        <p>HTTP-svaret har ingen <code>X-Frame-Options</code>-header. En angriber kan embedde carrelease.dk i en usynlig iframe på en falsk side og narre brugeren til at klikke på "send" på lead-formularen mens hun tror hun klikker på noget andet.</p>
+        <p class="why">For en lead-form der sender kontaktoplysninger, navn og telefon, betyder clickjacking at en uærlig konkurrent kan høste forespørgsler fra CarRelease's brugere uden at brugeren opdager det.</p>
+        <p class="fix">Tilføj i <code>vercel.json</code>: <code>X-Frame-Options: SAMEORIGIN</code>. Eller bedre: dæk det i CSP med <code>frame-ancestors 'self'</code>. To sekunders konfiguration.</p>
+      </div>
+      <span class="badge crit">Kritisk</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">03</div>
+      <div class="find-body">
+        <h4>X-Content-Type-Options mangler (MIME sniffing)</h4>
+        <p>HTTP-svaret har ingen <code>X-Content-Type-Options: nosniff</code>. Det betyder at browseren kan gætte indholdstypen ud fra filens første bytes, hvilket kan udnyttes hvis en angriber kan uploade en fil der ligner et billede men er JavaScript.</p>
+        <p class="fix">Tilføj i <code>vercel.json</code>: <code>X-Content-Type-Options: nosniff</code>. En linje konfiguration.</p>
+      </div>
+      <span class="badge med">Vigtigt</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">04</div>
+      <div class="find-body">
+        <h4>Referrer-Policy mangler (privacy-lækage)</h4>
+        <p>HTTP-svaret har ingen <code>Referrer-Policy</code>. Når en bruger klikker fra carrelease.dk til en tredjepart (for eksempel partner Fragus for garantiforsikring), sender browseren standardværdien som inkluderer den fulde URL i Referer-headeren. Hvis URL'en indeholder query-parametre med sessions-ID eller andet, lækker det til tredjeparten.</p>
+        <p class="fix">Tilføj <code>Referrer-Policy: strict-origin-when-cross-origin</code>. Bedste balance mellem privacy og analytics-funktionalitet.</p>
+      </div>
+      <span class="badge med">Vigtigt</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">05</div>
+      <div class="find-body">
+        <h4>Permissions-Policy mangler (geo, kamera, mikrofon ikke begrænset)</h4>
+        <p>HTTP-svaret har ingen <code>Permissions-Policy</code>. Sitet bruger sandsynligvis ikke geolocation, kamera eller mikrofon, men hvis en tredjeparts-iframe eller embeds tilføjes senere kan de kalde de API'er uden eksplicit forbud.</p>
+        <p class="fix">Tilføj <code>Permissions-Policy: geolocation=(), camera=(), microphone=(), payment=(), usb=(), interest-cohort=()</code>. Den sidste deaktiverer Google's FLoC tracking. En linje konfiguration.</p>
+      </div>
+      <span class="badge med">Vigtigt</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">06</div>
+      <div class="find-body">
+        <h4>HSTS mangler includeSubDomains og preload</h4>
+        <p>Den nuværende HSTS-deklaration er <code>strict-transport-security: max-age=63072000</code>. To års max-age er godt, men hverken <code>includeSubDomains</code> eller <code>preload</code> er angivet. Det betyder at subdomæner som <code>api.carrelease.dk</code> eller <code>mail.carrelease.dk</code> ikke automatisk er omfattet, og at carrelease.dk ikke er klar til HSTS Preload-listen i browsere.</p>
+        <div class="evidence">
+          <div><span class="key">Nuværende:</span> max-age=63072000</div>
+          <div><span class="key">Anbefalet:</span> <span class="ok">max-age=63072000; includeSubDomains; preload</span></div>
+        </div>
+        <p class="why">HSTS Preload-listen er hardcoded i Chrome, Firefox, Safari og Edge. Et site på listen kan aldrig nås via HTTP, selv ikke ved første besøg. Det stopper SSL-stripping angreb fuldstændigt.</p>
+        <p class="fix">Verificer at alle subdomæner serverer HTTPS uden problemer. Tilføj <code>includeSubDomains; preload</code> i HSTS-deklaration. Indsend ansøgning på <code>hstspreload.org</code>. Behandlingstid: et par uger.</p>
+      </div>
+      <span class="badge med">Vigtigt</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">07</div>
+      <div class="find-body">
+        <h4>DMARC-politikken er p=none (kun monitorering)</h4>
+        <p>DNS TXT-record for <code>_dmarc.carrelease.dk</code> returnerer <code>v=DMARC1; p=none;</code>. Politikken er sat, men handler ikke. En angriber kan sende e-mails der ser ud som om de kommer fra <code>info@carrelease.dk</code>, og de bliver leveret til modtageren i indbakken.</p>
+        <div class="evidence">
+          <div><span class="key">$</span> dig +short TXT _dmarc.carrelease.dk</div>
+          <div class="warn">"v=DMARC1; p=none;"</div>
+        </div>
+        <p class="why">For en virksomhed der sender flexleasing-tilbud til kunder per e-mail, er email-spoofing en realistisk angrebsvektor. En kunde der modtager en "tilbud-e-mail" fra en forfalsket carrelease.dk med en fake payment-side kan tabe penge. CarRelease bliver beskyldt for det selv om mailen aldrig kom fra dem.</p>
+        <p class="fix">Trin et: tilføj <code>rua=mailto:dmarc-reports@carrelease.dk</code> til DMARC-record for at modtage rapporter i to-tre uger. Analyser hvilke afsender-IP'er der bruger CarRelease's domæne. Trin to: skift til <code>p=quarantine</code>. Trin tre efter en måneds observation: <code>p=reject</code>. Microsoft 365 dokumenterer hele flowet.</p>
+      </div>
+      <span class="badge med">Vigtigt</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">08</div>
+      <div class="find-body">
+        <h4>DNSSEC ikke aktiveret</h4>
+        <p>DNS-svaret for <code>carrelease.dk</code> har ikke <code>ad</code>-flag sat (Authenticated Data). DNSSEC er ikke aktiveret hos registrar. En angriber der kan udføre DNS-spoofing eller en cache-poisoning kan omdirigere trafik til carrelease.dk til en falsk server uden at browseren opdager noget før TLS-handshake fejler.</p>
+        <p class="fix">Aktiver DNSSEC hos DNS-udbyder. De fleste danske registrar'er (DK Hostmaster, GratisDNS, UnoEuro, Simply.com) understøtter det med få klik. Verificer bagefter med <code>dig +dnssec carrelease.dk</code>. Et halv times arbejde.</p>
+      </div>
+      <span class="badge med">Vigtigt</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">09</div>
+      <div class="find-body">
+        <h4>robots.txt afslører WordPress-stier på et SvelteKit-site</h4>
+        <p>Robots.txt indeholder Disallow-direktiver for <code>/wp-admin/</code>, <code>/wp-includes/</code>, <code>/xmlrpc.php</code>, <code>/cgi-bin/</code>, <code>/*.php$</code> og flere. Sitet kører SvelteKit på Vercel og har ingen af de stier. Det betyder at robots.txt er kopieret fra en gammel WordPress-skabelon. Stierne afslører at sitet engang var WordPress.</p>
+        <div class="evidence">
+          <div><span class="key">$</span> curl -s carrelease.dk/robots.txt | head -10</div>
+          <div>User-agent: *</div>
+          <div>Disallow: <span class="bad">/tak/</span></div>
+          <div>Disallow: <span class="bad">/wp-admin/</span></div>
+          <div>Disallow: <span class="bad">/wp-includes/</span></div>
+          <div>Disallow: <span class="bad">/xmlrpc.php</span></div>
+        </div>
+        <p class="why">En angriber der scanner robots.txt for at finde admin-paneler ser disse stier og prøver dem alligevel "for en sikkerheds skyld". Det giver ham gratis information om migrations-historikken og angreb til at prøve WordPress-eksploit selvom sitet er Svelte.</p>
+        <p class="fix">Regenerér robots.txt fra bunden tilpasset SvelteKit-stien. Behold kun <code>User-agent: *</code> og evt. <code>Disallow:</code> for stier der reelt findes. Tilføj <code>Sitemap: https://carrelease.dk/sitemap.xml</code> når sitemap er bygget (jf. SEO audit). Ti minutter.</p>
+      </div>
+      <span class="badge med">Vigtigt</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">10</div>
+      <div class="find-body">
+        <h4>/wp-admin/ returnerer 308 (redirect)</h4>
+        <p>En HEAD-request til <code>/wp-admin/</code> returnerer HTTP 308 (Permanent Redirect) i stedet for 404. Det er ikke nødvendigvis farligt (sandsynligvis en SvelteKit catch-all der redirecter til forsiden), men det er en ekstra runde for angriberen og afslører at noget håndterer den path eksplicit.</p>
+        <p class="fix">Returnerer hellere 404 for ikke-eksisterende stier. SvelteKit's <code>+error.svelte</code> kan håndtere det rent. Inkludér <code>/wp-admin</code>, <code>/wp-login.php</code>, <code>/xmlrpc.php</code> og lignende i en eksplicit deny-liste der returnerer 404 uden at ramme catch-all.</p>
+      </div>
+      <span class="badge low">Mulighed</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">11</div>
+      <div class="find-body">
+        <h4>Ingen /.well-known/security.txt</h4>
+        <p>En request til <code>/.well-known/security.txt</code> returnerer 404. RFC 9116 specificerer security.txt som standard kanal til ansvarlig disclosure: hvis en sikkerhedsforsker finder en sårbarhed, har vedkommende intet entydigt sted at melde det.</p>
+        <p class="fix">Læg en <code>/static/.well-known/security.txt</code> med felter: <code>Contact: mailto:security@carrelease.dk</code>, <code>Expires: 2027-06-04T00:00:00.000Z</code>, <code>Preferred-Languages: da, en</code>, <code>Policy: https://carrelease.dk/security-policy</code>. Tyve minutter.</p>
+      </div>
+      <span class="badge low">Mulighed</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">12</div>
+      <div class="find-body">
+        <h4>CAA-record tillader tre certifikatudstedere</h4>
+        <p>DNS CAA-record tillader <code>pki.goog</code>, <code>sectigo.com</code> og <code>letsencrypt.org</code>. Bredt: tre forskellige CA'er kan udstede certifikater for domænet. Hvis en af dem kompromitteres (sjældent men ikke umuligt), kan en angriber få et gyldigt certifikat fra den.</p>
+        <p class="fix">Hvis kun Let's Encrypt bruges (Vercel default), så indsnævr CAA til kun <code>letsencrypt.org</code>. Sandsynligvis pkt at hver CA blev tilladt på et tidspunkt af forskellige systemer. Audit og reducer. En halv time DNS-arbejde.</p>
+      </div>
+      <span class="badge low">Mulighed</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">13</div>
+      <div class="find-body">
+        <h4>Server-header afslører Vercel som hosting-provider</h4>
+        <p>HTTP-svaret har <code>server: Vercel</code>. Det er ikke en sårbarhed i sig selv (Vercel er solid), men det er info disclosure: angriberen ved at hun skal lede efter Vercel-specifikke sårbarheder, og at edge-runtime er det hun skal angribe.</p>
+        <p class="fix">Vercel tillader ikke at fjerne den header uden enterprise-plan. På Pro-tier er det acceptabelt at acceptere det. Note at Cross-Origin-* policies kan dække en stor del af de risici alligevel.</p>
+      </div>
+      <span class="badge low">Mulighed</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">14</div>
+      <div class="find-body">
+        <h4>Cross-Origin-Opener-Policy og Cross-Origin-Embedder-Policy mangler</h4>
+        <p>HTTP-svaret har ingen <code>Cross-Origin-Opener-Policy</code> eller <code>Cross-Origin-Embedder-Policy</code>. Disse to headers beskytter mod XS-Leaks (cross-site leaks): timing-attacks der lækker information på tværs af origins.</p>
+        <p class="fix">Tilføj <code>Cross-Origin-Opener-Policy: same-origin</code> og <code>Cross-Origin-Resource-Policy: same-site</code>. Bryder muligvis embeds (testkør først). En sektion i <code>vercel.json</code>.</p>
+      </div>
+      <span class="badge low">Mulighed</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">15</div>
+      <div class="find-body">
+        <h4>Let's Encrypt-certifikat (3 måneders gyldighed)</h4>
+        <p>Sitet bruger Let's Encrypt-certifikat (CN=R13). Det er ikke et sikkerhedsproblem i sig selv. Det er en kommerciel signal-mulighed: for en virksomhed der håndterer finansielle aftaler over 350.000 kr, kan et Extended Validation-certifikat eller mindst et Organization Validation-certifikat (DigiCert, Sectigo) styrke tilliden.</p>
+        <p class="fix">Beslutning: er Let's Encrypt nok, eller giver et OV/EV-certifikat ekstra tillid hos high-ticket-kunder. Hvis ja, kontakt en CA, valider organisationen, og deployer certifikatet i Vercel custom certs. To-tre dage.</p>
+      </div>
+      <span class="badge low">Mulighed</span>
+    </div>
+  </div>
+</section>
+
+<!-- THREAT SURFACE -->
+<section id="threats">
+  <div class="wrap">
+    <div class="kicker">03 · Threat surface</div>
+    <h2>Hvor en angriber sandsynligvis kigger først.</h2>
+    <p class="lead">Eksternt observerbare angrebsflader, prioriteret efter realistisk udnyttelses-sandsynlighed. Tre niveauer: høj (skal lukkes), middel (bør reduceres), lav (acceptabel restrisiko).</p>
+
+    <div class="threats">
+      <div class="threat high">
+        <div class="step">Niveau · høj</div>
+        <h4>E-mail spoofing</h4>
+        <p>DMARC p=none giver fri adgang til at spoofe info@carrelease.dk. En kunde der modtager en falsk tilbud-mail har ingen teknisk indikation på at den er forfalsket. Risiko: tab af kunde-penge, omdømme-skade.</p>
+      </div>
+      <div class="threat high">
+        <div class="step">Niveau · høj</div>
+        <h4>XSS uden CSP-beskyttelse</h4>
+        <p>Ingen Content-Security-Policy. Hvis en XSS-sårbarhed eksisterer i SvelteKit-komponenter eller tredjeparts integration (Splide carousel), kan en angriber eksfiltrere lead-form data til ekstern server uden teknisk forhindring.</p>
+      </div>
+      <div class="threat high">
+        <div class="step">Niveau · høj</div>
+        <h4>Clickjacking via iframe</h4>
+        <p>Ingen X-Frame-Options. Carrelease.dk kan embeddes på en falsk side. En angriber narrer brugeren til at sende lead-form data til konkurrenten via overlay-teknik.</p>
+      </div>
+      <div class="threat med">
+        <div class="step">Niveau · middel</div>
+        <h4>DNS-spoofing uden DNSSEC</h4>
+        <p>DNSSEC ikke aktiveret. En kompromitteret resolver kan returnere forkerte A-records og omdirigere brugere til en falsk side. Mitigeret af HSTS men ikke helt forhindret før HSTS-preload er på plads.</p>
+      </div>
+      <div class="threat med">
+        <div class="step">Niveau · middel</div>
+        <h4>WordPress legacy-attack-overflade</h4>
+        <p>robots.txt nævner ni WordPress-stier. Hvis migrationen fra WordPress til SvelteKit ikke var ren, kan der stadig være /wp-admin endpoints på et parallelt subdomæne. Angriberen prøver dem nu med automatiserede scannere.</p>
+      </div>
+      <div class="threat med">
+        <div class="step">Niveau · middel</div>
+        <h4>XS-Leaks uden COOP/COEP</h4>
+        <p>Cross-Origin-Opener-Policy mangler. Timing-attacks fra en åbnet popup kan lække information om hvilke sider brugeren har besøgt på carrelease.dk. Realistisk men sjælden vektor.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section id="pillars">
+  <div class="wrap">
+    <div class="kicker">04 · Score pr. område</div>
+    <h2>Tolv sikkerhedssøjler, vurderet.</h2>
+
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-name">TLS / kryptering <small>TLS 1.3 only, 1.0/1.1 afvist, gyldigt cert</small></div>
+        <div class="pillar-bar"><i class="good" style="width:82%"></i></div>
+        <div class="pillar-score">82</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">HSTS <small>2 år max-age, ingen subdomains, ikke preload</small></div>
+        <div class="pillar-bar"><i class="warn" style="width:55%"></i></div>
+        <div class="pillar-score">55</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Content-Security-Policy <small>Ikke sat</small></div>
+        <div class="pillar-bar"><i class="bad" style="width:0%"></i></div>
+        <div class="pillar-score">0</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Frame protection <small>X-Frame-Options mangler, CSP frame-ancestors mangler</small></div>
+        <div class="pillar-bar"><i class="bad" style="width:0%"></i></div>
+        <div class="pillar-score">0</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">MIME sniffing protection <small>X-Content-Type-Options mangler</small></div>
+        <div class="pillar-bar"><i class="bad" style="width:0%"></i></div>
+        <div class="pillar-score">0</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Privacy headers <small>Referrer-Policy, Permissions-Policy mangler</small></div>
+        <div class="pillar-bar"><i class="bad" style="width:0%"></i></div>
+        <div class="pillar-score">0</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Email authentication <small>SPF strict, DMARC kun monitor, DKIM ukendt</small></div>
+        <div class="pillar-bar"><i class="warn" style="width:55%"></i></div>
+        <div class="pillar-score">55</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">DNS hygiejne <small>DNSSEC ikke aktiveret, CAA bred</small></div>
+        <div class="pillar-bar"><i class="warn" style="width:45%"></i></div>
+        <div class="pillar-score">45</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Information disclosure <small>robots.txt lækker WP-stier, server header eksponeret</small></div>
+        <div class="pillar-bar"><i class="warn" style="width:50%"></i></div>
+        <div class="pillar-score">50</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Sensitive paths <small>/.env, /.git, /admin, /api → 404 (godt)</small></div>
+        <div class="pillar-bar"><i class="good" style="width:88%"></i></div>
+        <div class="pillar-score">88</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Cookie security <small>Ingen Set-Cookie ved første GET (godt)</small></div>
+        <div class="pillar-bar"><i class="good" style="width:80%"></i></div>
+        <div class="pillar-score">80</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Responsible disclosure <small>Ingen /.well-known/security.txt</small></div>
+        <div class="pillar-bar"><i class="bad" style="width:20%"></i></div>
+        <div class="pillar-score">20</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLAN -->
+<section id="plan">
+  <div class="wrap">
+    <div class="kicker">05 · Plan A / B / C</div>
+    <h2>Femten handlinger sorteret efter hastighed.</h2>
+
+    <div class="plan">
+      <div class="plan-col">
+        <h4>Plan A · Denne uge</h4>
+        <div class="plan-meta">2-3 timer · gratis · konfiguration kun</div>
+        <ul>
+          <li>X-Frame-Options: SAMEORIGIN i vercel.json</li>
+          <li>X-Content-Type-Options: nosniff i vercel.json</li>
+          <li>Referrer-Policy: strict-origin-when-cross-origin</li>
+          <li>Permissions-Policy med deaktivering af geo, kamera, mic, FLoC</li>
+          <li>HSTS udvidet til includeSubDomains; preload</li>
+          <li>Regenerér robots.txt uden WordPress-stier</li>
+          <li>Læg /.well-known/security.txt i static</li>
+        </ul>
+      </div>
+      <div class="plan-col">
+        <h4>Plan B · De næste 2 uger</h4>
+        <div class="plan-meta">8-12 timer · gratis · konfiguration + observation</div>
+        <ul>
+          <li>Content-Security-Policy i Report-Only mode</li>
+          <li>Observer CSP-rapporter, finjuster allowlists</li>
+          <li>DMARC fra p=none til p=quarantine med rua-rapport</li>
+          <li>DNSSEC aktivering hos DNS-provider</li>
+          <li>Cross-Origin-Opener-Policy: same-origin</li>
+          <li>Cross-Origin-Resource-Policy: same-site</li>
+          <li>Indsend ansøgning på hstspreload.org</li>
+        </ul>
+      </div>
+      <div class="plan-col">
+        <h4>Plan C · De næste 3 måneder</h4>
+        <div class="plan-meta">Strategisk · governance · fundament</div>
+        <ul>
+          <li>CSP fra Report-Only til enforce mode</li>
+          <li>DMARC fra p=quarantine til p=reject</li>
+          <li>CAA-record indsnævret til kun nødvendige CA'er</li>
+          <li>OV-certifikat overvejes for kommerciel troværdighed</li>
+          <li>Sikkerhedspolitik publiceret som /security-policy</li>
+          <li>Kvartalsvis re-audit af headers og DNS-records</li>
+          <li>Lighthouse CI med security-audit i deployment pipeline</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUICK WINS -->
+<section id="qw">
+  <div class="wrap">
+    <div class="kicker">06 · Quick wins</div>
+    <h2>Tre ting til i eftermiddag.</h2>
+    <p class="lead">Hvis kun disse tre udføres inden fyraften, lukker tre af de mest risikoeksponerede huller, og scoren stiger fra 42 til omkring 60.</p>
+
+    <div class="qw">
+      <div class="qw-card">
+        <span class="kicker">10 minutter</span>
+        <h4>Hardening headers i vercel.json</h4>
+        <p>Tilføj X-Frame-Options: SAMEORIGIN, X-Content-Type-Options: nosniff, Referrer-Policy: strict-origin-when-cross-origin, og Permissions-Policy med deaktiverede sensorer. Et JSON-objekt, ti minutter.</p>
+        <small>Effekt: høj · indsats: trivial</small>
+      </div>
+      <div class="qw-card">
+        <span class="kicker">15 minutter</span>
+        <h4>robots.txt uden WordPress-arv</h4>
+        <p>Skriv robots.txt fra bunden tilpasset SvelteKit. Slet alle Disallow-stier der ikke eksisterer (/wp-admin/, /wp-includes/, /xmlrpc.php). Tilføj Sitemap-direktiv når sitemap er bygget.</p>
+        <small>Effekt: medium · indsats: trivial</small>
+      </div>
+      <div class="qw-card">
+        <span class="kicker">30 minutter</span>
+        <h4>DMARC monitoring opsætning</h4>
+        <p>Skift DMARC TXT-record til <code>v=DMARC1; p=none; rua=mailto:dmarc-reports@carrelease.dk; ruf=mailto:dmarc-forensics@carrelease.dk; fo=1</code>. Modtag rapporter i to-tre uger, derefter skift til p=quarantine.</p>
+        <small>Effekt: høj · indsats: lav</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="mark" style="font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mid);margin-bottom:8px;text-align:center">Uafhængig security audit · Di Barret · 4. juni 2026</div>
+    <p style="color:var(--ink-faint);font-size:12px;max-width:60ch;margin:0 auto;text-align:center">Data hentet fra offentligt observerbare kilder: <code>carrelease.dk</code> HTTP response headers via curl, TLS-handshake via openssl, offentlige DNS-records via dig (SPF, DMARC, CAA, MX), passive HEAD-requests til standard-stier (alle returnerede 404 eller 308), HSTS preload-list status. Ingen intrusive tests, ingen payloads, ingen autentificering forsøgt. Det der ikke kan verificeres er markeret som sådan. Companion til <a href="/audit-carrelease" style="color:var(--ink-mid);border-bottom:1px solid var(--line-mid)">SEO-auditen for samme klient</a>.</p>
+  </div>
+</footer>
+
+</body>
+</html>
