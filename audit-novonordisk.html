@@ -1,0 +1,580 @@
+<!doctype html>
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Audit · Novo Nordisk · Di Barret</title>
+<meta name="description" content="360° audit af novonordisk.com. Fortune 500 pharma med teknisk SEO-huller man ikke forventer. 15 verificerbare findings, A/B/C-plan, quick wins. Score 52/100.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://www.dibarret.dk/audit-novonordisk">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Audit · Novo Nordisk">
+<meta property="og:description" content="Verdens største diabetes-firma. Et site der ikke matcher. 15 verificerbare findings. Af Di Barret.">
+<meta property="og:url" content="https://www.dibarret.dk/audit-novonordisk">
+<meta property="og:image" content="https://www.dibarret.dk/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Di Barret">
+<meta property="og:locale" content="da_DK">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Audit · Novo Nordisk">
+<meta name="twitter:description" content="15 findings, prioriteret plan, quick wins. Af Di Barret.">
+<meta name="twitter:image" content="https://www.dibarret.dk/og.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Geist+Mono:wght@400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css?v=5">
+<style>
+:root{
+  --bg:#000000; --ink:#ffffff; --ink-mid:rgba(255,255,255,0.72); --ink-faint:rgba(255,255,255,0.60);
+  --line:rgba(255,255,255,0.08); --line-mid:rgba(255,255,255,0.14);
+  --accent:#ffffff; --accent-soft:rgba(255,255,255,0.06);
+  --good:#34d399; --warn:#fbbf24; --bad:#ef4444;
+  --serif:'Geist','Inter',sans-serif; --sans:'Inter',system-ui,sans-serif; --mono:'Geist Mono','JetBrains Mono',ui-monospace,monospace;
+  --max:1320px; --pad:32px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+.kicker{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:12px}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:500;letter-spacing:-.025em;line-height:1.02;color:var(--ink)}
+h1{font-size:clamp(48px,7.6vw,124px);font-weight:400;line-height:.96}
+h2{font-size:clamp(32px,4.2vw,56px);margin-bottom:24px;font-weight:500}
+h3{font-size:22px;margin-bottom:10px;font-weight:500}
+p{color:var(--ink-mid);margin-bottom:14px}
+p.lead{color:var(--ink);font-size:18px;line-height:1.55;max-width:64ch}
+strong{color:var(--ink);font-weight:600}
+code{font-family:var(--mono);font-size:.88em;background:rgba(255,255,255,.06);padding:1px 6px;border-radius:4px;color:var(--ink)}
+em{font-style:normal;background:linear-gradient(120deg,var(--ink) 0%,var(--ink) 50%,var(--ink-faint) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+section{padding:120px 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:0}
+
+.hero__title em{font-style:normal;background:linear-gradient(120deg,var(--ink) 0%,var(--ink) 50%,var(--ink-faint) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.audit-meta-value{font-size:clamp(20px,2.2vw,28px)!important;line-height:1.15!important;letter-spacing:-.02em}
+
+.exec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+@media (max-width:780px){.exec-grid{grid-template-columns:1fr}}
+.exec-card{padding:28px;border:1px solid var(--line);border-radius:6px}
+.exec-card .kicker{margin-bottom:14px}
+.exec-card h3{font-size:20px;margin-bottom:10px}
+
+.find-row{display:grid;grid-template-columns:60px 1fr 120px;gap:32px;padding:48px 0;border-bottom:1px solid var(--line);align-items:start}
+.find-row:last-child{border-bottom:0}
+.find-num{font-family:var(--mono);font-size:11px;color:var(--ink-faint);letter-spacing:.14em;padding-top:5px}
+.find-body h4{font-family:var(--serif);font-weight:500;font-size:20px;margin-bottom:14px;line-height:1.25}
+.find-body p{font-size:14px;margin-bottom:14px;line-height:1.65}
+.find-body p:last-child{margin-bottom:0}
+.find-body p.why{color:var(--ink);font-size:14px;margin-top:18px}
+.find-body p.fix{color:var(--good);font-size:14px;margin-top:18px}
+.find-body p.fix::before{content:"→ ";color:var(--good);font-weight:600}
+.badge{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:5px 10px;border-radius:99px;border:1px solid currentColor;justify-self:end;line-height:1}
+.badge::before{content:"";width:5px;height:5px;border-radius:50%;background:currentColor}
+.badge.crit{color:var(--bad)}.badge.med{color:var(--warn)}.badge.low{color:var(--good)}
+@media (max-width:680px){.find-row{grid-template-columns:40px 1fr;gap:16px}.badge{grid-column:2;justify-self:start;margin-top:6px}}
+
+.evidence{margin:28px 0 32px;padding:28px 32px;background:rgba(0,0,0,.30);border:1px solid var(--line-mid);border-radius:6px;font-family:var(--mono);font-size:13px;line-height:1.7;color:var(--ink)}
+.evidence .key{color:var(--ink-faint)}
+.evidence .bad{color:var(--bad)}
+.evidence .ok{color:var(--good)}
+
+.journey{margin-top:32px;display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+@media (max-width:900px){.journey{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.journey{grid-template-columns:1fr}}
+.stage{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:32px 24px}
+.stage .step{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--ink-faint);margin-bottom:8px;text-transform:uppercase}
+.stage h4{font-family:var(--serif);font-weight:500;font-size:18px;margin-bottom:10px;letter-spacing:-.015em}
+.stage p{font-size:13px;line-height:1.55;margin:0;color:var(--ink-mid)}
+.stage.broken{background:rgba(239,68,68,0.06)}
+.stage.broken h4::after{content:" ⚠";color:var(--bad)}
+
+.pillars{display:grid;gap:0;margin-top:32px;border-top:1px solid var(--line)}
+.pillar{display:grid;grid-template-columns:260px 1fr 56px;gap:24px;align-items:center;padding:22px 0;border-bottom:1px solid var(--line)}
+.pillar:last-child{border-bottom:0}
+.pillar-name{font-weight:500;font-size:14px;color:var(--ink)}
+.pillar-name small{display:block;color:var(--ink-faint);font-weight:400;font-size:12px;margin-top:2px}
+.pillar-bar{height:4px;background:var(--line-mid);border-radius:99px;overflow:hidden}
+.pillar-bar i{display:block;height:100%;border-radius:99px}
+.pillar-bar i.good{background:var(--good)}
+.pillar-bar i.warn{background:var(--warn)}
+.pillar-bar i.bad{background:var(--bad)}
+.pillar-score{font-family:var(--mono);font-size:14px;text-align:right;font-weight:500;color:var(--ink)}
+@media (max-width:680px){.pillar{grid-template-columns:1fr 56px}.pillar-bar{grid-column:1/-1;grid-row:2}}
+
+.plan{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:32px;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+@media (max-width:900px){.plan{grid-template-columns:1fr}}
+.plan-col{padding:36px 30px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.plan-col h4{font-family:var(--serif);font-size:24px;font-weight:500;margin-bottom:8px;letter-spacing:-.02em}
+.plan-col .plan-meta{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:24px}
+.plan-col ul{list-style:none;display:grid;gap:14px}
+.plan-col li{font-size:14px;color:var(--ink);padding-left:18px;position:relative;line-height:1.5}
+.plan-col li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--ink);position:absolute;left:0;top:8px}
+
+.qw{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:32px;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+@media (max-width:780px){.qw{grid-template-columns:1fr}}
+.qw-card{padding:28px 24px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(52,211,153,0.04);position:relative}
+.qw-card::before{content:"";position:absolute;top:0;left:0;width:2px;height:100%;background:var(--good)}
+.qw-card .kicker{color:var(--good);margin-bottom:12px;display:block}
+.qw-card h4{font-family:var(--serif);font-size:18px;font-weight:500;margin-bottom:10px;letter-spacing:-.02em}
+.qw-card p{font-size:13.5px;margin-bottom:8px;color:var(--ink-mid)}
+.qw-card small{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--ink-faint);text-transform:uppercase}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Primær navigation">
+  <a class="nav__logo" href="/" aria-label="Di Barret"><span aria-hidden="true">/</span>Di Barret</a>
+  <a class="nav__cta" href="#resume">
+    <span>Audit · Novo Nordisk</span>
+    <svg class="nav__cta-icon" width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true">
+      <path d="M2 9L9 2M9 2H4M9 2V7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
+</nav>
+
+<main id="main">
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero__inner">
+    <div class="hero__eyebrow">
+      <span class="hero__dot"></span>
+      <span>Audit · 4. juni 2026 · Uafhængig</span>
+    </div>
+    <h1 class="hero__title">Fortune 500.<br><em>Teknisk SEO som en startup.</em></h1>
+    <p class="hero__sub">Novo Nordisk er det største farmaselskab i Norden, grundlagt i 1923, hovedkontor i Bagsværd. Sitet sælger Wegovy, Ozempic og en pipeline der bevæger globale aktiemarkeder. Title-elementet siger blot "Novo Nordisk " med et efterstillet mellemrum. Der findes nul hreflang-tags på et site med versioner i over firs lande. Nul JSON-LD strukturerede data. Den kanoniske URL afslører Adobe AEM's interne sti. Den slags huller forventes ikke hos et selskab med 80 milliarder dollar i markedsværdi.</p>
+    <div class="hero__ctas">
+      <a class="btn btn--primary" href="#resume">
+        <span>Se resumé</span>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a class="btn btn--ghost" href="#plan">
+        <span>Se handlingsplan</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- METRICS -->
+<section class="metrics" aria-label="Score og kontekst">
+  <div class="metrics__inner">
+    <div class="metric">
+      <div class="metric__value">52<span class="metric__suffix">/100</span></div>
+      <div class="metric__label">Samlet score</div>
+    </div>
+    <div class="metric">
+      <div class="metric__value audit-meta-value">Pharma<br>· Diabetes</div>
+      <div class="metric__label">Sektor</div>
+    </div>
+    <div class="metric">
+      <div class="metric__value audit-meta-value">Bagsværd<br>· DK</div>
+      <div class="metric__label">HQ</div>
+    </div>
+    <div class="metric">
+      <div class="metric__value audit-meta-value">Adobe AEM<br>+ Akamai</div>
+      <div class="metric__label">Stack</div>
+    </div>
+  </div>
+</section>
+
+<!-- RESUME -->
+<section id="resume">
+  <div class="wrap">
+    <div class="kicker">01 · Resumé</div>
+    <h2>Stærk infrastruktur. Overraskende huller i basisarbejdet.</h2>
+
+    <div class="exec-grid">
+      <div class="exec-card">
+        <div class="kicker">Aktuel status</div>
+        <h3>Enterprise-CDN og enterprise-CMS, alligevel SEO på begynderniveau</h3>
+        <p>Sitet kører på Akamai, Adobe AEM som CMS, har HSTS, X-Content-Type-Options og en navigation organiseret efter målgrupper (patienter, læger, investorer, jobsøgere). Det grundlæggende er på plads. Det der mangler, er noget den mindste lokale virksomhed har styr på: hreflang, schema, en ordentlig title.</p>
+      </div>
+      <div class="exec-card">
+        <div class="kicker">Problemet</div>
+        <h3>Sitet udnytter ikke sin globale skala</h3>
+        <p>Nul hreflang-deklarationer på et selskab med versioner i firs lande. Nul JSON-LD som Organization, MedicalCondition eller Drug. Title siger bare "Novo Nordisk " med trailing whitespace. Den kanoniske URL er <code>/content/nncorp/global/en.html</code>: AEM's interne dispatcher-sti der lækker ud i HTML'en. Template-syntaks som <code>{{priceData.date}}</code> renderes ikke serverside. <code>javascript:void(0)</code> bruges stadig i navigationen.</p>
+      </div>
+      <div class="exec-card">
+        <div class="kicker">Muligheden</div>
+        <h3>Hver fix er en uges arbejde for et team der allerede er der</h3>
+        <p>Det er ikke en re-platforming der mangler. Det er en SEO-sprint på den eksisterende AEM-installation. Hreflang-konfiguration: to dage. JSON-LD-templates pr. content-type: en uge. Title-pattern fix: en time. De fleste punkter sidder i AEM-skabelonerne, ikke i koden.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINDINGS -->
+<section id="findings">
+  <div class="wrap">
+    <div class="kicker">02 · Verificerbare findings · 15 punkter</div>
+    <h2>Hvad et selskab i Fortune 500 ikke burde sende ud.</h2>
+
+    <div class="find-row">
+      <div class="find-num">01</div>
+      <div class="find-body">
+        <h4>Title siger bare "Novo Nordisk " med efterstillet mellemrum</h4>
+        <p>Title-elementet på forsiden indeholder ét ord plus et trailing whitespace. Ingen value proposition, ingen primær søgekategori, ingen geografi. For et selskab der dominerer søgningerne på "diabetes treatment", "GLP-1", "weight loss medication" er det at sige nul.</p>
+        <div class="evidence">
+          <div><span class="key">&lt;title&gt;</span>Novo Nordisk <span class="bad">[trailing space]</span>&lt;/title&gt;</div>
+        </div>
+        <p class="why">Title er det første lag af brand-perception i Google og i browserens fane. Et tomt title overlader til Google at gætte hvad siden handler om. Konkurrenter med tighter title vinder snippet-pladsen.</p>
+        <p class="fix">Forsidens title bør lyde: <code>"Novo Nordisk · Defeating diabetes and serious chronic diseases"</code>. Sæt det i AEM's page properties som default pattern for hjemmesiderne pr. marked.</p>
+      </div>
+      <span class="badge crit">Kritisk</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">02</div>
+      <div class="find-body">
+        <h4>Nul hreflang-tags på et site der opererer i over firs lande</h4>
+        <p>Verificeret: <code>grep hreflang= forsidens HTML</code> returnerer nul. For et globalt site med markedsspecifikke versioner (US, EU, JP, CN, BR, og mange flere) er fraværet af hreflang en katastrofal SEO-fejl. Google ved ikke hvilken landeversion der skal vises til hvilken bruger.</p>
+        <div class="evidence">
+          <div><span class="key">$</span> curl -s novonordisk.com | grep -oE 'hreflang' | wc -l</div>
+          <div class="bad">0</div>
+        </div>
+        <p class="why">En patient i Tyskland der søger på "Wegovy nebenwirkungen" får måske vist den engelske eller den amerikanske side. Det rammer ikke kun trafik. Det skaber compliance-risiko, fordi medicinsk indholdet er reguleret pr. marked.</p>
+        <p class="fix">AEM Multi Site Manager kan generere hreflang automatisk fra Live Copies-strukturen. To dages arbejde med Adobe-konsulent. Eller manuelt: en hreflang-template der itererer over <code>/content/nncorp/[market]/[language]</code>-strukturen.</p>
+      </div>
+      <span class="badge crit">Kritisk</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">03</div>
+      <div class="find-body">
+        <h4>Nul JSON-LD strukturerede data</h4>
+        <p>Søger man efter <code>application/ld+json</code> i forsidens HTML: nul. For en healthcare-virksomhed der publicerer pressemeddelelser om kliniske studier, drugs, ledende personer og medicinske tilstande, er strukturerede data ikke en luksus. Det er det Google bruger til at bygge rich results, knowledge panels og medical schema features.</p>
+        <p class="why">Et schema Organization med ticker, headquarters, founders og subOrganization ville fylde Googles knowledge panel ud. Schema Drug på Wegovy, Ozempic, Saxenda ville give rich snippets med dosering og kontraindikationer. Schema NewsArticle på pressemeddelelser ville få bedre placering i Google News.</p>
+        <p class="fix">JSON-LD-templates pr. content-type i AEM: Organization (site-wide), Article (presse), Drug (produktsider), MedicalCondition (sygdomsområder). En uges arbejde med Yoast SEO Premium eller et AEM-snippet pr. template. Schema validator + Google Search Console for at verificere.</p>
+      </div>
+      <span class="badge crit">Kritisk</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">04</div>
+      <div class="find-body">
+        <h4>Canonical URL afslører AEM's interne dispatcher-sti</h4>
+        <p>OG-URL og canonical peger på <code>https://www.novonordisk.com/content/nncorp/global/en.html</code>. Det er Adobe AEM's interne resource-sti der lækker ud i HTML'en. Den offentlige URL er <code>novonordisk.com</code>, men sitet fortæller Google og browseren at den "rigtige" URL er den interne.</p>
+        <div class="evidence">
+          <div><span class="key">og:url:</span> https://www.novonordisk.com<span class="bad">/content/nncorp/global/en.html</span></div>
+        </div>
+        <p class="why">Det skaber duplikering: Google ser to URL'er for samme indhold. Det signalerer også at sitet ikke bruger AEM's URL rewriting. Patientens dokument, der gemmes med URL'en, viser den grimme variant. Og det er et tell for konkurrenter, der ved hvilken CMS der kører.</p>
+        <p class="fix">URL rewriting via Apache mod_rewrite eller Dispatcher-konfiguration: <code>/content/nncorp/global/en.html</code> → <code>/</code>. Canonical og og:url skal pege på den rene URL. AEM-task: et halv dag.</p>
+      </div>
+      <span class="badge crit">Kritisk</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">05</div>
+      <div class="find-body">
+        <h4>Template-syntaks vises i HTML'en: {{priceData.date}}</h4>
+        <p>I forsidens HTML observeres ikke-renderet template-syntaks som <code>{{priceData.date}}</code>. Det er Vue.js, AngularJS eller lignende framework hvor server-side rendering ikke har erstattet placeholder'en med faktisk data. Brugeren ser den faktiske værdi efter JavaScript hydrering, men Google og skærmlæsere ser den rå template-streng.</p>
+        <p class="why">For investor data (stock price, market cap, last update) er det dobbelt-problematisk. Google indekserer den tomme template som indhold. En screen reader læser "krøllet-tuller krøllet-tuller" højt. Og en kort millisekund efter sideload viser brugeren den ikke-renderede syntaks.</p>
+        <p class="fix">Brug AEM HTL (HTML Template Language) til at server-side rendere alle data der findes ved request-tid. For data der kun findes klientside (live aktiekurs) brug en pre-render placeholder med default value som "Loading..." i stedet for den rå template.</p>
+      </div>
+      <span class="badge crit">Kritisk</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">06</div>
+      <div class="find-body">
+        <h4>javascript:void(0) i navigation</h4>
+        <p>Nogle navigation-elementer bruger stadig <code>href="javascript:void(0)"</code>. Det er et 2010-anti-pattern, hvor links åbnes via JavaScript click handlers i stedet for ægte hrefs. Det fungerer dårligt med tastatur, skærmlæsere, "åbn i ny fane", crawlere.</p>
+        <p class="why">For et site der skal opfylde WCAG AAA i medicinalsektoren er det ikke acceptabelt. En bruger med skærmlæser hører "link, javascript void 0" i stedet for destinationen. Googlebot springer linket over. Det er fra 2010-æraen, og det skal væk.</p>
+        <p class="fix">Erstat hvert <code>javascript:void(0)</code> med ægte href eller <code>&lt;button&gt;</code>. Hvis elementet er en dropdown-trigger og ikke et link, brug <code>&lt;button aria-expanded&gt;</code>. AEM-template-task: en dag.</p>
+      </div>
+      <span class="badge med">Vigtigt</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">07</div>
+      <div class="find-body">
+        <h4>Meta description og og:locale kun på engelsk på .com-rod</h4>
+        <p>Selvom .com-roden serverer indhold fra Bagsværd, har metadeskrivelsen kun <code>og:locale: en_US</code>. Der er ingen <code>og:locale:alternate</code>-tags der signalerer at andre markedsversioner findes. For sociale shares fra US-konti optimerer det rigtigt, men signalet til andre lande er nul.</p>
+        <p class="fix">Tilføj <code>og:locale:alternate</code> pr. understøttet sprog: <code>da_DK</code>, <code>de_DE</code>, <code>ja_JP</code>, og så videre. Genereres fra samme AEM Live Copy-struktur som hreflang. En time når hreflang er på plads.</p>
+      </div>
+      <span class="badge med">Vigtigt</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">08</div>
+      <div class="find-body">
+        <h4>Tre H1-tags på samme side</h4>
+        <p>Verificeret: forsiden har tre <code>&lt;h1&gt;</code>-tags. Det er ikke katastrofalt (HTML5 tillader det), men det forvirrer prioriteten. Hver sektion får sit eget H1, hvilket flytter fokus fra det primære budskab. For en hjemmeside burde der være ét H1 der signalerer "dette er Novo Nordisk, dette er hvad vi gør".</p>
+        <p class="fix">Vælg ét H1 til siden (typisk hero-overskriften). Konverter de andre to til H2. AEM-template ændring i Page Properties-sektionerne: en halv time.</p>
+      </div>
+      <span class="badge med">Vigtigt</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">09</div>
+      <div class="find-body">
+        <h4>Kun ét img-tag i serveret HTML</h4>
+        <p>Forsidens initielle HTML indeholder kun ét <code>&lt;img&gt;</code>-tag. Resten af billederne (hero-fotos, NovoCare-grafik, pipeline-illustrationer) loades efter JavaScript-hydrering. Det betyder at LCP (Largest Contentful Paint) afhænger af JS-bundle-load, og at Google Images ikke ser de fleste fotos i den initielle crawl.</p>
+        <p class="why">For en pharma-virksomhed der publicerer billeder af lægemidler, faciliteter, kliniske studier og personer (ledelse, forskere), er Google Images en relevant trafikkilde. Og en langsom LCP straffer Core Web Vitals-scoren.</p>
+        <p class="fix">Server-side rendering af above-the-fold billeder via AEM. Pre-load critical images. Brug <code>fetchpriority="high"</code> på hero-billedet. Mål før og efter med Lighthouse + Search Console.</p>
+      </div>
+      <span class="badge med">Vigtigt</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">10</div>
+      <div class="find-body">
+        <h4>HTTP-header expect-ct er deprekeret</h4>
+        <p>Headeren <code>expect-ct: enforce, max-age=21600</code> sendes stadig. Certificate Transparency Expect-CT blev deprekeret af RFC og browsere allerede i 2021. Moderne browsere ignorerer den. Den fylder bytes uden at gøre noget.</p>
+        <div class="evidence">
+          <div><span class="key">expect-ct:</span> <span class="bad">enforce, max-age=21600</span> (deprekeret 2021)</div>
+        </div>
+        <p class="fix">Fjern headeren fra Akamai-konfiguration eller origin server. En linje slettet. Ti minutter.</p>
+      </div>
+      <span class="badge low">Mulighed</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">11</div>
+      <div class="find-body">
+        <h4>Ingen Content-Security-Policy header observerbar</h4>
+        <p>For et healthcare-site, hvor patienter indtaster data (NovoCare access platform), bør Content-Security-Policy være sat strengt. Headeren observeres ikke i HTTP-svaret. Andre security headers er på plads (HSTS, X-Content-Type-Options, X-Frame-Options), men CSP mangler.</p>
+        <p class="fix">Implementer CSP via Akamai EdgeWorkers eller AEM-dispatcher. Start med Report-Only mode for at finde tredjepartsscripts der bryder politikken. Bagefter enforce. To uger med en sikkerhedsingeniør.</p>
+      </div>
+      <span class="badge med">Vigtigt</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">12</div>
+      <div class="find-body">
+        <h4>X-XSS-Protection er stadig sat (deprekeret)</h4>
+        <p>Headeren <code>X-XSS-Protection: 1; mode=block</code> er sat. Moderne browsere har fjernet support for den (Chrome siden 2018, Firefox aldrig support). I dag er anbefalingen Content-Security-Policy i stedet.</p>
+        <p class="fix">Fjern headeren. Erstatte med en streng CSP (se finding 11). To minutter i Akamai.</p>
+      </div>
+      <span class="badge low">Mulighed</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">13</div>
+      <div class="find-body">
+        <h4>Investor data uden schema markup</h4>
+        <p>Forsiden viser aktiekurs, market cap og finanskalender. Ingen af de tal er markeret med schema <code>Corporation</code>, <code>FinancialProduct</code> eller <code>BusinessEvent</code>. For et IR-relevant indhold er det en mistet mulighed: Google viser ingen rich card med aktiekurs i søgeresultatet.</p>
+        <p class="fix">Schema <code>Corporation</code> med tickerSymbol, exchange, address, foundingDate på selskabsdata. Schema <code>BusinessEvent</code> på finanskalender-events. Halv dag på IR-templates.</p>
+      </div>
+      <span class="badge low">Mulighed</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">14</div>
+      <div class="find-body">
+        <h4>Patient-, læge- og investor-paths blandes på forsiden</h4>
+        <p>Hjemmesiden viser elementer fra alle målgrupper på samme tid: nyheder for investorer, NovoCare for patienter, science & technology for læger, careers for jobsøgere. Selvom navigationen er differentieret efter målgruppe, sender forsiden ikke besøgeren videre til den korrekte sektion hurtigt.</p>
+        <p class="fix">Et "Vælg din rolle"-bånd øverst på forsiden: Patient · Sundhedsfaglig · Investor · Jobsøgende. Cookies husker valget. Det forenkler vejen frem og giver bedre conversion til den rette sektion.</p>
+      </div>
+      <span class="badge low">Mulighed</span>
+    </div>
+
+    <div class="find-row">
+      <div class="find-num">15</div>
+      <div class="find-body">
+        <h4>Sitemap ikke linket fra robots.txt eller footer observerbart</h4>
+        <p>For et site med tusindvis af sider på tværs af firs markeder bør sitemap-index være tydeligt deklareret. Hvis Google ikke nemt finder den fulde sitemap-struktur, indekseringen forsinkes for nye pressemeddelelser og produktopdateringer.</p>
+        <p class="fix">Tilføj <code>Sitemap:</code>-direktiv i robots.txt der peger på sitemap-index. Generér markedsspecifikke sitemaps der refereres fra index. AEM kan generere det automatisk. En dag.</p>
+      </div>
+      <span class="badge low">Mulighed</span>
+    </div>
+  </div>
+</section>
+
+<!-- CUSTOMER JOURNEY -->
+<section id="journey">
+  <div class="wrap">
+    <div class="kicker">03 · Brugerrejser</div>
+    <h2>Fire forskellige besøgende, fire forskellige veje.</h2>
+    <p class="lead">Pharma-sites tjener mindst fire distinkte målgrupper på samme domæne. Hver gruppe ankommer med forskellig intent og leder efter forskelligt indhold. Stadierne med ⚠ er der hvor en gruppe taber sin sti.</p>
+
+    <div class="journey">
+      <div class="stage broken">
+        <div class="step">01 · Patient</div>
+        <h4>Wegovy eller Ozempic information</h4>
+        <p>Søger på medicinens navn. Lander på en US-version uden hreflang-omdirigering. Forvirret over om dosering passer til hendes marked.</p>
+      </div>
+      <div class="stage broken">
+        <div class="step">02 · Sundhedsfaglig</div>
+        <h4>Klinisk data og dosering</h4>
+        <p>Lider af samme hreflang-mangel som patienten. Bør se markedsspecifik SmPC. Risiko for at læse forældede US-doser i et europæisk klinisk kontekst.</p>
+      </div>
+      <div class="stage">
+        <div class="step">03 · Investor</div>
+        <h4>Aktiekurs og finanskalender</h4>
+        <p>IR-sektionen er let at finde. Annual report, kapitalmarkedsdag og finanskalender er på plads. Schema mangler, men strukturen virker.</p>
+      </div>
+      <div class="stage broken">
+        <div class="step">04 · Jobsøgende</div>
+        <h4>Careers-sektion</h4>
+        <p>Linket fra topnavigation. Men Title-elementet siger ikke noget om at Novo Nordisk hyrer. Søgning på "novo nordisk careers" får generisk forsideresultat i stedet for direkte til job-sektionen.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section id="pillars">
+  <div class="wrap">
+    <div class="kicker">04 · Score pr. område</div>
+    <h2>Tolv søjler, vurderet.</h2>
+
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-name">Teknisk SEO i skala <small>Hreflang, schema, canonical, title</small></div>
+        <div class="pillar-bar"><i class="bad" style="width:25%"></i></div>
+        <div class="pillar-score">25</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Performance og CDN <small>Akamai, HSTS, caching</small></div>
+        <div class="pillar-bar"><i class="good" style="width:78%"></i></div>
+        <div class="pillar-score">78</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Sikkerhedsheaders <small>CSP mangler, X-XSS deprekeret, expect-ct død</small></div>
+        <div class="pillar-bar"><i class="warn" style="width:55%"></i></div>
+        <div class="pillar-score">55</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Strukturerede data <small>Nul JSON-LD på Fortune 500 pharma</small></div>
+        <div class="pillar-bar"><i class="bad" style="width:5%"></i></div>
+        <div class="pillar-score">5</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">International dækning <small>80+ markeder, nul hreflang</small></div>
+        <div class="pillar-bar"><i class="bad" style="width:20%"></i></div>
+        <div class="pillar-score">20</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">CMS og URL-struktur <small>AEM-stier lækker, javascript:void(0)</small></div>
+        <div class="pillar-bar"><i class="warn" style="width:48%"></i></div>
+        <div class="pillar-score">48</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Brugerrejser <small>Fire målgrupper blandes på forsiden</small></div>
+        <div class="pillar-bar"><i class="warn" style="width:55%"></i></div>
+        <div class="pillar-score">55</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Trust og compliance <small>CVR, GDPR, ESG synligt</small></div>
+        <div class="pillar-bar"><i class="good" style="width:75%"></i></div>
+        <div class="pillar-score">75</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Investor og IR <small>Velorganiseret, mangler schema</small></div>
+        <div class="pillar-bar"><i class="good" style="width:72%"></i></div>
+        <div class="pillar-score">72</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Tilgængelighed <small>javascript:void(0), templates synlige</small></div>
+        <div class="pillar-bar"><i class="warn" style="width:50%"></i></div>
+        <div class="pillar-score">50</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Rendering strategi <small>Kun 1 img i SSR, template syntaks vises</small></div>
+        <div class="pillar-bar"><i class="bad" style="width:35%"></i></div>
+        <div class="pillar-score">35</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Indhold og frekvens <small>Pressemeddelelser opdateres ofte</small></div>
+        <div class="pillar-bar"><i class="good" style="width:80%"></i></div>
+        <div class="pillar-score">80</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLAN -->
+<section id="plan">
+  <div class="wrap">
+    <div class="kicker">05 · Plan A / B / C</div>
+    <h2>Femten handlinger sorteret efter hastighed.</h2>
+
+    <div class="plan">
+      <div class="plan-col">
+        <h4>Plan A · Denne uge</h4>
+        <div class="plan-meta">8-12 timer · gratis · AEM-author + CDN config</div>
+        <ul>
+          <li>Ret title-pattern fra "Novo Nordisk " til beskrivende title pr. marked</li>
+          <li>Reducer fra tre H1 til ét H1 på forsiden</li>
+          <li>Fjern deprekeret expect-ct header fra Akamai</li>
+          <li>Fjern deprekeret X-XSS-Protection header</li>
+          <li>Tilføj Sitemap:-direktiv i robots.txt</li>
+          <li>Erstat javascript:void(0) i navigation med ægte href eller button</li>
+        </ul>
+      </div>
+      <div class="plan-col">
+        <h4>Plan B · De næste 4 uger</h4>
+        <div class="plan-meta">3-5 uger · 1 SEO-engineer + Adobe-konsulent</div>
+        <ul>
+          <li>Hreflang generering fra AEM Live Copies-strukturen, alle markeder</li>
+          <li>JSON-LD Organization site-wide via AEM-template</li>
+          <li>JSON-LD Article på pressemeddelelser, Drug på produktsider</li>
+          <li>URL rewriting der skjuler /content/nncorp/ stier</li>
+          <li>Server-side rendering af hero billeder og kritiske data</li>
+          <li>Erstat template syntaks ({{}} placeholders) med SSR eller fallback</li>
+          <li>Content-Security-Policy i Report-Only mode</li>
+        </ul>
+      </div>
+      <div class="plan-col">
+        <h4>Plan C · De næste 6 måneder</h4>
+        <div class="plan-meta">Strategisk · governance · fundament</div>
+        <ul>
+          <li>"Vælg din rolle"-bånd på forsiden med cookie persistence</li>
+          <li>Schema Corporation + BusinessEvent på IR-data</li>
+          <li>Schema MedicalCondition på sygdomsområder med hreflang</li>
+          <li>Performance budget pr. side-type med Lighthouse CI i pipeline</li>
+          <li>CSP enforcement efter Report-Only læringsperiode</li>
+          <li>SEO governance: review pr. nyt marked, pr. nye produktsider</li>
+          <li>WCAG AAA audit pr. kvartal med kritiske brugerflows</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUICK WINS -->
+<section id="qw">
+  <div class="wrap">
+    <div class="kicker">06 · Quick wins</div>
+    <h2>Tre ting til i denne uge.</h2>
+    <p class="lead">Hvis kun disse tre udføres inden fredag, fjernes tre af de mest pinlige tells fra et Fortune 500 site, og scoren stiger fra 52 til omkring 62.</p>
+
+    <div class="qw">
+      <div class="qw-card">
+        <span class="kicker">10 minutter</span>
+        <h4>Ret title og fjern trailing space</h4>
+        <p>Sæt forsidens title til "Novo Nordisk · Defeating diabetes and serious chronic diseases" via AEM Page Properties. Default pattern pr. marked.</p>
+        <small>Effekt: høj · indsats: trivial</small>
+      </div>
+      <div class="qw-card">
+        <span class="kicker">20 minutter</span>
+        <h4>Fjern expect-ct og X-XSS-Protection</h4>
+        <p>To deprekerede HTTP-headers slettet fra Akamai-konfigurationen. Mindre bytes pr. request, ingen funktionalitet tabt.</p>
+        <small>Effekt: lav · indsats: trivial</small>
+      </div>
+      <div class="qw-card">
+        <span class="kicker">2 timer</span>
+        <h4>Organization JSON-LD site-wide</h4>
+        <p>Et JSON-LD Organization template med name, url, logo, foundingDate, address, contactPoint, sameAs (LinkedIn, X, YouTube). Implementeret i AEM page footer template.</p>
+        <small>Effekt: høj · indsats: lav</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="mark" style="font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mid);margin-bottom:8px;text-align:center">Uafhængig audit · Di Barret · 4. juni 2026</div>
+    <p style="color:var(--ink-faint);font-size:12px;max-width:60ch;margin:0 auto;text-align:center">Data hentet fra offentligt observerbare kilder: <code>novonordisk.com</code> (HTML serveret af Akamai, HTTP response headers, dispatcher canonical URL), Adobe AEM content-stier afsløret i HTML, og Novo Nordisks egne IR-publikationer. Ingen interne systemer eller authoring miljøer er besigtiget. Det der ikke kan verificeres er markeret som sådan. Ingen data er opfundet.</p>
+  </div>
+</footer>
+
+</body>
+</html>
