@@ -74,14 +74,25 @@ section:first-of-type{border-top:0}
 .badge.crit{color:var(--bad)}.badge.med{color:var(--warn)}.badge.low{color:var(--good)}
 @media (max-width:680px){.find-row{grid-template-columns:40px 1fr;gap:16px}.badge{grid-column:2;justify-self:start;margin-top:6px}}
 
-.journey{margin-top:32px;display:grid;grid-template-columns:repeat(6,1fr);gap:0}
-@media (max-width:900px){.journey{grid-template-columns:repeat(3,1fr)}}
-@media (max-width:560px){.journey{grid-template-columns:repeat(2,1fr)}}
-.stage{border:1px solid var(--line);border-right:0;padding:22px 18px;background:rgba(255,255,255,.015)}
-.stage:last-child{border-right:1px solid var(--line)}
-.stage .step{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--ink-faint);margin-bottom:8px}
-.stage h4{font-family:var(--serif);font-weight:500;font-size:17px;margin-bottom:8px}
-.stage p{font-size:12.5px;line-height:1.5;margin:0;color:var(--ink-mid)}
+.journey{margin-top:32px;display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+@media (max-width:780px){.journey{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.journey{grid-template-columns:1fr}}
+.stage{border:1px solid var(--line);padding:28px 24px;background:rgba(255,255,255,.015);min-height:200px;display:flex;flex-direction:column}
+.stage:not(:nth-child(3n+1)){margin-left:-1px}
+.stage:nth-child(n+4){margin-top:-1px}
+@media (max-width:780px){
+  .stage:not(:nth-child(3n+1)){margin-left:0}
+  .stage:nth-child(n+4){margin-top:0}
+  .stage:not(:nth-child(2n+1)){margin-left:-1px}
+  .stage:nth-child(n+3){margin-top:-1px}
+}
+@media (max-width:520px){
+  .stage{margin-left:0!important}
+  .stage:not(:first-child){margin-top:-1px}
+}
+.stage .step{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--ink-faint);margin-bottom:10px;text-transform:uppercase}
+.stage h4{font-family:var(--serif);font-weight:500;font-size:18px;margin-bottom:10px;line-height:1.2}
+.stage p{font-size:13px;line-height:1.55;margin:0;color:var(--ink-mid)}
 .stage.broken{background:rgba(239,68,68,0.06)}
 .stage.broken h4::after{content:" ⚠";color:var(--bad)}
 .stage.missing{background:rgba(255,255,255,.02);border-style:dashed}
